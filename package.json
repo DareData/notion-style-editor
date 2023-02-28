@@ -1,16 +1,12 @@
 {
-  "name": "science-hub-frontend",
+  "name": "notion-style-editor",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test": "jest",
-    "test:coverage": "jest --collect-coverage",
-    "test:ci": "jest --color --runInBand --ci",
-    "test:watch": "jest --watch"
+    "lint": "next lint"
   },
   "dependencies": {
     "@charkour/react-reactions": "^0.11.0",
@@ -64,8 +60,5 @@
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
     "voca": "^1.4.0"
-  },
-  "resolutions": {
-    "@storybook/react": "6.5.0-alpha.42"
   }
 }

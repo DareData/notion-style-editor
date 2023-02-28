@@ -1,0 +1,34 @@
+{
+  "parser": "typescript",
+  "useTabs": false,
+  "tabWidth": 2,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "semi": true,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "printWidth": 100,
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false,
+  "proseWrap": "always",
+  "htmlWhitespaceSensitivity": "strict",
+  "embeddedLanguageFormatting": "off",
+  "overrides": [
+    {
+      "files": [
+        "*.scss"
+      ],
+      "options": {
+        "parser": "scss"
+      }
+    },
+    {
+      "files": [
+        "*.json"
+      ],
+      "options": {
+        "parser": "json"
+      }
+    }
+  ]
+}
