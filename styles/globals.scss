@@ -1,0 +1,103 @@
+@font-face {
+  font-family: 'Slack';
+  src: url('../_scaffolding/fonts/slack-icons-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1,
+h2,
+button {
+  font-family: Figtree;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Open Sans;
+  height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#__next {
+  height: 100%;
+}
+
+.rc-md-editor {
+  border: 1px solid #6e7270;
+  border-radius: 8px;
+  padding: 12px 12px 24px 12px;
+
+  .rc-md-navigation {
+    border: none;
+    border-radius: 4px;
+    border-bottom: none;
+    background: #f6f6f6;
+    padding: 8px;
+    max-height: 44px;
+    min-height: 44px;
+  }
+
+  .editor-container {
+    flex: unset;
+    height: 100%;
+  }
+
+  .section {
+    border: none !important;
+  }
+
+  .button-type-quote,
+  .button-type-wrap,
+  .button-type-clear {
+    display: none !important;
+  }
+}
+
+#markdown {
+  margin: revert !important;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: revert !important;
+    font-weight: revert !important;
+  }
+}
+
+#ReactSimpleImageViewer {
+  z-index: 1000;
+
+  .react-simple-image-viewer__next,
+  .react-simple-image-viewer__close,
+  .react-simple-image-viewer__previous {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    height: 28.9px;
+    width: 28.9px;
+    background: white;
+    border-radius: 50%;
+    color: black;
+    margin: 25px;
+  }
+
+  .react-simple-image-viewer__close {
+    font-size: 28.9px;
+    top: 0;
+    right: 0;
+  }
+
+  .react-simple-image-viewer__next,
+  .react-simple-image-viewer__previous {
+    font-size: 20px;
+  }
+}

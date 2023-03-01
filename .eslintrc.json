@@ -1,0 +1,18 @@
+{
+  "root": true,
+  "extends": ["next/core-web-vitals"],
+  "plugins": ["testing-library"],
+  "overrides": [
+    {
+      "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+      "extends": ["plugin:testing-library/react"]
+    }
+  ],
+  "rules": {
+    "@next/next/google-font-display": "off",
+    "react/display-name": "off",
+    "react/no-unescaped-entities": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "import/no-anonymous-default-export": "off"
+  }
+}
