@@ -1,5 +1,21 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Project Requirements:
+
+- The editor accepts markdown and outputs markdown.
+- It is a react component that works within our ecosystem (next.js, chakra-ui) and renders in `pages/index.tsx`
+- You have 3 weeks from start to finish.
+- You have daily communication with Sam (project manager) and the designers.
+- It would be preferable to select an external library so that we don't have to maintain a complex codebase.
+- You will have access to figma designs.
+
+## Additional information:
+
+- We are very flexible and the designers are more than willing to compromise.
+- The 3 week deadline in which we achieve a smooth experience that is markdown based
+  is more important than delivering EXACTLY what is designed.
+- We have identified the [milkdown](https://milkdown.dev/) editor as a potential candidate.
+
 ## Getting Started
 
 First, run the development server:
