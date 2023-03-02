@@ -10,7 +10,7 @@ const customTheme = extendTheme(theme);
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={customTheme}>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </ChakraProvider>
   );
 }
