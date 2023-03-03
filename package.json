@@ -18,7 +18,11 @@
     "dev": "vite",
     "clean": "rm -rf dist",
     "build": "yarn clean && tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint --ext .ts,.tsx ./src",
+    "lint:fix": "npm run lint -- --fix",
+    "prepare": "husky install",
+    "pre-commit": "lint-staged"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -38,9 +42,17 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
     "prettier": "^2.8.4",
     "typescript": "^4.9.3",
     "vite": "^4.1.0",
     "vite-plugin-dts": "^2.0.2"
+  },
+  "lint-staged": {
+    "*.ts?(x)": [
+      "npm run lint:fix",
+      "git add"
+    ]
   }
 }
