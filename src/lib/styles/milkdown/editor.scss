@@ -1,0 +1,15 @@
+.editor {
+  padding: pxToRem(20) pxToRem(12);
+  background-color: $white;
+  border: 1px solid $lightGrey;
+  border-radius: pxToRem(6);
+  outline: 0;
+  transition: border-color .2s ease-in;
+  &:hover {
+    border-color: $grey;
+  }
+
+  &.ProseMirror-focused {
+    border-color: $lightBlack;
+  }
+}

@@ -1,3 +1,8 @@
 .milkdown {
-  padding: pxToRem(20);
+  * {
+    margin: 0;
+    padding: 0;
+    color: $grey;
+  }
+  @import 'editor';
 }

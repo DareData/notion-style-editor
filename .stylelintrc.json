@@ -17,6 +17,7 @@
         "ignoreFunctions": ["pxToRem"]
       }
     ],
-    "no-eol-whitespace": true
+    "no-eol-whitespace": true,
+    "no-invalid-position-at-import-rule": null
   } 
 } 
