@@ -1,2 +1,6 @@
-@use './theme.scss';
-@use './milkdown.scss'; 
+@import 'prosemirror-view/style/prosemirror.css';
+@import 'prosemirror-tables/style/tables.css'; 
+
+@import './variables.scss';
+@import './utils.scss';
+@import './milkdown/milkdown.scss'; 

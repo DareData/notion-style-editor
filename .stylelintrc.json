@@ -9,6 +9,14 @@
     "stylelint-config-rational-order"
   ],
   "rules": {
-    "at-rule-no-unknown": null
-  }
-}
+    "at-rule-no-unknown": null,
+    "indentation": 2,
+    "function-no-unknown": [
+      true, 
+      {  
+        "ignoreFunctions": ["pxToRem"]
+      }
+    ],
+    "no-eol-whitespace": true
+  } 
+} 
