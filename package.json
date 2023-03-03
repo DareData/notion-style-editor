@@ -68,7 +68,10 @@
   },
   "lint-staged": {
     "*.ts?(x)": [
-      "npm run lint:fix"
+      "yarn run lint:js:fix"
+    ],
+    "*.scss": [
+      "yarn run lint:style:fix"
     ]
   }
 }
