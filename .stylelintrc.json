@@ -1,0 +1,14 @@
+{
+  "plugins": [
+    "stylelint-scss"
+  ],
+	"extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-styled-components",
+    "stylelint-order",
+    "stylelint-config-rational-order"
+  ],
+  "rules": {
+    "at-rule-no-unknown": null
+  }
+}
