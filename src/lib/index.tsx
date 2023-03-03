@@ -1,2 +1,2 @@
 import './styles/style.scss';
-export { TextEditor } from './components/TextEditor';
+export { TextEditor } from './packages/TextEditor';

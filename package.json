@@ -25,6 +25,12 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
+    "@milkdown/core": "^7.0.1",
+    "@milkdown/ctx": "^7.0.1",
+    "@milkdown/preset-commonmark": "^7.0.1",
+    "@milkdown/prose": "^7.0.1",
+    "@milkdown/react": "^7.0.1",
+    "@milkdown/transformer": "^7.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.58.3"
