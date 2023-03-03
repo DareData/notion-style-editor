@@ -1,7 +1,0 @@
-# Add files here to ignore them from prettier formatting
-/dist
-/public
-/coverage
-/node_modules
-package.json
-tsconfig.json
