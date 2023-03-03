@@ -1,8 +1,6 @@
+@import 'common';
+@import 'menubar';
+
 .milkdown {
-  * {
-    margin: 0;
-    padding: 0;
-    color: $grey;
-  }
   @import 'editor';
 }

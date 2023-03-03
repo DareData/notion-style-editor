@@ -1,0 +1,17 @@
+.menubar {
+  ul, li {
+    list-style-type: none;
+  }
+
+  display: flex;
+  gap: pxToRem(16);
+  align-items: center;
+  padding: pxToRem(8) pxToRem(23);
+  background-color: $secondaryLightGrey;
+  border-radius: pxToRem(4);
+  .menubar-item {
+    &.menubar-item-text_formats, &.menubar-item-paragraph_format, &.menubar-item-embed_objects, &.menubar-item-script_actions {
+      margin-left: pxToRem(12);
+    }
+  }
+}

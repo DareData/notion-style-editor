@@ -3,4 +3,13 @@
 
 @import './variables.scss';
 @import './utils.scss';
-@import './milkdown/milkdown.scss';
+
+.date-data_text-editor {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: $grey
+  }
+  @import './milkdown/milkdown.scss';
+}
