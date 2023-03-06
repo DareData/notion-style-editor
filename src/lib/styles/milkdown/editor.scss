@@ -26,4 +26,30 @@
   li {
     padding-left: pxToRem(2);
   }
+
+  table {
+    tr {
+      border-bottom: 1px solid $lightGrey;
+      th, td {
+        padding: pxToRem(12) pxToRem(16);
+        &:nth-child(odd) {
+          background-color: $secondaryLightGrey;
+        }
+      }
+    }
+  }
+
+  pre {
+    padding: pxToRem(12) pxToRem(16);
+    background-color: $secondaryLightGrey;
+    .keyword {
+      color:red;
+    }
+    .operator {
+      color: blue;
+    }
+    .builtin {
+      color: green;
+    }
+  }
 }

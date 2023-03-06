@@ -21,7 +21,7 @@ export const MenuBar = () => {
       <TextFormats {...{ onActionClick }} />
       <ParagraphFormat {...{ onActionClick }} />
       <ScriptActions />
-      <EmbedObjects />
+      <EmbedObjects {...{ onActionClick }} />
     </ul>
   );
 };
