@@ -31,6 +31,7 @@
   "dependencies": {
     "@milkdown/core": "^7.0.1",
     "@milkdown/ctx": "^7.0.1",
+    "@milkdown/plugin-history": "^7.0.1",
     "@milkdown/preset-commonmark": "^7.0.1",
     "@milkdown/prose": "^7.0.1",
     "@milkdown/react": "^7.0.1",

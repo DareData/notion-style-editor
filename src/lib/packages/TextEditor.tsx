@@ -1,15 +1,21 @@
 import { MilkdownProvider } from '@milkdown/react';
 
-import { Editor, EditorProps } from '../components/Editor';
+import { Editor } from '../components/Editor';
+import { EditorContextProvider } from '../components/EditorContext/EditorContextProvider';
 import { MenuBar } from '../components/MenuBar/MenuBar';
 
-export type TextEditorProps = EditorProps;
+export type TextEditorProps = {
+  data: string;
+  onDataChange: (data: string) => void;
+};
 
-export const TextEditor: React.FC<TextEditorProps> = props => (
+export const TextEditor: React.FC<TextEditorProps> = ({ data }) => (
   <MilkdownProvider>
-    <div className="date-data_text-editor">
-      <MenuBar />
-      <Editor {...props} />
-    </div>
+    <EditorContextProvider defaultEditorValue={data}>
+      <div className="date-data_text-editor">
+        <MenuBar />
+        <Editor />
+      </div>
+    </EditorContextProvider>
   </MilkdownProvider>
 );

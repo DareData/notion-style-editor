@@ -487,6 +487,14 @@
   dependencies:
     tslib "^2.4.0"
 
+"@milkdown/plugin-history@^7.0.1":
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/@milkdown/plugin-history/-/plugin-history-7.0.1.tgz#da5a6e473ff8f383dcdc6ded2aaf4e28b708c167"
+  integrity sha512-3MDuaHKhVA292SGM/5nWO2B6Z2u9QTaajEpN9SkZ8aluPB0+6oLCAllKuYIBhKkVNd+Bt8AO6IVzMSJ1n/xuDg==
+  dependencies:
+    "@milkdown/utils" "7.0.1"
+    tslib "^2.4.0"
+
 "@milkdown/preset-commonmark@^7.0.1":
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/@milkdown/preset-commonmark/-/preset-commonmark-7.0.1.tgz#7bf993a112676564e7a531da869d31782b524964"
