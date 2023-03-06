@@ -1,15 +1,27 @@
+import { CmdKey } from '@milkdown/core';
+import {
+  wrapInBulletListCommand,
+  wrapInOrderedListCommand,
+} from '@milkdown/preset-commonmark';
+
 import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
 
-export const ParagraphFormat: React.FC = () => (
+type ParagraphFormatProps = {
+  onActionClick: <T>(action: CmdKey<T>) => void;
+};
+
+export const ParagraphFormat: React.FC<ParagraphFormatProps> = ({
+  onActionClick,
+}) => (
   <>
     <li className="menubar-item menubar-item-paragraph_format">
-      <Button>
+      <Button onClick={() => onActionClick(wrapInBulletListCommand.key)}>
         <Icon icon="bulleted_list" />
       </Button>
     </li>
     <li className="menubar-item">
-      <Button>
+      <Button onClick={() => onActionClick(wrapInOrderedListCommand.key)}>
         <Icon icon="numbered_list" />
       </Button>
     </li>

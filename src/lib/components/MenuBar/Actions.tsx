@@ -11,12 +11,12 @@ type ActionsProps = {
 export const Actions: React.FC<ActionsProps> = ({ onActionClick }) => (
   <>
     <li className="menubar-item">
-      <Button onClick={() => onActionClick(redoCommand.key as CmdKey<'Redo'>)}>
+      <Button onClick={() => onActionClick(redoCommand.key)}>
         <Icon icon="redo" />
       </Button>
     </li>
     <li className="menubar-item">
-      <Button onClick={() => onActionClick(undoCommand.key as CmdKey<'Undo'>)}>
+      <Button onClick={() => onActionClick(undoCommand.key)}>
         <Icon icon="undo" />
       </Button>
     </li>

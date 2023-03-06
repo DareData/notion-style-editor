@@ -5,6 +5,7 @@ import {
 } from '@milkdown/core';
 import { history } from '@milkdown/plugin-history';
 import { commonmark } from '@milkdown/preset-commonmark';
+import { gfm } from '@milkdown/preset-gfm';
 import { useEditor, UseEditorReturn } from '@milkdown/react';
 import { createContext, useMemo } from 'react';
 
@@ -33,6 +34,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
       })
       .use(commonmark)
       .use(history)
+      .use(gfm)
   );
 
   const context = useMemo(() => ({ editor }), [editor]);

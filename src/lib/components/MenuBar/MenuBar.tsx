@@ -18,8 +18,8 @@ export const MenuBar = () => {
   return (
     <ul className="menubar">
       <Actions {...{ onActionClick }} />
-      <TextFormats />
-      <ParagraphFormat />
+      <TextFormats {...{ onActionClick }} />
+      <ParagraphFormat {...{ onActionClick }} />
       <ScriptActions />
       <EmbedObjects />
     </ul>
