@@ -9,9 +9,12 @@ export type TextEditorProps = {
   onDataChange: (data: string) => void;
 };
 
-export const TextEditor: React.FC<TextEditorProps> = ({ data }) => (
+export const TextEditor: React.FC<TextEditorProps> = ({
+  data,
+  onDataChange,
+}) => (
   <MilkdownProvider>
-    <EditorContextProvider defaultEditorValue={data}>
+    <EditorContextProvider defaultMarkdownValue={data} onChange={onDataChange}>
       <div className="date-data_text-editor">
         <MenuBar />
         <Editor />

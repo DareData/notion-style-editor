@@ -495,6 +495,14 @@
     "@milkdown/utils" "7.0.1"
     tslib "^2.4.0"
 
+"@milkdown/plugin-listener@^7.0.1":
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/@milkdown/plugin-listener/-/plugin-listener-7.0.1.tgz#4e82b212a49ab33bc5a1045394df9f57d6ec06c3"
+  integrity sha512-DGEJq+fLdDjmjBUbhws7K/aJlsoWpMRPQm23/8d0uUrpKR5vN6Q16uH5fSkue06p/cYNuILsJWRPqaQCjbk0nw==
+  dependencies:
+    "@milkdown/utils" "7.0.1"
+    tslib "^2.4.0"
+
 "@milkdown/plugin-prism@^7.0.1":
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/@milkdown/plugin-prism/-/plugin-prism-7.0.1.tgz#e9b121069625d160563bcefb5a300b7eeb050e39"
