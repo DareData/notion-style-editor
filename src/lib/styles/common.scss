@@ -1,0 +1,29 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  &:focus {
+    outline: 1px solid red;
+  }
+}
+
+.Dropdown-root {
+  min-width: pxToRem(130);
+  font-size: pxToRem(14);
+  .Dropdown-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: pxToRem(6) pxToRem(12);
+    border-radius: pxToRem(8);
+    .Dropdown-arrow-wrapper {
+      display: flex;
+      align-items: center;
+      margin-left: pxToRem(8)
+    }
+  }
+}
