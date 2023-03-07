@@ -40,22 +40,10 @@
   }
 
   pre {
-    padding: pxToRem(12) pxToRem(16);
-    background-color: $secondaryLightGrey;
-    .keyword {
-      color:red;
-    }
-    .operator {
-      color: blue;
-    }
-    .builtin {
-      color: green;
-    }
-    .function {
-      color: yellow;
-    }
-    .punctuation {
-      color: sandybrown;
-    }
+    margin: pxToRem(16) 0;
+    padding: pxToRem(16);
+    background-color: $lightAzure;
+    border: 1px solid $azure;
+    border-radius: pxToRem(8);
   }
 }
