@@ -42,6 +42,9 @@
   pre {
     margin: pxToRem(16) 0;
     padding: pxToRem(16);
+    font-size: pxToRem(16);
+    font-family: 'SourceCodePro';
+    line-height: pxToRem(22);
     background-color: $lightAzure;
     border: 1px solid $azure;
     border-radius: pxToRem(8);

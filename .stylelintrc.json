@@ -18,6 +18,7 @@
       }
     ],
     "no-eol-whitespace": true,
-    "no-invalid-position-at-import-rule": null
+    "no-invalid-position-at-import-rule": null,
+    "font-family-no-missing-generic-family-keyword": null
   } 
 } 
