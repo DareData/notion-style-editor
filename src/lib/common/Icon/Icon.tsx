@@ -4,6 +4,7 @@ import { ReactComponent as AddLinkIcon } from './assets/add_link.svg';
 import { ReactComponent as BoldIcon } from './assets/bold.svg';
 import { ReactComponent as BulletedList } from './assets/bulleted_list.svg';
 import { ReactComponent as CodeBlockIcon } from './assets/code_block.svg';
+import { ReactComponent as CopyIcon } from './assets/copy.svg';
 import { ReactComponent as CreateTableIcon } from './assets/create_table.svg';
 import { ReactComponent as EmbedImageIcon } from './assets/embed_image.svg';
 import { ReactComponent as ItalicIcon } from './assets/italic.svg';
@@ -20,6 +21,7 @@ const icons = {
   undo: UndoIcon,
   bold: BoldIcon,
   italic: ItalicIcon,
+  copy: CopyIcon,
   underline: UnderlineIcon,
   strikethrough: StrikethroughIcon,
   superscript: SuperScriptIcon,

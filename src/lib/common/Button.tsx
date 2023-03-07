@@ -12,9 +12,10 @@ export const Button: React.FC<ButtonProps> = ({
   type = 'button',
   prop = 'primary',
   children,
+  className = '',
   ...rest
 }) => (
-  <button {...{ type }} {...rest} className={clsx('button', prop)}>
+  <button {...{ type }} {...rest} className={clsx('button', prop, className)}>
     {children}
   </button>
 );
