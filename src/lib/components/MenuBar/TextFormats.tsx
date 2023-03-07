@@ -7,6 +7,7 @@ import { toggleStrikethroughCommand } from '@milkdown/preset-gfm';
 
 import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
+import { toggleUnderlineCommand } from '../../hooks/useUnderlineCommand';
 
 type TextFormatsProps = {
   onActionClick: <T>(action: CmdKey<T>) => void;
@@ -25,8 +26,7 @@ export const TextFormats: React.FC<TextFormatsProps> = ({ onActionClick }) => (
       </Button>
     </li>
     <li className="menubar-item">
-      {/* add missing underline command */}
-      <Button>
+      <Button onClick={() => onActionClick(toggleUnderlineCommand.key)}>
         <Icon icon="underline" />
       </Button>
     </li>
