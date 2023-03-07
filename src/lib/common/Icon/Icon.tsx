@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 
 import { ReactComponent as AddLinkIcon } from './assets/add_link.svg';
+import { ReactComponent as ArrowDownIcon } from './assets/arrow_down.svg';
+import { ReactComponent as ArrowTopIcon } from './assets/arrow_top.svg';
 import { ReactComponent as BoldIcon } from './assets/bold.svg';
 import { ReactComponent as BulletedList } from './assets/bulleted_list.svg';
 import { ReactComponent as CodeBlockIcon } from './assets/code_block.svg';
@@ -32,6 +34,8 @@ const icons = {
   embed_image: EmbedImageIcon,
   code_block: CodeBlockIcon,
   create_table: CreateTableIcon,
+  arrow_down: ArrowDownIcon,
+  arrow_top: ArrowTopIcon,
 };
 
 export const IconTypesValues = Object.keys(icons);
