@@ -1,0 +1,21 @@
+.code-block {
+  margin: pxToRem(16) 0;
+  padding: pxToRem(16);
+  font-size: pxToRem(16);
+  line-height: pxToRem(22);
+  background-color: $lightAzure;
+  border: 1px solid $azure;
+  border-radius: pxToRem(8);
+  * {
+    font-family: 'SourceCodePro';
+  }
+  .code-block_actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: pxToRem(16);
+    .copy-button_text {
+      margin-left: pxToRem(5);
+    }
+  }
+}

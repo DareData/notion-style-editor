@@ -631,6 +631,22 @@
     tiny-glob "^0.2.9"
     tslib "^2.4.0"
 
+"@prosemirror-adapter/core@0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@prosemirror-adapter/core/-/core-0.2.2.tgz#9bef3dc5dcc550b0df21ec426e9607f52dc29b38"
+  integrity sha512-rnkh1StLZO5YcA8ELVmUNd+OkqeuneyhoDoXrSDsMuG1HeQLy6WithRurJQcqkJQD5Ak/ebWDykKEFPGKS4a+A==
+  dependencies:
+    tslib "^2.4.0"
+
+"@prosemirror-adapter/react@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@prosemirror-adapter/react/-/react-0.2.2.tgz#175d3af2e5b8a4e483eb44ab6b39a726d922b76f"
+  integrity sha512-iNbCFDlaE67SaY+3V4Chb4LHj7h8YvTPddWWfnMFIjXfO8k6+vOm3haxDrRiyzb61/7cXXmfs077OaGVuikxtw==
+  dependencies:
+    "@prosemirror-adapter/core" "0.2.2"
+    nanoid "^4.0.0"
+    tslib "^2.4.0"
+
 "@rollup/pluginutils@^5.0.2":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-5.0.2.tgz#012b8f53c71e4f6f9cb317e311df1404f56e7a33"

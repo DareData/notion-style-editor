@@ -1,4 +1,5 @@
 import { MilkdownProvider } from '@milkdown/react';
+import { ProsemirrorAdapterProvider } from '@prosemirror-adapter/react';
 
 import { Editor } from '../components/Editor';
 import { EditorContextProvider } from '../components/EditorContext/EditorContextProvider';
@@ -13,12 +14,16 @@ export const TextEditor: React.FC<TextEditorProps> = ({
   data,
   onDataChange,
 }) => (
-  <MilkdownProvider>
-    <EditorContextProvider defaultMarkdownValue={data} onChange={onDataChange}>
-      <div className="date-data_text-editor">
-        <MenuBar />
-        <Editor />
-      </div>
-    </EditorContextProvider>
-  </MilkdownProvider>
+  <ProsemirrorAdapterProvider>
+    <MilkdownProvider>
+      <EditorContextProvider
+        defaultMarkdownValue={data}
+        onChange={onDataChange}>
+        <div className="date-data_text-editor">
+          <MenuBar />
+          <Editor />
+        </div>
+      </EditorContextProvider>
+    </MilkdownProvider>
+  </ProsemirrorAdapterProvider>
 );
