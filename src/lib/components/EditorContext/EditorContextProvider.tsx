@@ -17,6 +17,8 @@ import markdown from 'refractor/lang/markdown';
 import tsx from 'refractor/lang/tsx';
 import typescript from 'refractor/lang/typescript';
 
+import { useUnderlineCommand } from '../../hooks/useUnderlineCommand';
+
 type EditorContextData = {
   editor: UseEditorReturn | null;
 };
@@ -36,6 +38,8 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   onChange,
   defaultMarkdownValue,
 }) => {
+  const underlineCommand = useUnderlineCommand();
+
   const editor = useEditor(root =>
     MilkdownEditor.make()
       .config(ctx => {
@@ -56,6 +60,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         });
       })
       .use(listener)
+      .use(underlineCommand)
       .use(commonmark)
       .use(history)
       .use(gfm)
