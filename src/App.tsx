@@ -14,6 +14,13 @@ function main() {
 }
 \`\`\`
 
+
+| Header   |   Header   | Header |
+| -------------- | ----------------   | -------------- |
+| Content Cell 1 |  Content Cell 1    | Cell 3         |
+| Content Cell 2 | **Content** Cell 2 | Cell 3         |
+
+
 `;
 
 export const App = () => (
