@@ -1,8 +1,8 @@
 .tableWrapper {
   table {
-    width: calc(100% - pxToRem(10));
-    margin-top: pxToRem(10);
-    margin-left: pxToRem(10);
+    width: calc(100% - pxToRem(12));
+    margin-top: pxToRem(12);
+    margin-left: pxToRem(12);
     overflow: visible;
     font-size: pxToRem(14);
     border-collapse: collapse;
@@ -23,6 +23,7 @@
     }
     .table-selector-widget {
       position: absolute;
+      padding: 0;
       background-color: $secondaryGrey;
       border-radius: pxToRem(1);
       &.widget-row {
@@ -38,6 +39,11 @@
         height: pxToRem(4);
       }
       &.widget-table {
+        top: pxToRem(-12);
+        left: pxToRem(-12);
+        width: pxToRem(8);
+        height: pxToRem(8);
+        border-radius: 50%;
         opacity: .5;
       }
     }

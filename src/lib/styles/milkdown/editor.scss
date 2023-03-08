@@ -14,9 +14,9 @@
   }
 
   blockquote {
-    margin: pxToRem(6) 0;
+    margin: pxToRem(16) 0;
     padding-left: pxToRem(20);
-    border-left: 4px solid red;
+    border-left: 4px solid $green;
   }
 
   ul, ol {
