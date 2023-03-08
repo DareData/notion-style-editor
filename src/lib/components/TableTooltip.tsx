@@ -13,6 +13,8 @@ import { useInstance } from '@milkdown/react';
 import { usePluginViewContext } from '@prosemirror-adapter/react';
 import { useEffect, useRef } from 'react';
 
+import { Button } from '../common/Button';
+import { Icon } from '../common/Icon/Icon';
 import { tableTooltipCtx } from '../hooks/useGfmPlugin/useGfmPlugin';
 
 export const TableTooltip: React.FC = () => {
@@ -63,8 +65,6 @@ export const TableTooltip: React.FC = () => {
         editorRef.ctx.set(tableTooltipCtx.key, provider);
         tooltipProvider.current = provider;
       }
-
-      console.log('provider: ', provider);
     }
 
     return () => {
@@ -72,13 +72,50 @@ export const TableTooltip: React.FC = () => {
     };
   }, [getEditor, loading, view]);
 
-  console.log('kurwa xD');
-
   return (
-    <div>
-      <div className="flex" ref={ref}>
-        <div>Dupa xD</div>
-        {/* {!isWholeTable && !isHeading && isRow && (
+    <div className="table-tooltip" ref={ref}>
+      {!isWholeTable && !isHeading && isRow && (
+        <Button className="oval">
+          <Icon icon="arrow_top" />
+        </Button>
+      )}
+      {!isWholeTable && isRow && (
+        <Button className="oval">
+          <Icon icon="arrow_down" />
+        </Button>
+      )}
+      {!isWholeTable && isCol && (
+        <Button className="oval">
+          <Icon icon="arrow_left" />
+        </Button>
+      )}
+      {(isWholeTable || !isHeading) && (
+        <Button className="oval">
+          <Icon icon="delete" />
+        </Button>
+      )}
+      {!isWholeTable && isCol && (
+        <Button className="oval">
+          <Icon icon="arrow_right" />
+        </Button>
+      )}
+      {!isWholeTable && isCol && (
+        <Button className="oval">
+          <Icon icon="text_align_left" />
+        </Button>
+      )}
+      {!isWholeTable && isCol && (
+        <Button className="oval">
+          <Icon icon="text_align_right" />
+        </Button>
+      )}
+      {!isWholeTable && isCol && (
+        <Button className="oval">
+          <Icon icon="text_align_center" />
+        </Button>
+      )}
+
+      {/* {!isWholeTable && !isHeading && isRow && (
           <TooltipButton
             icon="arrow_upward"
             onClick={() => {
@@ -86,32 +123,6 @@ export const TableTooltip: React.FC = () => {
 
               getEditor().action(ctx => {
                 ctx.get(commandsCtx).call(addRowBeforeCommand.key);
-              });
-              tooltipProvider.current?.hide();
-            }}
-          />
-        )}
-        {!isWholeTable && isCol && (
-          <TooltipButton
-            icon="arrow_back"
-            onClick={() => {
-              if (loading) return;
-              getEditor().action(ctx => {
-                ctx.get(commandsCtx).call(addColBeforeCommand.key);
-              });
-
-              tooltipProvider.current?.hide();
-            }}
-          />
-        )}
-        {(isWholeTable || !isHeading) && (
-          <TooltipButton
-            icon="delete"
-            onClick={() => {
-              if (loading) return;
-
-              getEditor().action(ctx => {
-                ctx.get(commandsCtx).call(deleteSelectedCellsCommand.key);
               });
               tooltipProvider.current?.hide();
             }}
@@ -129,54 +140,7 @@ export const TableTooltip: React.FC = () => {
               tooltipProvider.current?.hide();
             }}
           />
-        )}
-        {!isWholeTable && isCol && (
-          <TooltipButton
-            icon="arrow_forward"
-            onClick={() => {
-              if (loading) return;
-              getEditor().action(ctx => {
-                ctx.get(commandsCtx).call(addColAfterCommand.key);
-              });
-
-              tooltipProvider.current?.hide();
-            }}
-          />
-        )}
-        {!isWholeTable && isCol && (
-          <TooltipButton
-            icon="format_align_left"
-            onClick={() => {
-              if (loading) return;
-              getEditor().action(ctx => {
-                ctx.get(commandsCtx).call(setAlignCommand.key, 'left');
-              });
-            }}
-          />
-        )}
-        {!isWholeTable && isCol && (
-          <TooltipButton
-            icon="format_align_center"
-            onClick={() => {
-              if (loading) return;
-              getEditor().action(ctx => {
-                ctx.get(commandsCtx).call(setAlignCommand.key, 'center');
-              });
-            }}
-          />
-        )}
-        {!isWholeTable && isCol && (
-          <TooltipButton
-            icon="format_align_right"
-            onClick={() => {
-              if (loading) return;
-              getEditor().action(ctx => {
-                ctx.get(commandsCtx).call(setAlignCommand.key, 'right');
-              });
-            }}
-          />
         )} */}
-      </div>
     </div>
   );
 };

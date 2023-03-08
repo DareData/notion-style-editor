@@ -49,3 +49,13 @@
     }
   }
 }
+
+.table-tooltip {
+  display: flex;
+  gap: pxToRem(20);
+  align-items: center;
+  padding: pxToRem(6) pxToRem(15);
+  background-color: $white;
+  border: pxToRem(1) solid $lightGrey;
+  border-radius: pxToRem(8);
+}
