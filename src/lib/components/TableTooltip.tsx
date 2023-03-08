@@ -180,33 +180,6 @@ export const TableTooltip: React.FC = () => {
           <Icon icon="text_align_center" />
         </Button>
       )}
-
-      {/* {!isWholeTable && !isHeading && isRow && (
-          <TooltipButton
-            icon="arrow_upward"
-            onClick={() => {
-              if (loading) return;
-
-              getEditor().action(ctx => {
-                ctx.get(commandsCtx).call(addRowBeforeCommand.key);
-              });
-              tooltipProvider.current?.hide();
-            }}
-          />
-        )}
-        {!isWholeTable && isRow && (
-          <TooltipButton
-            icon="arrow_downward"
-            onClick={() => {
-              if (loading) return;
-
-              getEditor().action(ctx => {
-                ctx.get(commandsCtx).call(addRowAfterCommand.key);
-              });
-              tooltipProvider.current?.hide();
-            }}
-          />
-        )} */}
     </div>
   );
 };
