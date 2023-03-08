@@ -2,12 +2,15 @@ import { useMemo } from 'react';
 
 import { ReactComponent as AddLinkIcon } from './assets/add_link.svg';
 import { ReactComponent as ArrowDownIcon } from './assets/arrow_down.svg';
+import { ReactComponent as ArrowLeftIcon } from './assets/arrow_left.svg';
+import { ReactComponent as ArrowRightIcon } from './assets/arrow_right.svg';
 import { ReactComponent as ArrowTopIcon } from './assets/arrow_top.svg';
 import { ReactComponent as BoldIcon } from './assets/bold.svg';
 import { ReactComponent as BulletedList } from './assets/bulleted_list.svg';
 import { ReactComponent as CodeBlockIcon } from './assets/code_block.svg';
 import { ReactComponent as CopyIcon } from './assets/copy.svg';
 import { ReactComponent as CreateTableIcon } from './assets/create_table.svg';
+import { ReactComponent as DeleteIcon } from './assets/delete.svg';
 import { ReactComponent as EmbedImageIcon } from './assets/embed_image.svg';
 import { ReactComponent as ItalicIcon } from './assets/italic.svg';
 import { ReactComponent as NumberedListIcon } from './assets/numbered_list.svg';
@@ -15,6 +18,9 @@ import { ReactComponent as RedoIcon } from './assets/redo.svg';
 import { ReactComponent as StrikethroughIcon } from './assets/strikethrough.svg';
 import { ReactComponent as SubScriptIcon } from './assets/subscript.svg';
 import { ReactComponent as SuperScriptIcon } from './assets/superscript.svg';
+import { ReactComponent as TextAlignCenterIcon } from './assets/text_align_center.svg';
+import { ReactComponent as TextAlignLeftIcon } from './assets/text_align_left.svg';
+import { ReactComponent as TextAlignRightIcon } from './assets/text_align_right.svg';
 import { ReactComponent as UnderlineIcon } from './assets/underline.svg';
 import { ReactComponent as UndoIcon } from './assets/undo.svg';
 
@@ -36,6 +42,12 @@ const icons = {
   create_table: CreateTableIcon,
   arrow_down: ArrowDownIcon,
   arrow_top: ArrowTopIcon,
+  delete: DeleteIcon,
+  text_align_left: TextAlignLeftIcon,
+  text_align_right: TextAlignRightIcon,
+  text_align_center: TextAlignCenterIcon,
+  arrow_left: ArrowLeftIcon,
+  arrow_right: ArrowRightIcon,
 };
 
 export const IconTypesValues = Object.keys(icons);
