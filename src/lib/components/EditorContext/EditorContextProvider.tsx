@@ -7,7 +7,6 @@ import { history } from '@milkdown/plugin-history';
 import { listener, listenerCtx } from '@milkdown/plugin-listener';
 import { prism, prismConfig } from '@milkdown/plugin-prism';
 import { codeBlockSchema, commonmark } from '@milkdown/preset-commonmark';
-import { gfm } from '@milkdown/preset-gfm';
 import { useEditor, UseEditorReturn } from '@milkdown/react';
 import { $view } from '@milkdown/utils';
 import { useNodeViewFactory } from '@prosemirror-adapter/react';
@@ -19,6 +18,7 @@ import markdown from 'refractor/lang/markdown';
 import tsx from 'refractor/lang/tsx';
 import typescript from 'refractor/lang/typescript';
 
+import { useGfmPlugin } from '../../hooks/useGfmPlugin/useGfmPlugin';
 import { useUnderlineCommand } from '../../hooks/useUnderlineCommand';
 import { CodeBlock } from '../CodeBlock';
 
@@ -43,6 +43,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
 }) => {
   const nodeViewFactory = useNodeViewFactory();
 
+  const gfmPlugin = useGfmPlugin();
   const underlineCommand = useUnderlineCommand();
 
   const editor = useEditor(root =>
@@ -68,13 +69,13 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
       .use(underlineCommand)
       .use(commonmark)
       .use(history)
-      .use(gfm)
       .use(prism)
       .use(
         $view(codeBlockSchema.node, () =>
           nodeViewFactory({ component: CodeBlock })
         )
       )
+      .use(gfmPlugin())
   );
 
   const context = useMemo(() => ({ editor }), [editor]);

@@ -1,3 +1,4 @@
+import { useInstance } from '@milkdown/react';
 import { useNodeViewContext } from '@prosemirror-adapter/react';
 import { Option } from 'react-dropdown';
 
@@ -38,6 +39,8 @@ const options: Option[] = [
 
 export const CodeBlock: React.FC = () => {
   const { contentRef, node, setAttrs } = useNodeViewContext();
+  const a = useInstance();
+  console.log('a: ', a[1]());
 
   const onCopyClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
