@@ -6,8 +6,12 @@
   border: 0;
   outline: 0;
   cursor: pointer;
-  &:focus {
-    outline: 1px solid red;
+  transition: background-color .2s ease-in;
+
+  &:hover {
+    &.primary {
+      background-color: $green !important;
+    }
   }
 }
 

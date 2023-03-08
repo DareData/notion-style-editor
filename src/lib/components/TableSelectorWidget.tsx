@@ -11,6 +11,7 @@ import { useWidgetViewContext } from '@prosemirror-adapter/react';
 import clsx from 'clsx';
 import { useMemo, useRef, useState } from 'react';
 
+import { Button } from '../common/Button';
 import { tableTooltipCtx } from '../hooks/useGfmPlugin/useGfmPlugin';
 
 export const TableSelectorWidget: React.FC = () => {
@@ -18,29 +19,25 @@ export const TableSelectorWidget: React.FC = () => {
   const type = spec?.type;
   const index = spec?.index ?? 0;
   const [loading, getEditor] = useInstance();
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLButtonElement>(null);
 
   const [dragOver, setDragOver] = useState(false);
 
   const common = useMemo(
-    () =>
-      clsx(
-        'hover:bg-nord8 hover:dark:bg-nord9 absolute cursor-pointer bg-gray-200 dark:bg-gray-600',
-        dragOver ? 'ring-2' : ''
-      ),
+    () => clsx('table-selector-widget', dragOver ? 'ring-2' : ''),
     [dragOver]
   );
 
   const className = useMemo(() => {
-    if (type === 'left') return 'w-2 h-full -left-3.5 top-0';
+    if (type === 'left') return 'widget-row';
 
-    if (type === 'top') return 'right-px h-2 left-0 -top-3.5';
+    if (type === 'top') return 'widget-column';
 
-    return 'h-3 w-3 -left-4 -top-4 rounded-full';
+    return 'widget-table';
   }, [type]);
 
   return (
-    <div
+    <Button
       ref={ref}
       draggable={type !== 'top-left'}
       className={[className, common].join(' ')}
