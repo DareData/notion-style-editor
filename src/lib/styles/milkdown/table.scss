@@ -12,13 +12,16 @@
       border-color: $white;
     }
     th, td {
-      padding: pxToRem(12);
+      padding: pxToRem(16);
       border-bottom: 1px solid $lightGrey;
       &:not(:first-of-type) {
         border-left: 1px solid $white;
       }
       &:not(:last-of-type) {
         border-right: 1px solid $white;
+      }
+      &.selectedCell {
+        background-color: $green;
       }
     }
     .table-selector-widget {
