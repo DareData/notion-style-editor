@@ -7,28 +7,20 @@ import { Icon } from '../common/Icon/Icon';
 
 const options: Option[] = [
   {
-    value: 'text',
-    label: 'Text',
+    value: 'r',
+    label: 'R',
   },
   {
-    value: 'typescript',
-    label: 'Typescript',
+    value: 'python',
+    label: 'Python',
   },
   {
-    value: 'javascript',
-    label: 'Javascript',
+    value: 'c',
+    label: 'C',
   },
   {
-    value: 'html',
-    label: 'HTML',
-  },
-  {
-    value: 'css',
-    label: 'CSS',
-  },
-  {
-    value: 'markdown',
-    label: 'Markdown',
+    value: 'java',
+    label: 'Java',
   },
   {
     value: 'json',
@@ -54,7 +46,7 @@ export const CodeBlock: React.FC = () => {
     <div className="code-block">
       <div className="code-block_actions">
         <Dropdown {...{ value, options }} onChange={onLanguageChange} />
-        <Button className="code-block_copy-button" onClick={onCopyClick}>
+        <Button className="code-block_copy-button oval" onClick={onCopyClick}>
           <Icon icon="copy" />
           <span className="copy-button_text">Copy</span>
         </Button>

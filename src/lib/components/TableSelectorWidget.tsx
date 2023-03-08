@@ -39,6 +39,7 @@ export const TableSelectorWidget: React.FC = () => {
   return (
     <Button
       ref={ref}
+      prop="secondary"
       draggable={type !== 'top-left'}
       className={[className, common].join(' ')}
       onClick={e => {

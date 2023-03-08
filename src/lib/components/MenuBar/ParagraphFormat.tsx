@@ -16,12 +16,16 @@ export const ParagraphFormat: React.FC<ParagraphFormatProps> = ({
 }) => (
   <>
     <li className="menubar-item menubar-item-paragraph_format">
-      <Button onClick={() => onActionClick(wrapInBulletListCommand.key)}>
+      <Button
+        onClick={() => onActionClick(wrapInBulletListCommand.key)}
+        className="oval">
         <Icon icon="bulleted_list" />
       </Button>
     </li>
     <li className="menubar-item">
-      <Button onClick={() => onActionClick(wrapInOrderedListCommand.key)}>
+      <Button
+        onClick={() => onActionClick(wrapInOrderedListCommand.key)}
+        className="oval">
         <Icon icon="numbered_list" />
       </Button>
     </li>

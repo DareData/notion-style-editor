@@ -16,22 +16,30 @@ type TextFormatsProps = {
 export const TextFormats: React.FC<TextFormatsProps> = ({ onActionClick }) => (
   <>
     <li className="menubar-item menubar-item-text_formats">
-      <Button onClick={() => onActionClick(toggleStrongCommand.key)}>
+      <Button
+        onClick={() => onActionClick(toggleStrongCommand.key)}
+        className="oval">
         <Icon icon="bold" />
       </Button>
     </li>
     <li className="menubar-item">
-      <Button onClick={() => onActionClick(toggleEmphasisCommand.key)}>
+      <Button
+        onClick={() => onActionClick(toggleEmphasisCommand.key)}
+        className="oval">
         <Icon icon="italic" />
       </Button>
     </li>
     <li className="menubar-item">
-      <Button onClick={() => onActionClick(toggleUnderlineCommand.key)}>
+      <Button
+        onClick={() => onActionClick(toggleUnderlineCommand.key)}
+        className="oval">
         <Icon icon="underline" />
       </Button>
     </li>
     <li className="menubar-item">
-      <Button onClick={() => onActionClick(toggleStrikethroughCommand.key)}>
+      <Button
+        onClick={() => onActionClick(toggleStrikethroughCommand.key)}
+        className="oval">
         <Icon icon="strikethrough" />
       </Button>
     </li>

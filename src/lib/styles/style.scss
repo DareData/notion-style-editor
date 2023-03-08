@@ -4,7 +4,6 @@
 @import './fonts/fonts.scss';
 @import './variables.scss';
 @import './utils.scss';
-@import './common.scss';
 
 .date-data_text-editor {
   * {
@@ -14,5 +13,6 @@
     color: $lightBlack;
     font-family: 'OpenSans';
   }
+  @import './common.scss';
   @import './milkdown/milkdown.scss';
 }
