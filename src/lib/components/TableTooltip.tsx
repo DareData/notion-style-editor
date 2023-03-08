@@ -63,12 +63,16 @@ export const TableTooltip: React.FC = () => {
         editorRef.ctx.set(tableTooltipCtx.key, provider);
         tooltipProvider.current = provider;
       }
+
+      console.log('provider: ', provider);
     }
 
     return () => {
       tooltipProvider.current?.destroy();
     };
   }, [getEditor, loading, view]);
+
+  console.log('kurwa xD');
 
   return (
     <div>

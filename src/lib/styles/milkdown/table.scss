@@ -1,18 +1,45 @@
-table {
-  font-size: pxToRem(14);
-  border-collapse: collapse;
-  th {
-    background-color: $secondaryLightGrey;
-    border-color: $white;
-  }
-  th, td {
-    padding: pxToRem(12);
-    border-bottom: 1px solid $lightGrey;
-    &:not(:first-of-type) {
-      border-left: 1px solid $white;
+.tableWrapper {
+  table {
+    width: calc(100% - pxToRem(10));
+    margin-top: pxToRem(10);
+    margin-left: pxToRem(10);
+    overflow: visible;
+    font-size: pxToRem(14);
+    border-collapse: collapse;
+    th {
+      position: relative;
+      background-color: $secondaryLightGrey;
+      border-color: $white;
     }
-    &:not(:last-of-type) {
-      border-right: 1px solid $white;
+    th, td {
+      padding: pxToRem(12);
+      border-bottom: 1px solid $lightGrey;
+      &:not(:first-of-type) {
+        border-left: 1px solid $white;
+      }
+      &:not(:last-of-type) {
+        border-right: 1px solid $white;
+      }
+    }
+    .table-selector-widget {
+      position: absolute;
+      background-color: $secondaryGrey;
+      border-radius: pxToRem(1);
+      &.widget-row {
+        top: pxToRem(1);
+        bottom: pxToRem(1);
+        left: pxToRem(-10);
+        width: pxToRem(4);
+      }
+      &.widget-column {
+        top:  pxToRem(-10);
+        right: pxToRem(1);
+        left: pxToRem(1);
+        height: pxToRem(4);
+      }
+      &.widget-table {
+        opacity: .5;
+      }
     }
   }
 }

@@ -3,7 +3,7 @@ import { tooltipFactory, TooltipProvider } from '@milkdown/plugin-tooltip';
 import { gfm } from '@milkdown/preset-gfm';
 import { $ctx } from '@milkdown/utils';
 import { usePluginViewFactory } from '@prosemirror-adapter/react';
-import { useCallback } from 'react';
+import { useMemo } from 'react';
 
 import { useTableSelectorPlugin } from './useTableSelectorPlugin';
 import { TableTooltip } from '../../components/TableTooltip';
@@ -19,7 +19,7 @@ export const useGfmPlugin = () => {
 
   const { tableSelectorPlugin } = useTableSelectorPlugin();
 
-  return useCallback(
+  return useMemo(
     () =>
       [
         gfm,

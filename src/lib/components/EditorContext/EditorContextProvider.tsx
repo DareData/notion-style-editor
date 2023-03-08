@@ -11,12 +11,7 @@ import { useEditor, UseEditorReturn } from '@milkdown/react';
 import { $view } from '@milkdown/utils';
 import { useNodeViewFactory } from '@prosemirror-adapter/react';
 import { createContext, useMemo } from 'react';
-import css from 'refractor/lang/css';
-import javascript from 'refractor/lang/javascript';
-import jsx from 'refractor/lang/jsx';
-import markdown from 'refractor/lang/markdown';
-import tsx from 'refractor/lang/tsx';
-import typescript from 'refractor/lang/typescript';
+import { refractor } from 'refractor/lib/common';
 
 import { useGfmPlugin } from '../../hooks/useGfmPlugin/useGfmPlugin';
 import { useUnderlineCommand } from '../../hooks/useUnderlineCommand';
@@ -46,36 +41,32 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   const gfmPlugin = useGfmPlugin();
   const underlineCommand = useUnderlineCommand();
 
-  const editor = useEditor(root =>
-    MilkdownEditor.make()
-      .config(ctx => {
-        ctx.set(rootCtx, root);
-        ctx.set(defaultValueCtx, defaultMarkdownValue);
-        ctx.set(prismConfig.key, {
-          configureRefractor: refractor => {
-            refractor.register(markdown);
-            refractor.register(css);
-            refractor.register(javascript);
-            refractor.register(typescript);
-            refractor.register(jsx);
-            refractor.register(tsx);
-          },
-        });
-        ctx.get(listenerCtx).markdownUpdated((_, markdown) => {
-          onChange(markdown);
-        });
-      })
-      .use(listener)
-      .use(underlineCommand)
-      .use(commonmark)
-      .use(history)
-      .use(prism)
-      .use(
-        $view(codeBlockSchema.node, () =>
-          nodeViewFactory({ component: CodeBlock })
+  const editor = useEditor(
+    root =>
+      MilkdownEditor.make()
+        .config(ctx => {
+          ctx.set(rootCtx, root);
+          ctx.set(defaultValueCtx, defaultMarkdownValue);
+          ctx.update(prismConfig.key, prev => ({
+            ...prev,
+            configureRefractor: () => refractor,
+          }));
+          ctx.get(listenerCtx).markdownUpdated((_, markdown) => {
+            onChange(markdown);
+          });
+        })
+        .use(listener)
+        .use(underlineCommand)
+        .use(commonmark)
+        .use(history)
+        .use(prism)
+        .use(
+          $view(codeBlockSchema.node, () =>
+            nodeViewFactory({ component: () => <CodeBlock /> })
+          )
         )
-      )
-      .use(gfmPlugin())
+        .use(gfmPlugin),
+    []
   );
 
   const context = useMemo(() => ({ editor }), [editor]);
