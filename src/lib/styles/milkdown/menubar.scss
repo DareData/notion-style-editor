@@ -11,7 +11,7 @@
   border-radius: pxToRem(4);
   .menubar-item {
     &.menubar-item-text_formats, &.menubar-item-paragraph_format, &.menubar-item-embed_objects, &.menubar-item-script_actions {
-      margin-left: pxToRem(12);
+      margin-left: pxToRem(30);
     }
   }
 }

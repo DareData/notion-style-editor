@@ -15,23 +15,27 @@ export const EmbedObjects: React.FC<EmbedObjectsProps> = ({
   <>
     <li className="menubar-item menubar-item-embed_objects">
       {/* add popup to set href / text onActionClick(toggleLinkCommand.key) */}
-      <Button>
+      <Button className="oval">
         <Icon icon="add_link" />
       </Button>
     </li>
     <li className="menubar-item">
       {/* add image popup to set src, alt and title onActionClick(insertImageCommand) */}
-      <Button>
+      <Button className="oval">
         <Icon icon="embed_image" />
       </Button>
     </li>
     <li className="menubar-item">
-      <Button onClick={() => onActionClick(createCodeBlockCommand.key)}>
+      <Button
+        onClick={() => onActionClick(createCodeBlockCommand.key)}
+        className="oval">
         <Icon icon="code_block" />
       </Button>
     </li>
     <li className="menubar-item">
-      <Button onClick={() => onActionClick(insertTableCommand.key)}>
+      <Button
+        onClick={() => onActionClick(insertTableCommand.key)}
+        className="oval">
         <Icon icon="create_table" />
       </Button>
     </li>

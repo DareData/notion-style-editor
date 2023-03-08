@@ -2,15 +2,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: pxToRem(7);
   background-color: transparent;
   border: 0;
+  border: 1px solid transparent;
   outline: 0;
   cursor: pointer;
-  transition: background-color .2s ease-in;
+  transition: background-color .2s ease-in, border-color .2s ease-in;
 
-  &:hover {
+  &.oval {
+    border-radius: pxToRem(8);
+  }
+
+  &:hover, &:focus {
     &.primary {
+      background-color: $secondaryGrey !important;
+    }
+    &.secondary {
       background-color: $green !important;
+    }
+  }
+
+  &:focus {
+    &.primary {
+      border-color: $green;
     }
   }
 }

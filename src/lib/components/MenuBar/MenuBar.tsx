@@ -19,8 +19,8 @@ export const MenuBar = () => {
     <ul className="menubar">
       <Actions {...{ onActionClick }} />
       <TextFormats {...{ onActionClick }} />
-      <ParagraphFormat {...{ onActionClick }} />
       <ScriptActions />
+      <ParagraphFormat {...{ onActionClick }} />
       <EmbedObjects {...{ onActionClick }} />
     </ul>
   );
