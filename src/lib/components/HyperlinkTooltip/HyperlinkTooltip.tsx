@@ -8,6 +8,7 @@ import { useHyperlinkAttrs } from './useHyperlinkAttrs';
 import { Anchor } from '../../common/Anchor';
 import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
+import { Modal } from '../../common/Modal/Modal';
 
 export const hyperlinktooltip = tooltipFactory('HYPERLINK');
 
@@ -59,9 +60,14 @@ export const HyperlinkTooltip: React.FC = () => {
   return (
     <div ref={ref} className="hyperlink-tooltip">
       <span className="hyperlink-tooltip_href">{href}</span>
-      <Button className="oval">
-        <Icon icon="edit" />
-      </Button>
+      <Modal
+        handler={({ onOpen }) => (
+          <Button className="oval" onClick={onOpen}>
+            <Icon icon="edit" />
+          </Button>
+        )}>
+        <div className="modal-header">Add a link</div>
+      </Modal>
       <Anchor {...{ href }} target="_blank" type="anchor-button">
         <Icon icon="export" />
       </Anchor>
