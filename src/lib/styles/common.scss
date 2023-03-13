@@ -45,4 +45,19 @@
       margin-left: pxToRem(8)
     }
   }
+  &.black {
+    .Dropdown-control {
+      background-color:rgba(31, 31, 31, 0.8);
+      .Dropdown-placeholder {
+        color: $white;
+
+      }
+      .Dropdown-arrow-wrapper svg {
+        fill: $white;
+      }
+    }
+  }
+  .Dropdown-menu {
+    border-radius: pxToRem(8);
+  }
 }
