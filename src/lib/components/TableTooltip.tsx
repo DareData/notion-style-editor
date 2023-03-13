@@ -47,6 +47,7 @@ export const TableTooltip: React.FC = () => {
         content: ref.current,
         tippyOptions: {
           zIndex: 30,
+          arrow: false,
         },
         shouldShow: () => {
           return false;

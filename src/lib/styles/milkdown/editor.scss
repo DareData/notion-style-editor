@@ -26,4 +26,8 @@
   li {
     padding-left: pxToRem(2);
   }
+
+  p {
+    margin: pxToRem(16) 0;
+  }
 }

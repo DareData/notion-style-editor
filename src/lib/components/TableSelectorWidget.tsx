@@ -41,7 +41,7 @@ export const TableSelectorWidget: React.FC = () => {
       ref={ref}
       prop="secondary"
       draggable={type !== 'top-left'}
-      className={[className, common].join(' ')}
+      className={clsx(className, common)}
       onClick={e => {
         e.stopPropagation();
         const div = ref.current;
