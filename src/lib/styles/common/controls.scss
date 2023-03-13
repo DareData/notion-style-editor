@@ -59,35 +59,3 @@
     }
   }
 }
-
-.Dropdown-root {
-  min-width: pxToRem(130);
-  font-size: pxToRem(14);
-  .Dropdown-control {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: pxToRem(6) pxToRem(12);
-    border-radius: pxToRem(8);
-    .Dropdown-arrow-wrapper {
-      display: flex;
-      align-items: center;
-      margin-left: pxToRem(8)
-    }
-  }
-  &.black {
-    .Dropdown-control {
-      background-color:rgba(31, 31, 31, 0.8);
-      .Dropdown-placeholder {
-        color: $white;
-
-      }
-      .Dropdown-arrow-wrapper svg {
-        fill: $white;
-      }
-    }
-  }
-  .Dropdown-menu {
-    border-radius: pxToRem(8);
-  }
-}
