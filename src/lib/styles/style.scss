@@ -1,5 +1,6 @@
 @import 'prosemirror-view/style/prosemirror.css';
 @import 'prosemirror-tables/style/tables.css';
+@import 'tippy.js/dist/tippy.css';
 
 @import './fonts/fonts.scss';
 @import './variables.scss';
@@ -15,4 +16,8 @@
   }
   @import './common.scss';
   @import './milkdown/milkdown.scss';
+
+  .tippy-box {
+    background-color: transparent;
+  }
 }

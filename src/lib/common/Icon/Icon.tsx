@@ -11,7 +11,9 @@ import { ReactComponent as CodeBlockIcon } from './assets/code_block.svg';
 import { ReactComponent as CopyIcon } from './assets/copy.svg';
 import { ReactComponent as CreateTableIcon } from './assets/create_table.svg';
 import { ReactComponent as DeleteIcon } from './assets/delete.svg';
+import { ReactComponent as EditIcon } from './assets/edit.svg';
 import { ReactComponent as EmbedImageIcon } from './assets/embed_image.svg';
+import { ReactComponent as ExportIcon } from './assets/export.svg';
 import { ReactComponent as ItalicIcon } from './assets/italic.svg';
 import { ReactComponent as NumberedListIcon } from './assets/numbered_list.svg';
 import { ReactComponent as RedoIcon } from './assets/redo.svg';
@@ -48,6 +50,8 @@ const icons = {
   text_align_center: TextAlignCenterIcon,
   arrow_left: ArrowLeftIcon,
   arrow_right: ArrowRightIcon,
+  edit: EditIcon,
+  export: ExportIcon,
 };
 
 export const IconTypesValues = Object.keys(icons);

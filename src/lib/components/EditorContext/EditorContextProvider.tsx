@@ -9,13 +9,20 @@ import { prism, prismConfig } from '@milkdown/plugin-prism';
 import { codeBlockSchema, commonmark } from '@milkdown/preset-commonmark';
 import { useEditor, UseEditorReturn } from '@milkdown/react';
 import { $view } from '@milkdown/utils';
-import { useNodeViewFactory } from '@prosemirror-adapter/react';
+import {
+  useNodeViewFactory,
+  usePluginViewFactory,
+} from '@prosemirror-adapter/react';
 import { createContext, useMemo } from 'react';
 import { refractor } from 'refractor/lib/common';
 
 import { useGfmPlugin } from '../../hooks/useGfmPlugin/useGfmPlugin';
 import { useUnderlineCommand } from '../../hooks/useUnderlineCommand';
 import { CodeBlock } from '../CodeBlock';
+import {
+  HyperlinkTooltip,
+  hyperlinktooltip,
+} from '../HyperlinkTooltip/HyperlinkTooltip';
 
 type EditorContextData = {
   editor: UseEditorReturn | null;
@@ -37,6 +44,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   defaultMarkdownValue,
 }) => {
   const nodeViewFactory = useNodeViewFactory();
+  const pluginViewFactory = usePluginViewFactory();
 
   const gfmPlugin = useGfmPlugin();
   const underlineCommand = useUnderlineCommand();
@@ -54,12 +62,18 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
           ctx.get(listenerCtx).markdownUpdated((_, markdown) => {
             onChange(markdown);
           });
+          ctx.set(hyperlinktooltip.key, {
+            view: pluginViewFactory({
+              component: HyperlinkTooltip,
+            }),
+          });
         })
         .use(listener)
         .use(underlineCommand)
         .use(commonmark)
         .use(history)
         .use(prism)
+        .use(hyperlinktooltip)
         .use(
           $view(codeBlockSchema.node, () =>
             nodeViewFactory({ component: () => <CodeBlock /> })
