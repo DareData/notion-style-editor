@@ -21,7 +21,7 @@
         border-right: 1px solid $white;
       }
       &.selectedCell {
-        background-color: $green;
+        background-color: $azure;
       }
     }
     .table-selector-widget {
@@ -29,6 +29,9 @@
       padding: 0;
       background-color: $secondaryGrey;
       border-radius: pxToRem(1);
+      &.drag-over {
+        border: 1px solid $green;
+      }
       &.widget-row {
         top: pxToRem(1);
         bottom: pxToRem(1);

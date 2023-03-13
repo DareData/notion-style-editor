@@ -24,7 +24,7 @@ export const TableSelectorWidget: React.FC = () => {
   const [dragOver, setDragOver] = useState(false);
 
   const common = useMemo(
-    () => clsx('table-selector-widget', dragOver ? 'ring-2' : ''),
+    () => clsx('table-selector-widget', dragOver ? 'drag-over' : ''),
     [dragOver]
   );
 
