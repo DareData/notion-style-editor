@@ -46,7 +46,12 @@ export const InputStyled = styled.input<
     ${props =>
       props.error ? props.theme.colors.darkRed : props.theme.colors.lightGrey};
   border-radius: ${pxToRem(8)};
+  transition: border-color 0.2s ease-in;
   &::placeholder {
     color: ${props => props.theme.colors.lightGrey};
+  }
+  &:hover,
+  &:focus {
+    border-color: ${props => props.theme.colors.lightBlack};
   }
 `;
