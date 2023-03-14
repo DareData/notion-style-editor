@@ -3,16 +3,28 @@ import styled from 'styled-components';
 
 import { ImageFormValues, useImageForm } from './hooks/useImageForm';
 import { Input } from '../../common/Input';
+import { useModalContext } from '../../common/Modal/context/useModalContext';
 import { ModalActions } from '../../common/Modal/ModalActions';
 import { ModalBody } from '../../common/Modal/ModalBody';
 import { ModalFooter } from '../../common/Modal/ModalFooter';
 import { pxToRem } from '../../styles/utils';
 
-export const InsertImageContent: React.FC = () => {
-  const { formState, register, watch, handleSubmit, control } = useImageForm();
+export type InsertImageContentProps = {
+  onInsert: (data: ImageFormValues) => void;
+};
+
+export const InsertImageContent: React.FC<InsertImageContentProps> = ({
+  onInsert,
+}) => {
+  const { onClose } = useModalContext();
+
+  const { formState, register, handleSubmit, control } = useImageForm();
   const url = useWatch<ImageFormValues>({ control, name: 'url' });
 
-  const onSubmit = (data: ImageFormValues) => {};
+  const onSubmit = (data: ImageFormValues) => {
+    onInsert(data);
+    onClose();
+  };
 
   return (
     <>
@@ -30,6 +42,7 @@ export const InsertImageContent: React.FC = () => {
             {...register('url')}
             label="Import from URL"
             placeholder="Paste a URL of image..."
+            error={formState.errors.url?.message}
           />
         </ModalBodyStyled>
         {url && (

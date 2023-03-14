@@ -1,12 +1,17 @@
-import { InsertImageContent } from './InsertImageContent';
+import {
+  InsertImageContent,
+  InsertImageContentProps,
+} from './InsertImageContent';
 import { Modal, ModalProps } from '../../common/Modal/Modal';
 
-type InsertImageModalProps = Pick<ModalProps, 'handler'>;
+type InsertImageModalProps = InsertImageContentProps &
+  Pick<ModalProps, 'handler'>;
 
 export const InsertImageModal: React.FC<InsertImageModalProps> = ({
   handler,
+  onInsert,
 }) => (
   <Modal {...{ handler }}>
-    <InsertImageContent />
+    <InsertImageContent {...{ onInsert }} />
   </Modal>
 );

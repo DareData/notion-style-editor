@@ -41,6 +41,7 @@ export const InputStyled = styled.input<
   color: ${props => props.theme.colors.lightBlack};
   font-size: ${pxToRem(16)};
   font-weight: 500;
+  outline: 0;
   border: 1px solid
     ${props =>
       props.error ? props.theme.colors.darkRed : props.theme.colors.lightGrey};
