@@ -1,4 +1,6 @@
+import { commandsCtx } from '@milkdown/core';
 import { tooltipFactory, TooltipProvider } from '@milkdown/plugin-tooltip';
+import { updateLinkCommand } from '@milkdown/preset-commonmark';
 import { TextSelection } from '@milkdown/prose/state';
 import { useInstance } from '@milkdown/react';
 import { usePluginViewContext } from '@prosemirror-adapter/react';
@@ -9,6 +11,7 @@ import { Anchor } from '../../common/Anchor';
 import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
 import { Modal } from '../../common/Modal/Modal';
+import { HyperlinkModal } from '../HyperlinkModal';
 
 export const hyperlinktooltip = tooltipFactory('HYPERLINK');
 
@@ -16,7 +19,7 @@ export const HyperlinkTooltip: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const tooltipProvider = useRef<TooltipProvider>();
 
-  const [loading] = useInstance();
+  const [loading, getEditor] = useInstance();
   const { view, prevState } = usePluginViewContext();
 
   const { title, href } = useHyperlinkAttrs();
@@ -57,17 +60,29 @@ export const HyperlinkTooltip: React.FC = () => {
     tooltipProvider.current?.update(view, prevState);
   });
 
+  const onHyperlinkSave = (href: string) => {
+    if (loading) {
+      return;
+    }
+
+    getEditor()?.action(ctx => {
+      const commands = ctx.get(commandsCtx);
+      commands.call(updateLinkCommand.key, { href: 'https://onet.pl' });
+    });
+  };
+
   return (
     <div ref={ref} className="hyperlink-tooltip">
       <span className="hyperlink-tooltip_href">{href}</span>
-      <Modal
+      <HyperlinkModal
+        {...{ title, href }}
         handler={({ onOpen }) => (
           <Button className="oval" onClick={onOpen}>
             <Icon icon="edit" />
           </Button>
-        )}>
-        <div className="modal-header">Add a link</div>
-      </Modal>
+        )}
+        onSave={onHyperlinkSave}
+      />
       <Anchor {...{ href }} target="_blank" type="anchor-button">
         <Icon icon="export" />
       </Anchor>
