@@ -12,10 +12,12 @@ import { CellSelection } from '@milkdown/prose/tables';
 import { useInstance } from '@milkdown/react';
 import { usePluginViewContext } from '@prosemirror-adapter/react';
 import { useEffect, useRef } from 'react';
+import styled from 'styled-components';
 
 import { Button } from '../common/Button';
 import { Icon } from '../common/Icon/Icon';
 import { tableTooltipCtx } from '../hooks/useGfmPlugin/useGfmPlugin';
+import { pxToRem } from '../styles/utils';
 
 export const TableTooltip: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -74,10 +76,10 @@ export const TableTooltip: React.FC = () => {
   }, [getEditor, loading, view]);
 
   return (
-    <div className="table-tooltip" ref={ref}>
+    <TableTooltipContainerStyled ref={ref}>
       {!isWholeTable && !isHeading && isRow && (
         <Button
-          className="oval"
+          oval
           onClick={() => {
             if (loading) return;
 
@@ -91,7 +93,7 @@ export const TableTooltip: React.FC = () => {
       )}
       {!isWholeTable && isRow && (
         <Button
-          className="oval"
+          oval
           onClick={() => {
             if (loading) return;
 
@@ -105,7 +107,7 @@ export const TableTooltip: React.FC = () => {
       )}
       {!isWholeTable && isCol && (
         <Button
-          className="oval"
+          oval
           onClick={() => {
             if (loading) return;
             getEditor().action(ctx => {
@@ -119,7 +121,7 @@ export const TableTooltip: React.FC = () => {
       )}
       {(isWholeTable || !isHeading) && (
         <Button
-          className="oval"
+          oval
           onClick={() => {
             if (loading) return;
 
@@ -133,7 +135,7 @@ export const TableTooltip: React.FC = () => {
       )}
       {!isWholeTable && isCol && (
         <Button
-          className="oval"
+          oval
           onClick={() => {
             if (loading) return;
             getEditor().action(ctx => {
@@ -147,7 +149,7 @@ export const TableTooltip: React.FC = () => {
       )}
       {!isWholeTable && isCol && (
         <Button
-          className="oval"
+          oval
           onClick={() => {
             if (loading) return;
             getEditor().action(ctx => {
@@ -159,7 +161,7 @@ export const TableTooltip: React.FC = () => {
       )}
       {!isWholeTable && isCol && (
         <Button
-          className="oval"
+          oval
           onClick={() => {
             if (loading) return;
             getEditor().action(ctx => {
@@ -171,7 +173,7 @@ export const TableTooltip: React.FC = () => {
       )}
       {!isWholeTable && isCol && (
         <Button
-          className="oval"
+          oval
           onClick={() => {
             if (loading) return;
             getEditor().action(ctx => {
@@ -181,6 +183,16 @@ export const TableTooltip: React.FC = () => {
           <Icon icon="text_align_center" />
         </Button>
       )}
-    </div>
+    </TableTooltipContainerStyled>
   );
 };
+
+const TableTooltipContainerStyled = styled.div`
+  display: flex;
+  gap: ${pxToRem(20)};
+  align-items: center;
+  padding: ${pxToRem(6)} ${pxToRem(15)};
+  background-color: ${props => props.theme.colors.white};
+  border: ${pxToRem(1)} solid ${props => props.theme.colors.lightGrey};
+  border-radius: ${pxToRem(8)};
+`;
