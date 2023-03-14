@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import styled from 'styled-components';
 
+import { loadingStyles } from '../styles/common/loader.styles';
 import { theme } from '../styles/theme';
 import { pxToRem } from '../styles/utils';
 
@@ -10,12 +11,20 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   type?: 'button' | 'submit' | 'reset';
   prop?: ButtonProp;
   oval?: boolean;
+  loading?: boolean;
   children?: React.ReactNode;
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { type = 'button', prop = 'primary', oval = false, children, ...rest },
+    {
+      type = 'button',
+      prop = 'primary',
+      oval = false,
+      children,
+      loading = false,
+      ...rest
+    },
     buttonRef
   ) => (
     <ButtonStyled
@@ -23,7 +32,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       {...rest}
       ref={buttonRef}
       $oval={oval}
-      $prop={prop}>
+      $prop={prop}
+      $loading={loading}>
       {children}
     </ButtonStyled>
   )
@@ -44,7 +54,12 @@ const buttonColors = {
   },
 };
 
-const ButtonStyled = styled.button<{ $oval: boolean; $prop: ButtonProp }>`
+const ButtonStyled = styled.button<{
+  $oval: boolean;
+  $prop: ButtonProp;
+  $loading: boolean;
+}>`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,8 +67,14 @@ const ButtonStyled = styled.button<{ $oval: boolean; $prop: ButtonProp }>`
   background-color: transparent;
   border: ${pxToRem(1)} solid transparent;
   outline: 0;
+  color: ${props =>
+    props.$loading ? 'transparent' : props.theme.colors.lightBlack};
+  user-select: ${props => (props.$loading ? 'none' : 'auto')};
+  pointer-events: ${props => (props.$loading ? 'none' : 'auto')};
   cursor: pointer;
   transition: background-color 0.2s ease-in, border-color 0.2s ease-in;
+
+  ${props => props.$loading && loadingStyles};
 
   &:hover,
   &:focus {

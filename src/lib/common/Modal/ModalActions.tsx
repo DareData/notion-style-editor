@@ -5,6 +5,7 @@ import { pxToRem } from '../../styles/utils';
 import { Button } from '../Button';
 
 type ModalActionsProps = {
+  loading?: boolean;
   saveText?: React.ReactNode;
   isDisabled?: boolean;
   cancelText?: React.ReactNode;
@@ -18,6 +19,7 @@ type ModalActionsProps = {
 };
 
 export const ModalActions: React.FC<Partial<ModalActionsProps>> = ({
+  loading,
   saveText,
   isDisabled,
   cancelText,
@@ -34,7 +36,8 @@ export const ModalActions: React.FC<Partial<ModalActionsProps>> = ({
         <CancelButtonStyled
           type={saveButtonType}
           onClick={onCancelClick || onClose}
-          oval>
+          oval
+          {...{ loading }}>
           {cancelText || 'Cancel'}
         </CancelButtonStyled>
       )}
@@ -42,7 +45,8 @@ export const ModalActions: React.FC<Partial<ModalActionsProps>> = ({
         type={saveButtonType}
         oval
         onClick={onSaveClick ? e => onSaveClick(e, onClose) : undefined}
-        disabled={isDisabled}>
+        disabled={isDisabled}
+        {...{ loading }}>
         {saveText || 'Save'}
       </SaveButtonStyled>
     </ModalActionsStyled>
