@@ -48,7 +48,7 @@ export const CodeBlock: React.FC = () => {
     <CodeBlockContainerStyled>
       <CodeBlockActionsStyled>
         <Dropdown {...{ value, options }} onChange={onLanguageChange} />
-        <Button className="code-block_copy-button" oval onClick={onCopyClick}>
+        <Button oval onClick={onCopyClick}>
           <Icon icon="copy" />
           <CopyTextStyled>Copy</CopyTextStyled>
         </Button>

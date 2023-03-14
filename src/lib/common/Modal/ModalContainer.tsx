@@ -39,13 +39,9 @@ export const ModalContainer: React.FC<ModalContainerProps> = ({
     <ModalContainerStyled
       {...rest}
       onClick={onContainerClick}
-      className="modal-container"
       ref={containerRef}
       data-modal>
-      <ModalBoxStyled
-        {...(animation || {})}
-        ref={modalBodyRef}
-        className="modal-box">
+      <ModalBoxStyled {...(animation || {})} ref={modalBodyRef}>
         {children}
       </ModalBoxStyled>
     </ModalContainerStyled>

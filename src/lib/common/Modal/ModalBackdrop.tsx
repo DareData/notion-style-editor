@@ -6,7 +6,7 @@ type ModalBackdropProps = {
 };
 
 export const ModalBackdrop: React.FC<ModalBackdropProps> = ({ animation }) => (
-  <ModalBackdropStyled {...animation} className="modal-backdrop" />
+  <ModalBackdropStyled {...animation} />
 );
 
 const ModalBackdropStyled = styled(motion.div)`

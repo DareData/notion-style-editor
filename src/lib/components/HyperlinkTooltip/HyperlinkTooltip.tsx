@@ -75,9 +75,7 @@ export const HyperlinkTooltip: React.FC = () => {
 
   return (
     <HyperlinkTooltipStyled ref={ref}>
-      <HyperlinkTextStyled className="hyperlink-tooltip_href">
-        {href}
-      </HyperlinkTextStyled>
+      <HyperlinkTextStyled>{href}</HyperlinkTextStyled>
       <HyperlinkModal
         {...{ title, href }}
         handler={({ onOpen }) => (
