@@ -38,10 +38,5 @@ const MenuBarListStyled = styled.ul`
   padding: ${pxToRem(8)} ${pxToRem(23)};
   background-color: ${props => props.theme.colors.secondaryLightGrey};
   border-radius: ${pxToRem(4)};
-  /* 
-  .menubar-item {
-    &.menubar-item-text_formats, &.menubar-item-paragraph_format, &.menubar-item-embed_objects, &.menubar-item-script_actions {
-      margin-left: pxToRem(16);
-    }
-  } */
+  margin-bottom: ${pxToRem(20)};
 `;

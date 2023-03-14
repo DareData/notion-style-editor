@@ -9,7 +9,8 @@ export const EditorContainer = styled.div`
   border-radius: ${pxToRem(6)};
   transition: border-color 0.2s ease-in;
 
-  &:hover {
+  &:hover,
+  &:focus {
     border-color: ${props => props.theme.colors.grey};
   }
 

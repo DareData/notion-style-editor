@@ -88,11 +88,9 @@ const ModalBoxStyled = styled(motion.div)`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: ${pxToRem(16)};
   width: 500px;
-  padding: ${pxToRem(24)};
   font-size: ${pxToRem(16)};
-  line-height: 1.4;
   background-color: ${props => props.theme.colors.white};
   border-radius: ${pxToRem(12)};
+  box-shadow: 0px 25px 50px -12px ${props => props.theme.components.modal.backdrop.background};
 `;

@@ -17,6 +17,10 @@ In faucibus sapien sed massa feugiat, eget pulvinar leo facilisis.
 
 uisque ullamcorper turpis vel elit elementum, sit
 
+function main() {
+  console.log('abc')
+}
+
 [Enourmous link to click](https://www.figma.com/file/5WIlxYLOmbxAqJLPIZyCSB/Text-editor?node-id=139%3A4912&t=7Lvphd0ggzxtpmxn-0)
 
 \`\`\`c
