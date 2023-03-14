@@ -37,29 +37,6 @@ export const EditorContainer = styled.div`
   p {
     margin: ${pxToRem(16)} 0;
   }
-
-  .code-block {
-    margin: ${pxToRem(16)} 0;
-    padding: ${pxToRem(16)};
-    font-size: ${pxToRem(16)};
-    line-height: ${pxToRem(22)};
-    background-color: ${props => props.theme.colors.lightAzure};
-    border: 1px solid ${props => props.theme.colors.azure};
-    border-radius: ${pxToRem(8)};
-    * {
-      font-family: ${props => props.theme.fonts.secondary};
-    }
-    .code-block_actions {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: ${pxToRem(16)};
-      .copy-button_text {
-        margin-left: ${pxToRem(5)};
-      }
-    }
-  }
-
   .tableWrapper {
     table {
       width: calc(100% - 12px);
