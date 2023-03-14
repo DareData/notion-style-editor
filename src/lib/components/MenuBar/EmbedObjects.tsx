@@ -1,6 +1,7 @@
 import { CmdKey } from '@milkdown/core';
 import {
   createCodeBlockCommand,
+  insertImageCommand,
   toggleLinkCommand,
 } from '@milkdown/preset-commonmark';
 import { insertTableCommand } from '@milkdown/preset-gfm';
@@ -37,6 +38,9 @@ export const EmbedObjects: React.FC<EmbedObjectsProps> = ({
             <Icon icon="embed_image" />
           </Button>
         )}
+        onInsert={data =>
+          onActionClick(insertImageCommand.key, { src: data.url })
+        }
       />
     </li>
     <li>
