@@ -7,12 +7,12 @@ import { usePluginViewContext } from '@prosemirror-adapter/react';
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-import { useHyperlinkAttrs } from './useHyperlinkAttrs';
+import { useHyperlinkAttrs } from './hooks/useHyperlinkAttrs';
 import { Anchor } from '../../common/Anchor';
 import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
 import { pxToRem } from '../../styles/utils';
-import { HyperlinkModal } from '../HyperlinkModal';
+import { HyperlinkModal } from '../HyperlinkModal/HyperlinkModal';
 
 export const hyperlinktooltip = tooltipFactory('HYPERLINK');
 

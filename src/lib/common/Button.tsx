@@ -54,15 +54,23 @@ const ButtonStyled = styled.button<{ $oval: boolean; $prop: ButtonProp }>`
   outline: 0;
   cursor: pointer;
   transition: background-color 0.2s ease-in, border-color 0.2s ease-in;
-  ${props =>
-    props.$oval &&
-    `
-    border-radius: ${pxToRem(8)};
-  `}
 
   &:hover,
   &:focus {
     background-color: ${props => buttonColors.bg.hover[props.$prop]};
     border-color: ${props => buttonColors.border.hover[props.$prop]};
   }
+
+  ${props =>
+    props.$oval &&
+    `
+    border-radius: ${pxToRem(8)};
+  `}
+
+  ${props =>
+    props.disabled &&
+    `
+    opacity: .8;
+    cursor: not-allowed;
+  `}
 `;

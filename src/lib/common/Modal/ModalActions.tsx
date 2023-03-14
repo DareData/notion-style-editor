@@ -31,7 +31,6 @@ export const ModalActions: React.FC<Partial<ModalActionsProps>> = ({
       <CancelButtonStyled
         type={saveButtonType}
         onClick={onCancelClick || onClose}
-        disabled={isDisabled}
         oval>
         {cancelText || 'Cancel'}
       </CancelButtonStyled>

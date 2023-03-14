@@ -29,6 +29,7 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.11",
     "@milkdown/core": "^7.0.1",
     "@milkdown/ctx": "^7.0.1",
     "@milkdown/plugin-history": "^7.0.1",
@@ -47,8 +48,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropdown": "^1.11.0",
+    "react-hook-form": "^7.43.5",
     "sass": "^1.58.3",
-    "styled-components": "^5.3.9"
+    "styled-components": "^5.3.9",
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^18.14.5",

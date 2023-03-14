@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
 import { pxToRem } from '../../styles/utils';
-import { HyperlinkModal } from '../HyperlinkModal';
+import { HyperlinkModal } from '../HyperlinkModal/HyperlinkModal';
 
 type EmbedObjectsProps = {
   onActionClick: <T>(action: CmdKey<T>, payload?: T) => void;
