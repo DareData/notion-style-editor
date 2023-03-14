@@ -10,20 +10,18 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 };
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, required, name, label, error, ...rest }, ref) => {
-    return (
-      <InputFieldStyled {...{ className }}>
-        {label && (
-          <Label text={label as string} htmlFor={name} {...{ required }} />
-        )}
-        <InputStyled
-          {...rest}
-          ref={ref}
-          {...{ required, name, error: !!error }}
-        />
-      </InputFieldStyled>
-    );
-  }
+  ({ className, required, name, label, error, ...rest }, ref) => (
+    <InputFieldStyled {...{ className }}>
+      {label && (
+        <Label text={label as string} htmlFor={name} {...{ required }} />
+      )}
+      <InputStyled
+        {...rest}
+        ref={ref}
+        {...{ required, name, error: !!error }}
+      />
+    </InputFieldStyled>
+  )
 );
 
 export const InputFieldStyled = styled.div`

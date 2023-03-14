@@ -4,6 +4,7 @@ import { object, string, InferType } from 'yup';
 
 const schema = object()
   .shape({
+    href: string().required(),
     text: string(),
     title: string(),
   })
