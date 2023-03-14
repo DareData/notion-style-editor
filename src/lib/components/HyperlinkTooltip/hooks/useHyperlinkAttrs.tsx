@@ -1,5 +1,7 @@
 import { usePluginViewContext } from '@prosemirror-adapter/react';
 
+import { Strings } from '../../../utils/Strings';
+
 export const useHyperlinkAttrs = () => {
   const { view } = usePluginViewContext();
 
@@ -11,7 +13,7 @@ export const useHyperlinkAttrs = () => {
   const mark = node?.marks.find(mark => mark.type.name === 'link');
 
   return {
-    href: mark?.attrs.href,
-    title: mark?.attrs.title,
+    href: Strings(mark?.attrs.href).getOrElse(() => ''),
+    title: Strings(mark?.attrs.title).getOrElse(() => ''),
   };
 };

@@ -12,6 +12,7 @@ import { Anchor } from '../../common/Anchor';
 import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
 import { pxToRem } from '../../styles/utils';
+import { HyperlinkFormValues } from '../HyperlinkModal/hooks/useHyperlinkForm';
 import { HyperlinkModal } from '../HyperlinkModal/HyperlinkModal';
 
 export const hyperlinktooltip = tooltipFactory('HYPERLINK');
@@ -61,14 +62,14 @@ export const HyperlinkTooltip: React.FC = () => {
     tooltipProvider.current?.update(view, prevState);
   });
 
-  const onHyperlinkSave = (href: string) => {
+  const onHyperlinkSave = (data: HyperlinkFormValues) => {
     if (loading) {
       return;
     }
 
     getEditor()?.action(ctx => {
       const commands = ctx.get(commandsCtx);
-      commands.call(updateLinkCommand.key, { href: 'https://onet.pl' });
+      commands.call(updateLinkCommand.key, data);
     });
   };
 
