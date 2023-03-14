@@ -4,8 +4,10 @@ import {
   wrapInHeadingCommand,
 } from '@milkdown/preset-commonmark';
 import { Option } from 'react-dropdown';
+import styled from 'styled-components';
 
 import { Dropdown } from '../../common/Dropdown';
+import { pxToRem } from '../../styles/utils';
 import { Matcher } from '../../utils/Matcher';
 
 const textCreationOptions: Option[] = [
@@ -29,7 +31,7 @@ export const TextCreation: React.FC<TextCreationProps> = ({
   };
 
   return (
-    <Dropdown
+    <DropdownStyled
       options={textCreationOptions}
       placeholder="Select text.."
       onChange={onDropdownChange}
@@ -37,3 +39,8 @@ export const TextCreation: React.FC<TextCreationProps> = ({
     />
   );
 };
+
+const DropdownStyled = styled(Dropdown)`
+  width: ${pxToRem(135)};
+  margin-left: ${pxToRem(16)};
+`;

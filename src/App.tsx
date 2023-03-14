@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 import { TextEditor } from './lib';
 
 const data = `# Milkdown React Commonmark
@@ -34,6 +36,10 @@ function main() {
 
 export const App = () => (
   <div>
-    <TextEditor onDataChange={() => {}} {...{ data }} />
+    <TextEditorStyled onDataChange={() => {}} {...{ data }} />
   </div>
 );
+
+const TextEditorStyled = styled(TextEditor)`
+  width: 1000px;
+`;

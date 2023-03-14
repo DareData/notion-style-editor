@@ -1,19 +1,26 @@
+import styled from 'styled-components';
+
 import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
+import { pxToRem } from '../../styles/utils';
 
 export const ScriptActions: React.FC = () => (
   <>
-    <li className="menubar-item menubar-item-script_actions">
+    <SuperscriptItemStyled>
       {/* add missing superscript command */}
-      <Button className="oval">
+      <Button oval>
         <Icon icon="superscript" />
       </Button>
-    </li>
-    <li className="menubar-item">
+    </SuperscriptItemStyled>
+    <li>
       {/* add missing subscript command */}
-      <Button className="oval">
+      <Button oval>
         <Icon icon="subscript" />
       </Button>
     </li>
   </>
 );
+
+const SuperscriptItemStyled = styled.li`
+  margin-left: ${pxToRem(16)};
+`;

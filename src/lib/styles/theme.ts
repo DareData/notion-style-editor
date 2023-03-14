@@ -17,7 +17,7 @@ const colors = {
 
 export const theme = {
   fonts: {
-    primary: 'Lato, Lato, Helvetica Neue, Helvetica, Roboto, sans-serif',
+    primary: 'OpenSans',
   },
   sizes: {
     baseSize: 16,

@@ -5,12 +5,13 @@ import { TextSelection } from '@milkdown/prose/state';
 import { useInstance } from '@milkdown/react';
 import { usePluginViewContext } from '@prosemirror-adapter/react';
 import { useEffect, useRef } from 'react';
+import styled from 'styled-components';
 
 import { useHyperlinkAttrs } from './useHyperlinkAttrs';
 import { Anchor } from '../../common/Anchor';
 import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
-import { Modal } from '../../common/Modal/Modal';
+import { pxToRem } from '../../styles/utils';
 import { HyperlinkModal } from '../HyperlinkModal';
 
 export const hyperlinktooltip = tooltipFactory('HYPERLINK');
@@ -72,8 +73,10 @@ export const HyperlinkTooltip: React.FC = () => {
   };
 
   return (
-    <div ref={ref} className="hyperlink-tooltip">
-      <span className="hyperlink-tooltip_href">{href}</span>
+    <HyperlinkTooltipStyled ref={ref}>
+      <HyperlinkTextStyled className="hyperlink-tooltip_href">
+        {href}
+      </HyperlinkTextStyled>
       <HyperlinkModal
         {...{ title, href }}
         handler={({ onOpen }) => (
@@ -86,6 +89,31 @@ export const HyperlinkTooltip: React.FC = () => {
       <Anchor {...{ href }} target="_blank" type="anchor-button">
         <Icon icon="export" />
       </Anchor>
-    </div>
+    </HyperlinkTooltipStyled>
   );
 };
+
+const HyperlinkTooltipStyled = styled.div`
+  display: flex;
+  align-items: center;
+  padding: ${pxToRem(10)} ${pxToRem(8)};
+  background-color: ${props => props.theme.colors.lightBlack};
+  border-radius: ${pxToRem(8)};
+`;
+
+const HyperlinkTextStyled = styled.span`
+  overflow: hidden;
+  color: ${props => props.theme.colors.white};
+  font-size: ${pxToRem(14)};
+  white-space: nowrap;
+  text-decoration: underline;
+  text-overflow: ellipsis;
+`;
+// .hyperlink-tooltip {
+//   .button, .anchor {
+//     &:hover, &:focus {
+//       background-color: transparent !important;
+//       border-color: $green;
+//     }
+//   }
+// }
