@@ -13,5 +13,8 @@ export const GlobalStyles = createGlobalStyle`
 	.tippy-box {
     background-color: transparent;
   }
+  .tippy-content {
+    padding: 0;
+  }
   ${Fonts}
 `;
