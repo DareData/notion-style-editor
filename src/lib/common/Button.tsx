@@ -6,7 +6,7 @@ import { pxToRem } from '../styles/utils';
 
 type ButtonProp = 'primary' | 'secondary';
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   type?: 'button' | 'submit' | 'reset';
   prop?: ButtonProp;
   oval?: boolean;

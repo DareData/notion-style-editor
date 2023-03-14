@@ -87,45 +87,6 @@ export const EditorContainer = styled.div`
           background-color: ${props => props.theme.colors.azure};
         }
       }
-      .table-selector-widget {
-        position: absolute;
-        padding: 0;
-        background-color: ${props => props.theme.colors.secondaryGrey};
-        border-radius: ${pxToRem(1)};
-        &.drag-over {
-          border: 1px solid ${props => props.theme.colors.green};
-        }
-        &.widget-row {
-          top: ${pxToRem(1)};
-          bottom: ${pxToRem(1)};
-          left: ${pxToRem(-10)};
-          width: ${pxToRem(4)};
-        }
-        &.widget-column {
-          top: ${pxToRem(-10)};
-          right: ${pxToRem(1)};
-          left: ${pxToRem(1)};
-          height: ${pxToRem(4)};
-        }
-        &.widget-table {
-          top: ${pxToRem(-12)};
-          left: ${pxToRem(-12)};
-          width: ${pxToRem(8)};
-          height: ${pxToRem(8)};
-          border-radius: 50%;
-          opacity: 0.5;
-        }
-      }
     }
-  }
-
-  .table-tooltip {
-    display: flex;
-    gap: ${pxToRem(20)};
-    align-items: center;
-    padding: ${pxToRem(6)} ${pxToRem(15)};
-    background-color: ${props => props.theme.colors.white};
-    border: ${pxToRem(1)} solid ${props => props.theme.colors.lightGrey};
-    border-radius: ${pxToRem(8)};
   }
 `;
