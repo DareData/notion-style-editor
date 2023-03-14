@@ -1,9 +1,11 @@
 import { useNodeViewContext } from '@prosemirror-adapter/react';
 import { Option } from 'react-dropdown';
+import styled from 'styled-components';
 
 import { Button } from '../common/Button';
 import { Dropdown } from '../common/Dropdown';
 import { Icon } from '../common/Icon/Icon';
+import { pxToRem } from '../styles/utils';
 
 const options: Option[] = [
   {
@@ -43,17 +45,41 @@ export const CodeBlock: React.FC = () => {
   const value = node.attrs.language || 'text';
 
   return (
-    <div className="code-block">
-      <div className="code-block_actions">
+    <CodeBlockContainerStyled>
+      <CodeBlockActionsStyled>
         <Dropdown {...{ value, options }} onChange={onLanguageChange} />
-        <Button className="code-block_copy-button oval" onClick={onCopyClick}>
+        <Button className="code-block_copy-button" oval onClick={onCopyClick}>
           <Icon icon="copy" />
-          <span className="copy-button_text">Copy</span>
+          <CopyTextStyled>Copy</CopyTextStyled>
         </Button>
-      </div>
+      </CodeBlockActionsStyled>
       <pre>
         <code ref={contentRef} />
       </pre>
-    </div>
+    </CodeBlockContainerStyled>
   );
 };
+
+const CodeBlockContainerStyled = styled.div`
+  margin: ${pxToRem(16)} 0;
+  padding: ${pxToRem(16)};
+  font-size: ${pxToRem(16)};
+  line-height: ${pxToRem(22)};
+  background-color: ${props => props.theme.colors.lightAzure};
+  border: 1px solid ${props => props.theme.colors.azure};
+  border-radius: ${pxToRem(8)};
+  * {
+    font-family: ${props => props.theme.fonts.secondary};
+  }
+`;
+
+const CodeBlockActionsStyled = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: ${pxToRem(16)};
+`;
+
+const CopyTextStyled = styled.span`
+  margin-left: ${pxToRem(5)};
+`;
