@@ -18,6 +18,7 @@ const colors = {
 export const theme = {
   fonts: {
     primary: 'OpenSans',
+    secondary: 'SourceCodePro',
   },
   sizes: {
     baseSize: 16,

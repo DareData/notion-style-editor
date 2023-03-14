@@ -7,13 +7,14 @@ export const EditorContainer = styled.div`
   background-color: ${props => props.theme.colors.white};
   border: 1px solid ${props => props.theme.colors.lightGrey};
   border-radius: ${pxToRem(6)};
-  outline: 0;
   transition: border-color 0.2s ease-in;
+
   &:hover {
     border-color: ${props => props.theme.colors.grey};
   }
 
-  &.ProseMirror-focused {
+  .ProseMirror-focused {
+    outline: 0;
     border-color: ${props => props.theme.colors.lightBlack};
   }
 
@@ -45,7 +46,7 @@ export const EditorContainer = styled.div`
     border: 1px solid ${props => props.theme.colors.azure};
     border-radius: ${pxToRem(8)};
     * {
-      font-family: ${props => props.theme.fonts.primary};
+      font-family: ${props => props.theme.fonts.secondary};
     }
     .code-block_actions {
       display: flex;
@@ -60,7 +61,7 @@ export const EditorContainer = styled.div`
 
   .tableWrapper {
     table {
-      width: calc(100% - pxToRem(12));
+      width: calc(100% - 12px);
       margin-top: ${pxToRem(12)};
       margin-left: ${pxToRem(12)};
       overflow: visible;
