@@ -25,6 +25,10 @@ export const theme = {
   },
   components: {
     modal: {
+      footer: {
+        cancel: colors.lightGrey,
+        save: '#68D391',
+      },
       backdrop: {
         background: colors.transparentBlack,
       },

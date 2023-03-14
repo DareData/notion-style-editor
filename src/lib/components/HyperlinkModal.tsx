@@ -1,4 +1,8 @@
 import { Modal, ModalProps } from '../common/Modal/Modal';
+import { ModalActions } from '../common/Modal/ModalActions';
+import { ModalBody } from '../common/Modal/ModalBody';
+import { ModalFooter } from '../common/Modal/ModalFooter';
+import { ModalHeader } from '../common/Modal/ModalHeader';
 
 type HyperlinkModalProps = {
   text?: string;
@@ -16,15 +20,15 @@ export const HyperlinkModal: React.FC<HyperlinkModalProps> = ({
 }) => {
   return (
     <Modal {...{ handler }}>
-      <div className="modal-header">Add a link</div>
-      <div className="modal-body">
+      <ModalHeader>Add a link</ModalHeader>
+      <ModalBody>
         <input value={text} placeholder="Optional" />
         <input value={href} placeholder="Paste a link" />
         <input value={title} placeholder="Optional" />
-      </div>
-      <div className="modal-footer">
-        <button onClick={() => onSave(href)}>Save</button>
-      </div>
+      </ModalBody>
+      <ModalFooter>
+        <ModalActions />
+      </ModalFooter>
     </Modal>
   );
 };

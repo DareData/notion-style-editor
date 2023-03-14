@@ -80,15 +80,15 @@ export const HyperlinkTooltip: React.FC = () => {
       <HyperlinkModal
         {...{ title, href }}
         handler={({ onOpen }) => (
-          <Button className="oval" onClick={onOpen}>
+          <ButtonStyled oval onClick={onOpen}>
             <Icon icon="edit" />
-          </Button>
+          </ButtonStyled>
         )}
         onSave={onHyperlinkSave}
       />
-      <Anchor {...{ href }} target="_blank" type="anchor-button">
+      <AnchorStyled {...{ href }} target="_blank" type="anchor-button">
         <Icon icon="export" />
-      </Anchor>
+      </AnchorStyled>
     </HyperlinkTooltipStyled>
   );
 };
@@ -109,11 +109,19 @@ const HyperlinkTextStyled = styled.span`
   text-decoration: underline;
   text-overflow: ellipsis;
 `;
-// .hyperlink-tooltip {
-//   .button, .anchor {
-//     &:hover, &:focus {
-//       background-color: transparent !important;
-//       border-color: $green;
-//     }
-//   }
-// }
+
+const ButtonStyled = styled(Button)`
+  &:hover,
+  &:focus {
+    background-color: transparent;
+  }
+`;
+
+const AnchorStyled = styled(Anchor)`
+  &&& {
+    &:hover,
+    &:focus {
+      background-color: transparent;
+    }
+  }
+`;

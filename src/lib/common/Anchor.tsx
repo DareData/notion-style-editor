@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { theme } from '../styles/theme';
+import { pxToRem } from '../styles/utils';
 
 type AnchorType = 'primary' | 'anchor-button';
 
@@ -28,8 +29,8 @@ const anchorColors = {
   },
   border: {
     hover: {
-      primary: theme.colors.green,
-      'anchor-button': 'transparent',
+      primary: 'transparent',
+      'anchor-button': theme.colors.green,
     },
   },
 };
@@ -47,8 +48,8 @@ const AnchorStyled = styled.a<{ $type: AnchorType }>`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: pxToRem(7);
-    border-radius: pxToRem(8);
+    padding: ${pxToRem(7)};
+    border-radius: ${pxToRem(8)};
 
   `}
 

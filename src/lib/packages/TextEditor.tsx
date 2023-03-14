@@ -4,6 +4,7 @@ import 'tippy.js/dist/tippy.css';
 
 import { MilkdownProvider, Milkdown as MilkdownEditor } from '@milkdown/react';
 import { ProsemirrorAdapterProvider } from '@prosemirror-adapter/react';
+import clsx from 'clsx';
 import { ThemeProvider } from 'styled-components';
 
 import { GlobalStyles } from '../common/GlobalStyles';
@@ -30,7 +31,9 @@ export const TextEditor: React.FC<TextEditorProps> = ({
         <EditorContextProvider
           defaultMarkdownValue={data}
           onChange={onDataChange}>
-          <EditorContainer {...{ className }}>
+          <EditorContainer
+            className={clsx('date-data_text-editor', className)}
+            tabIndex={-1}>
             <MenuBar />
             <MilkdownEditor />
           </EditorContainer>
