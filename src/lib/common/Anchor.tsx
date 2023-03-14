@@ -1,19 +1,60 @@
-import clsx from 'clsx';
+import styled from 'styled-components';
+
+import { theme } from '../styles/theme';
 
 type AnchorType = 'primary' | 'anchor-button';
 
 type AnchorProps = {
   type?: AnchorType;
   children: React.ReactNode;
-} & React.HTMLProps<HTMLAnchorElement>;
+} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const Anchor: React.FC<AnchorProps> = ({
-  children,
   type = 'primary',
-  className = '',
+  children,
   ...rest
 }) => (
-  <a {...rest} className={clsx('anchor', type, className)}>
+  <AnchorStyled {...rest} $type={type}>
     {children}
-  </a>
+  </AnchorStyled>
 );
+
+const anchorColors = {
+  bg: {
+    hover: {
+      primary: theme.colors.secondaryGrey,
+      'anchor-button': theme.colors.green,
+    },
+  },
+  border: {
+    hover: {
+      primary: theme.colors.green,
+      'anchor-button': 'transparent',
+    },
+  },
+};
+
+const AnchorStyled = styled.a<{ $type: AnchorType }>`
+  background-color: transparent;
+  border: 1px solid transparent;
+  outline: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in, border-color 0.2s ease-in;
+
+  ${props =>
+    props.$type &&
+    `
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: pxToRem(7);
+    border-radius: pxToRem(8);
+
+  `}
+
+  &:hover,
+  &:focus {
+    background-color: ${props => anchorColors.bg.hover[props.$type]};
+    border-color: ${props => anchorColors.border.hover[props.$type]};
+  }
+`;

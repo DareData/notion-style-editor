@@ -7,7 +7,21 @@ import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      babel: {
+        plugins: [
+          [
+            'babel-plugin-styled-components',
+            {
+              ssr: false,
+              pure: true,
+              displayName: true,
+              fileName: false,
+            },
+          ],
+        ],
+      },
+    }),
     dts({
       insertTypesEntry: true,
     }),
