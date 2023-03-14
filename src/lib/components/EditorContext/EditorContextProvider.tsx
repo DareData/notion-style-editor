@@ -6,6 +6,7 @@ import {
 import { history } from '@milkdown/plugin-history';
 import { listener, listenerCtx } from '@milkdown/plugin-listener';
 import { prism, prismConfig } from '@milkdown/plugin-prism';
+import { upload } from '@milkdown/plugin-upload';
 import { codeBlockSchema, commonmark } from '@milkdown/preset-commonmark';
 import { useEditor, UseEditorReturn } from '@milkdown/react';
 import { $view } from '@milkdown/utils';
@@ -74,6 +75,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         .use(history)
         .use(prism)
         .use(hyperlinktooltip)
+        .use(upload)
         .use(
           $view(codeBlockSchema.node, () =>
             nodeViewFactory({ component: () => <CodeBlock /> })
