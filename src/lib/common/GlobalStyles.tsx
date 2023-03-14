@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
+import { Fonts } from '../styles/fonts/Fonts';
+
 export const GlobalStyles = createGlobalStyle`
 	* {
     box-sizing: border-box;
@@ -11,4 +13,5 @@ export const GlobalStyles = createGlobalStyle`
 	.tippy-box {
     background-color: transparent;
   }
+  ${Fonts}
 `;
