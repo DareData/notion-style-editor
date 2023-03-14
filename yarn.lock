@@ -577,6 +577,15 @@
     tippy.js "^6.3.7"
     tslib "^2.4.0"
 
+"@milkdown/plugin-upload@^7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@milkdown/plugin-upload/-/plugin-upload-7.1.0.tgz#3d28b4d58451da7d0a66d9852444d1b7b70874f4"
+  integrity sha512-orn7SPdXwB1iKyU6ULKf82aAxtFfL0o3A4oDg6HF38LhjnHsaQ2lQUg387cEYMn09Z2cQzMy07Z1MASUFbgCLQ==
+  dependencies:
+    "@milkdown/exception" "7.1.0"
+    "@milkdown/utils" "7.1.0"
+    tslib "^2.4.0"
+
 "@milkdown/preset-commonmark@^7.0.1":
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/@milkdown/preset-commonmark/-/preset-commonmark-7.0.1.tgz#7bf993a112676564e7a531da869d31782b524964"
@@ -1658,11 +1667,6 @@ clone-regexp@^1.0.0:
   dependencies:
     is-regexp "^1.0.0"
     is-supported-regexp-flag "^1.0.0"
-
-clsx@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.2.1.tgz#0ddc4a20a549b59c93a4116bb26f5294ca17dc12"
-  integrity sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
 
 code-block-writer@^11.0.3:
   version "11.0.3"
