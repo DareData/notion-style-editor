@@ -1,12 +1,16 @@
 import { CmdKey } from '@milkdown/core';
-import { createCodeBlockCommand } from '@milkdown/preset-commonmark';
+import {
+  createCodeBlockCommand,
+  toggleLinkCommand,
+} from '@milkdown/preset-commonmark';
 import { insertTableCommand } from '@milkdown/preset-gfm';
 
 import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
+import { HyperlinkModal } from '../HyperlinkModal';
 
 type EmbedObjectsProps = {
-  onActionClick: <T>(action: CmdKey<T>) => void;
+  onActionClick: <T>(action: CmdKey<T>, payload?: T) => void;
 };
 
 export const EmbedObjects: React.FC<EmbedObjectsProps> = ({
@@ -14,10 +18,19 @@ export const EmbedObjects: React.FC<EmbedObjectsProps> = ({
 }) => (
   <>
     <li className="menubar-item menubar-item-embed_objects">
-      {/* add popup to set href / text onActionClick(toggleLinkCommand.key) */}
-      <Button className="oval">
-        <Icon icon="add_link" />
-      </Button>
+      <HyperlinkModal
+        handler={({ onOpen }) => (
+          <Button className="oval" onClick={onOpen}>
+            <Icon icon="add_link" />
+          </Button>
+        )}
+        onSave={href =>
+          onActionClick(toggleLinkCommand.key, {
+            title: 'onet',
+            href: 'https://onet.pl',
+          })
+        }
+      />
     </li>
     <li className="menubar-item">
       {/* add image popup to set src, alt and title onActionClick(insertImageCommand) */}
