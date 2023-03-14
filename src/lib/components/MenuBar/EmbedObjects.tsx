@@ -4,9 +4,11 @@ import {
   toggleLinkCommand,
 } from '@milkdown/preset-commonmark';
 import { insertTableCommand } from '@milkdown/preset-gfm';
+import styled from 'styled-components';
 
 import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
+import { pxToRem } from '../../styles/utils';
 import { HyperlinkModal } from '../HyperlinkModal';
 
 type EmbedObjectsProps = {
@@ -17,7 +19,7 @@ export const EmbedObjects: React.FC<EmbedObjectsProps> = ({
   onActionClick,
 }) => (
   <>
-    <li className="menubar-item menubar-item-embed_objects">
+    <HyperlinkModalItemStyled>
       <HyperlinkModal
         handler={({ onOpen }) => (
           <Button className="oval" onClick={onOpen}>
@@ -31,26 +33,26 @@ export const EmbedObjects: React.FC<EmbedObjectsProps> = ({
           })
         }
       />
-    </li>
-    <li className="menubar-item">
+    </HyperlinkModalItemStyled>
+    <li>
       {/* add image popup to set src, alt and title onActionClick(insertImageCommand) */}
-      <Button className="oval">
+      <Button oval>
         <Icon icon="embed_image" />
       </Button>
     </li>
-    <li className="menubar-item">
-      <Button
-        onClick={() => onActionClick(createCodeBlockCommand.key)}
-        className="oval">
+    <li>
+      <Button onClick={() => onActionClick(createCodeBlockCommand.key)} oval>
         <Icon icon="code_block" />
       </Button>
     </li>
-    <li className="menubar-item">
-      <Button
-        onClick={() => onActionClick(insertTableCommand.key)}
-        className="oval">
+    <li>
+      <Button onClick={() => onActionClick(insertTableCommand.key)} oval>
         <Icon icon="create_table" />
       </Button>
     </li>
   </>
 );
+
+const HyperlinkModalItemStyled = styled.li`
+  margin-left: ${pxToRem(16)};
+`;

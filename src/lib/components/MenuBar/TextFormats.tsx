@@ -4,10 +4,12 @@ import {
   toggleStrongCommand,
 } from '@milkdown/preset-commonmark';
 import { toggleStrikethroughCommand } from '@milkdown/preset-gfm';
+import styled from 'styled-components';
 
 import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
 import { toggleUnderlineCommand } from '../../hooks/useUnderlineCommand';
+import { pxToRem } from '../../styles/utils';
 
 type TextFormatsProps = {
   onActionClick: <T>(action: CmdKey<T>) => void;
@@ -15,33 +17,31 @@ type TextFormatsProps = {
 
 export const TextFormats: React.FC<TextFormatsProps> = ({ onActionClick }) => (
   <>
-    <li className="menubar-item menubar-item-text_formats">
-      <Button
-        onClick={() => onActionClick(toggleStrongCommand.key)}
-        className="oval">
+    <BoldItemStyled>
+      <Button onClick={() => onActionClick(toggleStrongCommand.key)} oval>
         <Icon icon="bold" />
       </Button>
-    </li>
-    <li className="menubar-item">
-      <Button
-        onClick={() => onActionClick(toggleEmphasisCommand.key)}
-        className="oval">
+    </BoldItemStyled>
+    <li>
+      <Button onClick={() => onActionClick(toggleEmphasisCommand.key)} oval>
         <Icon icon="italic" />
       </Button>
     </li>
-    <li className="menubar-item">
-      <Button
-        onClick={() => onActionClick(toggleUnderlineCommand.key)}
-        className="oval">
+    <li>
+      <Button onClick={() => onActionClick(toggleUnderlineCommand.key)} oval>
         <Icon icon="underline" />
       </Button>
     </li>
-    <li className="menubar-item">
+    <li>
       <Button
         onClick={() => onActionClick(toggleStrikethroughCommand.key)}
-        className="oval">
+        oval>
         <Icon icon="strikethrough" />
       </Button>
     </li>
   </>
 );
+
+const BoldItemStyled = styled.li`
+  margin-left: ${pxToRem(16)};
+`;
