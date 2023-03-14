@@ -84,7 +84,7 @@ const ModalBoxStyled = styled(motion.div)`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: ${pxToRem(480)};
   font-size: ${pxToRem(16)};
   background-color: ${props => props.theme.colors.white};
   border-radius: ${pxToRem(12)};

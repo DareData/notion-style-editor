@@ -31,7 +31,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
           defaultMarkdownValue={data}
           onChange={onDataChange}>
           <EditorContainer
-            className={['date-data_text-editor', className].join()}
+            className={['date-data_text-editor', className].join(' ')}
             tabIndex={-1}>
             <MenuBar />
             <MilkdownEditor />

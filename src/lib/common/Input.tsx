@@ -20,6 +20,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         {...{ required, name, error: !!error }}
       />
+      {error && <ErrorStyled>{error}</ErrorStyled>}
     </InputFieldStyled>
   )
 );
@@ -52,4 +53,9 @@ export const InputStyled = styled.input<
   &:focus {
     border-color: ${props => props.theme.colors.lightBlack};
   }
+`;
+
+const ErrorStyled = styled.span`
+  color: ${props => props.theme.colors.darkRed};
+  font-size: ${pxToRem(12)};
 `;

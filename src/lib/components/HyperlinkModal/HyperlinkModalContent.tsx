@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 import {
   HyperlinkFormValues,
   useHyperlinkForm,
@@ -36,7 +38,7 @@ export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
   };
 
   return (
-    <>
+    <form onSubmit={handleSubmit(onHandleSubmit)}>
       <ModalHeader>Add a link</ModalHeader>
       <ModalBody>
         <Input placeholder="Optional" label="Text" {...register('text')} />
@@ -47,15 +49,19 @@ export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
           {...register('href')}
           error={formState.errors.href?.message}
         />
-        <Input label="Title" placeholder="Optional" {...register('title')} />
+        <TitleInputStyled
+          label="Title"
+          placeholder="Optional"
+          {...register('title')}
+        />
       </ModalBody>
       <ModalFooter>
-        <ModalActions
-          isDisabled={!formState.isValid}
-          onSaveClick={handleSubmit(onHandleSubmit)}
-          saveButtonType="submit"
-        />
+        <ModalActions isDisabled={!formState.isValid} saveButtonType="submit" />
       </ModalFooter>
-    </>
+    </form>
   );
 };
+
+const TitleInputStyled = styled(Input)`
+  margin-bottom: 0;
+`;

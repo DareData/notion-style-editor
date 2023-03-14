@@ -14,7 +14,7 @@ const colors = {
   green: '#45BAAC',
   transparentBlack: 'rgba(0,0,0,0.17)',
 
-  darkRed: '#DD4B39',
+  darkRed: '#EB0000',
 };
 
 export const theme = {
