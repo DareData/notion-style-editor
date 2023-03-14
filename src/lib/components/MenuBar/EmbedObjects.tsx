@@ -10,6 +10,7 @@ import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
 import { pxToRem } from '../../styles/utils';
 import { HyperlinkModal } from '../HyperlinkModal/HyperlinkModal';
+import { InsertImageModal } from '../InsertImageModal/InsertImageModal';
 
 type EmbedObjectsProps = {
   onActionClick: <T>(action: CmdKey<T>, payload?: T) => void;
@@ -30,10 +31,13 @@ export const EmbedObjects: React.FC<EmbedObjectsProps> = ({
       />
     </HyperlinkModalItemStyled>
     <li>
-      {/* add image popup to set src, alt and title onActionClick(insertImageCommand) */}
-      <Button oval>
-        <Icon icon="embed_image" />
-      </Button>
+      <InsertImageModal
+        handler={({ onOpen }) => (
+          <Button oval onClick={onOpen}>
+            <Icon icon="embed_image" />
+          </Button>
+        )}
+      />
     </li>
     <li>
       <Button onClick={() => onActionClick(createCodeBlockCommand.key)} oval>

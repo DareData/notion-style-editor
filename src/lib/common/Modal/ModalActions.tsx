@@ -13,6 +13,7 @@ type ModalActionsProps = {
     onClose: () => void
   ) => void;
   onCancelClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  withCancel?: boolean;
   saveButtonType?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
 };
 
@@ -20,6 +21,7 @@ export const ModalActions: React.FC<Partial<ModalActionsProps>> = ({
   saveText,
   isDisabled,
   cancelText,
+  withCancel = true,
   onSaveClick,
   onCancelClick,
   saveButtonType = 'button',
@@ -28,12 +30,14 @@ export const ModalActions: React.FC<Partial<ModalActionsProps>> = ({
 
   return (
     <ModalActionsStyled>
-      <CancelButtonStyled
-        type={saveButtonType}
-        onClick={onCancelClick || onClose}
-        oval>
-        {cancelText || 'Cancel'}
-      </CancelButtonStyled>
+      {withCancel && (
+        <CancelButtonStyled
+          type={saveButtonType}
+          onClick={onCancelClick || onClose}
+          oval>
+          {cancelText || 'Cancel'}
+        </CancelButtonStyled>
+      )}
       <SaveButtonStyled
         type={saveButtonType}
         oval
