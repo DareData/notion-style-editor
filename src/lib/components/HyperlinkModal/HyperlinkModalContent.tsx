@@ -53,6 +53,7 @@ export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
         <ModalActions
           isDisabled={!formState.isValid}
           onSaveClick={handleSubmit(onHandleSubmit)}
+          saveButtonType="submit"
         />
       </ModalFooter>
     </>

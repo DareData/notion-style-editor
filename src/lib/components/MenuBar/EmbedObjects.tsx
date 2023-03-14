@@ -26,12 +26,7 @@ export const EmbedObjects: React.FC<EmbedObjectsProps> = ({
             <Icon icon="add_link" />
           </Button>
         )}
-        onSave={href =>
-          onActionClick(toggleLinkCommand.key, {
-            title: 'onet',
-            href: 'https://onet.pl',
-          })
-        }
+        onSave={data => onActionClick(toggleLinkCommand.key, data)}
       />
     </HyperlinkModalItemStyled>
     <li>

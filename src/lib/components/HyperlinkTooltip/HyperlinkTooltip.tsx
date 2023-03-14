@@ -97,7 +97,7 @@ export const HyperlinkTooltip: React.FC = () => {
 const HyperlinkTooltipStyled = styled.div`
   display: flex;
   align-items: center;
-  padding: ${pxToRem(10)} ${pxToRem(8)};
+  padding: ${pxToRem(6)} ${pxToRem(8)} ${pxToRem(6)} ${pxToRem(14)};
   background-color: ${props => props.theme.colors.lightBlack};
   border-radius: ${pxToRem(8)};
 `;
@@ -112,6 +112,7 @@ const HyperlinkTextStyled = styled.span`
 `;
 
 const ButtonStyled = styled(Button)`
+  margin-left: ${pxToRem(6)};
   &:hover,
   &:focus {
     background-color: transparent;
