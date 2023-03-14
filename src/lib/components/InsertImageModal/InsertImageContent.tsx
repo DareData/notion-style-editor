@@ -48,6 +48,8 @@ export const InsertImageContent: React.FC<InsertImageContentProps> = ({
         {url && (
           <ModalFooterStyled>
             <ModalActions
+              loading={formState.isValidating}
+              isDisabled={formState.isValidating}
               saveText="Insert image"
               withCancel={false}
               saveButtonType="submit"

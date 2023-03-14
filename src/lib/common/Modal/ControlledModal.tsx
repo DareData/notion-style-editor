@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 import { ModalContextProvider } from './context/ModalContextProvider';
 import { ModalBackdrop } from './ModalBackdrop';
 import { ModalContainer } from './ModalContainer';
-import { fadeInOut } from '../../styles/animations';
+import { fadeInOut } from '../../styles/common/animations';
 
 export type ControlledModalProps = React.HTMLAttributes<HTMLDivElement> & {
   isOpen: boolean;
