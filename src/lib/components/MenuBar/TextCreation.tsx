@@ -35,7 +35,6 @@ export const TextCreation: React.FC<TextCreationProps> = ({
       options={textCreationOptions}
       placeholder="Select text.."
       onChange={onDropdownChange}
-      className="text-creation-dropdown black"
     />
   );
 };
@@ -43,4 +42,13 @@ export const TextCreation: React.FC<TextCreationProps> = ({
 const DropdownStyled = styled(Dropdown)`
   width: ${pxToRem(135)};
   margin-left: ${pxToRem(16)};
+  .Dropdown-control {
+    background-color: rgba(31, 31, 31, 0.8);
+    .Dropdown-placeholder {
+      color: ${props => props.theme.colors.white};
+    }
+    .Dropdown-arrow-wrapper svg {
+      fill: ${props => props.theme.colors.white};
+    }
+  }
 `;

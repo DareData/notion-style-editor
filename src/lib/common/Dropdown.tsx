@@ -31,17 +31,6 @@ const ReactDropdownStyled = styled(ReactDropdown)`
       margin-left: ${pxToRem(8)};
     }
   }
-  &.black {
-    .Dropdown-control {
-      background-color: rgba(31, 31, 31, 0.8);
-      .Dropdown-placeholder {
-        color: ${props => props.theme.colors.white};
-      }
-      .Dropdown-arrow-wrapper svg {
-        fill: ${props => props.theme.colors.white};
-      }
-    }
-  }
   .Dropdown-menu {
     border-radius: ${pxToRem(8)};
   }

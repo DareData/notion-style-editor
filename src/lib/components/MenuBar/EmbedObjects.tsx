@@ -22,7 +22,7 @@ export const EmbedObjects: React.FC<EmbedObjectsProps> = ({
     <HyperlinkModalItemStyled>
       <HyperlinkModal
         handler={({ onOpen }) => (
-          <Button className="oval" onClick={onOpen}>
+          <Button oval onClick={onOpen}>
             <Icon icon="add_link" />
           </Button>
         )}
