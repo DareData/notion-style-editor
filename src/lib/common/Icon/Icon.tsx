@@ -10,6 +10,7 @@ import { ReactComponent as BulletedList } from './assets/bulleted_list.svg';
 import { ReactComponent as CodeBlockIcon } from './assets/code_block.svg';
 import { ReactComponent as CopyIcon } from './assets/copy.svg';
 import { ReactComponent as CreateTableIcon } from './assets/create_table.svg';
+import { ReactComponent as DragAndDropFileIcon } from './assets/d_and_d_file.svg';
 import { ReactComponent as DeleteIcon } from './assets/delete.svg';
 import { ReactComponent as EditIcon } from './assets/edit.svg';
 import { ReactComponent as EmbedImageIcon } from './assets/embed_image.svg';
@@ -52,6 +53,7 @@ const icons = {
   arrow_right: ArrowRightIcon,
   edit: EditIcon,
   export: ExportIcon,
+  d_a_d_file: DragAndDropFileIcon,
 };
 
 export const IconTypesValues = Object.keys(icons);

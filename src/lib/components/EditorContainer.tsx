@@ -19,24 +19,27 @@ export const EditorContainer = styled.div`
     border-color: ${props => props.theme.colors.lightBlack};
   }
 
-  blockquote {
-    margin: ${pxToRem(16)} 0;
-    padding-left: ${pxToRem(20)};
-    border-left: 4px solid ${props => props.theme.colors.green};
+  .editor {
+    blockquote {
+      margin: ${pxToRem(16)} 0;
+      padding-left: ${pxToRem(20)};
+      border-left: 4px solid ${props => props.theme.colors.green};
+    }
+
+    ul,
+    ol {
+      padding-left: ${pxToRem(20)};
+    }
+
+    li {
+      padding-left: ${pxToRem(2)};
+    }
+
+    p {
+      margin: ${pxToRem(16)} 0;
+    }
   }
 
-  ul,
-  ol {
-    padding-left: ${pxToRem(20)};
-  }
-
-  li {
-    padding-left: ${pxToRem(2)};
-  }
-
-  p {
-    margin: ${pxToRem(16)} 0;
-  }
   .tableWrapper {
     table {
       width: calc(100% - 12px);
