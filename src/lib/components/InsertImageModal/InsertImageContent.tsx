@@ -3,6 +3,7 @@ import { useWatch } from 'react-hook-form';
 import styled from 'styled-components';
 
 import { ImageFormValues, useImageForm } from './hooks/useImageForm';
+import { DragDropInputFile } from '../../common/DragDropInputFile';
 import { Input } from '../../common/Input';
 import { useModalContext } from '../../common/Modal/context/useModalContext';
 import { ModalActions } from '../../common/Modal/ModalActions';
@@ -36,12 +37,12 @@ export const InsertImageContent: React.FC<InsertImageContentProps> = ({
       <motion.div
         animate={url ? 'hidden' : 'show'}
         variants={toggleOutInVariant}>
-        <div>
-          <ModalBodyStyled>Drag and drop</ModalBodyStyled>
+        <>
+          <DragDropInputFileStyled name="insert_image" />
           <GapStyled>
             <GapTextStyled>Or</GapTextStyled>
           </GapStyled>
-        </div>
+        </>
       </motion.div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <ModalBodyStyled>
@@ -92,7 +93,7 @@ const ModalFooterStyled = styled(ModalFooter)`
 const GapStyled = styled.div`
   display: flex;
   align-items: center;
-  padding: ${pxToRem(32)} ${pxToRem(24)} ${pxToRem(12)};
+  padding: ${pxToRem(20)} ${pxToRem(24)} ${pxToRem(12)};
   &::before,
   &:after {
     content: '';
@@ -106,4 +107,8 @@ const GapStyled = styled.div`
 const GapTextStyled = styled.span`
   color: ${props => props.theme.colors.grey};
   padding: ${pxToRem(0)} ${pxToRem(8)};
+`;
+
+const DragDropInputFileStyled = styled(DragDropInputFile)`
+  padding: ${pxToRem(40)} ${pxToRem(24)} ${pxToRem(12)};
 `;
