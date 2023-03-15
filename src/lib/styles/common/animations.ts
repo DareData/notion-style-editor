@@ -31,9 +31,11 @@ export const toggleOutInVariant: Variants = {
   show: {
     height: 'auto',
     opacity: 1,
+    pointerEvents: 'auto',
   },
   hidden: {
     height: '0',
     opacity: 0,
+    pointerEvents: 'none',
   },
 };

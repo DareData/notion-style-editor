@@ -35,7 +35,8 @@ export const TextFormats: React.FC<TextFormatsProps> = ({ onActionClick }) => (
     <li>
       <Button
         onClick={() => onActionClick(toggleStrikethroughCommand.key)}
-        oval>
+        oval
+      >
         <Icon icon="strikethrough" />
       </Button>
     </li>

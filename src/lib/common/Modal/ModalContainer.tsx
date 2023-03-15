@@ -40,7 +40,8 @@ export const ModalContainer: React.FC<ModalContainerProps> = ({
       {...rest}
       onClick={onContainerClick}
       ref={containerRef}
-      data-modal>
+      data-modal
+    >
       <ModalBoxStyled {...(animation || {})} ref={modalBodyRef}>
         {children}
       </ModalBoxStyled>

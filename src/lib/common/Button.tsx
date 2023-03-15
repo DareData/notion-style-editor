@@ -33,7 +33,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ref={buttonRef}
       $oval={oval}
       $prop={prop}
-      $loading={loading}>
+      $loading={loading}
+    >
       {children}
     </ButtonStyled>
   )
@@ -83,7 +84,7 @@ const ButtonStyled = styled.button<{
   pointer-events: ${props => (props.$loading ? 'none' : 'auto')};
   cursor: pointer;
   transition: background-color 0.2s ease-in, border-color 0.2s ease-in,
-    color 0.2s ease-in;
+    ${props => (props.$prop === 'as-anchor' ? 'color 0.2s ease-in' : '')};
 
   ${props => props.$loading && loadingStyles};
 

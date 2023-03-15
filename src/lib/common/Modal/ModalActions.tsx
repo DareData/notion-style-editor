@@ -37,7 +37,8 @@ export const ModalActions: React.FC<Partial<ModalActionsProps>> = ({
           type={saveButtonType}
           onClick={onCancelClick || onClose}
           oval
-          {...{ loading }}>
+          {...{ loading }}
+        >
           {cancelText || 'Cancel'}
         </CancelButtonStyled>
       )}
@@ -46,7 +47,8 @@ export const ModalActions: React.FC<Partial<ModalActionsProps>> = ({
         oval
         onClick={onSaveClick ? e => onSaveClick(e, onClose) : undefined}
         disabled={isDisabled}
-        {...{ loading }}>
+        {...{ loading }}
+      >
         {saveText || 'Save'}
       </SaveButtonStyled>
     </ModalActionsStyled>

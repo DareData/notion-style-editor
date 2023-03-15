@@ -87,7 +87,8 @@ export const TableTooltip: React.FC = () => {
               ctx.get(commandsCtx).call(addRowBeforeCommand.key);
             });
             tooltipProvider.current?.hide();
-          }}>
+          }}
+        >
           <Icon icon="arrow_top" />
         </Button>
       )}
@@ -101,7 +102,8 @@ export const TableTooltip: React.FC = () => {
               ctx.get(commandsCtx).call(addRowAfterCommand.key);
             });
             tooltipProvider.current?.hide();
-          }}>
+          }}
+        >
           <Icon icon="arrow_down" />
         </Button>
       )}
@@ -115,7 +117,8 @@ export const TableTooltip: React.FC = () => {
             });
 
             tooltipProvider.current?.hide();
-          }}>
+          }}
+        >
           <Icon icon="arrow_left" />
         </Button>
       )}
@@ -129,7 +132,8 @@ export const TableTooltip: React.FC = () => {
               ctx.get(commandsCtx).call(deleteSelectedCellsCommand.key);
             });
             tooltipProvider.current?.hide();
-          }}>
+          }}
+        >
           <Icon icon="delete" />
         </Button>
       )}
@@ -143,7 +147,8 @@ export const TableTooltip: React.FC = () => {
             });
 
             tooltipProvider.current?.hide();
-          }}>
+          }}
+        >
           <Icon icon="arrow_right" />
         </Button>
       )}
@@ -155,7 +160,8 @@ export const TableTooltip: React.FC = () => {
             getEditor().action(ctx => {
               ctx.get(commandsCtx).call(setAlignCommand.key, 'left');
             });
-          }}>
+          }}
+        >
           <Icon icon="text_align_left" />
         </Button>
       )}
@@ -167,7 +173,8 @@ export const TableTooltip: React.FC = () => {
             getEditor().action(ctx => {
               ctx.get(commandsCtx).call(setAlignCommand.key, 'right');
             });
-          }}>
+          }}
+        >
           <Icon icon="text_align_right" />
         </Button>
       )}
@@ -179,7 +186,8 @@ export const TableTooltip: React.FC = () => {
             getEditor().action(ctx => {
               ctx.get(commandsCtx).call(setAlignCommand.key, 'center');
             });
-          }}>
+          }}
+        >
           <Icon icon="text_align_center" />
         </Button>
       )}

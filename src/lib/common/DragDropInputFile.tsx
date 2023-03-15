@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import styled from 'styled-components';
 
 import { Button } from './Button';
-import { Icon } from './Icon/Icon';
+import { Icon, IconProps } from './Icon/Icon';
 import { useBase64File } from '../hooks/useBase64File';
 import { useToggler } from '../hooks/useToggler';
 import { accessibleHide, pxToRem } from '../styles/utils';
@@ -18,15 +18,9 @@ export const DragDropInputFile: React.FC<DragDropInputFileProps> = ({
   ...rest
 }) => {
   const inputFileRef = useRef<HTMLInputElement>(null);
-  const drag = useToggler();
-  const { getBase64 } = useBase64File();
 
-  const onDragEnter = () => {
-    drag.on();
-  };
-  const onDragLeave = () => {
-    drag.off();
-  };
+  const dragActive = useToggler();
+  const { getBase64 } = useBase64File();
 
   const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -36,12 +30,32 @@ export const DragDropInputFile: React.FC<DragDropInputFileProps> = ({
     }
   };
 
+  const onDrag = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === 'dragenter' || e.type === 'dragover') {
+      dragActive.on();
+    } else if (e.type === 'dragleave') {
+      dragActive.off();
+    }
+  };
+
+  const onDrop = async (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dragActive.off();
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      const file = await getBase64(e.dataTransfer.files[0]);
+      onFileChange(file);
+    }
+  };
+
   const onBrowseButtonClick = () => {
     inputFileRef.current?.click();
   };
 
   return (
-    <div {...{ onDragEnter, onDragLeave, className }}>
+    <DragDropFileContainerStyled {...{ className }} onDragEnter={onDrag}>
       <InputFileStyled
         ref={inputFileRef}
         type="file"
@@ -50,28 +64,54 @@ export const DragDropInputFile: React.FC<DragDropInputFileProps> = ({
         {...{ name }}
         {...rest}
       />
-      <LabelStyled htmlFor={name}>
-        <Icon icon="d_a_d_file" width={230} height={230} />
+      <LabelStyled htmlFor={name} $dragActive={dragActive.state}>
+        <IconStyled
+          icon="d_a_d_file"
+          width={230}
+          height={230}
+          $dragOver={dragActive.state}
+        />
         <DragAndDropStyled>
-          Drag and drop or{' '}
+          Drag and drop or
           <BrowseButtonStyled onClick={onBrowseButtonClick} prop="as-anchor">
             browse
           </BrowseButtonStyled>
         </DragAndDropStyled>
         <FileInfoSyled>Image files, maximum file size 20 MB</FileInfoSyled>
       </LabelStyled>
-    </div>
+      {dragActive.state && (
+        <DragElementStyled
+          {...{ onDrop }}
+          onDragOver={onDrag}
+          onDragEnter={onDrag}
+          onDragLeave={onDrag}
+        />
+      )}
+    </DragDropFileContainerStyled>
   );
 };
+
+const DragDropFileContainerStyled = styled.div`
+  position: relative;
+`;
 
 const InputFileStyled = styled.input`
   ${accessibleHide}
 `;
 
-const LabelStyled = styled.label`
+const LabelStyled = styled.label<{ $dragActive: boolean }>`
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding: ${pxToRem(16)} 0;
+  border-radius: ${pxToRem(8)};
+  border: 2px solid
+    ${props => (props.$dragActive ? props.theme.colors.green : 'transparent')};
+  background-color: ${props =>
+    props.$dragActive
+      ? props.theme.colors.lightAzure
+      : props.theme.colors.white};
+  transition: border-color 0.2s ease-in, background-color 0.2s ease-in;
 `;
 
 const DragAndDropStyled = styled.p`
@@ -90,4 +130,36 @@ const FileInfoSyled = styled.p`
 const BrowseButtonStyled = styled(Button)`
   font-size: ${pxToRem(21)};
   text-decoration: underline;
+`;
+
+type IconStyledProps = IconProps & { $dragOver: boolean };
+const IconStyled = styled<React.FC<IconStyledProps>>(Icon)`
+  .light-green,
+  .green,
+  .dark-green {
+    transition: fill 0.2s ease-in;
+  }
+  ${props =>
+    props.$dragOver &&
+    `
+    .light-green {
+      fill: #c1f8d5;
+    }
+    .green {
+      fill: #68d391;
+    }
+    .dark-green {
+      fill: #4b8260;
+    }
+  `}
+`;
+
+const DragElementStyled = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
 `;
