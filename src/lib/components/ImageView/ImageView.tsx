@@ -1,3 +1,5 @@
+import { editorViewCtx } from '@milkdown/core';
+import { useInstance } from '@milkdown/react';
 import { useNodeViewContext } from '@prosemirror-adapter/react';
 import styled from 'styled-components';
 
@@ -11,9 +13,23 @@ import { pxToRem } from '../../styles/utils';
 export const ImageView: React.FC = () => {
   const { node, contentRef, setAttrs } = useNodeViewContext();
   const { attrs } = node;
+  const [, getEditor] = useInstance();
 
   const onAttributesEdit = ({ alt, title }: EditImageFormValues) => {
     setAttrs({ alt, title });
+  };
+
+  const onRemoveImage = () => {
+    const editor = getEditor();
+    if (editor) {
+      editor.action(ctx => {
+        const view = ctx.get(editorViewCtx);
+        const { state } = view;
+        const { selection } = state;
+
+        view.dispatch(state.tr.replace(selection.from, selection.to));
+      });
+    }
   };
 
   return (
@@ -35,7 +51,7 @@ export const ImageView: React.FC = () => {
                 {...{ onAttributesEdit }}
               />
             </Modal>
-            <ButtonStyled oval>
+            <ButtonStyled oval onClick={onRemoveImage}>
               <Icon icon="delete" />
             </ButtonStyled>
           </ImageEditorContainerStyled>
