@@ -13,6 +13,7 @@ export type ControlledModalProps = React.HTMLAttributes<HTMLDivElement> & {
   onClose?: () => void;
   animation?: MotionProps;
   withBackdrop?: boolean;
+  withCloseIcon?: boolean;
   backdropAnimation?: MotionProps;
   closeOnOutsideClick?: boolean;
 };
@@ -23,6 +24,7 @@ export const ControlledModal: React.FC<ControlledModalProps> = ({
   onClose = () => {},
   animation = fadeInOut,
   withBackdrop = true,
+  withCloseIcon = true,
   backdropAnimation = fadeInOut,
   closeOnOutsideClick = true,
   ...rest
@@ -43,6 +45,7 @@ export const ControlledModal: React.FC<ControlledModalProps> = ({
               {...rest}
               {...{
                 animation,
+                withCloseIcon,
                 closeOnOutsideClick,
               }}
             />

@@ -4,15 +4,19 @@ import styled from 'styled-components';
 
 import { useModalContext } from './context/useModalContext';
 import { pxToRem } from '../../styles/utils';
+import { Button } from '../Button';
+import { Icon } from '../Icon/Icon';
 
 type ModalContainerProps = React.HTMLAttributes<HTMLDivElement> & {
   animation?: HTMLMotionProps<'div'>;
+  withCloseIcon: boolean;
   closeOnOutsideClick: boolean;
 };
 
 export const ModalContainer: React.FC<ModalContainerProps> = ({
   children,
   animation,
+  withCloseIcon,
   closeOnOutsideClick,
   ...rest
 }) => {
@@ -43,7 +47,14 @@ export const ModalContainer: React.FC<ModalContainerProps> = ({
       data-modal
     >
       <ModalBoxStyled {...(animation || {})} ref={modalBodyRef}>
-        {children}
+        <>
+          {withCloseIcon && (
+            <CloseButtonStyled onClick={onClose} oval>
+              <Icon icon="close" />
+            </CloseButtonStyled>
+          )}
+          {children}
+        </>
       </ModalBoxStyled>
     </ModalContainerStyled>
   );
@@ -90,4 +101,12 @@ const ModalBoxStyled = styled(motion.div)`
   background-color: ${props => props.theme.colors.white};
   border-radius: ${pxToRem(12)};
   box-shadow: 0px 25px 50px -12px ${props => props.theme.components.modal.backdrop.background};
+`;
+
+const CloseButtonStyled = styled(Button)`
+  position: absolute;
+  top: ${pxToRem(22)};
+  right: ${pxToRem(16)};
+  padding: ${pxToRem(2)};
+  z-index: 2;
 `;

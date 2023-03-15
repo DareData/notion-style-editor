@@ -83,8 +83,9 @@ const ButtonStyled = styled.button<{
   user-select: ${props => (props.$loading ? 'none' : 'auto')};
   pointer-events: ${props => (props.$loading ? 'none' : 'auto')};
   cursor: pointer;
-  transition: background-color 0.2s ease-in, border-color 0.2s ease-in,
-    ${props => (props.$prop === 'as-anchor' ? 'color 0.2s ease-in' : '')};
+  transition: background-color 0.2s ease-in,
+    border-color 0.2s ease-in
+      ${props => (props.$prop === 'as-anchor' ? ',color 0.2s ease-in' : '')};
 
   ${props => props.$loading && loadingStyles};
 
