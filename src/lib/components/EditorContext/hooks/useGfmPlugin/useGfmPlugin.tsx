@@ -6,7 +6,7 @@ import { usePluginViewFactory } from '@prosemirror-adapter/react';
 import { useMemo } from 'react';
 
 import { useTableSelectorPlugin } from './useTableSelectorPlugin';
-import { TableTooltip } from '../../components/TableTooltip';
+import { TableTooltip } from '../../../TableTooltip';
 
 export const tableTooltip = tooltipFactory('TABLE');
 export const tableTooltipCtx = $ctx<TooltipProvider | null, 'tableTooltip'>(

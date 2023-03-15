@@ -7,7 +7,11 @@ import { history } from '@milkdown/plugin-history';
 import { listener, listenerCtx } from '@milkdown/plugin-listener';
 import { prism, prismConfig } from '@milkdown/plugin-prism';
 import { upload } from '@milkdown/plugin-upload';
-import { codeBlockSchema, commonmark } from '@milkdown/preset-commonmark';
+import {
+  codeBlockSchema,
+  commonmark,
+  imageSchema,
+} from '@milkdown/preset-commonmark';
 import { useEditor, UseEditorReturn } from '@milkdown/react';
 import { $view } from '@milkdown/utils';
 import {
@@ -17,13 +21,14 @@ import {
 import { createContext, useMemo } from 'react';
 import { refractor } from 'refractor/lib/common';
 
-import { useGfmPlugin } from '../../hooks/useGfmPlugin/useGfmPlugin';
+import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
 import { useUnderlineCommand } from '../../hooks/useUnderlineCommand';
 import { CodeBlock } from '../CodeBlock';
 import {
   HyperlinkTooltip,
   hyperlinktooltip,
 } from '../HyperlinkTooltip/HyperlinkTooltip';
+import { ImageView } from '../ImageView/ImageView';
 
 type EditorContextData = {
   editor: UseEditorReturn | null;
@@ -78,7 +83,12 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         .use(upload)
         .use(
           $view(codeBlockSchema.node, () =>
-            nodeViewFactory({ component: () => <CodeBlock /> })
+            nodeViewFactory({ component: CodeBlock, as: 'div' })
+          )
+        )
+        .use(
+          $view(imageSchema.node, () =>
+            nodeViewFactory({ component: ImageView, as: 'div' })
           )
         )
         .use(gfmPlugin),

@@ -105,7 +105,7 @@ const ModalBoxStyled = styled(motion.div)`
 
 const CloseButtonStyled = styled(Button)`
   position: absolute;
-  top: ${pxToRem(22)};
+  top: ${pxToRem(16)};
   right: ${pxToRem(16)};
   padding: ${pxToRem(2)};
   z-index: 2;

@@ -1,8 +1,11 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 import { TextEditor } from './lib';
+import { pxToRem } from './lib/styles/utils';
 
 const data = `# Milkdown React Commonmark
+
+![avatar](https://dogtowndogtraining.com/wp-content/uploads/2012/06/300x300-061-e1340955308953.jpg)
 
 > You're scared of a world where you're needed.
 
@@ -10,16 +13,6 @@ This is a demo for using Milkdown with **React**.
 
 Lorem ipsum dolor re arcu. Praesent lacus diam, laoreet et nisi sit amet, interdum tristique enim.
 
-Morbi sapien tortor, suscipit in consectetur eu, finibus a turpis. Mauris scelerisque nisl quis purus pulvinar laoreet tincidunt ut nisl.
-
-Donec nec arcu eget purus molestie vulputate. Pellentesque pulvinar elementum posuere. Maecenas gravida, arcu ac sagittis aliquet,
-In faucibus sapien sed massa feugiat, eget pulvinar leo facilisis.
-
-uisque ullamcorper turpis vel elit elementum, sit
-
-function main() {
-  console.log('abc')
-}
 
 [Enourmous link to click](https://www.figma.com/file/5WIlxYLOmbxAqJLPIZyCSB/Text-editor?node-id=139%3A4912&t=7Lvphd0ggzxtpmxn-0)
 
@@ -39,11 +32,28 @@ function main() {
 `;
 
 export const App = () => (
-  <div>
-    <TextEditorStyled onDataChange={() => {}} {...{ data }} />
-  </div>
+  <>
+    <AppGlobalStyles />
+    <AppContainerStyled>
+      <TextEditorStyled onDataChange={() => {}} {...{ data }} />
+    </AppContainerStyled>
+  </>
 );
 
 const TextEditorStyled = styled(TextEditor)`
   width: 1000px;
+`;
+
+const AppContainerStyled = styled.div`
+  margin: ${pxToRem(100)} 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const AppGlobalStyles = createGlobalStyle`
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #FFFFFF;
 `;
