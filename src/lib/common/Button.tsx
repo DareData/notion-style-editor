@@ -56,8 +56,8 @@ const buttonColors = {
   },
   color: {
     hover: {
-      primary: 'transparent',
-      secondary: 'transparent',
+      primary: theme.colors.lightBlack,
+      secondary: theme.colors.lightBlack,
       'as-anchor': theme.colors.green,
     },
   },
