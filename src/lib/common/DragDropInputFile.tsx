@@ -3,18 +3,23 @@ import styled from 'styled-components';
 
 import { Button } from './Button';
 import { Icon } from './Icon/Icon';
+import { useBase64File } from '../hooks/useBase64File';
 import { useToggler } from '../hooks/useToggler';
 import { accessibleHide, pxToRem } from '../styles/utils';
 
-type DragDropInputFileProps = React.InputHTMLAttributes<HTMLInputElement> & {};
+type DragDropInputFileProps = React.InputHTMLAttributes<HTMLInputElement> & {
+  onFileChange: (file: string) => void;
+};
 
 export const DragDropInputFile: React.FC<DragDropInputFileProps> = ({
   name,
   className = '',
+  onFileChange,
   ...rest
 }) => {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const drag = useToggler();
+  const { getBase64 } = useBase64File();
 
   const onDragEnter = () => {
     drag.on();
@@ -23,10 +28,11 @@ export const DragDropInputFile: React.FC<DragDropInputFileProps> = ({
     drag.off();
   };
 
-  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
-      console.log(e.target.files);
+      const file = await getBase64(e.target.files[0]);
+      onFileChange(file);
     }
   };
 
@@ -40,7 +46,7 @@ export const DragDropInputFile: React.FC<DragDropInputFileProps> = ({
         ref={inputFileRef}
         type="file"
         multiple
-        onChange={onFileChange}
+        onChange={onChange}
         {...{ name }}
         {...rest}
       />

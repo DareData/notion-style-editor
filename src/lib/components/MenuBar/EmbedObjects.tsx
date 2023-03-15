@@ -38,8 +38,8 @@ export const EmbedObjects: React.FC<EmbedObjectsProps> = ({
             <Icon icon="embed_image" />
           </Button>
         )}
-        onInsert={data =>
-          onActionClick(insertImageCommand.key, { src: data.url })
+        onInsert={source =>
+          onActionClick(insertImageCommand.key, { src: source })
         }
       />
     </li>

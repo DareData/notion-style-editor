@@ -35,6 +35,9 @@ export const theme = {
         background: colors.transparentBlack,
       },
     },
+    editor: {
+      link: '#0836AA',
+    },
   },
   zIndexes: {
     modal: {

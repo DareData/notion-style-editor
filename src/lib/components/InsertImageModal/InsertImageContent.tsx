@@ -16,7 +16,7 @@ import {
 import { pxToRem } from '../../styles/utils';
 
 export type InsertImageContentProps = {
-  onInsert: (data: ImageFormValues) => void;
+  onInsert: (source: string) => void;
 };
 
 export const InsertImageContent: React.FC<InsertImageContentProps> = ({
@@ -27,9 +27,13 @@ export const InsertImageContent: React.FC<InsertImageContentProps> = ({
   const { formState, register, handleSubmit, control } = useImageForm();
   const url = useWatch<ImageFormValues>({ control, name: 'url' });
 
-  const onSubmit = (data: ImageFormValues) => {
-    onInsert(data);
+  const onFileInsert = (source: string) => {
+    onInsert(source);
     onClose();
+  };
+
+  const onSubmit = (data: ImageFormValues) => {
+    onFileInsert(data.url as string);
   };
 
   return (
@@ -38,7 +42,10 @@ export const InsertImageContent: React.FC<InsertImageContentProps> = ({
         animate={url ? 'hidden' : 'show'}
         variants={toggleOutInVariant}>
         <>
-          <DragDropInputFileStyled name="insert_image" />
+          <DragDropInputFileStyled
+            name="insert_image"
+            onFileChange={onFileInsert}
+          />
           <GapStyled>
             <GapTextStyled>Or</GapTextStyled>
           </GapStyled>

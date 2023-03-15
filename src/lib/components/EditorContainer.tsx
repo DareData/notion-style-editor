@@ -38,6 +38,10 @@ export const EditorContainer = styled.div`
     p {
       margin: ${pxToRem(16)} 0;
     }
+
+    a {
+      color: ${props => props.theme.components.editor.link};
+    }
   }
 
   .tableWrapper {
