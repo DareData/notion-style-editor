@@ -40,7 +40,8 @@ export const InsertImageContent: React.FC<InsertImageContentProps> = ({
     <ImageContentContainerStyled>
       <motion.div
         animate={url ? 'hidden' : 'show'}
-        variants={toggleOutInVariant}>
+        variants={toggleOutInVariant}
+      >
         <>
           <DragDropInputFileStyled
             name="insert_image"
@@ -66,7 +67,7 @@ export const InsertImageContent: React.FC<InsertImageContentProps> = ({
               <ModalFooterStyled>
                 <ModalActions
                   loading={formState.isValidating}
-                  isDisabled={formState.isValidating}
+                  isDisabled={formState.isValidating || !formState.isValid}
                   saveText="Insert image"
                   withCancel={false}
                   saveButtonType="submit"
