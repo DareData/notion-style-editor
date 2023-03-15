@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import { useWatch } from 'react-hook-form';
 import styled from 'styled-components';
 
@@ -7,6 +8,10 @@ import { useModalContext } from '../../common/Modal/context/useModalContext';
 import { ModalActions } from '../../common/Modal/ModalActions';
 import { ModalBody } from '../../common/Modal/ModalBody';
 import { ModalFooter } from '../../common/Modal/ModalFooter';
+import {
+  toggleInOut,
+  toggleOutInVariant,
+} from '../../styles/common/animations';
 import { pxToRem } from '../../styles/utils';
 
 export type InsertImageContentProps = {
@@ -27,15 +32,17 @@ export const InsertImageContent: React.FC<InsertImageContentProps> = ({
   };
 
   return (
-    <>
-      {!url && (
-        <>
+    <ImageContentContainerStyled>
+      <motion.div
+        animate={url ? 'hidden' : 'show'}
+        variants={toggleOutInVariant}>
+        <div>
           <ModalBodyStyled>Drag and drop</ModalBodyStyled>
           <GapStyled>
             <GapTextStyled>Or</GapTextStyled>
           </GapStyled>
-        </>
-      )}
+        </div>
+      </motion.div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <ModalBodyStyled>
           <UrlInputStyled
@@ -45,21 +52,29 @@ export const InsertImageContent: React.FC<InsertImageContentProps> = ({
             error={formState.errors.url?.message}
           />
         </ModalBodyStyled>
-        {url && (
-          <ModalFooterStyled>
-            <ModalActions
-              loading={formState.isValidating}
-              isDisabled={formState.isValidating}
-              saveText="Insert image"
-              withCancel={false}
-              saveButtonType="submit"
-            />
-          </ModalFooterStyled>
-        )}
+        <AnimatePresence>
+          {url && (
+            <motion.div {...toggleInOut}>
+              <ModalFooterStyled>
+                <ModalActions
+                  loading={formState.isValidating}
+                  isDisabled={formState.isValidating}
+                  saveText="Insert image"
+                  withCancel={false}
+                  saveButtonType="submit"
+                />
+              </ModalFooterStyled>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </form>
-    </>
+    </ImageContentContainerStyled>
   );
 };
+
+const ImageContentContainerStyled = styled.div`
+  overflow: hidden;
+`;
 
 const UrlInputStyled = styled(Input)`
   margin-bottom: 0;
