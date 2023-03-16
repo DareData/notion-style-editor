@@ -8,13 +8,13 @@ export const ScriptActions: React.FC = () => (
   <>
     <SuperscriptItemStyled>
       {/* add missing superscript command */}
-      <Button oval>
+      <Button oval space="small" color="secondary">
         <Icon icon="superscript" />
       </Button>
     </SuperscriptItemStyled>
     <li>
       {/* add missing subscript command */}
-      <Button oval>
+      <Button oval space="small" color="secondary">
         <Icon icon="subscript" />
       </Button>
     </li>

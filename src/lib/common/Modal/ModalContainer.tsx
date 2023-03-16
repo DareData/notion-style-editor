@@ -107,6 +107,6 @@ const CloseButtonStyled = styled(Button)`
   position: absolute;
   top: ${pxToRem(16)};
   right: ${pxToRem(16)};
-  padding: ${pxToRem(2)};
+  padding: ${pxToRem(4)};
   z-index: 2;
 `;

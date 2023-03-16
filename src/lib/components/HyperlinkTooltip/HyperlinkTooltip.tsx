@@ -79,7 +79,7 @@ export const HyperlinkTooltip: React.FC = () => {
       <HyperlinkModal
         {...{ title, href }}
         handler={({ onOpen }) => (
-          <ButtonStyled oval onClick={onOpen}>
+          <ButtonStyled oval onClick={onOpen} space="small">
             <Icon icon="edit" />
           </ButtonStyled>
         )}
@@ -114,14 +114,13 @@ const ButtonStyled = styled(Button)`
   &:hover,
   &:focus {
     background-color: transparent;
+    border-color: ${props => props.theme.colors.green};
   }
 `;
 
 const AnchorStyled = styled(Anchor)`
-  &&& {
-    &:hover,
-    &:focus {
-      background-color: transparent;
-    }
+  &:hover,
+  &:focus {
+    background-color: transparent;
   }
 `;

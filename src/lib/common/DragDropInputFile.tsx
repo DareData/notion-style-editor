@@ -73,7 +73,10 @@ export const DragDropInputFile: React.FC<DragDropInputFileProps> = ({
         />
         <DragAndDropStyled>
           Drag and drop or
-          <BrowseButtonStyled onClick={onBrowseButtonClick} prop="as-anchor">
+          <BrowseButtonStyled
+            onClick={onBrowseButtonClick}
+            variant="simple_text"
+          >
             browse
           </BrowseButtonStyled>
         </DragAndDropStyled>
@@ -130,6 +133,10 @@ const FileInfoSyled = styled.p`
 const BrowseButtonStyled = styled(Button)`
   font-size: ${pxToRem(21)};
   text-decoration: underline;
+  &:hover,
+  &:focus {
+    color: ${props => props.theme.colors.green};
+  }
 `;
 
 type IconStyledProps = IconProps & { $dragOver: boolean };

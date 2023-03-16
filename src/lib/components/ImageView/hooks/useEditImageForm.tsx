@@ -6,15 +6,15 @@ const schema = object().shape({
   title: string(),
 });
 
-export type EditImageFormValues = InferType<typeof schema>;
+export type ImageEditorFormValues = InferType<typeof schema>;
 
-type UseEditImageFormProps = {
+type UseImageEditorFormProps = {
   alt: string;
   title: string;
 };
 
-export const useEditImageForm = ({ alt, title }: UseEditImageFormProps) =>
-  useForm<EditImageFormValues>({
+export const useImageEditorForm = ({ alt, title }: UseImageEditorFormProps) =>
+  useForm<ImageEditorFormValues>({
     mode: 'onChange',
     defaultValues: { alt, title },
   });

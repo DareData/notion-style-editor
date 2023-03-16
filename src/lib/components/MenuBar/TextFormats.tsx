@@ -18,17 +18,32 @@ type TextFormatsProps = {
 export const TextFormats: React.FC<TextFormatsProps> = ({ onActionClick }) => (
   <>
     <BoldItemStyled>
-      <Button onClick={() => onActionClick(toggleStrongCommand.key)} oval>
+      <Button
+        onClick={() => onActionClick(toggleStrongCommand.key)}
+        oval
+        space="small"
+        color="secondary"
+      >
         <Icon icon="bold" />
       </Button>
     </BoldItemStyled>
     <li>
-      <Button onClick={() => onActionClick(toggleEmphasisCommand.key)} oval>
+      <Button
+        onClick={() => onActionClick(toggleEmphasisCommand.key)}
+        oval
+        space="small"
+        color="secondary"
+      >
         <Icon icon="italic" />
       </Button>
     </li>
     <li>
-      <Button onClick={() => onActionClick(toggleUnderlineCommand.key)} oval>
+      <Button
+        onClick={() => onActionClick(toggleUnderlineCommand.key)}
+        oval
+        space="small"
+        color="secondary"
+      >
         <Icon icon="underline" />
       </Button>
     </li>
@@ -36,6 +51,8 @@ export const TextFormats: React.FC<TextFormatsProps> = ({ onActionClick }) => (
       <Button
         onClick={() => onActionClick(toggleStrikethroughCommand.key)}
         oval
+        space="small"
+        color="secondary"
       >
         <Icon icon="strikethrough" />
       </Button>

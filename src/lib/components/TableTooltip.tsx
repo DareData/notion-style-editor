@@ -80,6 +80,7 @@ export const TableTooltip: React.FC = () => {
       {!isWholeTable && !isHeading && isRow && (
         <Button
           oval
+          space="small"
           onClick={() => {
             if (loading) return;
 
@@ -95,6 +96,7 @@ export const TableTooltip: React.FC = () => {
       {!isWholeTable && isRow && (
         <Button
           oval
+          space="small"
           onClick={() => {
             if (loading) return;
 
@@ -110,6 +112,7 @@ export const TableTooltip: React.FC = () => {
       {!isWholeTable && isCol && (
         <Button
           oval
+          space="small"
           onClick={() => {
             if (loading) return;
             getEditor().action(ctx => {
@@ -125,6 +128,7 @@ export const TableTooltip: React.FC = () => {
       {(isWholeTable || !isHeading) && (
         <Button
           oval
+          space="small"
           onClick={() => {
             if (loading) return;
 
@@ -140,6 +144,7 @@ export const TableTooltip: React.FC = () => {
       {!isWholeTable && isCol && (
         <Button
           oval
+          space="small"
           onClick={() => {
             if (loading) return;
             getEditor().action(ctx => {
@@ -155,6 +160,7 @@ export const TableTooltip: React.FC = () => {
       {!isWholeTable && isCol && (
         <Button
           oval
+          space="small"
           onClick={() => {
             if (loading) return;
             getEditor().action(ctx => {
@@ -168,6 +174,7 @@ export const TableTooltip: React.FC = () => {
       {!isWholeTable && isCol && (
         <Button
           oval
+          space="small"
           onClick={() => {
             if (loading) return;
             getEditor().action(ctx => {
@@ -181,6 +188,7 @@ export const TableTooltip: React.FC = () => {
       {!isWholeTable && isCol && (
         <Button
           oval
+          space="small"
           onClick={() => {
             if (loading) return;
             getEditor().action(ctx => {
