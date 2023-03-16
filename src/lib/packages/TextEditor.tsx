@@ -4,12 +4,14 @@ import 'tippy.js/dist/tippy.css';
 
 import { MilkdownProvider, Milkdown as MilkdownEditor } from '@milkdown/react';
 import { ProsemirrorAdapterProvider } from '@prosemirror-adapter/react';
+import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from 'styled-components';
 
 import { GlobalStyles } from '../common/GlobalStyles';
 import { EditorContainer } from '../components/EditorContainer';
 import { EditorContextProvider } from '../components/EditorContext/EditorContextProvider';
 import { MenuBar } from '../components/MenuBar/MenuBar';
+import { toasterStyles } from '../styles/common/toaster.styles';
 import { theme } from '../styles/theme';
 
 export type TextEditorProps = {
@@ -26,6 +28,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
   <ThemeProvider {...{ theme }}>
     <MilkdownProvider>
       <ProsemirrorAdapterProvider>
+        <Toaster toastOptions={toasterStyles} />
         <GlobalStyles />
         <EditorContextProvider
           defaultMarkdownValue={data}
