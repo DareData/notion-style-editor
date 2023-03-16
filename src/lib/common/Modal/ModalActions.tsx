@@ -14,6 +14,7 @@ type ModalActionsProps = {
     onClose: () => void
   ) => void;
   onCancelClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  className?: string;
   withCancel?: boolean;
   saveButtonType?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
 };
@@ -21,6 +22,7 @@ type ModalActionsProps = {
 export const ModalActions: React.FC<Partial<ModalActionsProps>> = ({
   loading,
   saveText,
+  className = '',
   isDisabled,
   cancelText,
   withCancel = true,
@@ -31,7 +33,7 @@ export const ModalActions: React.FC<Partial<ModalActionsProps>> = ({
   const { onClose } = useModalContext();
 
   return (
-    <ModalActionsStyled>
+    <ModalActionsStyled {...{ className }}>
       {withCancel && (
         <Button
           variant="outlined"

@@ -2,13 +2,14 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useWatch } from 'react-hook-form';
 import styled from 'styled-components';
 
+import { useFileConvertion } from './hooks/useFileConvertion';
 import { ImageFormValues, useImageForm } from './hooks/useImageForm';
 import { DragDropInputFile } from '../../common/DragDropInputFile';
 import { Input } from '../../common/Input';
+import { Loader } from '../../common/Loader';
 import { useModalContext } from '../../common/Modal/context/useModalContext';
 import { ModalActions } from '../../common/Modal/ModalActions';
 import { ModalBody } from '../../common/Modal/ModalBody';
-import { ModalFooter } from '../../common/Modal/ModalFooter';
 import {
   toggleInOut,
   toggleOutInVariant,
@@ -23,6 +24,7 @@ export const InsertImageContent: React.FC<InsertImageContentProps> = ({
   onInsert,
 }) => {
   const { onClose } = useModalContext();
+  const { onFileConvert, loading } = useFileConvertion();
 
   const { formState, register, handleSubmit, control } = useImageForm();
   const url = useWatch<ImageFormValues>({ control, name: 'url' });
@@ -32,9 +34,27 @@ export const InsertImageContent: React.FC<InsertImageContentProps> = ({
     onClose();
   };
 
+  const onFileUpload = async (files: FileList) => {
+    const file = await onFileConvert(files);
+    if (file) {
+      onFileInsert(file);
+    }
+  };
+
   const onSubmit = (data: ImageFormValues) => {
     onFileInsert(data.url as string);
   };
+
+  console.log('loading: ', loading);
+
+  if (loading) {
+    return (
+      <LoaderContainerStyled>
+        <LoaderStyled {...{ loading }} size="large" />
+        <span>Uploading image...</span>
+      </LoaderContainerStyled>
+    );
+  }
 
   return (
     <ImageContentContainerStyled>
@@ -42,37 +62,34 @@ export const InsertImageContent: React.FC<InsertImageContentProps> = ({
         animate={url ? 'hidden' : 'show'}
         variants={toggleOutInVariant}
       >
-        <>
-          <DragDropInputFileStyled
+        <GapTextStyled>
+          <DragDropInputFile
             name="insert_image"
-            onFileChange={onFileInsert}
+            multiple={false}
+            {...{ onFileUpload }}
           />
           <GapStyled>
             <GapTextStyled>Or</GapTextStyled>
           </GapStyled>
-        </>
+        </GapTextStyled>
       </motion.div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <ModalBodyStyled>
-          <UrlInputStyled
-            {...register('url')}
-            label="Import from URL"
-            placeholder="Paste a URL of image..."
-            error={formState.errors.url?.message}
-          />
-        </ModalBodyStyled>
+        <UrlInputStyled
+          {...register('url')}
+          label="Import from URL"
+          placeholder="Paste a URL of image..."
+          error={formState.errors.url?.message}
+        />
         <AnimatePresence>
           {url && (
             <motion.div {...toggleInOut}>
-              <ModalFooterStyled>
-                <ModalActions
-                  loading={formState.isValidating}
-                  isDisabled={formState.isValidating || !formState.isValid}
-                  saveText="Insert image"
-                  withCancel={false}
-                  saveButtonType="submit"
-                />
-              </ModalFooterStyled>
+              <ModalActionsStyled
+                loading={formState.isValidating}
+                isDisabled={formState.isValidating || !formState.isValid}
+                saveText="Insert image"
+                withCancel={false}
+                saveButtonType="submit"
+              />
             </motion.div>
           )}
         </AnimatePresence>
@@ -81,27 +98,36 @@ export const InsertImageContent: React.FC<InsertImageContentProps> = ({
   );
 };
 
-const ImageContentContainerStyled = styled.div`
+const LoaderContainerStyled = styled(ModalBody)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: ${pxToRem(40)};
+  padding-bottom: ${pxToRem(40)};
+  min-height: ${pxToRem(350)};
+  font-weight: 500;
+  font-size: ${pxToRem(21)};
+`;
+
+const LoaderStyled = styled(Loader)`
+  flex: 1;
+`;
+
+const ImageContentContainerStyled = styled(ModalBody)`
   overflow: hidden;
+  padding-top: ${pxToRem(40)};
+  padding-bottom: ${pxToRem(24)};
 `;
 
 const UrlInputStyled = styled(Input)`
   margin-bottom: 0;
 `;
 
-const ModalBodyStyled = styled(ModalBody)`
-  padding-top: ${pxToRem(24)};
-  padding-bottom: ${pxToRem(24)};
-`;
-
-const ModalFooterStyled = styled(ModalFooter)`
-  padding-top: 0;
-`;
-
 const GapStyled = styled.div`
   display: flex;
   align-items: center;
-  padding: ${pxToRem(20)} ${pxToRem(24)} ${pxToRem(12)};
+  padding-top: ${pxToRem(32)};
+  padding-bottom: ${pxToRem(24)};
   &::before,
   &:after {
     content: '';
@@ -117,6 +143,6 @@ const GapTextStyled = styled.span`
   padding: ${pxToRem(0)} ${pxToRem(8)};
 `;
 
-const DragDropInputFileStyled = styled(DragDropInputFile)`
-  padding: ${pxToRem(40)} ${pxToRem(24)} ${pxToRem(12)};
+const ModalActionsStyled = styled(ModalActions)`
+  padding-top: ${pxToRem(24)};
 `;
