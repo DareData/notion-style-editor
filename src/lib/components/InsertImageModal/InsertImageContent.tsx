@@ -45,8 +45,6 @@ export const InsertImageContent: React.FC<InsertImageContentProps> = ({
     onFileInsert(data.url as string);
   };
 
-  console.log('loading: ', loading);
-
   if (loading) {
     return (
       <LoaderContainerStyled>
