@@ -78,7 +78,7 @@ const buttonColorsMap = {
       secondary: theme.colors.lightGrey,
     },
     border: {
-      danger: theme.colors.lightGrey,
+      danger: theme.colors.darkRed,
       primary: theme.colors.lightGrey,
       success: 'transparent',
       secondary: 'transparent',
@@ -121,7 +121,11 @@ const ButtonStyled = styled.button<{
   justify-content: center;
   padding: ${props =>
     props.$variant === 'simple_text' ? 0 : buttonSpaceMap[props.$space]};
-  border: ${pxToRem(1)} solid transparent;
+  border: ${pxToRem(1)} solid
+    ${props =>
+      props.$variant === 'contained' || props.$variant === 'outlined'
+        ? buttonColorsMap.idle.border[props.$color]
+        : 'transparent'};
   outline: 0;
   background-color: ${props =>
     props.$variant === 'contained'

@@ -5,7 +5,7 @@ import { TextSelection } from '@milkdown/prose/state';
 import { useInstance } from '@milkdown/react';
 import { usePluginViewContext } from '@prosemirror-adapter/react';
 import { useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 
 import { useHyperlinkAttrs } from './hooks/useHyperlinkAttrs';
 import { Anchor } from '../../common/Anchor';
@@ -18,6 +18,7 @@ import { HyperlinkModal } from '../HyperlinkModal/HyperlinkModal';
 export const hyperlinktooltip = tooltipFactory('HYPERLINK');
 
 export const HyperlinkTooltip: React.FC = () => {
+  const { colors } = useTheme();
   const ref = useRef<HTMLDivElement>(null);
   const tooltipProvider = useRef<TooltipProvider>();
 
@@ -80,7 +81,7 @@ export const HyperlinkTooltip: React.FC = () => {
         {...{ title, href }}
         handler={({ onOpen }) => (
           <ButtonStyled oval onClick={onOpen} space="small">
-            <Icon icon="edit" />
+            <Icon icon="edit" fill={colors.white} />
           </ButtonStyled>
         )}
         onSave={onHyperlinkSave}
@@ -111,6 +112,7 @@ const HyperlinkTextStyled = styled.span`
 
 const ButtonStyled = styled(Button)`
   margin-left: ${pxToRem(6)};
+  margin-right: ${pxToRem(2)};
   &:hover,
   &:focus {
     background-color: transparent;

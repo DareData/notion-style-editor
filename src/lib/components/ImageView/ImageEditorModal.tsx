@@ -1,28 +1,33 @@
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 
 import {
   ImageEditorModalContent,
   ImageEditorModalContentProps,
 } from './ImageEditorModalContent';
 import { Button } from '../../common/Button';
+import { Icon } from '../../common/Icon/Icon';
 import { Modal } from '../../common/Modal/Modal';
 import { pxToRem } from '../../styles/utils';
 
 type ImageEditorModalProps = ImageEditorModalContentProps;
 
-export const ImageEditorModal: React.FC<ImageEditorModalProps> = props => (
-  <ImageEditorContainerModalStyled>
-    <Modal
-      handler={({ onOpen }) => (
-        <ButtonStyled oval onClick={onOpen} variant="contained">
-          Edit
-        </ButtonStyled>
-      )}
-    >
-      <ImageEditorModalContent {...props} />
-    </Modal>
-  </ImageEditorContainerModalStyled>
-);
+export const ImageEditorModal: React.FC<ImageEditorModalProps> = props => {
+  const { colors } = useTheme();
+
+  return (
+    <ImageEditorContainerModalStyled>
+      <Modal
+        handler={({ onOpen }) => (
+          <ButtonStyled oval onClick={onOpen} variant="contained" space="small">
+            <Icon icon="edit" fill={colors.lightBlack} />
+          </ButtonStyled>
+        )}
+      >
+        <ImageEditorModalContent {...props} />
+      </Modal>
+    </ImageEditorContainerModalStyled>
+  );
+};
 
 const ImageEditorContainerModalStyled = styled.div`
   position: absolute;
@@ -35,6 +40,5 @@ const ImageEditorContainerModalStyled = styled.div`
 `;
 
 const ButtonStyled = styled(Button)`
-  padding: ${pxToRem(8)} ${pxToRem(12)};
   font-size: ${pxToRem(14)};
 `;
