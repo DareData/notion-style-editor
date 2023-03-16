@@ -3,30 +3,27 @@ import styled from 'styled-components';
 
 import { Button } from './Button';
 import { Icon, IconProps } from './Icon/Icon';
-import { useBase64File } from '../hooks/useBase64File';
 import { useToggler } from '../hooks/useToggler';
 import { accessibleHide, pxToRem } from '../styles/utils';
 
 type DragDropInputFileProps = React.InputHTMLAttributes<HTMLInputElement> & {
-  onFileChange: (file: string) => void;
+  onFileUpload: (file: FileList) => void;
 };
 
 export const DragDropInputFile: React.FC<DragDropInputFileProps> = ({
   name,
   className = '',
-  onFileChange,
+  onFileUpload,
   ...rest
 }) => {
   const inputFileRef = useRef<HTMLInputElement>(null);
 
   const dragActive = useToggler();
-  const { getBase64 } = useBase64File();
 
   const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    if (e.target.files && e.target.files[0]) {
-      const file = await getBase64(e.target.files[0]);
-      onFileChange(file);
+    if (e.target.files) {
+      onFileUpload(e.target.files);
     }
   };
 
@@ -44,9 +41,8 @@ export const DragDropInputFile: React.FC<DragDropInputFileProps> = ({
     e.preventDefault();
     e.stopPropagation();
     dragActive.off();
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const file = await getBase64(e.dataTransfer.files[0]);
-      onFileChange(file);
+    if (e.dataTransfer.files) {
+      onFileUpload(e.dataTransfer.files);
     }
   };
 
@@ -59,7 +55,6 @@ export const DragDropInputFile: React.FC<DragDropInputFileProps> = ({
       <InputFileStyled
         ref={inputFileRef}
         type="file"
-        multiple
         onChange={onChange}
         {...{ name }}
         {...rest}
