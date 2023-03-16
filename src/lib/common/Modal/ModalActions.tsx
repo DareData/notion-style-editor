@@ -33,16 +33,19 @@ export const ModalActions: React.FC<Partial<ModalActionsProps>> = ({
   return (
     <ModalActionsStyled>
       {withCancel && (
-        <CancelButtonStyled
+        <Button
+          variant="outlined"
           type={saveButtonType}
           onClick={onCancelClick || onClose}
           oval
           {...{ loading }}
         >
           {cancelText || 'Cancel'}
-        </CancelButtonStyled>
+        </Button>
       )}
-      <SaveButtonStyled
+      <Button
+        color="success"
+        variant="contained"
         type={saveButtonType}
         oval
         onClick={onSaveClick ? e => onSaveClick(e, onClose) : undefined}
@@ -50,7 +53,7 @@ export const ModalActions: React.FC<Partial<ModalActionsProps>> = ({
         {...{ loading }}
       >
         {saveText || 'Save'}
-      </SaveButtonStyled>
+      </Button>
     </ModalActionsStyled>
   );
 };
@@ -60,23 +63,4 @@ const ModalActionsStyled = styled.div`
   gap: ${pxToRem(8)};
   justify-content: flex-end;
   align-items: center;
-`;
-
-const CancelButtonStyled = styled(Button)`
-  padding: ${pxToRem(10)} ${pxToRem(16)};
-  border-color: ${props => props.theme.components.modal.footer.cancel};
-  &:hover,
-  &:focus {
-    background-color: ${props => props.theme.colors.white};
-  }
-`;
-
-const SaveButtonStyled = styled(Button)`
-  padding: ${pxToRem(10)} ${pxToRem(16)};
-  background-color: ${props => props.theme.components.modal.footer.save};
-  &:hover,
-  &:focus {
-    background-color: ${props => props.theme.components.modal.footer.save};
-    border-color: ${props => props.theme.components.modal.footer.save};
-  }
 `;

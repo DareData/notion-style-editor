@@ -11,7 +11,9 @@ const colors = {
   azure: '#E9F7F5',
   lightAzure: '#F8FBFB',
 
+  lightGreen: '#68D391',
   green: '#45BAAC',
+
   transparentBlack: 'rgba(0,0,0,0.17)',
 
   darkRed: '#EB0000',
@@ -29,7 +31,7 @@ export const theme = {
     modal: {
       footer: {
         cancel: colors.lightGrey,
-        save: '#68D391',
+        save: colors.lightGreen,
       },
       backdrop: {
         background: colors.transparentBlack,

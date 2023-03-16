@@ -24,7 +24,7 @@ export const EmbedObjects: React.FC<EmbedObjectsProps> = ({
     <HyperlinkModalItemStyled>
       <HyperlinkModal
         handler={({ onOpen }) => (
-          <Button oval onClick={onOpen}>
+          <Button oval onClick={onOpen} space="small" color="secondary">
             <Icon icon="add_link" />
           </Button>
         )}
@@ -34,7 +34,7 @@ export const EmbedObjects: React.FC<EmbedObjectsProps> = ({
     <li>
       <InsertImageModal
         handler={({ onOpen }) => (
-          <Button oval onClick={onOpen}>
+          <Button oval onClick={onOpen} space="small" color="secondary">
             <Icon icon="embed_image" />
           </Button>
         )}
@@ -44,12 +44,22 @@ export const EmbedObjects: React.FC<EmbedObjectsProps> = ({
       />
     </li>
     <li>
-      <Button onClick={() => onActionClick(createCodeBlockCommand.key)} oval>
+      <Button
+        onClick={() => onActionClick(createCodeBlockCommand.key)}
+        oval
+        space="small"
+        color="secondary"
+      >
         <Icon icon="code_block" />
       </Button>
     </li>
     <li>
-      <Button onClick={() => onActionClick(insertTableCommand.key)} oval>
+      <Button
+        onClick={() => onActionClick(insertTableCommand.key)}
+        oval
+        space="small"
+        color="secondary"
+      >
         <Icon icon="create_table" />
       </Button>
     </li>

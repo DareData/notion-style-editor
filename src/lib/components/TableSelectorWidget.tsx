@@ -38,7 +38,7 @@ export const TableSelectorWidget: React.FC = () => {
   return (
     <ButtonWidgetStyled
       ref={ref}
-      prop="secondary"
+      space="no"
       draggable={type !== 'top-left'}
       $dragOver={dragOver}
       $position={position}
@@ -159,7 +159,6 @@ type ButtonWidget = React.ForwardRefExoticComponent<
 >;
 const ButtonWidgetStyled = styled<ButtonWidget>(Button)`
   position: absolute;
-  padding: 0;
   background-color: ${props => props.theme.colors.secondaryGrey};
   border-radius: ${pxToRem(1)};
   top: ${props => widgetStylesMap.top[props.$position]};
@@ -168,6 +167,10 @@ const ButtonWidgetStyled = styled<ButtonWidget>(Button)`
   right: ${props => widgetStylesMap.right[props.$position]};
   width: ${props => widgetStylesMap.width[props.$position]};
   height: ${props => widgetStylesMap.height[props.$position]};
+  &:hover,
+  &:focus {
+    background-color: ${props => props.theme.colors.green};
+  }
   ${props =>
     props.$dragOver &&
     css`

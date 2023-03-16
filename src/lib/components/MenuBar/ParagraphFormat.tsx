@@ -18,12 +18,22 @@ export const ParagraphFormat: React.FC<ParagraphFormatProps> = ({
 }) => (
   <>
     <ParagraphFormatItemStyled>
-      <Button onClick={() => onActionClick(wrapInBulletListCommand.key)} oval>
+      <Button
+        onClick={() => onActionClick(wrapInBulletListCommand.key)}
+        oval
+        space="small"
+        color="secondary"
+      >
         <Icon icon="bulleted_list" />
       </Button>
     </ParagraphFormatItemStyled>
     <li>
-      <Button onClick={() => onActionClick(wrapInOrderedListCommand.key)} oval>
+      <Button
+        onClick={() => onActionClick(wrapInOrderedListCommand.key)}
+        oval
+        space="small"
+        color="secondary"
+      >
         <Icon icon="numbered_list" />
       </Button>
     </li>
