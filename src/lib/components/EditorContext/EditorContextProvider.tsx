@@ -6,7 +6,6 @@ import {
 import { history } from '@milkdown/plugin-history';
 import { listener, listenerCtx } from '@milkdown/plugin-listener';
 import { prism, prismConfig } from '@milkdown/plugin-prism';
-import { upload } from '@milkdown/plugin-upload';
 import {
   codeBlockSchema,
   commonmark,
@@ -23,6 +22,7 @@ import { refractor } from 'refractor/lib/common';
 
 import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
 import { useUnderlineCommand } from './hooks/useUnderlineCommand';
+import { useUploadPlugin } from './hooks/useUploadPlugin';
 import { CodeBlock } from '../CodeBlock';
 import {
   HyperlinkTooltip,
@@ -53,6 +53,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   const pluginViewFactory = usePluginViewFactory();
 
   const gfmPlugin = useGfmPlugin();
+  const uploadPlugin = useUploadPlugin();
   const underlineCommand = useUnderlineCommand();
 
   const editor = useEditor(
@@ -80,7 +81,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         .use(history)
         .use(prism)
         .use(hyperlinktooltip)
-        .use(upload)
+        .use(uploadPlugin)
         .use(
           $view(codeBlockSchema.node, () =>
             nodeViewFactory({ component: CodeBlock, as: 'div' })

@@ -75,8 +75,9 @@ export const InsertImageContent: React.FC<InsertImageContentProps> = ({
         <UrlInputStyled
           {...register('url')}
           label="Import from URL"
-          placeholder="Paste a URL of image..."
           error={formState.errors.url?.message}
+          accept="image/*"
+          placeholder="Paste a URL of image..."
         />
         <AnimatePresence>
           {url && (
