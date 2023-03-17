@@ -22,7 +22,7 @@ import { createContext, useMemo } from 'react';
 import { refractor } from 'refractor/lib/common';
 
 import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
-import { useUnderlineCommand } from '../../hooks/useUnderlineCommand';
+import { useUnderlineCommand } from './hooks/useUnderlineCommand';
 import { CodeBlock } from '../CodeBlock';
 import {
   HyperlinkTooltip,
