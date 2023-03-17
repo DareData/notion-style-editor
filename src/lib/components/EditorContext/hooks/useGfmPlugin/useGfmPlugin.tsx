@@ -25,7 +25,7 @@ export const useGfmPlugin = () => {
         gfm,
         tableTooltip,
         tableTooltipCtx,
-        (ctx: Ctx) => async () => {
+        (ctx: Ctx) => () => {
           ctx.set(tableTooltip.key, {
             view: pluginViewFactory({
               component: TableTooltip,
