@@ -23,8 +23,8 @@
     "lint:fix": "yarn run lint:js:fix && yarn run lint:style:fix",
     "lint:js": "eslint --ext .ts,.tsx ./src",
     "lint:js:fix": "npm run lint -- --fix",
-    "lint:style": "stylelint './src/**/*.scss'",
-    "lint:style:fix": "stylelint './src/**/*.scss' --fix",
+    "lint:style": "stylelint './src/**/*.tsx'",
+    "lint:style:fix": "stylelint './src/**/*.tsx' --fix",
     "prepare": "husky install",
     "pre-commit": "lint-staged"
   },
@@ -86,9 +86,6 @@
   "lint-staged": {
     "*.ts?(x)": [
       "yarn run lint:js:fix"
-    ],
-    "*.scss": [
-      "yarn run lint:style:fix"
     ]
   }
 }

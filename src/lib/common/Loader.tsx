@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 
 const sizes = { thin: '16px', small: '24px', normal: '36px', large: '60px' };
 const borderSizes = { thin: '2px', small: '2px', normal: '4px', large: '4px' };
-type LoaderSize = keyof typeof sizes;
+export type LoaderSize = keyof typeof sizes;
 
 export type LoaderProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
   size?: LoaderSize;

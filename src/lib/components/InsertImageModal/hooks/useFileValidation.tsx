@@ -1,28 +1,34 @@
+import { errorMessages } from '../../../config/errorMessages';
 import { useNotification } from '../../../hooks/useNotification';
 import { bytesToMegaBytes } from '../../../utils/utils';
 
-const formats = ['image/jpeg'];
+const formats = [
+  'image/jpeg',
+  'image/jpg',
+  'image/gif',
+  'image/png',
+  'image/tiff',
+  'image/bmp',
+  'image/eps',
+  'image/svg',
+];
 
 export const useFileValidation = () => {
   const { onErrorNotification } = useNotification();
 
   const isFileValid = (file: File) => {
     if (!file) {
-      onErrorNotification('File is not provided');
+      onErrorNotification(errorMessages.image.not_image);
       return false;
     }
 
     if (bytesToMegaBytes(file.size) >= 20) {
-      onErrorNotification(
-        'File size exceeds 20MB. Rather add a link to larger files if needed.'
-      );
+      onErrorNotification(errorMessages.image.size);
       return false;
     }
 
     if (!formats.includes(file.type)) {
-      onErrorNotification(
-        'Unsupported file format. Please upload an image format.'
-      );
+      onErrorNotification(errorMessages.image.format);
       return false;
     }
     return true;
