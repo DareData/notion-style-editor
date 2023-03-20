@@ -6,16 +6,25 @@ import { pxToRem } from '../../styles/utils';
 type TabPanelProps = {
   label: string;
   children: React.ReactNode;
+  className?: string;
 };
 
-export const TabPanel: React.FC<TabPanelProps> = ({ label, children }) => {
+export const TabPanel: React.FC<TabPanelProps> = ({
+  label,
+  children,
+  className,
+}) => {
   const { selected } = useTabsContext();
 
   if (label !== selected) {
     return null;
   }
 
-  return <TabPanelContainerStyled>{children}</TabPanelContainerStyled>;
+  return (
+    <TabPanelContainerStyled {...{ className }}>
+      {children}
+    </TabPanelContainerStyled>
+  );
 };
 
 const TabPanelContainerStyled = styled.div`
