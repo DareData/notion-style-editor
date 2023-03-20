@@ -1,6 +1,7 @@
 import 'prosemirror-view/style/prosemirror.css';
 import 'prosemirror-tables/style/tables.css';
 import 'tippy.js/dist/tippy.css';
+import 'react-tabs/style/react-tabs.css';
 
 import { MilkdownProvider, Milkdown as MilkdownEditor } from '@milkdown/react';
 import { ProsemirrorAdapterProvider } from '@prosemirror-adapter/react';

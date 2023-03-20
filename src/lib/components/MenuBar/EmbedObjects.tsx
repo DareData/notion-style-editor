@@ -1,4 +1,5 @@
 import { CmdKey } from '@milkdown/core';
+import { insertDiagramCommand } from '@milkdown/plugin-diagram';
 import {
   createCodeBlockCommand,
   insertImageCommand,
@@ -61,6 +62,16 @@ export const EmbedObjects: React.FC<EmbedObjectsProps> = ({
         color="secondary"
       >
         <Icon icon="create_table" />
+      </Button>
+    </li>
+    <li>
+      <Button
+        onClick={() => onActionClick(insertDiagramCommand.key)}
+        oval
+        space="small"
+        color="secondary"
+      >
+        <Icon icon="mermaid" />
       </Button>
     </li>
   </>

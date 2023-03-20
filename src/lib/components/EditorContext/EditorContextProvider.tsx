@@ -21,6 +21,7 @@ import { createContext, useMemo } from 'react';
 import { refractor } from 'refractor/lib/common';
 
 import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
+import { useMermaidPlugin } from './hooks/useMermaidPlugin';
 import { useUnderlineCommand } from './hooks/useUnderlineCommand';
 import { useUploadPlugin } from './hooks/useUploadPlugin';
 import { CodeBlock } from '../CodeBlock';
@@ -54,6 +55,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
 
   const gfmPlugin = useGfmPlugin();
   const uploadPlugin = useUploadPlugin();
+  const mermaidPlugin = useMermaidPlugin();
   const underlineCommand = useUnderlineCommand();
 
   const editor = useEditor(
@@ -82,6 +84,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         .use(prism)
         .use(hyperlinktooltip)
         .use(uploadPlugin)
+        .use(mermaidPlugin)
         .use(
           $view(codeBlockSchema.node, () =>
             nodeViewFactory({ component: CodeBlock, as: 'div' })
