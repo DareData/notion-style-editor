@@ -40,6 +40,8 @@ export const EditorContainer = styled.div`
     }
 
     a {
+      text-decoration: none;
+      font-weight: 600;
       color: ${props => props.theme.components.editor.link};
     }
   }

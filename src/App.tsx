@@ -11,8 +11,13 @@ const data = `# Milkdown React Commonmark
 
 This is a demo for using Milkdown with **React**.
 
-Lorem ipsum dolor re arcu. Praesent lacus diam, laoreet et nisi sit amet, interdum tristique enim.
-
+\`\`\`mermaid
+graph TD;
+    EditorState-->EditorView;
+    EditorView-->DOMEvent;
+    DOMEvent-->Transaction;
+    Transaction-->EditorState;
+\`\`\`
 
 [Enourmous link to click](https://www.figma.com/file/5WIlxYLOmbxAqJLPIZyCSB/Text-editor?node-id=139%3A4912&t=7Lvphd0ggzxtpmxn-0)
 
@@ -22,6 +27,7 @@ function main() {
 }
 \`\`\`
 
+Lorem ipsum dolor re arcu. Praesent lacus diam, laoreet et nisi sit amet, interdum tristique enim.
 
 | Header   |   Header   | Header |
 | -------------- | ----------------   | -------------- |

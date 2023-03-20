@@ -12,7 +12,7 @@ export const useUploadPlugin = () => {
     () =>
       [
         upload,
-        (ctx: Ctx) => {
+        (ctx: Ctx) => () => {
           ctx.update(uploadConfig.key, prev => ({
             ...prev,
             uploadWidgetFactory: widgetViewFactory({
