@@ -12,11 +12,20 @@ const data = `# Milkdown React Commonmark
 This is a demo for using Milkdown with **React**.
 
 \`\`\`mermaid
-graph TD;
-    EditorState-->EditorView;
-    EditorView-->DOMEvent;
-    DOMEvent-->Transaction;
-    Transaction-->EditorState;
+graph TB
+    sq[Square shape] --> ci((Circle shape))
+
+    subgraph A
+        od>Odd shape]-- Two line<br/>edge comment --> ro
+        di{Diamond with <br/> line break} -.-> ro(Rounded<br>square<br>shape)
+        di==>ro2(Rounded square shape)
+    end
+
+    e --> od3>Really long text with linebreak<br>in an Odd shape]
+
+    e((Inner / circle<br>and some odd <br>special characters)) --> f(,.?!+-*ز)
+
+    cyr[Cyrillic]-->cyr2((Circle shape Начало));
 \`\`\`
 
 [Enourmous link to click](https://www.figma.com/file/5WIlxYLOmbxAqJLPIZyCSB/Text-editor?node-id=139%3A4912&t=7Lvphd0ggzxtpmxn-0)
