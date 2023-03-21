@@ -25,9 +25,9 @@ export const ImageView: React.FC = () => {
       editor.action(ctx => {
         const view = ctx.get(editorViewCtx);
         const { state } = view;
-        const { selection } = state;
+        console.log(state.selection);
 
-        view.dispatch(state.tr.replace(selection.from, selection.to));
+        view.dispatch(state.tr.deleteSelection());
       });
     }
   };
