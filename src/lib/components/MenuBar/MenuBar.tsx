@@ -8,8 +8,8 @@ import { ParagraphFormat } from './ParagraphFormat';
 import { ScriptActions } from './ScriptActions';
 import { TextCreation } from './TextCreation';
 import { TextFormats } from './TextFormats';
+import { useEditorContext } from '../../packages/EditorContext/useEditorContext';
 import { pxToRem } from '../../styles/utils';
-import { useEditorContext } from '../EditorContext/useEditorContext';
 
 export const MenuBar = () => {
   const { editor } = useEditorContext();

@@ -3,7 +3,7 @@ import { $view } from '@milkdown/utils';
 import { useNodeViewFactory } from '@prosemirror-adapter/react';
 import { useMemo } from 'react';
 
-import { MermaidView } from '../../MermaidView/MermaidView';
+import { MermaidView } from '../../../components/MermaidView/MermaidView';
 
 export const useMermaidPlugin = () => {
   const nodeViewFactory = useNodeViewFactory();

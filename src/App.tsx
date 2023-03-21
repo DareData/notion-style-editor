@@ -1,9 +1,11 @@
+/* eslint-disable no-useless-escape */
 import styled, { createGlobalStyle } from 'styled-components';
 
 import { TextEditor } from './lib';
 import { pxToRem } from './lib/styles/utils';
 
-const data = `# Milkdown React Commonmark
+const data = `
+# Milkdown React Commonmark
 
 ![avatar](https://dogtowndogtraining.com/wp-content/uploads/2012/06/300x300-061-e1340955308953.jpg)
 
@@ -11,24 +13,22 @@ const data = `# Milkdown React Commonmark
 
 This is a demo for using Milkdown with **React**.
 
-\`\`\`mermaid
-graph TB
-    sq[Square shape] --> ci((Circle shape))
-
-    subgraph A
-        od>Odd shape]-- Two line<br/>edge comment kwa --> ro
-        di{Diamond with <br/> line break} -.-> ro(Rounded<br>square<br>shape)
-        di==>ro2(Rounded square shape)
-    end
-
-    e --> od3>Really long text with linebreak<br>in an Odd shape]
-
-    e((Inner / circle<br>and some odd <br>special characters)) --> f(,.?!+-*ز)
-
-    cyr[Cyrillic]-->cyr2((Circle shape Начало));
-\`\`\`
+$$
+\\begin{aligned}
+T( (v_1 + v_2) \otimes w) &= T(v_1 \otimes w) + T(v_2 \otimes w)
+\\end{aligned}
+$$
 
 [Enourmous link to click](https://www.figma.com/file/5WIlxYLOmbxAqJLPIZyCSB/Text-editor?node-id=139%3A4912&t=7Lvphd0ggzxtpmxn-0)
+
+\`\`\`mermaid
+graph TD;
+    EditorState-->EditorView;
+    EditorView-->DOMEvent;
+    DOMEvent-->Transaction;
+    Transaction-->EditorState;
+\`\`\`
+
 
 \`\`\`c
 function main() {
@@ -43,7 +43,6 @@ Lorem ipsum dolor re arcu. Praesent lacus diam, laoreet et nisi sit amet, interd
 | Content Cell 1 |  Content Cell 1    | Cell 3         |
 | Content Cell 2 | **Content** Cell 2 | Cell 3         |
 
-
 `;
 
 export const App = () => (
@@ -56,7 +55,7 @@ export const App = () => (
 );
 
 const TextEditorStyled = styled(TextEditor)`
-  width: 1000px;
+  width: calc(100vw - 100px);
 `;
 
 const AppContainerStyled = styled.div`

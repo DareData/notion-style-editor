@@ -6,7 +6,7 @@ import { $prose } from '@milkdown/utils';
 import { useWidgetViewFactory } from '@prosemirror-adapter/react';
 import { useMemo } from 'react';
 
-import { TableSelectorWidget } from '../../../TableSelectorWidget';
+import { TableSelectorWidget } from '../../../../components/TableSelectorWidget';
 
 export const useTableSelectorPlugin = () => {
   const widgetViewFactory = useWidgetViewFactory();

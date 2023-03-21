@@ -17,6 +17,7 @@ import { ReactComponent as EditIcon } from './assets/edit.svg';
 import { ReactComponent as EmbedImageIcon } from './assets/embed_image.svg';
 import { ReactComponent as ExportIcon } from './assets/export.svg';
 import { ReactComponent as ItalicIcon } from './assets/italic.svg';
+import { ReactComponent as MathIcon } from './assets/math.svg';
 import { ReactComponent as MermaidIcon } from './assets/mermaid.svg';
 import { ReactComponent as NumberedListIcon } from './assets/numbered_list.svg';
 import { ReactComponent as RedoIcon } from './assets/redo.svg';
@@ -58,6 +59,7 @@ const icons = {
   d_a_d_file: DragAndDropFileIcon,
   close: CloseIcon,
   mermaid: MermaidIcon,
+  math: MathIcon,
 };
 
 export const IconTypesValues = Object.keys(icons);
