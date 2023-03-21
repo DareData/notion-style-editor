@@ -78,6 +78,7 @@ export const HyperlinkTooltip: React.FC = () => {
     <HyperlinkTooltipStyled ref={ref}>
       <HyperlinkTextStyled>{href}</HyperlinkTextStyled>
       <HyperlinkModal
+        editable
         {...{ title, href }}
         handler={({ onOpen }) => (
           <ButtonStyled oval onClick={onOpen} space="small">
