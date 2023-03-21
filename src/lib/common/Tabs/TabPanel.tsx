@@ -34,5 +34,4 @@ const TabPanelContainerStyled = styled.div`
   border: 1px solid ${props => props.theme.colors.azure};
   border-radius: ${pxToRem(8)};
   font-size: ${props => props.theme.fonts.secondary};
-  min-height: ${pxToRem(200)};
 `;

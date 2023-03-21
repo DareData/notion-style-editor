@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import styled from 'styled-components';
 
 import { useMermaid } from './hooks/useMermaid';
-import { pxToRem } from '../../styles/utils';
 
 export const PreviewTabPanel: React.FC = () => {
   const codePanelRef = useRef<HTMLDivElement>(null);

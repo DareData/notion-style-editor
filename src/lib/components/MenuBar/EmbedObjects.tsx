@@ -10,6 +10,7 @@ import styled from 'styled-components';
 
 import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
+import { insertMathCommand } from '../../packages/EditorContext/hooks/useMathPlugin';
 import { pxToRem } from '../../styles/utils';
 import { HyperlinkModal } from '../HyperlinkModal/HyperlinkModal';
 import { InsertImageModal } from '../InsertImageModal/InsertImageModal';
@@ -62,6 +63,16 @@ export const EmbedObjects: React.FC<EmbedObjectsProps> = ({
         color="secondary"
       >
         <Icon icon="create_table" />
+      </Button>
+    </li>
+    <li>
+      <Button
+        onClick={() => onActionClick(insertMathCommand.key)}
+        oval
+        space="small"
+        color="secondary"
+      >
+        <Icon icon="math" />
       </Button>
     </li>
     <li>

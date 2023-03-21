@@ -8,8 +8,8 @@ import styled from 'styled-components';
 
 import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
+import { toggleUnderlineCommand } from '../../packages/EditorContext/hooks/useUnderlineCommand';
 import { pxToRem } from '../../styles/utils';
-import { toggleUnderlineCommand } from '../EditorContext/hooks/useUnderlineCommand';
 
 type TextFormatsProps = {
   onActionClick: <T>(action: CmdKey<T>) => void;

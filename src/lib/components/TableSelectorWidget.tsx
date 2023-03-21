@@ -11,8 +11,8 @@ import { useWidgetViewContext } from '@prosemirror-adapter/react';
 import { useMemo, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 
-import { tableTooltipCtx } from './EditorContext/hooks/useGfmPlugin/useGfmPlugin';
 import { Button, ButtonProps } from '../common/Button';
+import { tableTooltipCtx } from '../packages/EditorContext/hooks/useGfmPlugin/useGfmPlugin';
 import { pxToRem } from '../styles/utils';
 import { Matcher } from '../utils/Matcher';
 

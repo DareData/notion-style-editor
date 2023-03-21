@@ -14,9 +14,9 @@ import { usePluginViewContext } from '@prosemirror-adapter/react';
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-import { tableTooltipCtx } from './EditorContext/hooks/useGfmPlugin/useGfmPlugin';
 import { Button } from '../common/Button';
 import { Icon } from '../common/Icon/Icon';
+import { tableTooltipCtx } from '../packages/EditorContext/hooks/useGfmPlugin/useGfmPlugin';
 import { pxToRem } from '../styles/utils';
 
 export const TableTooltip: React.FC = () => {
