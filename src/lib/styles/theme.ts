@@ -39,6 +39,14 @@ export const theme = {
     },
     editor: {
       link: '#0836AA',
+      mermaid: {
+        lineColor: '#45BAAC',
+        primaryColor: '#E9F7F5',
+        primaryTextColor: '#1F1F1F',
+        primaryBorderColor: '#45BAAC',
+        secondaryColor: '#45BAAC',
+        tertiaryColor: '#F6F6F6',
+      },
     },
   },
   zIndexes: {
