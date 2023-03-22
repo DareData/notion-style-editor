@@ -32,8 +32,8 @@ export const TextEditor: React.FC<TextEditorProps> = ({
   className = '',
   onDataChange,
 }) => (
-  <TextEditorModeContextProvider {...{ mode }}>
-    <ThemeProvider {...{ theme }}>
+  <ThemeProvider {...{ theme }}>
+    <TextEditorModeContextProvider {...{ mode }}>
       <MilkdownProvider>
         <ProsemirrorAdapterProvider>
           <Toaster toastOptions={toasterStyles} />
@@ -52,6 +52,6 @@ export const TextEditor: React.FC<TextEditorProps> = ({
           </EditorContextProvider>
         </ProsemirrorAdapterProvider>
       </MilkdownProvider>
-    </ThemeProvider>
-  </TextEditorModeContextProvider>
+    </TextEditorModeContextProvider>
+  </ThemeProvider>
 );

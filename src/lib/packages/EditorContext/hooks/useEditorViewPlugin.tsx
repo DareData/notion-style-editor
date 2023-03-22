@@ -25,15 +25,16 @@ export const useEditorViewPlugin = () => {
   );
 
   useEffect(() => {
-    requestAnimationFrame(() => {
-      const updateEditorViewPlugin = async () => {
-        if (editor) {
-          editor.use(editorViewPlugin);
-          await editor.create();
-        }
+    const updateEditorViewPlugin = async () => {
+      if (editor) {
+        editor.use(editorViewPlugin);
+        await editor.create();
+      }
+      return async () => {
+        await editor?.destroy(true);
       };
-      updateEditorViewPlugin();
-    });
+    };
+    updateEditorViewPlugin();
   }, [editor, editorViewPlugin]);
 
   return editorViewPlugin;

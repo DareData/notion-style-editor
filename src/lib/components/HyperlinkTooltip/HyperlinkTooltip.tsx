@@ -13,6 +13,7 @@ import { Icon } from '../../common/Icon/Icon';
 import { useSelectedMarkPosition } from '../../hooks/useSelectedMarkPosition';
 import { pxToRem } from '../../styles/utils';
 import { HyperlinkModal } from '../HyperlinkModal/HyperlinkModal';
+import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
 
 export const hyperlinktooltip = tooltipFactory('HYPERLINK');
 
@@ -24,6 +25,7 @@ export const HyperlinkTooltip: React.FC = () => {
 
   const [loading] = useInstance();
   const { view, prevState } = usePluginViewContext();
+  const { mode } = useTextEditorModeContext();
   const { getSelectedMarkPosition } = useSelectedMarkPosition();
 
   const { title, href } = useHyperlinkAttrs();
@@ -57,28 +59,34 @@ export const HyperlinkTooltip: React.FC = () => {
     return () => {
       tooltipProvider.current?.destroy();
     };
-  }, [loading, getSelectedMarkPosition]);
+  }, [loading, getSelectedMarkPosition, mode]);
 
   useEffect(() => {
     tooltipProvider.current?.update(view, prevState);
   });
 
+  if (mode === 'preview') {
+    return null;
+  }
+
   return (
-    <HyperlinkTooltipStyled ref={ref}>
-      <HyperlinkTextStyled>{href}</HyperlinkTextStyled>
-      <HyperlinkModal
-        editable
-        {...{ title, text, href }}
-        handler={({ onOpen }) => (
-          <ButtonStyled oval onClick={onOpen} space="small">
-            <Icon icon="edit" fill={colors.white} />
-          </ButtonStyled>
-        )}
-      />
-      <AnchorStyled {...{ href }} target="_blank" type="anchor-button">
-        <Icon icon="export" />
-      </AnchorStyled>
-    </HyperlinkTooltipStyled>
+    <div style={{ display: 'none' }}>
+      <HyperlinkTooltipStyled ref={ref}>
+        <HyperlinkTextStyled>{href}</HyperlinkTextStyled>
+        <HyperlinkModal
+          editable
+          {...{ title, text, href }}
+          handler={({ onOpen }) => (
+            <ButtonStyled oval onClick={onOpen} space="small">
+              <Icon icon="edit" fill={colors.white} />
+            </ButtonStyled>
+          )}
+        />
+        <AnchorStyled {...{ href }} target="_blank" type="anchor-button">
+          <Icon icon="export" />
+        </AnchorStyled>
+      </HyperlinkTooltipStyled>
+    </div>
   );
 };
 

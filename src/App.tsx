@@ -1,7 +1,8 @@
 /* eslint-disable no-useless-escape */
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
+import { ErrorBoundary } from './ErrorBoundary';
 import { TextEditor } from './lib';
 import { TextEditorMode } from './lib/packages/TextEditor';
 import { pxToRem } from './lib/styles/utils';
@@ -48,10 +49,12 @@ Lorem ipsum dolor re arcu. Praesent lacus diam, laoreet et nisi sit amet, interd
 `;
 
 export const App = () => {
-  const [mode, setMode] = useState<TextEditorMode>('preview');
+  const [mode, setMode] = useState<TextEditorMode>('active');
+
+  const onDataChange = useCallback(() => {}, []);
 
   return (
-    <>
+    <ErrorBoundary>
       <AppGlobalStyles />
       <AppContainerStyled>
         <button
@@ -59,9 +62,9 @@ export const App = () => {
         >
           Toggle Mode ( current: {mode} )
         </button>
-        <TextEditorStyled onDataChange={() => {}} {...{ data, mode }} />
+        <TextEditorStyled {...{ data, mode, onDataChange }} />
       </AppContainerStyled>
-    </>
+    </ErrorBoundary>
   );
 };
 
