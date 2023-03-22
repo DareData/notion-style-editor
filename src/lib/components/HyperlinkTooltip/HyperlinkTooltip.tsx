@@ -1,10 +1,9 @@
-import { commandsCtx } from '@milkdown/core';
 import { tooltipFactory, TooltipProvider } from '@milkdown/plugin-tooltip';
-import { linkSchema, updateLinkCommand } from '@milkdown/preset-commonmark';
+import { linkSchema } from '@milkdown/preset-commonmark';
 import { TextSelection } from '@milkdown/prose/state';
 import { useInstance } from '@milkdown/react';
 import { usePluginViewContext } from '@prosemirror-adapter/react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 
 import { useHyperlinkAttrs } from './hooks/useHyperlinkAttrs';
@@ -13,7 +12,6 @@ import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
 import { useSelectedMarkPosition } from '../../hooks/useSelectedMarkPosition';
 import { pxToRem } from '../../styles/utils';
-import { HyperlinkFormValues } from '../HyperlinkModal/hooks/useHyperlinkForm';
 import { HyperlinkModal } from '../HyperlinkModal/HyperlinkModal';
 
 export const hyperlinktooltip = tooltipFactory('HYPERLINK');
@@ -22,8 +20,9 @@ export const HyperlinkTooltip: React.FC = () => {
   const { colors } = useTheme();
   const ref = useRef<HTMLDivElement>(null);
   const tooltipProvider = useRef<TooltipProvider>();
+  const [text, setText] = useState('');
 
-  const [loading, getEditor] = useInstance();
+  const [loading] = useInstance();
   const { view, prevState } = usePluginViewContext();
   const { getSelectedMarkPosition } = useSelectedMarkPosition();
 
@@ -44,6 +43,7 @@ export const HyperlinkTooltip: React.FC = () => {
           const linkPosition = getSelectedMarkPosition(view, linkSchema.type());
 
           if (selection instanceof TextSelection && linkPosition) {
+            setText(linkPosition.text);
             return true;
           }
 
@@ -63,29 +63,17 @@ export const HyperlinkTooltip: React.FC = () => {
     tooltipProvider.current?.update(view, prevState);
   });
 
-  const onHyperlinkSave = (data: HyperlinkFormValues) => {
-    if (loading) {
-      return;
-    }
-
-    getEditor()?.action(ctx => {
-      const commands = ctx.get(commandsCtx);
-      commands.call(updateLinkCommand.key, data);
-    });
-  };
-
   return (
     <HyperlinkTooltipStyled ref={ref}>
       <HyperlinkTextStyled>{href}</HyperlinkTextStyled>
       <HyperlinkModal
         editable
-        {...{ title, href }}
+        {...{ title, text, href }}
         handler={({ onOpen }) => (
           <ButtonStyled oval onClick={onOpen} space="small">
             <Icon icon="edit" fill={colors.white} />
           </ButtonStyled>
         )}
-        onSave={onHyperlinkSave}
       />
       <AnchorStyled {...{ href }} target="_blank" type="anchor-button">
         <Icon icon="export" />

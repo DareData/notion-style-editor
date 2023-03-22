@@ -11,8 +11,9 @@ export const useSelectedMarkPosition = () => {
 
       return findChildrenByMark(state.doc, markType)
         .map(link => ({
-          start: link.pos,
           end: link.pos + link.node.nodeSize,
+          start: link.pos,
+          text: link.node.text ?? '',
         }))
         .find(({ start, end }) => selection.from > start && selection.to < end);
     },

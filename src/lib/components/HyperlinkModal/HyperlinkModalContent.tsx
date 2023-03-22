@@ -1,14 +1,13 @@
 import { editorViewCtx } from '@milkdown/core';
 import { linkSchema } from '@milkdown/preset-commonmark';
 import { useInstance } from '@milkdown/react';
-import { useNodeViewContext } from '@prosemirror-adapter/react';
 import styled from 'styled-components';
 
 import {
   HyperlinkFormValues,
   useHyperlinkForm,
 } from './hooks/useHyperlinkForm';
-import { useLinkCreate } from './hooks/useLinkCreate';
+import { useLinkActions } from './hooks/useLinkActions';
 import { Button } from '../../common/Button';
 import { Input } from '../../common/Input';
 import { useModalContext } from '../../common/Modal/context/useModalContext';
@@ -22,7 +21,6 @@ export type HyperlinkModalContentProps = {
   text?: string;
   href?: string;
   title?: string;
-  onSave: (href: HyperlinkFormValues) => void;
   editable: boolean;
 };
 
@@ -31,7 +29,6 @@ export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
   href = '',
   title = '',
   editable,
-  onSave,
 }) => {
   const { onClose } = useModalContext();
   const [, getEditor] = useInstance();
@@ -42,15 +39,22 @@ export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
     title,
   });
   const { getSelectedMarkPosition } = useSelectedMarkPosition();
-  const { getTransactionWithLink } = useLinkCreate();
+  const { getLinkCreationTransaction, getLinkUpdateTransaction } =
+    useLinkActions();
 
   const onHandleSubmit = (data: HyperlinkFormValues) => {
     const editor = getEditor();
     if (editor) {
       editor.action(ctx => {
         const view = ctx.get(editorViewCtx);
-        console.log(view.state.selection);
-        view.dispatch(getTransactionWithLink(view, data));
+        if (editable) {
+          const updateTransaction = getLinkUpdateTransaction(view, data);
+          if (updateTransaction) {
+            view.dispatch(updateTransaction);
+          }
+        } else {
+          view.dispatch(getLinkCreationTransaction(view, data));
+        }
         onClose();
       });
     }
@@ -80,7 +84,13 @@ export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
     <form onSubmit={handleSubmit(onHandleSubmit)}>
       <ModalHeader>{header}</ModalHeader>
       <ModalBody>
-        <Input placeholder="Optional" label="Text" {...register('text')} />
+        <Input
+          {...register('text')}
+          label="Text"
+          error={formState.errors.text?.message}
+          required
+          placeholder="Add a text"
+        />
         <Input
           label="Link"
           placeholder="Paste a link"
@@ -88,11 +98,13 @@ export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
           {...register('href')}
           error={formState.errors.href?.message}
         />
-        <TitleInputStyled
-          label="Title"
-          placeholder="Optional"
-          {...register('title')}
-        />
+        {editable && (
+          <TitleInputStyled
+            label="Title"
+            placeholder="Optional"
+            {...register('title')}
+          />
+        )}
       </ModalBody>
       <ModalFooterStyled>
         {editable && (
