@@ -1,5 +1,8 @@
 import { editorViewCtx } from '@milkdown/core';
+import { linkSchema } from '@milkdown/preset-commonmark';
+import { findChildrenByMark } from '@milkdown/prose';
 import { useInstance } from '@milkdown/react';
+import { removeSelectedNode } from 'prosemirror-utils';
 import styled from 'styled-components';
 
 import {
@@ -51,10 +54,22 @@ export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
         const { state } = view;
         const { selection } = state;
 
-        const start = selection.$anchor.start();
-        const end = selection.$anchor.end();
+        const linkPosition = findChildrenByMark(state.doc, linkSchema.type())
+          .map(link => ({
+            start: link.pos,
+            end: link.pos + link.node.nodeSize,
+          }))
+          .find(
+            ({ start, end }) => selection.from >= start && selection.to <= end
+          );
 
-        view.dispatch(state.tr.replace(start, end));
+        if (linkPosition) {
+          view.dispatch(
+            state.tr.deleteRange(linkPosition.start, linkPosition.end)
+          );
+        }
+
+        onClose();
       });
     }
   };
