@@ -22,10 +22,9 @@ export const useHyperlinkForm = ({
   text,
   href,
   title,
-}: UseHyperlinkFormProps) => {
-  return useForm({
+}: UseHyperlinkFormProps) =>
+  useForm({
     mode: 'onChange',
     resolver: yupResolver(schema),
     defaultValues: { href, title, text },
   });
-};

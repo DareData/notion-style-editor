@@ -3,7 +3,6 @@ import { insertDiagramCommand } from '@milkdown/plugin-diagram';
 import {
   createCodeBlockCommand,
   insertImageCommand,
-  toggleLinkCommand,
 } from '@milkdown/preset-commonmark';
 import { insertTableCommand } from '@milkdown/preset-gfm';
 import styled from 'styled-components';
@@ -31,7 +30,6 @@ export const EmbedObjects: React.FC<EmbedObjectsProps> = ({
             <Icon icon="add_link" />
           </Button>
         )}
-        onSave={data => onActionClick(toggleLinkCommand.key, data)}
       />
     </HyperlinkModalItemStyled>
     <li>
