@@ -19,12 +19,12 @@ export const useMathPlugin = () => {
       [
         math,
         insertMathCommand,
-        // $view(mathBlockSchema.node, () =>
-        //   nodeViewFactory({
-        //     component: MathView,
-        //     stopEvent: () => true,
-        //   })
-        // ),
+        $view(mathBlockSchema.node, () =>
+          nodeViewFactory({
+            component: MathView,
+            stopEvent: () => true,
+          })
+        ),
       ].flat(),
     [nodeViewFactory]
   );
