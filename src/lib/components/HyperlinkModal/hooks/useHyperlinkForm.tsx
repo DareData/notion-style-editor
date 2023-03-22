@@ -5,7 +5,7 @@ import { object, string, InferType } from 'yup';
 const schema = object()
   .shape({
     href: string().required('This value is required'),
-    text: string(),
+    text: string().required('This value is required'),
     title: string(),
   })
   .required();
@@ -22,9 +22,10 @@ export const useHyperlinkForm = ({
   text,
   href,
   title,
-}: UseHyperlinkFormProps) =>
-  useForm({
+}: UseHyperlinkFormProps) => {
+  return useForm({
     mode: 'onChange',
     resolver: yupResolver(schema),
     defaultValues: { href, title, text },
   });
+};

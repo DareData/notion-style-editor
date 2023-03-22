@@ -1,12 +1,14 @@
 import { editorViewCtx } from '@milkdown/core';
 import { linkSchema } from '@milkdown/preset-commonmark';
 import { useInstance } from '@milkdown/react';
+import { useNodeViewContext } from '@prosemirror-adapter/react';
 import styled from 'styled-components';
 
 import {
   HyperlinkFormValues,
   useHyperlinkForm,
 } from './hooks/useHyperlinkForm';
+import { useLinkCreate } from './hooks/useLinkCreate';
 import { Button } from '../../common/Button';
 import { Input } from '../../common/Input';
 import { useModalContext } from '../../common/Modal/context/useModalContext';
@@ -40,10 +42,18 @@ export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
     title,
   });
   const { getSelectedMarkPosition } = useSelectedMarkPosition();
+  const { getTransactionWithLink } = useLinkCreate();
 
   const onHandleSubmit = (data: HyperlinkFormValues) => {
-    onSave(data);
-    onClose();
+    const editor = getEditor();
+    if (editor) {
+      editor.action(ctx => {
+        const view = ctx.get(editorViewCtx);
+        console.log(view.state.selection);
+        view.dispatch(getTransactionWithLink(view, data));
+        onClose();
+      });
+    }
   };
 
   const onLinkRemove = () => {

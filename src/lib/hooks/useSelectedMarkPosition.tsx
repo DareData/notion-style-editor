@@ -14,9 +14,7 @@ export const useSelectedMarkPosition = () => {
           start: link.pos,
           end: link.pos + link.node.nodeSize,
         }))
-        .find(
-          ({ start, end }) => selection.from >= start && selection.to <= end
-        );
+        .find(({ start, end }) => selection.from > start && selection.to < end);
     },
     []
   );
