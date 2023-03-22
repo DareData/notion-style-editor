@@ -10,13 +10,19 @@ import { TextCreation } from './TextCreation';
 import { TextFormats } from './TextFormats';
 import { useEditorContext } from '../../packages/EditorContext/useEditorContext';
 import { pxToRem } from '../../styles/utils';
+import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
 
 export const MenuBar = () => {
   const { editor } = useEditorContext();
+  const { mode } = useTextEditorModeContext();
 
   const onActionClick = <T,>(command: CmdKey<T>, payload?: T | undefined) => {
     editor?.get()?.action(callCommand(command, payload));
   };
+
+  if (mode === 'preview') {
+    return null;
+  }
 
   return (
     <MenuBarListStyled>

@@ -13,17 +13,22 @@ import { EditorContextProvider } from './EditorContext/EditorContextProvider';
 import { GlobalStyles } from '../common/GlobalStyles';
 import { EditorContainer } from '../components/EditorContainer';
 import { MenuBar } from '../components/MenuBar/MenuBar';
+import { TextEditorModeContextProvider } from '../components/TextEditorModeContext/TextEditorModeContextProvider';
 import { toasterStyles } from '../styles/common/toaster.styles';
 import { theme } from '../styles/theme';
 
+export type TextEditorMode = 'preview' | 'active';
+
 export type TextEditorProps = {
   data: string;
+  mode: TextEditorMode;
   className?: string;
   onDataChange: (data: string) => void;
 };
 
 export const TextEditor: React.FC<TextEditorProps> = ({
   data,
+  mode,
   className = '',
   onDataChange,
 }) => (
@@ -32,18 +37,20 @@ export const TextEditor: React.FC<TextEditorProps> = ({
       <ProsemirrorAdapterProvider>
         <Toaster toastOptions={toasterStyles} />
         <GlobalStyles />
-        <EditorContextProvider
-          defaultMarkdownValue={data}
-          onChange={onDataChange}
-        >
-          <EditorContainer
-            className={['date-data_text-editor', className].join(' ')}
-            tabIndex={-1}
+        <TextEditorModeContextProvider {...{ mode }}>
+          <EditorContextProvider
+            onChange={onDataChange}
+            defaultMarkdownValue={data}
           >
-            <MenuBar />
-            <MilkdownEditor />
-          </EditorContainer>
-        </EditorContextProvider>
+            <EditorContainer
+              className={['date-data_text-editor', className].join(' ')}
+              tabIndex={-1}
+            >
+              <MenuBar />
+              <MilkdownEditor />
+            </EditorContainer>
+          </EditorContextProvider>
+        </TextEditorModeContextProvider>
       </ProsemirrorAdapterProvider>
     </MilkdownProvider>
   </ThemeProvider>

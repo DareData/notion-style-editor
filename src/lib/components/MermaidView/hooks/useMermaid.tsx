@@ -59,6 +59,8 @@ export const useMermaid = ({ codePanelRef }: UseMermaidProps) => {
   );
 
   useEffect(() => {
-    renderMermaid();
+    requestAnimationFrame(() => {
+      renderMermaid();
+    });
   }, [renderMermaid]);
 };

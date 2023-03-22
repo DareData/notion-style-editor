@@ -1,11 +1,14 @@
 import { useNodeViewContext } from '@prosemirror-adapter/react';
+import { useMemo } from 'react';
 import { Option } from 'react-dropdown';
 import styled from 'styled-components';
 
+import { useTextEditorModeContext } from './TextEditorModeContext/useTextEditorModeContext';
 import { Button } from '../common/Button';
 import { Dropdown } from '../common/Dropdown';
 import { Icon } from '../common/Icon/Icon';
 import { pxToRem } from '../styles/utils';
+import { Matcher } from '../utils/Matcher';
 
 const options: Option[] = [
   {
@@ -31,6 +34,7 @@ const options: Option[] = [
 ];
 
 export const CodeBlock: React.FC = () => {
+  const { mode } = useTextEditorModeContext();
   const { contentRef, node, setAttrs } = useNodeViewContext();
 
   const onCopyClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -43,11 +47,22 @@ export const CodeBlock: React.FC = () => {
   };
 
   const value = node.attrs.language || 'text';
+  const label = useMemo(
+    () => options.find(option => option.value === value)?.label || 'Text',
+    [value]
+  );
 
   return (
     <CodeBlockContainerStyled>
       <CodeBlockActionsStyled>
-        <Dropdown {...{ value, options }} onChange={onLanguageChange} />
+        {Matcher(mode)
+          .match('active', () => (
+            <Dropdown {...{ value, options }} onChange={onLanguageChange} />
+          ))
+          .match('preview', () => (
+            <LanguageLabelStyled>{label}</LanguageLabelStyled>
+          ))
+          .get()}
         <Button oval onClick={onCopyClick} variant="contained">
           <Icon icon="copy" />
           <CopyTextStyled>Copy</CopyTextStyled>
@@ -82,4 +97,10 @@ const CodeBlockActionsStyled = styled.div`
 
 const CopyTextStyled = styled.span`
   margin-left: ${pxToRem(5)};
+`;
+
+const LanguageLabelStyled = styled.span`
+  padding: ${pxToRem(7)} ${pxToRem(12)};
+  background-color: ${props => props.theme.colors.azure};
+  border-radius: ${pxToRem(8)};
 `;
