@@ -73,133 +73,135 @@ export const TableTooltip: React.FC = () => {
     return () => {
       tooltipProvider.current?.destroy();
     };
-  }, [getEditor, loading, view]);
+  }, [getEditor, loading, view, ref, tooltipProvider]);
 
   return (
-    <TableTooltipContainerStyled ref={ref}>
-      {!isWholeTable && !isHeading && isRow && (
-        <Button
-          oval
-          space="small"
-          onClick={() => {
-            if (loading) return;
+    <div style={{ display: 'none' }}>
+      <TableTooltipContainerStyled ref={ref}>
+        {!isWholeTable && !isHeading && isRow && (
+          <Button
+            oval
+            space="small"
+            onClick={() => {
+              if (loading) return;
 
-            getEditor().action(ctx => {
-              ctx.get(commandsCtx).call(addRowBeforeCommand.key);
-            });
-            tooltipProvider.current?.hide();
-          }}
-        >
-          <Icon icon="arrow_top" />
-        </Button>
-      )}
-      {!isWholeTable && isRow && (
-        <Button
-          oval
-          space="small"
-          onClick={() => {
-            if (loading) return;
+              getEditor().action(ctx => {
+                ctx.get(commandsCtx).call(addRowBeforeCommand.key);
+              });
+              tooltipProvider.current?.hide();
+            }}
+          >
+            <Icon icon="arrow_top" />
+          </Button>
+        )}
+        {!isWholeTable && isRow && (
+          <Button
+            oval
+            space="small"
+            onClick={() => {
+              if (loading) return;
 
-            getEditor().action(ctx => {
-              ctx.get(commandsCtx).call(addRowAfterCommand.key);
-            });
-            tooltipProvider.current?.hide();
-          }}
-        >
-          <Icon icon="arrow_down" />
-        </Button>
-      )}
-      {!isWholeTable && isCol && (
-        <Button
-          oval
-          space="small"
-          onClick={() => {
-            if (loading) return;
-            getEditor().action(ctx => {
-              ctx.get(commandsCtx).call(addColBeforeCommand.key);
-            });
+              getEditor().action(ctx => {
+                ctx.get(commandsCtx).call(addRowAfterCommand.key);
+              });
+              tooltipProvider.current?.hide();
+            }}
+          >
+            <Icon icon="arrow_down" />
+          </Button>
+        )}
+        {!isWholeTable && isCol && (
+          <Button
+            oval
+            space="small"
+            onClick={() => {
+              if (loading) return;
+              getEditor().action(ctx => {
+                ctx.get(commandsCtx).call(addColBeforeCommand.key);
+              });
 
-            tooltipProvider.current?.hide();
-          }}
-        >
-          <Icon icon="arrow_left" />
-        </Button>
-      )}
-      {(isWholeTable || !isHeading) && (
-        <Button
-          oval
-          space="small"
-          onClick={() => {
-            if (loading) return;
+              tooltipProvider.current?.hide();
+            }}
+          >
+            <Icon icon="arrow_left" />
+          </Button>
+        )}
+        {(isWholeTable || !isHeading) && (
+          <Button
+            oval
+            space="small"
+            onClick={() => {
+              if (loading) return;
 
-            getEditor().action(ctx => {
-              ctx.get(commandsCtx).call(deleteSelectedCellsCommand.key);
-            });
-            tooltipProvider.current?.hide();
-          }}
-        >
-          <Icon icon="delete" />
-        </Button>
-      )}
-      {!isWholeTable && isCol && (
-        <Button
-          oval
-          space="small"
-          onClick={() => {
-            if (loading) return;
-            getEditor().action(ctx => {
-              ctx.get(commandsCtx).call(addColAfterCommand.key);
-            });
+              getEditor().action(ctx => {
+                ctx.get(commandsCtx).call(deleteSelectedCellsCommand.key);
+              });
+              tooltipProvider.current?.hide();
+            }}
+          >
+            <Icon icon="delete" />
+          </Button>
+        )}
+        {!isWholeTable && isCol && (
+          <Button
+            oval
+            space="small"
+            onClick={() => {
+              if (loading) return;
+              getEditor().action(ctx => {
+                ctx.get(commandsCtx).call(addColAfterCommand.key);
+              });
 
-            tooltipProvider.current?.hide();
-          }}
-        >
-          <Icon icon="arrow_right" />
-        </Button>
-      )}
-      {!isWholeTable && isCol && (
-        <Button
-          oval
-          space="small"
-          onClick={() => {
-            if (loading) return;
-            getEditor().action(ctx => {
-              ctx.get(commandsCtx).call(setAlignCommand.key, 'left');
-            });
-          }}
-        >
-          <Icon icon="text_align_left" />
-        </Button>
-      )}
-      {!isWholeTable && isCol && (
-        <Button
-          oval
-          space="small"
-          onClick={() => {
-            if (loading) return;
-            getEditor().action(ctx => {
-              ctx.get(commandsCtx).call(setAlignCommand.key, 'right');
-            });
-          }}
-        >
-          <Icon icon="text_align_right" />
-        </Button>
-      )}
-      {!isWholeTable && isCol && (
-        <Button
-          oval
-          space="small"
-          onClick={() => {
-            if (loading) return;
-            getEditor().action(ctx => {
-              ctx.get(commandsCtx).call(setAlignCommand.key, 'center');
-            });
-          }}
-        >
-          <Icon icon="text_align_center" />
-        </Button>
-      )}
-    </TableTooltipContainerStyled>
+              tooltipProvider.current?.hide();
+            }}
+          >
+            <Icon icon="arrow_right" />
+          </Button>
+        )}
+        {!isWholeTable && isCol && (
+          <Button
+            oval
+            space="small"
+            onClick={() => {
+              if (loading) return;
+              getEditor().action(ctx => {
+                ctx.get(commandsCtx).call(setAlignCommand.key, 'left');
+              });
+            }}
+          >
+            <Icon icon="text_align_left" />
+          </Button>
+        )}
+        {!isWholeTable && isCol && (
+          <Button
+            oval
+            space="small"
+            onClick={() => {
+              if (loading) return;
+              getEditor().action(ctx => {
+                ctx.get(commandsCtx).call(setAlignCommand.key, 'right');
+              });
+            }}
+          >
+            <Icon icon="text_align_right" />
+          </Button>
+        )}
+        {!isWholeTable && isCol && (
+          <Button
+            oval
+            space="small"
+            onClick={() => {
+              if (loading) return;
+              getEditor().action(ctx => {
+                ctx.get(commandsCtx).call(setAlignCommand.key, 'center');
+              });
+            }}
+          >
+            <Icon icon="text_align_center" />
+          </Button>
+        )}
+      </TableTooltipContainerStyled>
+    </div>
   );
 };
 

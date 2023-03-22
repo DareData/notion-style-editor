@@ -19,21 +19,23 @@ export const useGfmPlugin = () => {
 
   const { tableSelectorPlugin } = useTableSelectorPlugin();
 
-  return useMemo(
+  const gfmPlugin = useMemo(
     () =>
       [
         gfm,
         tableTooltip,
         tableTooltipCtx,
-        // (ctx: Ctx) => () => {
-        //   ctx.set(tableTooltip.key, {
-        //     view: pluginViewFactory({
-        //       component: TableTooltip,
-        //     }),
-        //   });
-        // },
+        (ctx: Ctx) => () => {
+          ctx.set(tableTooltip.key, {
+            view: pluginViewFactory({
+              component: TableTooltip,
+            }),
+          });
+        },
         tableSelectorPlugin,
       ].flat(),
     [tableSelectorPlugin, pluginViewFactory]
   );
+
+  return gfmPlugin;
 };

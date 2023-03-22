@@ -2,7 +2,6 @@ import {
   Editor as MilkdownEditor,
   rootCtx,
   defaultValueCtx,
-  editorViewOptionsCtx,
 } from '@milkdown/core';
 import { history } from '@milkdown/plugin-history';
 import { listener, listenerCtx } from '@milkdown/plugin-listener';
@@ -18,14 +17,14 @@ import {
   useNodeViewFactory,
   usePluginViewFactory,
 } from '@prosemirror-adapter/react';
-import { createContext, memo, useCallback, useEffect, useMemo } from 'react';
+import { createContext, useMemo } from 'react';
 import { refractor } from 'refractor/lib/common';
 
 import { useEditorViewPlugin } from './hooks/useEditorViewPlugin';
 import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
 import { useMathPlugin } from './hooks/useMathPlugin';
 import { useMermaidPlugin } from './hooks/useMermaidPlugin';
-import { useUnderlinePlugin } from './hooks/useUnderlinePlugin';
+import { useUnderlinePlugin } from './hooks/useUnderlineCommand';
 import { useUploadPlugin } from './hooks/useUploadPlugin';
 import { CodeBlock } from '../../components/CodeBlock';
 import {
@@ -33,7 +32,6 @@ import {
   hyperlinktooltip,
 } from '../../components/HyperlinkTooltip/HyperlinkTooltip';
 import { ImageView } from '../../components/ImageView/ImageView';
-import { useTextEditorModeContext } from '../../components/TextEditorModeContext/useTextEditorModeContext';
 
 type EditorContextData = {
   editor: UseEditorReturn | null;
@@ -77,11 +75,11 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
           ctx.get(listenerCtx).markdownUpdated((_, markdown) => {
             onChange(markdown);
           });
-          // ctx.set(hyperlinktooltip.key, {
-          //   view: pluginViewFactory({
-          //     component: HyperlinkTooltip,
-          //   }),
-          // });
+          ctx.set(hyperlinktooltip.key, {
+            view: pluginViewFactory({
+              component: HyperlinkTooltip,
+            }),
+          });
         })
         .use(listener)
         .use(underlinePlugin)
@@ -106,7 +104,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         .use(gfmPlugin),
     [
       defaultMarkdownValue,
-      gfmPlugin,
+      // gfmPlugin,
       mathPlugin,
       mermaidPlugin,
       nodeViewFactory,
