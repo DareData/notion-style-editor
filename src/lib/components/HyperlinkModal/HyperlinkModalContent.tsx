@@ -1,8 +1,6 @@
 import { editorViewCtx } from '@milkdown/core';
 import { linkSchema } from '@milkdown/preset-commonmark';
-import { findChildrenByMark } from '@milkdown/prose';
 import { useInstance } from '@milkdown/react';
-import { removeSelectedNode } from 'prosemirror-utils';
 import styled from 'styled-components';
 
 import {
@@ -16,6 +14,7 @@ import { ModalActions } from '../../common/Modal/ModalActions';
 import { ModalBody } from '../../common/Modal/ModalBody';
 import { ModalFooter } from '../../common/Modal/ModalFooter';
 import { ModalHeader } from '../../common/Modal/ModalHeader';
+import { useSelectedMarkPosition } from '../../hooks/useSelectedMarkPosition';
 
 export type HyperlinkModalContentProps = {
   text?: string;
@@ -40,6 +39,7 @@ export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
     href,
     title,
   });
+  const { getSelectedMarkPosition } = useSelectedMarkPosition();
 
   const onHandleSubmit = (data: HyperlinkFormValues) => {
     onSave(data);
@@ -51,21 +51,11 @@ export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
     if (editor) {
       editor.action(ctx => {
         const view = ctx.get(editorViewCtx);
-        const { state } = view;
-        const { selection } = state;
-
-        const linkPosition = findChildrenByMark(state.doc, linkSchema.type())
-          .map(link => ({
-            start: link.pos,
-            end: link.pos + link.node.nodeSize,
-          }))
-          .find(
-            ({ start, end }) => selection.from >= start && selection.to <= end
-          );
+        const linkPosition = getSelectedMarkPosition(view, linkSchema.type());
 
         if (linkPosition) {
           view.dispatch(
-            state.tr.deleteRange(linkPosition.start, linkPosition.end)
+            view.state.tr.deleteRange(linkPosition.start, linkPosition.end)
           );
         }
 
