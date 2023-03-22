@@ -7,9 +7,11 @@ import styled from 'styled-components';
 import { ImageEditorFormValues } from './hooks/useEditImageForm';
 import { ImageEditorModal } from './ImageEditorModal';
 import { Image } from '../../common/Image';
+import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
 
 export const ImageView: React.FC = () => {
   const imageRef = useRef<HTMLImageElement>(null);
+  const { mode } = useTextEditorModeContext();
 
   const { node, contentRef, setAttrs } = useNodeViewContext();
   const { attrs } = node;
@@ -42,7 +44,7 @@ export const ImageView: React.FC = () => {
           <Image ref={imageRef} src={attrs.src} {...{ alt, title }}>
             {isLoading => (
               <>
-                {!isLoading && (
+                {mode === 'active' && !isLoading && (
                   <ImageEditorModal
                     {...{ onImageRemove, onImageEdit, alt, title }}
                   />

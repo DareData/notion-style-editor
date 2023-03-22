@@ -49,7 +49,7 @@ export const App = () => (
   <>
     <AppGlobalStyles />
     <AppContainerStyled>
-      <TextEditorStyled onDataChange={() => {}} {...{ data }} />
+      <TextEditorStyled onDataChange={() => {}} {...{ data }} mode="preview" />
     </AppContainerStyled>
   </>
 );
