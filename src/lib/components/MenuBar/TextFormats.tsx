@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
-import { toggleUnderlineCommand } from '../../packages/EditorContext/hooks/useUnderlineCommand';
+import { toggleUnderlineCommand } from '../../packages/EditorContext/hooks/useUnderlinePlugin';
 import { pxToRem } from '../../styles/utils';
 
 type TextFormatsProps = {
