@@ -1,6 +1,7 @@
 import { commandsCtx } from '@milkdown/core';
 import { toggleMark } from '@milkdown/prose/commands';
 import { $command, $markAttr, $markSchema, $useKeymap } from '@milkdown/utils';
+import { useMemo } from 'react';
 
 const underlineAttr = $markAttr('underline');
 
@@ -44,10 +45,17 @@ const underlineKeymap = $useKeymap('underlineKeymap', {
   },
 });
 
-export const useUnderlineCommand = () =>
-  [
-    underlineAttr,
-    underlineSchema,
-    toggleUnderlineCommand,
-    underlineKeymap,
-  ].flat();
+export const useUnderlinePlugin = () => {
+  const underlinePlugin = useMemo(
+    () =>
+      [
+        underlineAttr,
+        underlineSchema,
+        toggleUnderlineCommand,
+        underlineKeymap,
+      ].flat(),
+    []
+  );
+
+  return underlinePlugin;
+};

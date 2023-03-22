@@ -25,13 +25,13 @@ export const useGfmPlugin = () => {
         gfm,
         tableTooltip,
         tableTooltipCtx,
-        (ctx: Ctx) => () => {
-          ctx.set(tableTooltip.key, {
-            view: pluginViewFactory({
-              component: TableTooltip,
-            }),
-          });
-        },
+        // (ctx: Ctx) => () => {
+        //   ctx.set(tableTooltip.key, {
+        //     view: pluginViewFactory({
+        //       component: TableTooltip,
+        //     }),
+        //   });
+        // },
         tableSelectorPlugin,
       ].flat(),
     [tableSelectorPlugin, pluginViewFactory]

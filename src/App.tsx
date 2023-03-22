@@ -1,7 +1,9 @@
 /* eslint-disable no-useless-escape */
+import { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import { TextEditor } from './lib';
+import { TextEditorMode } from './lib/packages/TextEditor';
 import { pxToRem } from './lib/styles/utils';
 
 const data = `
@@ -45,14 +47,23 @@ Lorem ipsum dolor re arcu. Praesent lacus diam, laoreet et nisi sit amet, interd
 
 `;
 
-export const App = () => (
-  <>
-    <AppGlobalStyles />
-    <AppContainerStyled>
-      <TextEditorStyled onDataChange={() => {}} {...{ data }} mode="preview" />
-    </AppContainerStyled>
-  </>
-);
+export const App = () => {
+  const [mode, setMode] = useState<TextEditorMode>('preview');
+
+  return (
+    <>
+      <AppGlobalStyles />
+      <AppContainerStyled>
+        <button
+          onClick={() => setMode(mode === 'active' ? 'preview' : 'active')}
+        >
+          Toggle Mode ( current: {mode} )
+        </button>
+        <TextEditorStyled onDataChange={() => {}} {...{ data, mode }} />
+      </AppContainerStyled>
+    </>
+  );
+};
 
 const TextEditorStyled = styled(TextEditor)`
   width: calc(100vw - 100px);
@@ -63,6 +74,8 @@ const AppContainerStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: ${pxToRem(100)};
 `;
 
 const AppGlobalStyles = createGlobalStyle`

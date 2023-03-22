@@ -2,6 +2,7 @@ import {
   Editor as MilkdownEditor,
   rootCtx,
   defaultValueCtx,
+  editorViewOptionsCtx,
 } from '@milkdown/core';
 import { history } from '@milkdown/plugin-history';
 import { listener, listenerCtx } from '@milkdown/plugin-listener';
@@ -17,13 +18,14 @@ import {
   useNodeViewFactory,
   usePluginViewFactory,
 } from '@prosemirror-adapter/react';
-import { createContext, useMemo } from 'react';
+import { createContext, memo, useCallback, useEffect, useMemo } from 'react';
 import { refractor } from 'refractor/lib/common';
 
+import { useEditorViewPlugin } from './hooks/useEditorViewPlugin';
 import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
 import { useMathPlugin } from './hooks/useMathPlugin';
 import { useMermaidPlugin } from './hooks/useMermaidPlugin';
-import { useUnderlineCommand } from './hooks/useUnderlineCommand';
+import { useUnderlinePlugin } from './hooks/useUnderlinePlugin';
 import { useUploadPlugin } from './hooks/useUploadPlugin';
 import { CodeBlock } from '../../components/CodeBlock';
 import {
@@ -31,6 +33,7 @@ import {
   hyperlinktooltip,
 } from '../../components/HyperlinkTooltip/HyperlinkTooltip';
 import { ImageView } from '../../components/ImageView/ImageView';
+import { useTextEditorModeContext } from '../../components/TextEditorModeContext/useTextEditorModeContext';
 
 type EditorContextData = {
   editor: UseEditorReturn | null;
@@ -58,7 +61,8 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   const mathPlugin = useMathPlugin();
   const uploadPlugin = useUploadPlugin();
   const mermaidPlugin = useMermaidPlugin();
-  const underlineCommand = useUnderlineCommand();
+  const underlinePlugin = useUnderlinePlugin();
+  const editorViewPlugin = useEditorViewPlugin();
 
   const editor = useEditor(
     root =>
@@ -73,20 +77,21 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
           ctx.get(listenerCtx).markdownUpdated((_, markdown) => {
             onChange(markdown);
           });
-          ctx.set(hyperlinktooltip.key, {
-            view: pluginViewFactory({
-              component: HyperlinkTooltip,
-            }),
-          });
+          // ctx.set(hyperlinktooltip.key, {
+          //   view: pluginViewFactory({
+          //     component: HyperlinkTooltip,
+          //   }),
+          // });
         })
         .use(listener)
-        .use(underlineCommand)
+        .use(underlinePlugin)
         .use(commonmark)
         .use(history)
         .use(prism)
         .use(hyperlinktooltip)
         .use(uploadPlugin)
         .use(mermaidPlugin)
+        .use(editorViewPlugin)
         .use(mathPlugin)
         .use(
           $view(codeBlockSchema.node, () =>
@@ -99,7 +104,18 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
           )
         )
         .use(gfmPlugin),
-    []
+    [
+      defaultMarkdownValue,
+      gfmPlugin,
+      mathPlugin,
+      mermaidPlugin,
+      nodeViewFactory,
+      onChange,
+      editorViewPlugin,
+      pluginViewFactory,
+      underlinePlugin,
+      uploadPlugin,
+    ]
   );
 
   const context = useMemo(() => ({ editor }), [editor]);

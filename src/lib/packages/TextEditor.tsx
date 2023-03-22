@@ -32,12 +32,12 @@ export const TextEditor: React.FC<TextEditorProps> = ({
   className = '',
   onDataChange,
 }) => (
-  <ThemeProvider {...{ theme }}>
-    <MilkdownProvider>
-      <ProsemirrorAdapterProvider>
-        <Toaster toastOptions={toasterStyles} />
-        <GlobalStyles />
-        <TextEditorModeContextProvider {...{ mode }}>
+  <TextEditorModeContextProvider {...{ mode }}>
+    <ThemeProvider {...{ theme }}>
+      <MilkdownProvider>
+        <ProsemirrorAdapterProvider>
+          <Toaster toastOptions={toasterStyles} />
+          <GlobalStyles />
           <EditorContextProvider
             onChange={onDataChange}
             defaultMarkdownValue={data}
@@ -50,8 +50,8 @@ export const TextEditor: React.FC<TextEditorProps> = ({
               <MilkdownEditor />
             </EditorContainer>
           </EditorContextProvider>
-        </TextEditorModeContextProvider>
-      </ProsemirrorAdapterProvider>
-    </MilkdownProvider>
-  </ThemeProvider>
+        </ProsemirrorAdapterProvider>
+      </MilkdownProvider>
+    </ThemeProvider>
+  </TextEditorModeContextProvider>
 );
