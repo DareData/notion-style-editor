@@ -1,6 +1,6 @@
 import { commandsCtx } from '@milkdown/core';
 import { tooltipFactory, TooltipProvider } from '@milkdown/plugin-tooltip';
-import { updateLinkCommand } from '@milkdown/preset-commonmark';
+import { linkSchema, updateLinkCommand } from '@milkdown/preset-commonmark';
 import { TextSelection } from '@milkdown/prose/state';
 import { useInstance } from '@milkdown/react';
 import { usePluginViewContext } from '@prosemirror-adapter/react';
@@ -11,6 +11,7 @@ import { useHyperlinkAttrs } from './hooks/useHyperlinkAttrs';
 import { Anchor } from '../../common/Anchor';
 import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
+import { useSelectedMarkPosition } from '../../hooks/useSelectedMarkPosition';
 import { pxToRem } from '../../styles/utils';
 import { HyperlinkFormValues } from '../HyperlinkModal/hooks/useHyperlinkForm';
 import { HyperlinkModal } from '../HyperlinkModal/HyperlinkModal';
@@ -24,6 +25,7 @@ export const HyperlinkTooltip: React.FC = () => {
 
   const [loading, getEditor] = useInstance();
   const { view, prevState } = usePluginViewContext();
+  const { getSelectedMarkPosition } = useSelectedMarkPosition();
 
   const { title, href } = useHyperlinkAttrs();
 
@@ -39,13 +41,11 @@ export const HyperlinkTooltip: React.FC = () => {
         shouldShow: view => {
           const { selection } = view.state;
 
-          const node = view.state.doc.nodeAt(selection.from);
+          const linkPosition = getSelectedMarkPosition(view, linkSchema.type());
 
-          if (
-            selection instanceof TextSelection &&
-            node?.marks.find(mark => mark.type.name === 'link')
-          )
+          if (selection instanceof TextSelection && linkPosition) {
             return true;
+          }
 
           return false;
         },
@@ -57,7 +57,7 @@ export const HyperlinkTooltip: React.FC = () => {
     return () => {
       tooltipProvider.current?.destroy();
     };
-  }, [loading]);
+  }, [loading, getSelectedMarkPosition]);
 
   useEffect(() => {
     tooltipProvider.current?.update(view, prevState);
