@@ -60,7 +60,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   const uploadPlugin = useUploadPlugin();
   const mermaidPlugin = useMermaidPlugin();
   const underlinePlugin = useUnderlinePlugin();
-  const editorViewPlugin = useEditorViewPlugin();
+  useEditorViewPlugin();
 
   const editor = useEditor(
     root =>
@@ -89,7 +89,6 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         .use(hyperlinktooltip)
         .use(uploadPlugin)
         .use(mermaidPlugin)
-        .use(editorViewPlugin)
         .use(mathPlugin)
         .use(
           $view(codeBlockSchema.node, () =>
@@ -104,12 +103,12 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         .use(gfmPlugin),
     [
       defaultMarkdownValue,
-      // gfmPlugin,
+      gfmPlugin,
       mathPlugin,
       mermaidPlugin,
       nodeViewFactory,
       onChange,
-      editorViewPlugin,
+      // editorViewPlugin,
       pluginViewFactory,
       underlinePlugin,
       uploadPlugin,
