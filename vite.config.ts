@@ -44,7 +44,4 @@ export default defineConfig({
       },
     },
   },
-  server: {
-    open: 'src/index.html',
-  },
 });
