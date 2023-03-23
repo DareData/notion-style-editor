@@ -4,7 +4,7 @@ import { useNodeViewContext } from '@prosemirror-adapter/react';
 import { useRef } from 'react';
 import styled from 'styled-components';
 
-import { ImageEditorFormValues } from './hooks/useEditImageForm';
+import { ImageEditorFormValues } from './hooks/useImageEditorForm';
 import { ImageEditorModal } from './ImageEditorModal';
 import { Image } from '../../common/Image';
 import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';

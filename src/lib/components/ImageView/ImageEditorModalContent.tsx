@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {
   ImageEditorFormValues,
   useImageEditorForm,
-} from './hooks/useEditImageForm';
+} from './hooks/useImageEditorForm';
 import { Button } from '../../common/Button';
 import { Input } from '../../common/Input';
 import { useModalContext } from '../../common/Modal/context/useModalContext';
