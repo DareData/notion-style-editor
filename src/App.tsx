@@ -60,7 +60,7 @@ export const App = () => {
         <button
           onClick={() => setMode(mode === 'active' ? 'preview' : 'active')}
         >
-          Toggle Mode ( current: {mode} )
+          d Toggle Mdode ( current: {mode} )
         </button>
         <TextEditorStyled {...{ data, mode, onDataChange }} />
       </AppContainerStyled>
