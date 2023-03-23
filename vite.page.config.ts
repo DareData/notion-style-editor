@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
+  base: '/notion-style-editor/',
   plugins: [
     react({
       babel: {
