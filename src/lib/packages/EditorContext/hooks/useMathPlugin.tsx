@@ -1,6 +1,8 @@
+import { MilkdownPlugin } from '@milkdown/ctx';
 import { math, mathBlockSchema } from '@milkdown/plugin-math';
 import { setBlockType } from '@milkdown/prose/commands';
-import { $view, $command } from '@milkdown/utils';
+import { NodeViewConstructor } from '@milkdown/prose/view';
+import { $view, $command, $View, $Node } from '@milkdown/utils';
 import { useNodeViewFactory } from '@prosemirror-adapter/react';
 import { useMemo } from 'react';
 
@@ -11,7 +13,10 @@ export const insertMathCommand = $command(
   () => () => setBlockType(mathBlockSchema.type())
 );
 
-export const useMathPlugin = () => {
+export const useMathPlugin = (): (
+  | MilkdownPlugin
+  | $View<$Node, NodeViewConstructor>
+)[] => {
   const nodeViewFactory = useNodeViewFactory();
 
   const mathPlugin = useMemo(
