@@ -16,8 +16,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "clean": "rm -rf dist",
-    "build": "yarn clean && vite build",
+    "build": "rm -rf dist && vite build",
+    "build:pages": "rm -rf docs && vite build --config vite.page.config.ts",
     "preview": "vite preview",
     "lint": "yarn run lint:js",
     "lint:fix": "yarn run lint:js:fix && yarn run lint:style:fix",
