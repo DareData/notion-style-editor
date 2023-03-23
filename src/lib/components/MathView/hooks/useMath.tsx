@@ -1,3 +1,4 @@
+import { katexOptionsCtx } from '@milkdown/plugin-math';
 import { useInstance } from '@milkdown/react';
 import { useNodeViewContext } from '@prosemirror-adapter/react';
 import katex from 'katex';
@@ -19,7 +20,11 @@ export const useMath = ({ codePanelRef }: UseMathProps) => {
       if (!codePanelRef.current || loading) {
         return;
       }
-      katex.render(codeValue, codePanelRef.current);
+      katex.render(
+        codeValue,
+        codePanelRef.current,
+        editor.ctx.get(katexOptionsCtx.key)
+      );
     }
   }, [codeValue, getEditor, loading, codePanelRef]);
 };
