@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-escape */
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import { ErrorBoundary } from './ErrorBoundary';
@@ -52,7 +52,14 @@ Lorem ipsum dolor re arcu. Praesent lacus diam, laoreet et nisi sit amet, interd
 export const App = () => {
   const [mode, setMode] = useState<TextEditorMode>('active');
 
-  const onDataChange = useCallback(() => {}, []);
+  const onDataChange = useCallback((data: string) => {
+    localStorage.setItem('milkdown/value', data);
+  }, []);
+
+  const markdownValue = useMemo(
+    () => localStorage.getItem('milkdown/value') ?? data,
+    []
+  );
 
   return (
     <ErrorBoundary>
@@ -61,9 +68,9 @@ export const App = () => {
         <button
           onClick={() => setMode(mode === 'active' ? 'preview' : 'active')}
         >
-          d Toggle Mdode ( current: {mode} )
+          Toggle Mdode ( current: {mode} )
         </button>
-        <TextEditorStyled {...{ data, mode, onDataChange }} />
+        <TextEditorStyled data={markdownValue} {...{ mode, onDataChange }} />
       </AppContainerStyled>
     </ErrorBoundary>
   );
