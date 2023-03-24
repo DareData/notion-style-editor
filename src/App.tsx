@@ -32,6 +32,7 @@ graph TD;
     Transaction-->EditorState;
 \`\`\`
 
+## Text
 
 \`\`\`c
 function main() {
