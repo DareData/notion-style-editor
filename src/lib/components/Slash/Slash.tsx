@@ -28,7 +28,7 @@ export const Slash: React.FC = () => {
   const [loading, getEditor] = useInstance();
   const { onCallCommand } = useCallEditorCommand();
 
-  const onCommandClick = <T,>(command: CmdKey<T>, payload?: T | undefined) => {
+  const onRemoveSlash = () => {
     const editor = getEditor();
     if (loading || !editor) {
       return;
@@ -40,9 +40,12 @@ export const Slash: React.FC = () => {
       const { selection } = state;
 
       view.dispatch(state.tr.delete(selection.from - 1, selection.from));
-
-      onCallCommand(command, payload);
     });
+  };
+
+  const onCommandClick = <T,>(command: CmdKey<T>, payload?: T | undefined) => {
+    onRemoveSlash();
+    onCallCommand(command, payload);
   };
 
   return (
@@ -76,6 +79,7 @@ export const Slash: React.FC = () => {
           <SlashItemStyled>
             <HyperlinkModal
               editable={false}
+              onModalOpen={onRemoveSlash}
               handler={({ onOpen }) => (
                 <AddActionButtonStyled onClick={onOpen}>
                   <Icon icon="add_link" />
@@ -86,6 +90,7 @@ export const Slash: React.FC = () => {
           </SlashItemStyled>
           <SlashItemStyled>
             <InsertImageModal
+              onModalOpen={onRemoveSlash}
               handler={({ onOpen }) => (
                 <AddActionButtonStyled onClick={onOpen}>
                   <Icon icon="embed_image" />
@@ -93,7 +98,7 @@ export const Slash: React.FC = () => {
                 </AddActionButtonStyled>
               )}
               onInsert={source =>
-                onCommandClick(insertImageCommand.key, { src: source })
+                onCallCommand(insertImageCommand.key, { src: source })
               }
             />
           </SlashItemStyled>
