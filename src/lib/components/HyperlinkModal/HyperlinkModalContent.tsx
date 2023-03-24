@@ -22,6 +22,7 @@ export type HyperlinkModalContentProps = {
   href?: string;
   title?: string;
   editable: boolean;
+  onSubmit?: () => void;
 };
 
 export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
@@ -29,6 +30,7 @@ export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
   href = '',
   title = '',
   editable,
+  onSubmit,
 }) => {
   const { onClose } = useModalContext();
   const [, getEditor] = useInstance();
@@ -43,6 +45,7 @@ export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
     useLinkActions();
 
   const onHandleSubmit = (data: HyperlinkFormValues) => {
+    onSubmit?.();
     const editor = getEditor();
     if (editor) {
       editor.action(ctx => {
