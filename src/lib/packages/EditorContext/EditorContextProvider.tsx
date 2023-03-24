@@ -24,6 +24,7 @@ import { useEditorViewPlugin } from './hooks/useEditorViewPlugin';
 import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
 import { useMathPlugin } from './hooks/useMathPlugin';
 import { useMermaidPlugin } from './hooks/useMermaidPlugin';
+import { useSlashPlugin } from './hooks/useSlashPlugin';
 import { useUnderlinePlugin } from './hooks/useUnderlineCommand';
 import { useUploadPlugin } from './hooks/useUploadPlugin';
 import { CodeBlock } from '../../components/CodeBlock';
@@ -60,6 +61,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   const uploadPlugin = useUploadPlugin();
   const mermaidPlugin = useMermaidPlugin();
   const underlinePlugin = useUnderlinePlugin();
+  const slashPlugin = useSlashPlugin();
   useEditorViewPlugin();
 
   const editor = useEditor(
@@ -90,6 +92,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         .use(uploadPlugin)
         .use(mermaidPlugin)
         .use(mathPlugin)
+        .use(slashPlugin)
         .use(
           $view(codeBlockSchema.node, () =>
             nodeViewFactory({ component: CodeBlock, as: 'div' })
@@ -108,7 +111,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
       mermaidPlugin,
       nodeViewFactory,
       onChange,
-      // editorViewPlugin,
+      slashPlugin,
       pluginViewFactory,
       underlinePlugin,
       uploadPlugin,

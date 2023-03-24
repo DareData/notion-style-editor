@@ -20,13 +20,16 @@ import { ReactComponent as ItalicIcon } from './assets/italic.svg';
 import { ReactComponent as MathIcon } from './assets/math.svg';
 import { ReactComponent as MermaidIcon } from './assets/mermaid.svg';
 import { ReactComponent as NumberedListIcon } from './assets/numbered_list.svg';
+import { ReactComponent as ParagraphIcon } from './assets/paragraph.svg';
 import { ReactComponent as RedoIcon } from './assets/redo.svg';
 import { ReactComponent as StrikethroughIcon } from './assets/strikethrough.svg';
 import { ReactComponent as SubScriptIcon } from './assets/subscript.svg';
+import { ReactComponent as SubtitleIcon } from './assets/subtitle.svg';
 import { ReactComponent as SuperScriptIcon } from './assets/superscript.svg';
 import { ReactComponent as TextAlignCenterIcon } from './assets/text_align_center.svg';
 import { ReactComponent as TextAlignLeftIcon } from './assets/text_align_left.svg';
 import { ReactComponent as TextAlignRightIcon } from './assets/text_align_right.svg';
+import { ReactComponent as TitleIcon } from './assets/title.svg';
 import { ReactComponent as UnderlineIcon } from './assets/underline.svg';
 import { ReactComponent as UndoIcon } from './assets/undo.svg';
 
@@ -60,6 +63,9 @@ const icons = {
   close: CloseIcon,
   mermaid: MermaidIcon,
   math: MathIcon,
+  title: TitleIcon,
+  subtitle: SubtitleIcon,
+  paragraph: ParagraphIcon,
 };
 
 export const IconTypesValues = Object.keys(icons);

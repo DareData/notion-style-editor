@@ -37,6 +37,7 @@
     "@milkdown/plugin-listener": "^7.0.1",
     "@milkdown/plugin-math": "^7.1.0",
     "@milkdown/plugin-prism": "^7.0.1",
+    "@milkdown/plugin-slash": "^7.1.0",
     "@milkdown/plugin-tooltip": "^7.1.0",
     "@milkdown/plugin-upload": "^7.1.0",
     "@milkdown/preset-commonmark": "^7.0.1",
