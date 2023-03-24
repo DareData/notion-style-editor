@@ -12,7 +12,7 @@ export const Actions: React.FC<ActionsProps> = ({ onActionClick }) => (
   <>
     <li>
       <Button
-        onClick={() => onActionClick(redoCommand.key)}
+        onClick={() => onActionClick(undoCommand.key)}
         oval
         space="small"
         color="secondary"
@@ -22,7 +22,7 @@ export const Actions: React.FC<ActionsProps> = ({ onActionClick }) => (
     </li>
     <li>
       <Button
-        onClick={() => onActionClick(undoCommand.key)}
+        onClick={() => onActionClick(redoCommand.key)}
         oval
         space="small"
         color="secondary"
