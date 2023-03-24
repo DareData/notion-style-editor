@@ -7,6 +7,7 @@ import { useTextEditorModeContext } from './TextEditorModeContext/useTextEditorM
 import { Button } from '../common/Button';
 import { Dropdown } from '../common/Dropdown';
 import { Icon } from '../common/Icon/Icon';
+import { useNotification } from '../hooks/useNotification';
 import { pxToRem } from '../styles/utils';
 import { Matcher } from '../utils/Matcher';
 
@@ -35,10 +36,12 @@ const options: Option[] = [
 
 export const CodeBlock: React.FC = () => {
   const { mode } = useTextEditorModeContext();
+  const { onSuccessNotification } = useNotification();
   const { contentRef, node, setAttrs } = useNodeViewContext();
 
   const onCopyClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    onSuccessNotification('Copied to clipboard');
     navigator.clipboard.writeText(node.textContent);
   };
 
