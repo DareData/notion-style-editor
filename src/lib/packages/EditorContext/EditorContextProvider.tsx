@@ -25,6 +25,8 @@ import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
 import { useMathPlugin } from './hooks/useMathPlugin';
 import { useMermaidPlugin } from './hooks/useMermaidPlugin';
 import { useSlashPlugin } from './hooks/useSlashPlugin';
+import { useSuperscriptCommand } from './hooks/useSuperscriptCommand';
+import { useSubscriptCommand } from './hooks/useSupscriptCommand';
 import { useUnderlinePlugin } from './hooks/useUnderlineCommand';
 import { useUploadPlugin } from './hooks/useUploadPlugin';
 import { CodeBlock } from '../../components/CodeBlock';
@@ -61,6 +63,8 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   const uploadPlugin = useUploadPlugin();
   const mermaidPlugin = useMermaidPlugin();
   const underlinePlugin = useUnderlinePlugin();
+  const superscriptCommand = useSuperscriptCommand();
+  const subscriptCommand = useSubscriptCommand();
   const slashPlugin = useSlashPlugin();
   useEditorViewPlugin();
 
@@ -83,9 +87,11 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
             }),
           });
         })
+        .use(commonmark)
         .use(listener)
         .use(underlinePlugin)
-        .use(commonmark)
+        .use(superscriptCommand)
+        .use(subscriptCommand)
         .use(history)
         .use(prism)
         .use(hyperlinktooltip)
@@ -115,6 +121,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
       pluginViewFactory,
       underlinePlugin,
       uploadPlugin,
+      superscriptCommand,
     ]
   );
 

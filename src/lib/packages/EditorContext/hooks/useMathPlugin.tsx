@@ -1,4 +1,4 @@
-import { math, mathBlockSchema } from '@milkdown/plugin-math';
+import { math, mathBlockSchema, mathInlineSchema } from '@milkdown/plugin-math';
 import { setBlockType } from '@milkdown/prose/commands';
 import { $view, $command } from '@milkdown/utils';
 import { useNodeViewFactory } from '@prosemirror-adapter/react';
@@ -12,6 +12,11 @@ export const insertMathCommand = $command(
   () => () => setBlockType(mathBlockSchema.type())
 );
 
+export const insertInlineCommand = $command(
+  'InsertInlineCommand',
+  () => () => setBlockType(mathInlineSchema.type())
+);
+
 export const useMathPlugin = (): Plugin => {
   const nodeViewFactory = useNodeViewFactory();
 
@@ -20,6 +25,7 @@ export const useMathPlugin = (): Plugin => {
       [
         math,
         insertMathCommand,
+        insertInlineCommand,
         $view(mathBlockSchema.node, () =>
           nodeViewFactory({
             component: MathView,
