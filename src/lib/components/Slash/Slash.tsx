@@ -1,3 +1,13 @@
+import { CmdKey, editorViewCtx } from '@milkdown/core';
+import { insertDiagramCommand } from '@milkdown/plugin-diagram';
+import {
+  createCodeBlockCommand,
+  insertImageCommand,
+  turnIntoTextCommand,
+  wrapInHeadingCommand,
+} from '@milkdown/preset-commonmark';
+import { insertTableCommand } from '@milkdown/preset-gfm';
+import { useInstance } from '@milkdown/react';
 import { useRef } from 'react';
 import styled from 'styled-components';
 
@@ -5,67 +15,116 @@ import { useSlashProvider } from './hooks/useSlashProvider';
 import { Button } from '../../common/Button';
 import { Hidden } from '../../common/Hidden';
 import { Icon } from '../../common/Icon/Icon';
+import { useCallEditorCommand } from '../../hooks/useCallEditorCommand';
+import { insertMathCommand } from '../../packages/EditorContext/hooks/useMathPlugin';
 import { pxToRem } from '../../styles/utils';
+import { HyperlinkModal } from '../HyperlinkModal/HyperlinkModal';
+import { InsertImageModal } from '../InsertImageModal/InsertImageModal';
 
 export const Slash: React.FC = () => {
   const tooltipRef = useRef<HTMLDivElement>(null);
 
   useSlashProvider({ tooltipRef });
+  const [loading, getEditor] = useInstance();
+  const { onCallCommand } = useCallEditorCommand();
+
+  const onCommandClick = <T,>(command: CmdKey<T>, payload?: T | undefined) => {
+    const editor = getEditor();
+    if (loading || !editor) {
+      return;
+    }
+
+    editor.action(ctx => {
+      const view = ctx.get(editorViewCtx);
+      const { state } = view;
+      const { selection } = state;
+
+      view.dispatch(state.tr.delete(selection.from - 1, selection.from));
+
+      onCallCommand(command, payload);
+    });
+  };
 
   return (
     <Hidden>
       <div ref={tooltipRef}>
         <SlashListStyled>
           <SlashItemStyled>
-            <AddActionButtonStyled>
+            <AddActionButtonStyled
+              onClick={() => onCommandClick(wrapInHeadingCommand.key, 1)}
+            >
               <Icon icon="title" />
               Title
             </AddActionButtonStyled>
           </SlashItemStyled>
           <SlashItemStyled>
-            <AddActionButtonStyled>
+            <AddActionButtonStyled
+              onClick={() => onCommandClick(wrapInHeadingCommand.key, 2)}
+            >
               <Icon icon="subtitle" />
               Subtitle
             </AddActionButtonStyled>
           </SlashItemStyled>
           <SlashItemStyled>
-            <AddActionButtonStyled>
+            <AddActionButtonStyled
+              onClick={() => onCommandClick(turnIntoTextCommand.key)}
+            >
               <Icon icon="paragraph" />
               Normal text
             </AddActionButtonStyled>
           </SlashItemStyled>
           <SlashItemStyled>
-            <AddActionButtonStyled>
-              <Icon icon="add_link" />
-              Add link
-            </AddActionButtonStyled>
+            <HyperlinkModal
+              editable={false}
+              handler={({ onOpen }) => (
+                <AddActionButtonStyled onClick={onOpen}>
+                  <Icon icon="add_link" />
+                  Add link
+                </AddActionButtonStyled>
+              )}
+            />
           </SlashItemStyled>
           <SlashItemStyled>
-            <AddActionButtonStyled>
-              <Icon icon="embed_image" />
-              Add image
-            </AddActionButtonStyled>
+            <InsertImageModal
+              handler={({ onOpen }) => (
+                <AddActionButtonStyled onClick={onOpen}>
+                  <Icon icon="embed_image" />
+                  Add image
+                </AddActionButtonStyled>
+              )}
+              onInsert={source =>
+                onCommandClick(insertImageCommand.key, { src: source })
+              }
+            />
           </SlashItemStyled>
           <SlashItemStyled>
-            <AddActionButtonStyled>
+            <AddActionButtonStyled
+              onClick={() => onCommandClick(createCodeBlockCommand.key)}
+            >
               <Icon icon="code_block" />
               Add code
             </AddActionButtonStyled>
           </SlashItemStyled>
           <SlashItemStyled>
-            <AddActionButtonStyled>
+            <AddActionButtonStyled
+              onClick={() => onCommandClick(insertTableCommand.key)}
+            >
               <Icon icon="create_table" />
               Add table
             </AddActionButtonStyled>
           </SlashItemStyled>
           <SlashItemStyled>
-            <AddActionButtonStyled>
+            <AddActionButtonStyled
+              onClick={() => onCommandClick(insertMathCommand.key)}
+            >
               <Icon icon="math" />
               Add math
             </AddActionButtonStyled>
           </SlashItemStyled>
           <SlashItemStyled>
-            <AddActionButtonStyled>
+            <AddActionButtonStyled
+              onClick={() => onCommandClick(insertDiagramCommand.key)}
+            >
               <Icon icon="mermaid" />
               Add diagram
             </AddActionButtonStyled>
