@@ -32,7 +32,7 @@ export const MathView: React.FC = () => {
   }
 
   return (
-    <MathViewContainerStyled>
+    <MathViewContainerStyled contentEditable={false}>
       <Tabs initialTab={MathViewTabs.Preview}>
         <TabList>
           <Tab label={MathViewTabs.Preview}>Preview</Tab>

@@ -32,7 +32,7 @@ export const MermaidView: React.FC = () => {
   }
 
   return (
-    <MermaidViewContainerStyled>
+    <MermaidViewContainerStyled contentEditable={false}>
       <Tabs initialTab={TabsLabels.Preview}>
         <TabList>
           <Tab label={TabsLabels.Preview}>Preview</Tab>
