@@ -2,6 +2,7 @@ import {
   Editor as MilkdownEditor,
   rootCtx,
   defaultValueCtx,
+  marksCtx,
 } from '@milkdown/core';
 import { history } from '@milkdown/plugin-history';
 import { listener, listenerCtx } from '@milkdown/plugin-listener';
@@ -25,8 +26,8 @@ import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
 import { useMathPlugin } from './hooks/useMathPlugin';
 import { useMermaidPlugin } from './hooks/useMermaidPlugin';
 import { useSlashPlugin } from './hooks/useSlashPlugin';
+import { useSubscriptCommand } from './hooks/useSubscriptCommand';
 import { useSuperscriptCommand } from './hooks/useSuperscriptCommand';
-import { useSubscriptCommand } from './hooks/useSupscriptCommand';
 import { useUnderlinePlugin } from './hooks/useUnderlineCommand';
 import { useUploadPlugin } from './hooks/useUploadPlugin';
 import { CodeBlock } from '../../components/CodeBlock';
@@ -78,17 +79,16 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
             ...prev,
             configureRefractor: () => refractor,
           }));
-          ctx.get(listenerCtx).markdownUpdated((_, markdown) => {
-            onChange(markdown);
-          });
           ctx.set(hyperlinktooltip.key, {
             view: pluginViewFactory({
               component: HyperlinkTooltip,
             }),
           });
+          // ctx.get(listenerCtx).markdownUpdated((_, markdown) => {
+          //   onChange(markdown);
+          // });
         })
         .use(commonmark)
-        .use(listener)
         .use(underlinePlugin)
         .use(superscriptCommand)
         .use(subscriptCommand)
@@ -109,7 +109,8 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
             nodeViewFactory({ component: ImageView, as: 'div' })
           )
         )
-        .use(gfmPlugin),
+        .use(gfmPlugin)
+        .use(listener),
     [
       defaultMarkdownValue,
       gfmPlugin,
@@ -122,6 +123,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
       underlinePlugin,
       uploadPlugin,
       superscriptCommand,
+      subscriptCommand,
     ]
   );
 

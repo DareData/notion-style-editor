@@ -1,21 +1,16 @@
 import { commandsCtx } from '@milkdown/core';
 import { toggleMark } from '@milkdown/prose/commands';
-import { $command, $markAttr, $markSchema, $useKeymap } from '@milkdown/utils';
+import { $command, $useKeymap, $markAttr, $markSchema } from '@milkdown/utils';
 import { useMemo } from 'react';
 
-const subscriptAttr = $markAttr('subscript');
+export const subscriptAttr = $markAttr('subscript');
 
-const subscriptSchema = $markSchema('subscript', ctx => ({
+export const subscriptSchema = $markSchema('subscript', ctx => ({
   inclusive: false,
-  parseDOM: [
-    { tag: 'sub' },
-    {
-      getAttrs: value => (value === 'subscript') as false,
-    },
-  ],
+  parseDOM: [{ tag: 'sub' }],
   toDOM: mark => ['sub', ctx.get(subscriptAttr.key)(mark)],
   parseMarkdown: {
-    match: node => node.type === 'delete',
+    match: node => node.type === 'subscript',
     runner: (state, node, markType) => {
       state.openMark(markType);
       state.next(node.children);
@@ -25,7 +20,7 @@ const subscriptSchema = $markSchema('subscript', ctx => ({
   toMarkdown: {
     match: mark => mark.type.name === 'subscript',
     runner: (state, mark) => {
-      state.withMark(mark, 'delete');
+      state.withMark(mark, 'subscript');
     },
   },
 }));
@@ -35,9 +30,9 @@ export const toggleSubscriptCommand = $command(
   () => () => toggleMark(subscriptSchema.type())
 );
 
-const subscriptKeymap = $useKeymap('subscriptKeymap', {
+export const subscriptKeymap = $useKeymap('subscriptKeymap', {
   ToggleSubscript: {
-    shortcuts: 'Mod-Alt-.',
+    shortcuts: ['Mod-k'],
     command: ctx => {
       const commands = ctx.get(commandsCtx);
       return () => commands.call(toggleSubscriptCommand.key);

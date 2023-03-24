@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../hooks/useCallEditorCommand';
+import { toggleSubscriptCommand } from '../../packages/EditorContext/hooks/useSubscriptCommand';
 import { toggleSuperscriptCommand } from '../../packages/EditorContext/hooks/useSuperscriptCommand';
-import { toggleSubscriptCommand } from '../../packages/EditorContext/hooks/useSupscriptCommand';
 import { pxToRem } from '../../styles/utils';
 
 export const ScriptActions: React.FC = () => {

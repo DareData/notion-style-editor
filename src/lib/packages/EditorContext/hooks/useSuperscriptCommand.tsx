@@ -6,16 +6,10 @@ import { useMemo } from 'react';
 const superscriptAttr = $markAttr('superscript');
 
 const superscriptSchema = $markSchema('superscript', ctx => ({
-  inclusive: false,
-  parseDOM: [
-    { tag: 'sup' },
-    {
-      getAttrs: value => (value === 'superscript') as false,
-    },
-  ],
+  parseDOM: [{ tag: 'sup' }],
   toDOM: mark => ['sup', ctx.get(superscriptAttr.key)(mark)],
   parseMarkdown: {
-    match: node => node.type === 'delete',
+    match: node => node.type === 'superscript',
     runner: (state, node, markType) => {
       state.openMark(markType);
       state.next(node.children);
@@ -25,7 +19,7 @@ const superscriptSchema = $markSchema('superscript', ctx => ({
   toMarkdown: {
     match: mark => mark.type.name === 'superscript',
     runner: (state, mark) => {
-      state.withMark(mark, 'delete');
+      state.withMark(mark, 'superscript');
     },
   },
 }));
