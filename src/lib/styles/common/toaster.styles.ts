@@ -14,4 +14,13 @@ export const toasterStyles: DefaultToastOptions = {
       gap: `${pxToRem(5)}`,
     },
   },
+  success: {
+    style: {
+      padding: `${pxToRem(13)} ${pxToRem(16)}`,
+      color: theme.colors.lightBlack,
+      background: '#68D391',
+      maxWidth: 'none',
+      gap: `${pxToRem(5)}`,
+    },
+  },
 };
