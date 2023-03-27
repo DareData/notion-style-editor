@@ -56,6 +56,7 @@ export const MenuBar = () => {
 const MenuBarListStyled = styled.ul`
   list-style-type: none;
   display: flex;
+  flex-wrap: wrap;
   gap: ${pxToRem(6)};
   align-items: center;
   padding: ${pxToRem(8)} ${pxToRem(8)};

@@ -55,7 +55,7 @@ export const theme = {
       container: 101,
     },
     dropdown: {
-      container: 99,
+      container: 99999,
     },
   },
   colors,

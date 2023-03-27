@@ -5,6 +5,7 @@ import { pxToRem } from '../styles/utils';
 export const EditorContainer = styled.div`
   width: 100%;
   padding: ${pxToRem(12)} ${pxToRem(12)} ${pxToRem(20)};
+  /* overflow: auto; */
   background-color: ${props => props.theme.colors.white};
   border: 1px solid ${props => props.theme.colors.lightGrey};
   border-radius: ${pxToRem(6)};

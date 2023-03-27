@@ -52,9 +52,9 @@ export const Dropdown: React.FC<DropdownProps> = ({
     <DropdownContainerStyled ref={dropdownContainerRef} {...{ className }}>
       <Handler onToggle={toggle} />
       <DropdownContextProvider {...{ isOpen }} onClose={off} onOpen={on}>
-        {isOpen && (
-          <DropdownListContainerStyled>{children}</DropdownListContainerStyled>
-        )}
+        <DropdownListContainerStyled $isOpen={isOpen}>
+          <DropdownListStyled>{children}</DropdownListStyled>
+        </DropdownListContainerStyled>
       </DropdownContextProvider>
     </DropdownContainerStyled>
   );
@@ -64,11 +64,13 @@ const DropdownContainerStyled = styled.div`
   position: relative;
 `;
 
-const DropdownListContainerStyled = styled.div`
+const DropdownListContainerStyled = styled.div<{ $isOpen: boolean }>`
   position: absolute;
   right: 0;
-  z-index: ${props => props.theme.zIndexes.dropdown.container};
+  z-index: ${props =>
+    props.$isOpen ? props.theme.zIndexes.dropdown.container : -1};
   top: calc(100% + 14px);
+  display: ${props => (props.$isOpen ? 'block' : 'none')};
 `;
 
 export const DropdownListStyled = styled.ul`
@@ -76,16 +78,21 @@ export const DropdownListStyled = styled.ul`
   background-color: ${props => props.theme.colors.white};
   border-radius: ${pxToRem(8)};
   border: 1px solid ${props => props.theme.colors.lightGrey};
+  z-index: ${props => props.theme.zIndexes.dropdown.container};
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0px 2px 4px -1px rgba(0, 0, 0, 0.06);
 `;
 
 export const DropdownItemStyled = styled.li`
   list-style-type: none;
+  z-index: ${props => props.theme.zIndexes.dropdown.container};
 `;
 
 export const DropdownButtonActionStyled = styled(Button)`
   width: 100%;
   justify-content: flex-start;
   gap: ${pxToRem(10)};
+  z-index: ${props => props.theme.zIndexes.dropdown.container};
   padding: ${pxToRem(14)} ${pxToRem(20)};
   min-width: ${pxToRem(200)};
 `;

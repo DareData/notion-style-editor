@@ -8,7 +8,6 @@ import styled from 'styled-components';
 
 import { Button } from '../../../common/Button';
 import { Icon } from '../../../common/Icon/Icon';
-import { toggleUnderlineCommand } from '../../../packages/EditorContext/hooks/useUnderlineCommand';
 import { pxToRem } from '../../../styles/utils';
 
 type TextFormatsProps = {
@@ -38,12 +37,7 @@ export const TextFormats: React.FC<TextFormatsProps> = ({ onActionClick }) => (
       </Button>
     </li>
     <li>
-      <Button
-        onClick={() => onActionClick(toggleUnderlineCommand.key)}
-        oval
-        space="small"
-        color="secondary"
-      >
+      <Button oval space="small" color="secondary">
         <Icon icon="underline" />
       </Button>
     </li>

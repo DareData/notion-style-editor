@@ -27,7 +27,7 @@ export const toggleInOut: MotionProps = {
   },
 };
 
-export const toggleOutInVariant: Variants = {
+export const toggleOutInVariant = {
   show: {
     height: 'auto',
     opacity: 1,
@@ -38,4 +38,4 @@ export const toggleOutInVariant: Variants = {
     opacity: 0,
     pointerEvents: 'none',
   },
-};
+} satisfies Variants;

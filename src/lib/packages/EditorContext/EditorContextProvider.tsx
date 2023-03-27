@@ -25,7 +25,6 @@ import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
 import { useMathPlugin } from './hooks/useMathPlugin';
 import { useMermaidPlugin } from './hooks/useMermaidPlugin';
 import { useSlashPlugin } from './hooks/useSlashPlugin';
-import { useUnderlinePlugin } from './hooks/useUnderlineCommand';
 import { useUploadPlugin } from './hooks/useUploadPlugin';
 import { CodeBlock } from '../../components/CodeBlock';
 import {
@@ -60,7 +59,6 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   const mathPlugin = useMathPlugin();
   const uploadPlugin = useUploadPlugin();
   const mermaidPlugin = useMermaidPlugin();
-  const underlinePlugin = useUnderlinePlugin();
   const slashPlugin = useSlashPlugin();
   useEditorViewPlugin();
 
@@ -84,7 +82,6 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
           });
         })
         .use(listener)
-        .use(underlinePlugin)
         .use(commonmark)
         .use(history)
         .use(prism)
@@ -113,7 +110,6 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
       onChange,
       slashPlugin,
       pluginViewFactory,
-      underlinePlugin,
       uploadPlugin,
     ]
   );
