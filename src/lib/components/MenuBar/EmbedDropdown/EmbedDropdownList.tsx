@@ -5,6 +5,7 @@ import {
   insertImageCommand,
 } from '@milkdown/preset-commonmark';
 import { insertTableCommand } from '@milkdown/preset-gfm';
+import { useTheme } from 'styled-components';
 
 import { useDropdownContext } from '../../../common/Dropdown/context/useModalContext';
 import {
@@ -16,9 +17,11 @@ import { Icon } from '../../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 import { insertMathCommand } from '../../../packages/EditorContext/hooks/useMathPlugin';
 import { HyperlinkModal } from '../../HyperlinkModal/HyperlinkModal';
+import { InsertGoogleDocModal } from '../../InsertGoogleDocModal/InsertGoogleDocModal';
 import { InsertImageModal } from '../../InsertImageModal/InsertImageModal';
 
 export const EmbedDropdownList = () => {
+  const { colors } = useTheme();
   const { onClose } = useDropdownContext();
   const { onCallCommand } = useCallEditorCommand();
 
@@ -39,7 +42,6 @@ export const EmbedDropdownList = () => {
               Add link
             </DropdownButtonActionStyled>
           )}
-          onModalClose={onClose}
         />
       </DropdownItemStyled>
       <DropdownItemStyled>
@@ -87,6 +89,17 @@ export const EmbedDropdownList = () => {
           <Icon icon="mermaid" />
           Add diagram
         </DropdownButtonActionStyled>
+      </DropdownItemStyled>
+      <DropdownItemStyled>
+        <InsertGoogleDocModal
+          handler={({ onOpen }) => (
+            <DropdownButtonActionStyled onClick={onOpen}>
+              <Icon icon="google" fill={colors.white} />
+              Add Google doc
+            </DropdownButtonActionStyled>
+          )}
+          onModalOpen={onClose}
+        />
       </DropdownItemStyled>
     </DropdownListStyled>
   );

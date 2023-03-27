@@ -9,6 +9,7 @@ import {
 import { insertTableCommand } from '@milkdown/preset-gfm';
 import { useInstance } from '@milkdown/react';
 import { useRef } from 'react';
+import { useTheme } from 'styled-components';
 
 import { useSlashProvider } from './hooks/useSlashProvider';
 import {
@@ -21,9 +22,11 @@ import { Icon } from '../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../hooks/useCallEditorCommand';
 import { insertMathCommand } from '../../packages/EditorContext/hooks/useMathPlugin';
 import { HyperlinkModal } from '../HyperlinkModal/HyperlinkModal';
+import { InsertGoogleDocModal } from '../InsertGoogleDocModal/InsertGoogleDocModal';
 import { InsertImageModal } from '../InsertImageModal/InsertImageModal';
 
 export const Slash: React.FC = () => {
+  const { colors } = useTheme();
   const tooltipRef = useRef<HTMLDivElement>(null);
 
   useSlashProvider({ tooltipRef });
@@ -135,6 +138,17 @@ export const Slash: React.FC = () => {
               <Icon icon="mermaid" />
               Add diagram
             </DropdownButtonActionStyled>
+          </DropdownItemStyled>
+          <DropdownItemStyled>
+            <InsertGoogleDocModal
+              onModalOpen={onRemoveSlash}
+              handler={({ onOpen }) => (
+                <DropdownButtonActionStyled onClick={onOpen}>
+                  <Icon icon="google" fill={colors.white} />
+                  Add Google doc
+                </DropdownButtonActionStyled>
+              )}
+            />
           </DropdownItemStyled>
         </DropdownListStyled>
       </div>
