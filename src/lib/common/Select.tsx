@@ -6,17 +6,17 @@ import styled from 'styled-components';
 import { Icon } from './Icon/Icon';
 import { pxToRem } from '../styles/utils';
 
-type DropdownProps = ReactDropdownProps;
+type SelectProps = ReactDropdownProps;
 
-export const Dropdown: React.FC<DropdownProps> = props => (
-  <ReactDropdownStyled
+export const Select: React.FC<SelectProps> = props => (
+  <SelectStyled
     {...props}
     arrowClosed={<Icon icon="arrow_down" />}
     arrowOpen={<Icon icon="arrow_top" />}
   />
 );
 
-const ReactDropdownStyled = styled(ReactDropdown)`
+const SelectStyled = styled(ReactDropdown)`
   min-width: ${pxToRem(130)};
   font-size: ${pxToRem(14)};
   .Dropdown-control {

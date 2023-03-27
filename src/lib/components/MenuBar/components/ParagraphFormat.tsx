@@ -5,9 +5,9 @@ import {
 } from '@milkdown/preset-commonmark';
 import styled from 'styled-components';
 
-import { Button } from '../../common/Button';
-import { Icon } from '../../common/Icon/Icon';
-import { pxToRem } from '../../styles/utils';
+import { Button } from '../../../common/Button';
+import { Icon } from '../../../common/Icon/Icon';
+import { pxToRem } from '../../../styles/utils';
 
 type ParagraphFormatProps = {
   onActionClick: <T>(action: CmdKey<T>) => void;

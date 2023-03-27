@@ -5,8 +5,8 @@ import styled from 'styled-components';
 
 import { useTextEditorModeContext } from './TextEditorModeContext/useTextEditorModeContext';
 import { Button } from '../common/Button';
-import { Dropdown } from '../common/Dropdown';
 import { Icon } from '../common/Icon/Icon';
+import { Select } from '../common/Select';
 import { useNotification } from '../hooks/useNotification';
 import { pxToRem } from '../styles/utils';
 import { Matcher } from '../utils/Matcher';
@@ -60,7 +60,7 @@ export const CodeBlock: React.FC = () => {
       <CodeBlockActionsStyled>
         {Matcher(mode)
           .match('active', () => (
-            <Dropdown {...{ value, options }} onChange={onLanguageChange} />
+            <Select {...{ value, options }} onChange={onLanguageChange} />
           ))
           .match('preview', () => (
             <LanguageLabelStyled>{label}</LanguageLabelStyled>

@@ -6,10 +6,10 @@ import {
 import { toggleStrikethroughCommand } from '@milkdown/preset-gfm';
 import styled from 'styled-components';
 
-import { Button } from '../../common/Button';
-import { Icon } from '../../common/Icon/Icon';
-import { toggleUnderlineCommand } from '../../packages/EditorContext/hooks/useUnderlineCommand';
-import { pxToRem } from '../../styles/utils';
+import { Button } from '../../../common/Button';
+import { Icon } from '../../../common/Icon/Icon';
+import { toggleUnderlineCommand } from '../../../packages/EditorContext/hooks/useUnderlineCommand';
+import { pxToRem } from '../../../styles/utils';
 
 type TextFormatsProps = {
   onActionClick: <T>(action: CmdKey<T>) => void;

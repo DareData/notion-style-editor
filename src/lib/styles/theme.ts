@@ -54,13 +54,14 @@ export const theme = {
       backdrop: 100,
       container: 101,
     },
+    dropdown: {
+      container: 101,
+    },
   },
   colors,
   queries: {
-    tablet: '480px',
-    laptop: '768px',
-    desktop: '960px',
-    large: '1200px',
+    tablet: '563px',
+    laptop: '761px',
   },
 };
 

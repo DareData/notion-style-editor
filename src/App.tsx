@@ -77,7 +77,7 @@ export const App = () => {
 };
 
 const TextEditorStyled = styled(TextEditor)`
-  width: calc(100vw - 100px);
+  /* width: calc(100vw - 100px); */
 `;
 
 const AppContainerStyled = styled.div`

@@ -7,12 +7,12 @@ import {
 import { insertTableCommand } from '@milkdown/preset-gfm';
 import styled from 'styled-components';
 
-import { Button } from '../../common/Button';
-import { Icon } from '../../common/Icon/Icon';
-import { insertMathCommand } from '../../packages/EditorContext/hooks/useMathPlugin';
-import { pxToRem } from '../../styles/utils';
-import { HyperlinkModal } from '../HyperlinkModal/HyperlinkModal';
-import { InsertImageModal } from '../InsertImageModal/InsertImageModal';
+import { Button } from '../../../common/Button';
+import { Icon } from '../../../common/Icon/Icon';
+import { insertMathCommand } from '../../../packages/EditorContext/hooks/useMathPlugin';
+import { pxToRem } from '../../../styles/utils';
+import { HyperlinkModal } from '../../HyperlinkModal/HyperlinkModal';
+import { InsertImageModal } from '../../InsertImageModal/InsertImageModal';
 
 type EmbedObjectsProps = {
   onActionClick: <T>(action: CmdKey<T>, payload?: T) => void;

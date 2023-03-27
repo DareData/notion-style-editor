@@ -9,15 +9,17 @@ import {
 import { insertTableCommand } from '@milkdown/preset-gfm';
 import { useInstance } from '@milkdown/react';
 import { useRef } from 'react';
-import styled from 'styled-components';
 
 import { useSlashProvider } from './hooks/useSlashProvider';
-import { Button } from '../../common/Button';
+import {
+  DropdownButtonActionStyled,
+  DropdownItemStyled,
+  DropdownListStyled,
+} from '../../common/Dropdown/Dropdown';
 import { Hidden } from '../../common/Hidden';
 import { Icon } from '../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../hooks/useCallEditorCommand';
 import { insertMathCommand } from '../../packages/EditorContext/hooks/useMathPlugin';
-import { pxToRem } from '../../styles/utils';
 import { HyperlinkModal } from '../HyperlinkModal/HyperlinkModal';
 import { InsertImageModal } from '../InsertImageModal/InsertImageModal';
 
@@ -51,109 +53,91 @@ export const Slash: React.FC = () => {
   return (
     <Hidden>
       <div ref={tooltipRef}>
-        <SlashListStyled>
-          <SlashItemStyled>
-            <AddActionButtonStyled
+        <DropdownListStyled>
+          <DropdownItemStyled>
+            <DropdownButtonActionStyled
               onClick={() => onCommandClick(wrapInHeadingCommand.key, 1)}
             >
               <Icon icon="title" />
               Title
-            </AddActionButtonStyled>
-          </SlashItemStyled>
-          <SlashItemStyled>
-            <AddActionButtonStyled
+            </DropdownButtonActionStyled>
+          </DropdownItemStyled>
+          <DropdownItemStyled>
+            <DropdownButtonActionStyled
               onClick={() => onCommandClick(wrapInHeadingCommand.key, 2)}
             >
               <Icon icon="subtitle" />
               Subtitle
-            </AddActionButtonStyled>
-          </SlashItemStyled>
-          <SlashItemStyled>
-            <AddActionButtonStyled
+            </DropdownButtonActionStyled>
+          </DropdownItemStyled>
+          <DropdownItemStyled>
+            <DropdownButtonActionStyled
               onClick={() => onCommandClick(turnIntoTextCommand.key)}
             >
               <Icon icon="paragraph" />
               Normal text
-            </AddActionButtonStyled>
-          </SlashItemStyled>
-          <SlashItemStyled>
+            </DropdownButtonActionStyled>
+          </DropdownItemStyled>
+          <DropdownItemStyled>
             <HyperlinkModal
               editable={false}
               onModalOpen={onRemoveSlash}
               handler={({ onOpen }) => (
-                <AddActionButtonStyled onClick={onOpen}>
+                <DropdownButtonActionStyled onClick={onOpen}>
                   <Icon icon="add_link" />
                   Add link
-                </AddActionButtonStyled>
+                </DropdownButtonActionStyled>
               )}
             />
-          </SlashItemStyled>
-          <SlashItemStyled>
+          </DropdownItemStyled>
+          <DropdownItemStyled>
             <InsertImageModal
               onModalOpen={onRemoveSlash}
               handler={({ onOpen }) => (
-                <AddActionButtonStyled onClick={onOpen}>
+                <DropdownButtonActionStyled onClick={onOpen}>
                   <Icon icon="embed_image" />
                   Add image
-                </AddActionButtonStyled>
+                </DropdownButtonActionStyled>
               )}
               onInsert={source =>
                 onCallCommand(insertImageCommand.key, { src: source })
               }
             />
-          </SlashItemStyled>
-          <SlashItemStyled>
-            <AddActionButtonStyled
+          </DropdownItemStyled>
+          <DropdownItemStyled>
+            <DropdownButtonActionStyled
               onClick={() => onCommandClick(createCodeBlockCommand.key)}
             >
               <Icon icon="code_block" />
               Add code
-            </AddActionButtonStyled>
-          </SlashItemStyled>
-          <SlashItemStyled>
-            <AddActionButtonStyled
+            </DropdownButtonActionStyled>
+          </DropdownItemStyled>
+          <DropdownItemStyled>
+            <DropdownButtonActionStyled
               onClick={() => onCommandClick(insertTableCommand.key)}
             >
               <Icon icon="create_table" />
               Add table
-            </AddActionButtonStyled>
-          </SlashItemStyled>
-          <SlashItemStyled>
-            <AddActionButtonStyled
+            </DropdownButtonActionStyled>
+          </DropdownItemStyled>
+          <DropdownItemStyled>
+            <DropdownButtonActionStyled
               onClick={() => onCommandClick(insertMathCommand.key)}
             >
               <Icon icon="math" />
               Add math
-            </AddActionButtonStyled>
-          </SlashItemStyled>
-          <SlashItemStyled>
-            <AddActionButtonStyled
+            </DropdownButtonActionStyled>
+          </DropdownItemStyled>
+          <DropdownItemStyled>
+            <DropdownButtonActionStyled
               onClick={() => onCommandClick(insertDiagramCommand.key)}
             >
               <Icon icon="mermaid" />
               Add diagram
-            </AddActionButtonStyled>
-          </SlashItemStyled>
-        </SlashListStyled>
+            </DropdownButtonActionStyled>
+          </DropdownItemStyled>
+        </DropdownListStyled>
       </div>
     </Hidden>
   );
 };
-
-const SlashListStyled = styled.ul`
-  background-color: ${props => props.theme.colors.white};
-  border-radius: ${pxToRem(8)};
-  border: 1px solid ${props => props.theme.colors.lightGrey};
-`;
-
-const SlashItemStyled = styled.li`
-  list-style-type: none;
-`;
-
-const AddActionButtonStyled = styled(Button)`
-  width: 100%;
-  justify-content: flex-start;
-  gap: ${pxToRem(10)};
-  padding: ${pxToRem(14)} ${pxToRem(20)};
-  min-width: ${pxToRem(200)};
-`;

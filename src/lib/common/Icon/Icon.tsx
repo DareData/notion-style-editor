@@ -16,12 +16,14 @@ import { ReactComponent as DeleteIcon } from './assets/delete.svg';
 import { ReactComponent as EditIcon } from './assets/edit.svg';
 import { ReactComponent as EmbedImageIcon } from './assets/embed_image.svg';
 import { ReactComponent as ExportIcon } from './assets/export.svg';
+import { ReactComponent as FormatDropdownIcon } from './assets/format_dropdown.svg';
 import { ReactComponent as ItalicIcon } from './assets/italic.svg';
 import { ReactComponent as MathIcon } from './assets/math.svg';
 import { ReactComponent as MermaidIcon } from './assets/mermaid.svg';
 import { ReactComponent as NumberedListIcon } from './assets/numbered_list.svg';
 import { ReactComponent as ParagraphIcon } from './assets/paragraph.svg';
 import { ReactComponent as RedoIcon } from './assets/redo.svg';
+import { ReactComponent as SettingsIcon } from './assets/settings.svg';
 import { ReactComponent as StrikethroughIcon } from './assets/strikethrough.svg';
 import { ReactComponent as SubScriptIcon } from './assets/subscript.svg';
 import { ReactComponent as SubtitleIcon } from './assets/subtitle.svg';
@@ -66,9 +68,11 @@ const icons = {
   title: TitleIcon,
   subtitle: SubtitleIcon,
   paragraph: ParagraphIcon,
+  format_dropdown: FormatDropdownIcon,
+  settings: SettingsIcon,
 };
 
-export const IconTypesValues = Object.keys(icons);
+export const IconTypesValues = Object.keys(icons) as IconTypes[];
 export type IconTypes = keyof typeof icons;
 export type IconProps = {
   icon: IconTypes;

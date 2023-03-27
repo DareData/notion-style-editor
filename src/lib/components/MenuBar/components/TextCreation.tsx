@@ -6,9 +6,9 @@ import {
 import { Option } from 'react-dropdown';
 import styled from 'styled-components';
 
-import { Dropdown } from '../../common/Dropdown';
-import { pxToRem } from '../../styles/utils';
-import { Matcher } from '../../utils/Matcher';
+import { Select } from '../../../common/Select';
+import { pxToRem } from '../../../styles/utils';
+import { Matcher } from '../../../utils/Matcher';
 
 const textCreationOptions: Option[] = [
   { value: 'title', label: 'Title' },
@@ -23,7 +23,7 @@ type TextCreationProps = {
 export const TextCreation: React.FC<TextCreationProps> = ({
   onActionClick,
 }) => {
-  const onDropdownChange = ({ value }: Option) => {
+  const onSelectChange = ({ value }: Option) => {
     Matcher(value)
       .match('title', () => onActionClick(wrapInHeadingCommand.key, 1))
       .match('subtitle', () => onActionClick(wrapInHeadingCommand.key, 2))
@@ -31,15 +31,15 @@ export const TextCreation: React.FC<TextCreationProps> = ({
   };
 
   return (
-    <DropdownStyled
+    <SelectStyled
       options={textCreationOptions}
       placeholder="Select text.."
-      onChange={onDropdownChange}
+      onChange={onSelectChange}
     />
   );
 };
 
-const DropdownStyled = styled(Dropdown)`
+const SelectStyled = styled(Select)`
   width: ${pxToRem(135)};
   margin-left: ${pxToRem(16)};
   .Dropdown-control {
