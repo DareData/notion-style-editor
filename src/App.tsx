@@ -62,7 +62,7 @@ export const App = () => {
   );
 
   return (
-    <ErrorBoundary>
+    <>
       <AppGlobalStyles />
       <AppContainerStyled>
         <button
@@ -70,15 +70,11 @@ export const App = () => {
         >
           Toggle Mdode ( current: {mode} )
         </button>
-        <TextEditorStyled data={markdownValue} {...{ mode, onDataChange }} />
+        <TextEditor data={markdownValue} {...{ mode, onDataChange }} />
       </AppContainerStyled>
-    </ErrorBoundary>
+    </>
   );
 };
-
-const TextEditorStyled = styled(TextEditor)`
-  /* width: calc(100vw - 100px); */
-`;
 
 const AppContainerStyled = styled.div`
   margin: ${pxToRem(100)} 0;
@@ -90,8 +86,13 @@ const AppContainerStyled = styled.div`
 `;
 
 const AppGlobalStyles = createGlobalStyle`
-  width: 100%;
-  min-height: 100vh;
-  margin: 0;
-  background-color: #FFFFFF;
+  * {
+    box-sizing: border-box;
+  }
+  html, body {
+    margin: 0;
+    max-width: 100vw;
+    min-height: 100vh;
+    background-color: #FFFFFF;
+  }
 `;

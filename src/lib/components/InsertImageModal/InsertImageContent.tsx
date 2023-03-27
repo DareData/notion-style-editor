@@ -55,45 +55,47 @@ export const InsertImageContent: React.FC<InsertImageContentProps> = ({
   }
 
   return (
-    <ImageContentContainerStyled>
-      <motion.div
-        animate={url ? 'hidden' : 'show'}
-        variants={toggleOutInVariant}
-      >
-        <GapTextStyled>
-          <DragDropInputFile
-            name="insert_image"
-            multiple={false}
-            {...{ onFileUpload }}
+    <ModalBody>
+      <ImageContentContainerStyled>
+        <motion.div
+          animate={url ? 'hidden' : 'show'}
+          variants={toggleOutInVariant}
+        >
+          <GapTextStyled>
+            <DragDropInputFile
+              name="insert_image"
+              multiple={false}
+              {...{ onFileUpload }}
+            />
+            <GapStyled>
+              <GapTextStyled>Or</GapTextStyled>
+            </GapStyled>
+          </GapTextStyled>
+        </motion.div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <UrlInputStyled
+            {...register('url')}
+            label="Import from URL"
+            error={formState.errors.url?.message}
+            accept="image/*"
+            placeholder="Paste a URL of image..."
           />
-          <GapStyled>
-            <GapTextStyled>Or</GapTextStyled>
-          </GapStyled>
-        </GapTextStyled>
-      </motion.div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <UrlInputStyled
-          {...register('url')}
-          label="Import from URL"
-          error={formState.errors.url?.message}
-          accept="image/*"
-          placeholder="Paste a URL of image..."
-        />
-        <AnimatePresence>
-          {url && (
-            <motion.div {...toggleInOut}>
-              <ModalActionsStyled
-                loading={formState.isValidating}
-                isDisabled={formState.isValidating || !formState.isValid}
-                saveText="Insert image"
-                withCancel={false}
-                saveButtonType="submit"
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </form>
-    </ImageContentContainerStyled>
+          <AnimatePresence>
+            {url && (
+              <motion.div {...toggleInOut}>
+                <ModalActionsStyled
+                  loading={formState.isValidating}
+                  isDisabled={formState.isValidating || !formState.isValid}
+                  saveText="Insert image"
+                  withCancel={false}
+                  saveButtonType="submit"
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </form>
+      </ImageContentContainerStyled>
+    </ModalBody>
   );
 };
 
@@ -112,7 +114,7 @@ const LoaderStyled = styled(Loader)`
   flex: 1;
 `;
 
-const ImageContentContainerStyled = styled(ModalBody)`
+const ImageContentContainerStyled = styled.div`
   overflow: hidden;
   padding-top: ${pxToRem(40)};
   padding-bottom: ${pxToRem(24)};

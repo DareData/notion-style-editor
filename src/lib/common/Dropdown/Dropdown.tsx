@@ -33,6 +33,8 @@ export const Dropdown: React.FC<DropdownProps> = ({
     }
 
     const onBodyClick = (e: MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
       const element = e.target as HTMLElement;
       const { current: dropdownRef } = dropdownContainerRef;
 

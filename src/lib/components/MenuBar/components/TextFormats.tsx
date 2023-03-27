@@ -61,5 +61,5 @@ export const TextFormats: React.FC<TextFormatsProps> = ({ onActionClick }) => (
 );
 
 const BoldItemStyled = styled.li`
-  margin-left: ${pxToRem(16)};
+  margin-left: ${pxToRem(12)};
 `;

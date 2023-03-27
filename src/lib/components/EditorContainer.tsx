@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { pxToRem } from '../styles/utils';
 
 export const EditorContainer = styled.div`
+  width: 100%;
   padding: ${pxToRem(12)} ${pxToRem(12)} ${pxToRem(20)};
   background-color: ${props => props.theme.colors.white};
   border: 1px solid ${props => props.theme.colors.lightGrey};

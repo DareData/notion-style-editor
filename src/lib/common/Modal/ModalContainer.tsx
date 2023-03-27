@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import styled from 'styled-components';
 
 import { useModalContext } from './context/useModalContext';
+import { theme } from '../../styles/theme';
 import { pxToRem } from '../../styles/utils';
 import { Button } from '../Button';
 import { Icon } from '../Icon/Icon';
@@ -93,14 +94,22 @@ const ModalContainerStyled = styled.div`
 `;
 
 const ModalBoxStyled = styled(motion.div)`
+  width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: auto;
   position: relative;
   display: flex;
   flex-direction: column;
-  width: ${pxToRem(480)};
   font-size: ${pxToRem(16)};
   background-color: ${props => props.theme.colors.white};
-  border-radius: ${pxToRem(12)};
-  box-shadow: 0px 25px 50px -12px ${props => props.theme.components.modal.backdrop.background};
+  @media (min-width: ${theme.queries.laptop}) {
+    width: ${pxToRem(480)};
+    height: auto;
+    max-height: auto;
+    box-shadow: 0px 25px 50px -12px ${props => props.theme.components.modal.backdrop.background};
+    border-radius: ${pxToRem(12)};
+  }
 `;
 
 const CloseButtonStyled = styled(Button)`

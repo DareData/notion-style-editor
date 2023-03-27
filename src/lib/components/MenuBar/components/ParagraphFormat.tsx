@@ -41,5 +41,5 @@ export const ParagraphFormat: React.FC<ParagraphFormatProps> = ({
 );
 
 const ParagraphFormatItemStyled = styled.li`
-  margin-left: ${pxToRem(16)};
+  margin-left: ${pxToRem(12)};
 `;

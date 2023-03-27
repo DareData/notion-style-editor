@@ -4,6 +4,7 @@ import {
   insertImageCommand,
 } from '@milkdown/preset-commonmark';
 import { insertTableCommand } from '@milkdown/preset-gfm';
+import styled from 'styled-components';
 
 import { Button } from '../../../common/Button';
 import {
@@ -15,6 +16,7 @@ import {
 import { Icon } from '../../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 import { insertMathCommand } from '../../../packages/EditorContext/hooks/useMathPlugin';
+import { theme } from '../../../styles/theme';
 import { HyperlinkModal } from '../../HyperlinkModal/HyperlinkModal';
 import { InsertImageModal } from '../../InsertImageModal/InsertImageModal';
 
@@ -22,7 +24,7 @@ export const EmbedDropdown = () => {
   const { onCallCommand } = useCallEditorCommand();
 
   return (
-    <Dropdown
+    <DropdownStyled
       handler={({ onToggle }) => (
         <Button onClick={onToggle} oval space="small" color="secondary">
           <Icon icon="settings" />
@@ -87,6 +89,12 @@ export const EmbedDropdown = () => {
           </DropdownButtonActionStyled>
         </DropdownItemStyled>
       </DropdownListStyled>
-    </Dropdown>
+    </DropdownStyled>
   );
 };
+
+const DropdownStyled = styled(Dropdown)`
+  @media (min-width: ${theme.queries.tablet}) {
+    margin-left: auto;
+  }
+`;

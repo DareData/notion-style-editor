@@ -7,6 +7,7 @@ import { Option } from 'react-dropdown';
 import styled from 'styled-components';
 
 import { Select } from '../../../common/Select';
+import { theme } from '../../../styles/theme';
 import { pxToRem } from '../../../styles/utils';
 import { Matcher } from '../../../utils/Matcher';
 
@@ -40,8 +41,7 @@ export const TextCreation: React.FC<TextCreationProps> = ({
 };
 
 const SelectStyled = styled(Select)`
-  width: ${pxToRem(135)};
-  margin-left: ${pxToRem(16)};
+  margin-left: ${pxToRem(12)};
   .Dropdown-control {
     background-color: rgba(31, 31, 31, 0.8);
     .Dropdown-placeholder {

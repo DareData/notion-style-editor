@@ -88,5 +88,5 @@ export const EmbedObjects: React.FC<EmbedObjectsProps> = ({
 );
 
 const HyperlinkModalItemStyled = styled.li`
-  margin-left: ${pxToRem(16)};
+  margin-left: auto;
 `;

@@ -55,13 +55,13 @@ export const theme = {
       container: 101,
     },
     dropdown: {
-      container: 101,
+      container: 99,
     },
   },
   colors,
   queries: {
-    tablet: '563px',
-    laptop: '761px',
+    tablet: '677px',
+    laptop: '870px',
   },
 };
 

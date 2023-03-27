@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import { ModalContextProvider } from './context/ModalContextProvider';
 import { ModalBackdrop } from './ModalBackdrop';
 import { ModalContainer } from './ModalContainer';
+import { useBodyLockOverflow } from '../../hooks/useBodyLockOverflow';
 import { fadeInOut } from '../../styles/common/animations';
 
 export type ControlledModalProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -29,6 +30,10 @@ export const ControlledModal: React.FC<ControlledModalProps> = ({
   closeOnOutsideClick = true,
   ...rest
 }) => {
+  useBodyLockOverflow({
+    isLock: isOpen,
+  });
+
   const textEditorRef = document.querySelector('.date-data_text-editor');
 
   if (!textEditorRef) {
