@@ -4,5 +4,6 @@ export const errorMessages = {
     format: 'Unsupported file format. Please upload an image format.',
     upload: `The image could not be uploaded`,
     not_image: `We can't find or access the image in the URL`,
+    google_slides: 'This file is not google presenatation link',
   },
 };

@@ -37,18 +37,18 @@ export const MenuBar = () => {
 
   return (
     <MenuBarListStyled>
-      <Actions {...{ onActionClick }} />
-      <TextCreation {...{ onActionClick }} />
+      <Actions />
+      <TextCreation />
       {isTablet ? (
         <>
-          <TextFormats {...{ onActionClick }} />
+          <TextFormats />
           <ScriptActions />
-          <ParagraphFormat {...{ onActionClick }} />
+          <ParagraphFormat />
         </>
       ) : (
         <FormatDropdown />
       )}
-      {isLaptop ? <EmbedObjects {...{ onActionClick }} /> : <EmbedDropdown />}
+      {isLaptop ? <EmbedObjects /> : <EmbedDropdown />}
     </MenuBarListStyled>
   );
 };

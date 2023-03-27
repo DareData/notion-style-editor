@@ -1,61 +1,158 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { theme } from '../styles/theme';
 import { pxToRem } from '../styles/utils';
+import { Matcher } from '../utils/Matcher';
 
-type AnchorType = 'primary' | 'anchor-button';
+type AnchorColor = 'primary';
+type AnchorVariant = 'text' | 'button';
+type AnchorSpace = 'no' | 'thin' | 'small' | 'normal';
 
-type AnchorProps = {
-  type?: AnchorType;
+type AnchorOptions = {
+  oval?: boolean;
+  space?: AnchorSpace;
+  color?: AnchorColor;
+  variant?: AnchorVariant;
+};
+
+type AnchorProps = AnchorOptions & {
   children: React.ReactNode;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const Anchor: React.FC<AnchorProps> = ({
-  type = 'primary',
+  oval = false,
+  space = 'no',
+  color = 'primary',
+  variant = 'text',
   children,
+  target = '_blank',
   ...rest
 }) => (
-  <AnchorStyled {...rest} $type={type}>
+  <AnchorStyled
+    {...{ target }}
+    $space={space}
+    $color={color}
+    $variant={variant}
+    $oval={oval}
+    {...rest}
+  >
     {children}
   </AnchorStyled>
 );
 
-const anchorColors = {
-  bg: {
-    hover: {
-      primary: theme.colors.secondaryGrey,
-      'anchor-button': theme.colors.green,
-    },
-  },
-  border: {
-    hover: {
-      primary: 'transparent',
-      'anchor-button': theme.colors.green,
-    },
-  },
+const getAnchorEffectColorsMap = (variant: AnchorVariant) =>
+  Matcher(variant)
+    .match('button', () => ({
+      bg: {
+        primary: 'transparent',
+      },
+      border: {
+        primary: theme.colors.green,
+      },
+      color: {
+        primary: theme.colors.green,
+      },
+    }))
+    .getOrElse(() => ({
+      bg: {
+        primary: 'transparent',
+      },
+      border: {
+        primary: 'transparent',
+      },
+      color: {
+        primary: theme.colors.green,
+      },
+    }));
+
+const getAnchorColorsMap = (variant: AnchorVariant) =>
+  Matcher(variant)
+    .match('button', () => ({
+      idle: {
+        bg: {
+          primary: 'transparent',
+        },
+        border: {
+          primary: 'transparent',
+        },
+        color: {
+          primary: theme.colors.lightBlack,
+        },
+      },
+      hover: getAnchorEffectColorsMap(variant),
+      focus: getAnchorEffectColorsMap(variant),
+    }))
+    .getOrElse(() => ({
+      idle: {
+        bg: {
+          primary: 'transparent',
+        },
+        border: {
+          primary: 'transparent',
+        },
+        color: {
+          primary: theme.colors.lightBlack,
+        },
+      },
+      hover: getAnchorEffectColorsMap(variant),
+      focus: getAnchorEffectColorsMap(variant),
+    }));
+
+const anchorSpaceMap = {
+  no: 0,
+  thin: pxToRem(4),
+  small: pxToRem(7),
+  normal: `${pxToRem(10)} ${pxToRem(16)};`,
 };
 
-const AnchorStyled = styled.a<{ $type: AnchorType }>`
-  background-color: transparent;
-  border: 1px solid transparent;
+const AnchorStyled = styled.a<{
+  $space: AnchorSpace;
+  $variant: AnchorVariant;
+  $color: AnchorColor;
+  $oval: boolean;
+}>`
+  background-color: ${props =>
+    getAnchorColorsMap(props.$variant).idle.bg[props.$color]};
+  border: 1px solid
+    ${props => getAnchorColorsMap(props.$variant).idle.border[props.$color]};
+  color: ${props =>
+    getAnchorColorsMap(props.$variant).idle.color[props.$color]};
   outline: 0;
   cursor: pointer;
-  transition: background-color 0.2s ease-in, border-color 0.2s ease-in;
+  transition: background-color 0.2s ease-in, border-color 0.2s ease-in,
+    color 0.2s ease-in;
+
+  padding: ${props => anchorSpaceMap[props.$space]};
 
   ${props =>
-    props.$type &&
-    `
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: ${pxToRem(7)};
-    border-radius: ${pxToRem(8)};
+    props.$variant === 'button' &&
+    css`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    `};
 
-  `}
+  ${props =>
+    props.$oval &&
+    css`
+      border-radius: ${pxToRem(8)};
+    `}
 
-  &:hover,
+  &:hover {
+    background-color: ${props =>
+      getAnchorColorsMap(props.$variant).hover.bg[props.$color]};
+    border: 1px solid
+      ${props => getAnchorColorsMap(props.$variant).hover.border[props.$color]};
+    color: ${props =>
+      getAnchorColorsMap(props.$variant).hover.color[props.$color]};
+  }
+
   &:focus {
-    background-color: ${props => anchorColors.bg.hover[props.$type]};
-    border-color: ${props => anchorColors.border.hover[props.$type]};
+    background-color: ${props =>
+      getAnchorColorsMap(props.$variant).focus.bg[props.$color]};
+    border: 1px solid
+      ${props => getAnchorColorsMap(props.$variant).focus.border[props.$color]};
+    color: ${props =>
+      getAnchorColorsMap(props.$variant).focus.color[props.$color]};
   }
 `;

@@ -7,7 +7,6 @@ import {
   HyperlinkFormValues,
   useHyperlinkForm,
 } from './hooks/useHyperlinkForm';
-import { useLinkActions } from './hooks/useLinkActions';
 import { Button } from '../../common/Button';
 import { Input } from '../../common/Input';
 import { useModalContext } from '../../common/Modal/context/useModalContext';
@@ -15,6 +14,7 @@ import { ModalActions } from '../../common/Modal/ModalActions';
 import { ModalBody } from '../../common/Modal/ModalBody';
 import { ModalFooter } from '../../common/Modal/ModalFooter';
 import { ModalHeader } from '../../common/Modal/ModalHeader';
+import { useEditorLinkActions } from '../../hooks/useEditorLinkActions';
 import { useSelectedMarkPosition } from '../../hooks/useSelectedMarkPosition';
 
 export type HyperlinkModalContentProps = {
@@ -42,7 +42,7 @@ export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
   });
   const { getSelectedMarkPosition } = useSelectedMarkPosition();
   const { getLinkCreationTransaction, getLinkUpdateTransaction } =
-    useLinkActions();
+    useEditorLinkActions();
 
   const onHandleSubmit = (data: HyperlinkFormValues) => {
     onSubmit?.();

@@ -82,7 +82,13 @@ export const HyperlinkTooltip: React.FC = () => {
             </ButtonStyled>
           )}
         />
-        <AnchorStyled {...{ href }} target="_blank" type="anchor-button">
+        <AnchorStyled
+          {...{ href }}
+          target="_blank"
+          variant="button"
+          space="small"
+          oval
+        >
           <Icon icon="export" />
         </AnchorStyled>
       </HyperlinkTooltipStyled>

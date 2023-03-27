@@ -17,6 +17,7 @@ import { ReactComponent as EditIcon } from './assets/edit.svg';
 import { ReactComponent as EmbedImageIcon } from './assets/embed_image.svg';
 import { ReactComponent as ExportIcon } from './assets/export.svg';
 import { ReactComponent as FormatDropdownIcon } from './assets/format_dropdown.svg';
+import { ReactComponent as GoogleIcon } from './assets/google.svg';
 import { ReactComponent as ItalicIcon } from './assets/italic.svg';
 import { ReactComponent as MathIcon } from './assets/math.svg';
 import { ReactComponent as MermaidIcon } from './assets/mermaid.svg';
@@ -70,6 +71,7 @@ const icons = {
   paragraph: ParagraphIcon,
   format_dropdown: FormatDropdownIcon,
   settings: SettingsIcon,
+  google: GoogleIcon,
 };
 
 export const IconTypesValues = Object.keys(icons) as IconTypes[];
