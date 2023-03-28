@@ -3,11 +3,8 @@ import { linkSchema } from '@milkdown/preset-commonmark';
 import { useInstance } from '@milkdown/react';
 import styled from 'styled-components';
 
-import {
-  HyperlinkFormValues,
-  useHyperlinkForm,
-} from './hooks/useHyperlinkForm';
 import { useLinkActions } from './hooks/useLinkActions';
+import { LinkFormValues, useLinkForm } from './hooks/useLinkForm';
 import { Button } from '../../common/Button';
 import { Input } from '../../common/Input';
 import { useModalContext } from '../../common/Modal/context/useModalContext';
@@ -17,7 +14,7 @@ import { ModalFooter } from '../../common/Modal/ModalFooter';
 import { ModalHeader } from '../../common/Modal/ModalHeader';
 import { useSelectedMarkPosition } from '../../hooks/useSelectedMarkPosition';
 
-export type HyperlinkModalContentProps = {
+export type LinkContentProps = {
   text?: string;
   href?: string;
   title?: string;
@@ -25,7 +22,7 @@ export type HyperlinkModalContentProps = {
   onSubmit?: () => void;
 };
 
-export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
+export const LinkContent: React.FC<LinkContentProps> = ({
   text = '',
   href = '',
   title = '',
@@ -35,7 +32,7 @@ export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
   const { onClose } = useModalContext();
   const [, getEditor] = useInstance();
 
-  const { formState, register, handleSubmit } = useHyperlinkForm({
+  const { formState, register, handleSubmit } = useLinkForm({
     text,
     href,
     title,
@@ -44,7 +41,7 @@ export const HyperlinkModalContent: React.FC<HyperlinkModalContentProps> = ({
   const { getLinkCreationTransaction, getLinkUpdateTransaction } =
     useLinkActions();
 
-  const onHandleSubmit = (data: HyperlinkFormValues) => {
+  const onHandleSubmit = (data: LinkFormValues) => {
     onSubmit?.();
     const editor = getEditor();
     if (editor) {

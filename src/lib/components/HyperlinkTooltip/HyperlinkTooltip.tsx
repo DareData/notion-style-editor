@@ -12,7 +12,7 @@ import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
 import { useSelectedMarkPosition } from '../../hooks/useSelectedMarkPosition';
 import { pxToRem } from '../../styles/utils';
-import { HyperlinkModal } from '../HyperlinkModal/HyperlinkModal';
+import { HyperlinkModal } from '../LinkModal/LinkModal';
 import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
 
 export const hyperlinktooltip = tooltipFactory('HYPERLINK');

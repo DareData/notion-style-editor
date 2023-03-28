@@ -10,8 +10,8 @@ import { Button } from '../../../common/Button';
 import { Icon } from '../../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 import { insertMathCommand } from '../../../packages/EditorContext/hooks/useMathPlugin';
-import { HyperlinkModal } from '../../HyperlinkModal/HyperlinkModal';
-import { InsertImageModal } from '../../InsertImageModal/InsertImageModal';
+import { InsertImageModal } from '../../AddImageModal/AddImageModal';
+import { HyperlinkModal } from '../../LinkModal/LinkModal';
 
 export const BlocksActions: React.FC = () => {
   const { onCallCommand } = useCallEditorCommand();

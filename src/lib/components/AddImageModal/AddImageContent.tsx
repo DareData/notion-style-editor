@@ -16,11 +16,11 @@ import {
 } from '../../styles/common/animations';
 import { pxToRem } from '../../styles/utils';
 
-export type InsertImageContentProps = {
+export type AddImageContentProps = {
   onInsert: (source: string) => void;
 };
 
-export const InsertImageContent: React.FC<InsertImageContentProps> = ({
+export const AddImageContent: React.FC<AddImageContentProps> = ({
   onInsert,
 }) => {
   const { onClose } = useModalContext();
