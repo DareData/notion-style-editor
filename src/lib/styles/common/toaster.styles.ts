@@ -15,10 +15,11 @@ export const toasterStyles: DefaultToastOptions = {
     },
   },
   success: {
+    icon: '🙌',
     style: {
       padding: `${pxToRem(13)} ${pxToRem(16)}`,
-      color: theme.colors.lightBlack,
-      background: '#68D391',
+      color: theme.colors.white,
+      background: theme.colors.lightBlack,
       maxWidth: 'none',
       gap: `${pxToRem(5)}`,
     },
