@@ -49,7 +49,12 @@ export const CodeBlockNode: React.FC = () => {
     setAttrs({ language });
   };
 
-  const value = node.attrs.language || 'text';
+  const value = useMemo(
+    () =>
+      options.find(option => option.value === node.attrs.language)?.value ||
+      'text',
+    [node]
+  );
   const label = useMemo(
     () => options.find(option => option.value === value)?.label || 'Text',
     [value]

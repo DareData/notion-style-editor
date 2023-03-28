@@ -32,6 +32,7 @@
     "@hookform/resolvers": "^2.9.11",
     "@milkdown/core": "^7.0.1",
     "@milkdown/ctx": "^7.0.1",
+    "@milkdown/plugin-clipboard": "^7.1.1",
     "@milkdown/plugin-diagram": "^7.1.0",
     "@milkdown/plugin-emoji": "^7.1.1",
     "@milkdown/plugin-history": "^7.0.1",
