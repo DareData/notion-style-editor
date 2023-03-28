@@ -8,9 +8,9 @@ import { ProsemirrorAdapterProvider } from '@prosemirror-adapter/react';
 import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from 'styled-components';
 
+import { EditorContainer } from './EditorContainer';
 import { EditorContextProvider } from './EditorContext/EditorContextProvider';
 import { GlobalStyles } from '../common/GlobalStyles';
-import { EditorContainer } from '../components/EditorContainer';
 import { MenuBar } from '../components/MenuBar/MenuBar';
 import { TextEditorModeContextProvider } from '../components/TextEditorModeContext/TextEditorModeContextProvider';
 import { toasterStyles } from '../styles/common/toaster.styles';
