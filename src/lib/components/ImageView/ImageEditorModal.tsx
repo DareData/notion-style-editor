@@ -4,21 +4,39 @@ import {
   ImageEditorModalContent,
   ImageEditorModalContentProps,
 } from './ImageEditorModalContent';
-import { Button } from '../../common/Button';
+import { Button, ButtonProps } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
 import { ControlledModal } from '../../common/Modal/ControlledModal';
 import { useToggler } from '../../hooks/useToggler';
 import { pxToRem } from '../../styles/utils';
 
-type ImageEditorModalProps = ImageEditorModalContentProps;
+type ImageEditorModalProps = {
+  imageWidth: number;
+  imageHeight: number;
+} & ImageEditorModalContentProps;
 
-export const ImageEditorModal: React.FC<ImageEditorModalProps> = props => {
+export const ImageEditorModal: React.FC<ImageEditorModalProps> = ({
+  imageWidth,
+  imageHeight,
+  ...rest
+}) => {
   const { colors } = useTheme();
   const modal = useToggler();
 
+  const isImageSmall = imageHeight < 100 || imageWidth < 100;
+
+  const $top = isImageSmall ? pxToRem(0) : pxToRem(8);
+  const $right = isImageSmall ? pxToRem(-38) : pxToRem(8);
+
   return (
     <>
-      <ButtonStyled oval onClick={modal.on} variant="contained" space="small">
+      <ButtonStyled
+        {...{ $top, $right }}
+        oval
+        onClick={modal.on}
+        variant="contained"
+        space="small"
+      >
         <Icon icon="edit" fill={colors.lightBlack} />
       </ButtonStyled>
       <ControlledModal
@@ -26,16 +44,17 @@ export const ImageEditorModal: React.FC<ImageEditorModalProps> = props => {
         onOpen={modal.on}
         onClose={modal.off}
       >
-        <ImageEditorModalContent {...props} />
+        <ImageEditorModalContent {...rest} />
       </ControlledModal>
     </>
   );
 };
 
-const ButtonStyled = styled(Button)`
+type ButtonStyledProps = ButtonProps & { $top: string; $right: string };
+const ButtonStyled = styled<React.FC<ButtonStyledProps>>(Button)`
   position: absolute;
-  top: ${pxToRem(8)};
-  right: ${pxToRem(8)};
+  top: ${props => props.$top};
+  right: ${props => props.$right};
   display: flex;
   align-items: center;
 `;
