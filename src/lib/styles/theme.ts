@@ -23,6 +23,7 @@ export const theme = {
   fonts: {
     primary: 'OpenSans',
     secondary: 'SourceCodePro',
+    figree: 'Figtree',
   },
   sizes: {
     baseSize: 16,
@@ -48,6 +49,7 @@ export const theme = {
         tertiaryColor: '#F6F6F6',
       },
     },
+    selection: '#e9f7f5',
   },
   zIndexes: {
     modal: {

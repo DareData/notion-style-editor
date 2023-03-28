@@ -545,6 +545,21 @@
   dependencies:
     tslib "^2.4.0"
 
+"@milkdown/exception@7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@milkdown/exception/-/exception-7.1.1.tgz#101260da28caef6b0bd9ab060b07b829136dffd5"
+  integrity sha512-8oxWE4VbVuc+/D9zQlJUV2Yq7bwgClIHY22CQDHxl5Ck8UbKx2Oy+2XGacSiU2lXFQBmlh7/1wf3QyelCy7iUw==
+  dependencies:
+    tslib "^2.5.0"
+
+"@milkdown/plugin-clipboard@^7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@milkdown/plugin-clipboard/-/plugin-clipboard-7.1.1.tgz#e6b72a109efc4e714ca2659bfed77ba7a66c2516"
+  integrity sha512-rkxNsGF3q1SRerzojc7r9w+I0MWZ9oDvzITkCeWdTuBUGCykvi7TusR4uWhf33AY61GfLr27Zschhplpb8trIw==
+  dependencies:
+    "@milkdown/utils" "7.1.1"
+    tslib "^2.5.0"
+
 "@milkdown/plugin-diagram@^7.1.0":
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/@milkdown/plugin-diagram/-/plugin-diagram-7.1.0.tgz#6b506523b7f94b21e2be5beaa21f4a54ac3f5cc9"
@@ -556,6 +571,21 @@
     mermaid "^9.2.2"
     nanoid "^4.0.0"
     tslib "^2.4.0"
+    unist-util-visit "^4.0.0"
+
+"@milkdown/plugin-emoji@^7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@milkdown/plugin-emoji/-/plugin-emoji-7.1.1.tgz#a29659e24dd29bc7c35430cc32c0790a71b6c40b"
+  integrity sha512-NRxodbqSXcpKqYCnvc36rAtlTVjsDGjtQ/3txMM2Q8j+CJfsXzKEPuMKvuHfW/uSjfAGJlZjhjuGMm2IBdZSFQ==
+  dependencies:
+    "@milkdown/exception" "7.1.1"
+    "@milkdown/utils" "7.1.1"
+    "@types/node-emoji" "^1.8.1"
+    emoji-regex "^10.0.0"
+    node-emoji "^1.10.0"
+    remark-emoji "^3.0.1"
+    tslib "^2.5.0"
+    twemoji "^14.0.1"
     unist-util-visit "^4.0.0"
 
 "@milkdown/plugin-history@^7.0.1":
@@ -619,6 +649,14 @@
     lodash.debounce "^4.0.8"
     tippy.js "^6.3.7"
     tslib "^2.4.0"
+
+"@milkdown/plugin-trailing@^7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@milkdown/plugin-trailing/-/plugin-trailing-7.1.1.tgz#ad2b8124deda99460537b07a6168e329d12d61da"
+  integrity sha512-OhNu4EaaUysyhW/IfhOlZ24xnSUyZDbj1Yw+nZIeMBqvKM+/XxHpJ6JcsaLNAWdo8goMofmgXirgA63Z5K+5BQ==
+  dependencies:
+    "@milkdown/utils" "7.1.1"
+    tslib "^2.5.0"
 
 "@milkdown/plugin-upload@^7.1.0":
   version "7.1.0"
@@ -710,6 +748,15 @@
     "@milkdown/exception" "7.1.0"
     nanoid "^4.0.0"
     tslib "^2.4.0"
+
+"@milkdown/utils@7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@milkdown/utils/-/utils-7.1.1.tgz#2dc407f64a8d3b2e5eed965c9e7d079f5bf7fb8a"
+  integrity sha512-JtHlPGcTRUHLNyvqMI2H20LnXSFkXWSXFNum1n4U2aL3XC5q+K3WH1CUEKyH7mL35DF8QHRz+zQpk9sNCQdkvQ==
+  dependencies:
+    "@milkdown/exception" "7.1.1"
+    nanoid "^4.0.0"
+    tslib "^2.5.0"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -1011,6 +1058,11 @@
   version "0.7.31"
   resolved "https://registry.yarnpkg.com/@types/ms/-/ms-0.7.31.tgz#31b7ca6407128a3d2bbc27fe2d21b345397f6197"
   integrity sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==
+
+"@types/node-emoji@^1.8.1":
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/@types/node-emoji/-/node-emoji-1.8.2.tgz#8f24f44dcfcbb69dcbf5a64e7f4df3c1900097fd"
+  integrity sha512-PfF1qL/9veo8BSHLV84C9ORNr3lHSlnWJ6yU8OdNufoftajeWHTLVbGHvp2B7e7DPDS9gMs6cfeSsqo5rqSitg==
 
 "@types/node@*", "@types/node@^18.14.5":
   version "18.14.5"
@@ -2375,6 +2427,11 @@ elkjs@^0.8.2:
   resolved "https://registry.yarnpkg.com/elkjs/-/elkjs-0.8.2.tgz#c37763c5a3e24e042e318455e0147c912a7c248e"
   integrity sha512-L6uRgvZTH+4OF5NE/MBbzQx/WYpru1xCBE9respNj6qznEewGUIfhzmm7horWWxbNO2M0WckQypGctR8lH79xQ==
 
+emoji-regex@^10.0.0:
+  version "10.2.1"
+  resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-10.2.1.tgz#a41c330d957191efd3d9dfe6e1e8e1e9ab048b3f"
+  integrity sha512-97g6QgOk8zlDRdgq1WxwgTMgEWGVAQvB5Fdpgc1MkNy56la5SKP9GsMXKDOdqwn90/41a8yPwIGk1Y6WVbeMQA==
+
 emoji-regex@^7.0.1:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-7.0.3.tgz#933a04052860c85e83c122479c4748a8e4c72156"
@@ -2389,6 +2446,11 @@ emoji-regex@^9.2.2:
   version "9.2.2"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-9.2.2.tgz#840c8803b0d8047f4ff0cf963176b32d4ef3ed72"
   integrity sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==
+
+emoticon@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/emoticon/-/emoticon-4.0.1.tgz#2d2bbbf231ce3a5909e185bbb64a9da703a1e749"
+  integrity sha512-dqx7eA9YaqyvYtUhJwT4rC1HIp82j5ybS1/vQ42ur+jBe17dJMwZE4+gvL1XadSFfxaPFFGt3Xsw+Y8akThDlw==
 
 enhanced-resolve@^5.10.0:
   version "5.12.0"
@@ -2967,6 +3029,15 @@ fs-extra@^10.1.0:
     graceful-fs "^4.2.0"
     jsonfile "^6.0.1"
     universalify "^2.0.0"
+
+fs-extra@^8.0.1:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-8.1.0.tgz#49d43c45a88cd9677668cb7be1b46efdb8d2e1c0"
+  integrity sha512-yhlQgA6mnOJUKOsRUFsgJdQCvkKhcz8tlZG5HBQfReYZy46OwLcY+Zia0mtdHsOo9y/hP+CxMN0TU9QxoOtG4g==
+  dependencies:
+    graceful-fs "^4.2.0"
+    jsonfile "^4.0.0"
+    universalify "^0.1.0"
 
 fs-extra@~7.0.1:
   version "7.0.1"
@@ -3907,6 +3978,15 @@ jsonfile@^4.0.0:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
+jsonfile@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-5.0.0.tgz#e6b718f73da420d612823996fdf14a03f6ff6922"
+  integrity sha512-NQRZ5CRo74MhMMC3/3r5g2k4fjodJ/wh8MxjFbCViWKFjxrnudWSY5vomh+23ZaXzAS7J3fBZIR2dV6WbmfM0w==
+  dependencies:
+    universalify "^0.1.2"
+  optionalDependencies:
+    graceful-fs "^4.1.6"
+
 jsonfile@^6.0.1:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-6.1.0.tgz#bc55b2634793c679ec6403094eb13698a6ec0aae"
@@ -4245,7 +4325,7 @@ mdast-util-definitions@^5.0.0:
     "@types/unist" "^2.0.0"
     unist-util-visit "^4.0.0"
 
-mdast-util-find-and-replace@^2.0.0:
+mdast-util-find-and-replace@^2.0.0, mdast-util-find-and-replace@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/mdast-util-find-and-replace/-/mdast-util-find-and-replace-2.2.2.tgz#cc2b774f7f3630da4bd592f61966fecade8b99b1"
   integrity sha512-MTtdFRz/eMDHXzeK6W3dO7mXUlF82Gom4y0oOgvHhh/HXZAGvIQDUvQ0SuUx+j2tv44b8xTHOm8K/9OoRFnXKw==
@@ -4881,6 +4961,13 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
+
+node-emoji@^1.10.0, node-emoji@^1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/node-emoji/-/node-emoji-1.11.0.tgz#69a0150e6946e2f115e9d7ea4df7971e2628301c"
+  integrity sha512-wo2DpQkQp7Sjm2A0cq+sN7EHKO6Sl0ctXeBdFZrL9T9+UywORbufTcTZxom8YqpLQt/FqNMUkOpkZrJVYSKD3A==
+  dependencies:
+    lodash "^4.17.21"
 
 node-releases@^2.0.8:
   version "2.0.10"
@@ -5673,6 +5760,15 @@ regexpp@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/regexpp/-/regexpp-3.2.0.tgz#0425a2768d8f23bad70ca4b90461fa2f1213e1b2"
   integrity sha512-pq2bWo9mVD43nbts2wGv17XLiNLya+GklZ8kaDLV2Z08gDCsGpnKn9BFMepvWuHCbyVvY7J5o5+BVvoQbmlJLg==
+
+remark-emoji@^3.0.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/remark-emoji/-/remark-emoji-3.1.1.tgz#ce7420c251336c5d04c896a7cd1e3aa7dc4282f3"
+  integrity sha512-kVCTaHzX+/ls67mE8JsGd3ZX511p2FlAPmKhdGpRCb5z6GSwp+3sAIB5oTySIetPh7CtqfGf7JBUt5fyMjgOHw==
+  dependencies:
+    emoticon "^4.0.1"
+    mdast-util-find-and-replace "^2.2.2"
+    node-emoji "^1.11.0"
 
 remark-gfm@^3.0.0:
   version "3.0.1"
@@ -6704,6 +6800,21 @@ tsutils@^3.21.0:
   dependencies:
     tslib "^1.8.1"
 
+twemoji-parser@14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/twemoji-parser/-/twemoji-parser-14.0.0.tgz#13dabcb6d3a261d9efbf58a1666b182033bf2b62"
+  integrity sha512-9DUOTGLOWs0pFWnh1p6NF+C3CkQ96PWmEFwhOVmT3WbecRC+68AIqpsnJXygfkFcp4aXbOp8Dwbhh/HQgvoRxA==
+
+twemoji@^14.0.1:
+  version "14.0.2"
+  resolved "https://registry.yarnpkg.com/twemoji/-/twemoji-14.0.2.tgz#c53adb01dab22bf4870f648ca8cc347ce99ee37e"
+  integrity sha512-BzOoXIe1QVdmsUmZ54xbEH+8AgtOKUiG53zO5vVP2iUu6h5u9lN15NcuS6te4OY96qx0H7JK9vjjl9WQbkTRuA==
+  dependencies:
+    fs-extra "^8.0.1"
+    jsonfile "^5.0.0"
+    twemoji-parser "14.0.0"
+    universalify "^0.1.2"
+
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/type-check/-/type-check-0.4.0.tgz#07b8203bfa7056c0657050e3ccd2c37730bab8f1"
@@ -6889,7 +7000,7 @@ unist-util-visit@^4.0.0:
     unist-util-is "^5.0.0"
     unist-util-visit-parents "^5.1.1"
 
-universalify@^0.1.0:
+universalify@^0.1.0, universalify@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-0.1.2.tgz#b646f69be3942dabcecc9d6639c80dc105efaa66"
   integrity sha512-rBJeI5CXAlmy1pV+617WB9J63U6XcazHHF2f2dbJix4XzpUF0RS3Zbj0FGIOCAva5P/d/GBOYaACQ1w+0azUkg==

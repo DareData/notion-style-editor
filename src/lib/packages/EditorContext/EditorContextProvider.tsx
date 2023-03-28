@@ -3,35 +3,26 @@ import {
   rootCtx,
   defaultValueCtx,
 } from '@milkdown/core';
+import { clipboard } from '@milkdown/plugin-clipboard';
+import { emoji } from '@milkdown/plugin-emoji';
 import { history } from '@milkdown/plugin-history';
-import { listener, listenerCtx } from '@milkdown/plugin-listener';
-import { prism, prismConfig } from '@milkdown/plugin-prism';
-import {
-  codeBlockSchema,
-  commonmark,
-  imageSchema,
-} from '@milkdown/preset-commonmark';
+import { trailing } from '@milkdown/plugin-trailing';
 import { useEditor, UseEditorReturn } from '@milkdown/react';
-import { $view } from '@milkdown/utils';
 import {
   useNodeViewFactory,
   usePluginViewFactory,
 } from '@prosemirror-adapter/react';
 import { createContext, useMemo } from 'react';
-import { refractor } from 'refractor/lib/common';
 
+import { useCommonmarkPlugin } from './hooks/useCommonmarkPlugin';
 import { useEditorViewPlugin } from './hooks/useEditorViewPlugin';
 import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
+import { useListenerPlugin } from './hooks/useListenerPlugin';
 import { useMathPlugin } from './hooks/useMathPlugin';
 import { useMermaidPlugin } from './hooks/useMermaidPlugin';
+import { usePrismPlugin } from './hooks/usePrismPlugin';
 import { useSlashPlugin } from './hooks/useSlashPlugin';
 import { useUploadPlugin } from './hooks/useUploadPlugin';
-import { CodeBlock } from '../../components/CodeBlock';
-import {
-  HyperlinkTooltip,
-  hyperlinktooltip,
-} from '../../components/HyperlinkTooltip/HyperlinkTooltip';
-import { ImageView } from '../../components/ImageView/ImageView';
 
 type EditorContextData = {
   editor: UseEditorReturn | null;
@@ -60,6 +51,10 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   const uploadPlugin = useUploadPlugin();
   const mermaidPlugin = useMermaidPlugin();
   const slashPlugin = useSlashPlugin();
+  const commonmarkPlugin = useCommonmarkPlugin();
+  const prismPlugin = usePrismPlugin();
+  const listenerPlugin = useListenerPlugin({ onChange });
+
   useEditorViewPlugin();
 
   const editor = useEditor(
@@ -68,41 +63,23 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         .config(ctx => {
           ctx.set(rootCtx, root);
           ctx.set(defaultValueCtx, defaultMarkdownValue);
-          ctx.update(prismConfig.key, prev => ({
-            ...prev,
-            configureRefractor: () => refractor,
-          }));
-          ctx.get(listenerCtx).markdownUpdated((_, markdown) => {
-            onChange(markdown);
-          });
-          ctx.set(hyperlinktooltip.key, {
-            view: pluginViewFactory({
-              component: HyperlinkTooltip,
-            }),
-          });
         })
-        .use(listener)
-        .use(commonmark)
+        .use(commonmarkPlugin)
+        .use(listenerPlugin)
+        .use(prismPlugin)
         .use(history)
-        .use(prism)
-        .use(hyperlinktooltip)
         .use(uploadPlugin)
         .use(mermaidPlugin)
         .use(mathPlugin)
         .use(slashPlugin)
-        .use(
-          $view(codeBlockSchema.node, () =>
-            nodeViewFactory({ component: CodeBlock, as: 'div' })
-          )
-        )
-        .use(
-          $view(imageSchema.node, () =>
-            nodeViewFactory({ component: ImageView, as: 'div' })
-          )
-        )
+        .use(trailing)
+        .use(emoji)
+        .use(clipboard)
         .use(gfmPlugin),
     [
+      commonmarkPlugin,
       defaultMarkdownValue,
+      listenerPlugin,
       gfmPlugin,
       mathPlugin,
       mermaidPlugin,
@@ -111,6 +88,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
       slashPlugin,
       pluginViewFactory,
       uploadPlugin,
+      prismPlugin,
     ]
   );
 
