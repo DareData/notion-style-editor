@@ -1,4 +1,3 @@
-import { CmdKey } from '@milkdown/core';
 import {
   wrapInBulletListCommand,
   wrapInOrderedListCommand,
@@ -7,38 +6,37 @@ import styled from 'styled-components';
 
 import { Button } from '../../../common/Button';
 import { Icon } from '../../../common/Icon/Icon';
+import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 import { pxToRem } from '../../../styles/utils';
 
-type ParagraphFormatProps = {
-  onActionClick: <T>(action: CmdKey<T>) => void;
-};
+export const ParagraphFormat: React.FC = () => {
+  const { onCallCommand } = useCallEditorCommand();
 
-export const ParagraphFormat: React.FC<ParagraphFormatProps> = ({
-  onActionClick,
-}) => (
-  <>
-    <ParagraphFormatItemStyled>
-      <Button
-        onClick={() => onActionClick(wrapInBulletListCommand.key)}
-        oval
-        space="small"
-        color="secondary"
-      >
-        <Icon icon="bulleted_list" />
-      </Button>
-    </ParagraphFormatItemStyled>
-    <li>
-      <Button
-        onClick={() => onActionClick(wrapInOrderedListCommand.key)}
-        oval
-        space="small"
-        color="secondary"
-      >
-        <Icon icon="numbered_list" />
-      </Button>
-    </li>
-  </>
-);
+  return (
+    <>
+      <ParagraphFormatItemStyled>
+        <Button
+          onClick={() => onCallCommand(wrapInBulletListCommand.key)}
+          oval
+          space="small"
+          color="secondary"
+        >
+          <Icon icon="bulleted_list" />
+        </Button>
+      </ParagraphFormatItemStyled>
+      <li>
+        <Button
+          onClick={() => onCallCommand(wrapInOrderedListCommand.key)}
+          oval
+          space="small"
+          color="secondary"
+        >
+          <Icon icon="numbered_list" />
+        </Button>
+      </li>
+    </>
+  );
+};
 
 const ParagraphFormatItemStyled = styled.li`
   margin-left: ${pxToRem(12)};

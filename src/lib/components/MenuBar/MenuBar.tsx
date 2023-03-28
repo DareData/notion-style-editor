@@ -1,5 +1,3 @@
-import { CmdKey } from '@milkdown/core';
-import { callCommand } from '@milkdown/utils';
 import styled, { useTheme } from 'styled-components';
 
 import { Actions } from './components/Actions';
@@ -11,13 +9,11 @@ import { TextFormats } from './components/TextFormats';
 import { EmbedDropdown } from './EmbedDropdown/EmbedDropdown';
 import { FormatDropdown } from './FormatDropdown/FormatDropdown';
 import { useMatchMedia } from '../../hooks/useMatchMedia';
-import { useEditorContext } from '../../packages/EditorContext/useEditorContext';
 import { pxToRem } from '../../styles/utils';
 import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
 
 export const MenuBar = () => {
   const { queries } = useTheme();
-  const { editor } = useEditorContext();
   const { mode } = useTextEditorModeContext();
 
   const isTablet = useMatchMedia({
@@ -27,28 +23,24 @@ export const MenuBar = () => {
     query: `(min-width: ${queries.laptop})`,
   });
 
-  const onActionClick = <T,>(command: CmdKey<T>, payload?: T | undefined) => {
-    editor?.get()?.action(callCommand(command, payload));
-  };
-
   if (mode === 'preview') {
     return null;
   }
 
   return (
     <MenuBarListStyled>
-      <Actions {...{ onActionClick }} />
-      <TextCreation {...{ onActionClick }} />
+      <Actions />
+      <TextCreation />
       {isTablet ? (
         <>
-          <TextFormats {...{ onActionClick }} />
+          <TextFormats />
           <ScriptActions />
-          <ParagraphFormat {...{ onActionClick }} />
+          <ParagraphFormat />
         </>
       ) : (
         <FormatDropdown />
       )}
-      {isLaptop ? <EmbedObjects {...{ onActionClick }} /> : <EmbedDropdown />}
+      {isLaptop ? <EmbedObjects /> : <EmbedDropdown />}
     </MenuBarListStyled>
   );
 };

@@ -1,4 +1,3 @@
-import { CmdKey } from '@milkdown/core';
 import {
   turnIntoTextCommand,
   wrapInHeadingCommand,
@@ -7,7 +6,7 @@ import { Option } from 'react-dropdown';
 import styled from 'styled-components';
 
 import { Select } from '../../../common/Select';
-import { theme } from '../../../styles/theme';
+import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 import { pxToRem } from '../../../styles/utils';
 import { Matcher } from '../../../utils/Matcher';
 
@@ -17,18 +16,14 @@ const textCreationOptions: Option[] = [
   { value: 'normal', label: 'Normal Text' },
 ];
 
-type TextCreationProps = {
-  onActionClick: <T>(action: CmdKey<T>, payload?: T) => void;
-};
+export const TextCreation: React.FC = () => {
+  const { onCallCommand } = useCallEditorCommand();
 
-export const TextCreation: React.FC<TextCreationProps> = ({
-  onActionClick,
-}) => {
   const onSelectChange = ({ value }: Option) => {
     Matcher(value)
-      .match('title', () => onActionClick(wrapInHeadingCommand.key, 1))
-      .match('subtitle', () => onActionClick(wrapInHeadingCommand.key, 2))
-      .match('normal', () => onActionClick(turnIntoTextCommand.key));
+      .match('title', () => onCallCommand(wrapInHeadingCommand.key, 1))
+      .match('subtitle', () => onCallCommand(wrapInHeadingCommand.key, 2))
+      .match('normal', () => onCallCommand(turnIntoTextCommand.key));
   };
 
   return (

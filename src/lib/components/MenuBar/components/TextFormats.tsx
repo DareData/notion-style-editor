@@ -1,4 +1,3 @@
-import { CmdKey } from '@milkdown/core';
 import {
   toggleEmphasisCommand,
   toggleStrongCommand,
@@ -8,51 +7,52 @@ import styled from 'styled-components';
 
 import { Button } from '../../../common/Button';
 import { Icon } from '../../../common/Icon/Icon';
+import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 import { pxToRem } from '../../../styles/utils';
 
-type TextFormatsProps = {
-  onActionClick: <T>(action: CmdKey<T>) => void;
-};
+export const TextFormats: React.FC = () => {
+  const { onCallCommand } = useCallEditorCommand();
 
-export const TextFormats: React.FC<TextFormatsProps> = ({ onActionClick }) => (
-  <>
-    <BoldItemStyled>
-      <Button
-        onClick={() => onActionClick(toggleStrongCommand.key)}
-        oval
-        space="small"
-        color="secondary"
-      >
-        <Icon icon="bold" />
-      </Button>
-    </BoldItemStyled>
-    <li>
-      <Button
-        onClick={() => onActionClick(toggleEmphasisCommand.key)}
-        oval
-        space="small"
-        color="secondary"
-      >
-        <Icon icon="italic" />
-      </Button>
-    </li>
-    <li>
-      <Button oval space="small" color="secondary">
-        <Icon icon="underline" />
-      </Button>
-    </li>
-    <li>
-      <Button
-        onClick={() => onActionClick(toggleStrikethroughCommand.key)}
-        oval
-        space="small"
-        color="secondary"
-      >
-        <Icon icon="strikethrough" />
-      </Button>
-    </li>
-  </>
-);
+  return (
+    <>
+      <BoldItemStyled>
+        <Button
+          onClick={() => onCallCommand(toggleStrongCommand.key)}
+          oval
+          space="small"
+          color="secondary"
+        >
+          <Icon icon="bold" />
+        </Button>
+      </BoldItemStyled>
+      <li>
+        <Button
+          onClick={() => onCallCommand(toggleEmphasisCommand.key)}
+          oval
+          space="small"
+          color="secondary"
+        >
+          <Icon icon="italic" />
+        </Button>
+      </li>
+      <li>
+        <Button oval space="small" color="secondary">
+          <Icon icon="underline" />
+        </Button>
+      </li>
+      <li>
+        <Button
+          onClick={() => onCallCommand(toggleStrikethroughCommand.key)}
+          oval
+          space="small"
+          color="secondary"
+        >
+          <Icon icon="strikethrough" />
+        </Button>
+      </li>
+    </>
+  );
+};
 
 const BoldItemStyled = styled.li`
   margin-left: ${pxToRem(12)};
