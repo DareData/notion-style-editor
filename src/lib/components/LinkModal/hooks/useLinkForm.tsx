@@ -10,19 +10,15 @@ const schema = object()
   })
   .required();
 
-export type HyperlinkFormValues = InferType<typeof schema>;
+export type LinkFormValues = InferType<typeof schema>;
 
-type UseHyperlinkFormProps = {
+type UseLinkFormProps = {
   text: string;
   href: string;
   title: string;
 };
 
-export const useHyperlinkForm = ({
-  text,
-  href,
-  title,
-}: UseHyperlinkFormProps) =>
+export const useLinkForm = ({ text, href, title }: UseLinkFormProps) =>
   useForm({
     mode: 'onChange',
     resolver: yupResolver(schema),

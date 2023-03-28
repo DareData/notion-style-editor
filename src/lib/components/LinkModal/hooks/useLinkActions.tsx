@@ -2,14 +2,14 @@ import { linkSchema } from '@milkdown/preset-commonmark';
 import { EditorView } from 'prosemirror-view';
 import { useCallback } from 'react';
 
-import { HyperlinkFormValues } from './useHyperlinkForm';
+import { LinkFormValues } from './useLinkForm';
 import { useSelectedMarkPosition } from '../../../hooks/useSelectedMarkPosition';
 
 export const useLinkActions = () => {
   const { getSelectedMarkPosition } = useSelectedMarkPosition();
 
   const getLinkCreationTransaction = useCallback(
-    (view: EditorView, { href, text }: HyperlinkFormValues) => {
+    (view: EditorView, { href, text }: LinkFormValues) => {
       const { state } = view;
 
       const link = linkSchema.type().create({ href: href });
@@ -20,7 +20,7 @@ export const useLinkActions = () => {
   );
 
   const getLinkUpdateTransaction = useCallback(
-    (view: EditorView, { href, text, title = '' }: HyperlinkFormValues) => {
+    (view: EditorView, { href, text, title = '' }: LinkFormValues) => {
       const { state } = view;
 
       const linkPosition = getSelectedMarkPosition(view, linkSchema.type());
