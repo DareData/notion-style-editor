@@ -41,7 +41,7 @@ export const CodeBlock: React.FC = () => {
 
   const onCopyClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    onSuccessNotification('Copied to clipboard');
+    onSuccessNotification('Code snippet copied to clipboard!');
     navigator.clipboard.writeText(node.textContent);
   };
 
