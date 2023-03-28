@@ -17,7 +17,6 @@ import { useSelectedMarkPosition } from '../../hooks/useSelectedMarkPosition';
 export type LinkContentProps = {
   text?: string;
   href?: string;
-  title?: string;
   editable: boolean;
   onSubmit?: () => void;
 };
@@ -25,7 +24,6 @@ export type LinkContentProps = {
 export const LinkContent: React.FC<LinkContentProps> = ({
   text = '',
   href = '',
-  title = '',
   editable,
   onSubmit,
 }) => {
@@ -35,7 +33,6 @@ export const LinkContent: React.FC<LinkContentProps> = ({
   const { formState, register, handleSubmit } = useLinkForm({
     text,
     href,
-    title,
   });
   const { getSelectedMarkPosition } = useSelectedMarkPosition();
   const { getLinkCreationTransaction, getLinkUpdateTransaction } =
@@ -98,13 +95,6 @@ export const LinkContent: React.FC<LinkContentProps> = ({
           {...register('href')}
           error={formState.errors.href?.message}
         />
-        {editable && (
-          <TitleInputStyled
-            label="Title"
-            placeholder="Optional"
-            {...register('title')}
-          />
-        )}
       </ModalBody>
       <ModalFooterStyled>
         {editable && (
@@ -120,10 +110,6 @@ export const LinkContent: React.FC<LinkContentProps> = ({
     </form>
   );
 };
-
-const TitleInputStyled = styled(Input)`
-  margin-bottom: 0;
-`;
 
 const ModalFooterStyled = styled(ModalFooter)`
   display: flex;

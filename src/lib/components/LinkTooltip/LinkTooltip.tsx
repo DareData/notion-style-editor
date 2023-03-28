@@ -26,7 +26,7 @@ export const LinkTooltip: React.FC = () => {
   const { mode } = useTextEditorModeContext();
   const { getSelectedMarkPosition } = useSelectedMarkPosition();
 
-  const { title, href } = useHyperlinkAttrs();
+  const { href } = useHyperlinkAttrs();
 
   useEffect(() => {
     if (ref.current && !tooltipProvider.current && !loading) {
@@ -73,7 +73,7 @@ export const LinkTooltip: React.FC = () => {
         <LinkTextStyled>{href}</LinkTextStyled>
         <LinkModal
           editable
-          {...{ title, text, href }}
+          {...{ text, href }}
           handler={({ onOpen }) => (
             <ButtonStyled oval onClick={onOpen} space="small">
               <Icon icon="edit" fill={colors.white} />

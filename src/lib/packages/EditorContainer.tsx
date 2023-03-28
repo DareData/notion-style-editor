@@ -10,6 +10,11 @@ export const EditorContainer = styled.div`
   border-radius: ${pxToRem(6)};
   transition: border-color 0.2s ease-in;
 
+  * {
+    &::selection {
+    }
+  }
+
   &:hover,
   &:focus {
     border-color: ${props => props.theme.colors.grey};
@@ -49,6 +54,15 @@ export const EditorContainer = styled.div`
     .emoji {
       width: ${pxToRem(16)};
       height: ${pxToRem(16)};
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: ${props => props.theme.fonts.figree};
     }
   }
 
