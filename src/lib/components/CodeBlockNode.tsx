@@ -34,7 +34,7 @@ const options: Option[] = [
   },
 ];
 
-export const CodeBlock: React.FC = () => {
+export const CodeBlockNode: React.FC = () => {
   const { mode } = useTextEditorModeContext();
   const { onSuccessNotification } = useNotification();
   const { contentRef, node, setAttrs } = useNodeViewContext();
@@ -56,8 +56,8 @@ export const CodeBlock: React.FC = () => {
   );
 
   return (
-    <CodeBlockContainerStyled>
-      <CodeBlockActionsStyled>
+    <CodeBlockNodeContainerStyled>
+      <CodeBlockNodeActionsStyled>
         {Matcher(mode)
           .match('active', () => (
             <Select {...{ value, options }} onChange={onLanguageChange} />
@@ -70,15 +70,15 @@ export const CodeBlock: React.FC = () => {
           <Icon icon="copy" />
           <CopyTextStyled>Copy</CopyTextStyled>
         </Button>
-      </CodeBlockActionsStyled>
+      </CodeBlockNodeActionsStyled>
       <pre>
         <code ref={contentRef} />
       </pre>
-    </CodeBlockContainerStyled>
+    </CodeBlockNodeContainerStyled>
   );
 };
 
-const CodeBlockContainerStyled = styled.div`
+const CodeBlockNodeContainerStyled = styled.div`
   margin: ${pxToRem(16)} 0;
   padding: ${pxToRem(16)};
   font-size: ${pxToRem(16)};
@@ -91,7 +91,7 @@ const CodeBlockContainerStyled = styled.div`
   }
 `;
 
-const CodeBlockActionsStyled = styled.div`
+const CodeBlockNodeActionsStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;

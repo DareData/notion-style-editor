@@ -1,10 +1,9 @@
 import { editorViewCtx } from '@milkdown/core';
 import { imageSchema } from '@milkdown/preset-commonmark';
-import { findSelectedNodeOfType } from '@milkdown/prose';
 import { useInstance } from '@milkdown/react';
 import { useNodeViewContext } from '@prosemirror-adapter/react';
 import { useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { ImageEditorFormValues } from './hooks/useImageEditorForm';
 import { ImageEditorModal } from './ImageEditorModal';
@@ -13,7 +12,7 @@ import { useFindSelectedNode } from '../../hooks/useFindSelectedNode';
 import { pxToRem } from '../../styles/utils';
 import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
 
-export const ImageView: React.FC = () => {
+export const ImageNode: React.FC = () => {
   const [imageProperties, setImageProperties] = useState<{
     width: number;
     height: number;
@@ -54,7 +53,7 @@ export const ImageView: React.FC = () => {
   const title = attrs.title || '';
 
   return (
-    <ImageViewContainerStyled ref={contentRef} $isSelected={isSelected}>
+    <ImageNodeContainerStyled ref={contentRef} $isSelected={isSelected}>
       {attrs.src && (
         <>
           <Image src={attrs.src} onLoad={onImageLoad} {...{ alt, title }}>
@@ -72,11 +71,11 @@ export const ImageView: React.FC = () => {
           </Image>
         </>
       )}
-    </ImageViewContainerStyled>
+    </ImageNodeContainerStyled>
   );
 };
 
-const ImageViewContainerStyled = styled.div<{ $isSelected: boolean }>`
+const ImageNodeContainerStyled = styled.div<{ $isSelected: boolean }>`
   position: relative;
   display: inline-flex;
   outline-offset: ${pxToRem(2)};

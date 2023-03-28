@@ -26,12 +26,12 @@ import { useMathPlugin } from './hooks/useMathPlugin';
 import { useMermaidPlugin } from './hooks/useMermaidPlugin';
 import { useSlashPlugin } from './hooks/useSlashPlugin';
 import { useUploadPlugin } from './hooks/useUploadPlugin';
-import { CodeBlock } from '../../components/CodeBlock';
+import { CodeBlockNode } from '../../components/CodeBlockNode';
 import {
   HyperlinkTooltip,
   hyperlinktooltip,
 } from '../../components/HyperlinkTooltip/HyperlinkTooltip';
-import { ImageView } from '../../components/ImageView/ImageView';
+import { ImageNode } from '../../components/ImageNode/ImageNode';
 
 type EditorContextData = {
   editor: UseEditorReturn | null;
@@ -92,12 +92,12 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         .use(slashPlugin)
         .use(
           $view(codeBlockSchema.node, () =>
-            nodeViewFactory({ component: CodeBlock, as: 'div' })
+            nodeViewFactory({ component: CodeBlockNode, as: 'div' })
           )
         )
         .use(
           $view(imageSchema.node, () =>
-            nodeViewFactory({ component: ImageView, as: 'div' })
+            nodeViewFactory({ component: ImageNode, as: 'div' })
           )
         )
         .use(gfmPlugin),

@@ -10,12 +10,12 @@ import { Tabs } from '../../common/Tabs/Tabs';
 import { pxToRem } from '../../styles/utils';
 import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
 
-export enum MathViewTabs {
+export enum MathNodeTabs {
   Preview = 'preview',
   Source = 'soure',
 }
 
-export const MathView: React.FC = () => {
+export const MathNode: React.FC = () => {
   const { mode } = useTextEditorModeContext();
   const { setAttrs } = useNodeViewContext();
 
@@ -25,27 +25,27 @@ export const MathView: React.FC = () => {
 
   if (mode === 'preview') {
     return (
-      <MathViewContainerStyled>
+      <MathNodeContainerStyled>
         <PreviewTabPanel />
-      </MathViewContainerStyled>
+      </MathNodeContainerStyled>
     );
   }
 
   return (
-    <MathViewContainerStyled contentEditable={false}>
-      <Tabs initialTab={MathViewTabs.Preview}>
+    <MathNodeContainerStyled contentEditable={false}>
+      <Tabs initialTab={MathNodeTabs.Preview}>
         <TabList>
-          <Tab label={MathViewTabs.Preview}>Preview</Tab>
-          <Tab label={MathViewTabs.Source}>Source</Tab>
+          <Tab label={MathNodeTabs.Preview}>Preview</Tab>
+          <Tab label={MathNodeTabs.Source}>Source</Tab>
         </TabList>
-        <TabPanel label={MathViewTabs.Preview}>
+        <TabPanel label={MathNodeTabs.Preview}>
           <PreviewTabPanel />
         </TabPanel>
-        <SourceTabPanelStyled label={MathViewTabs.Source}>
+        <SourceTabPanelStyled label={MathNodeTabs.Source}>
           <SourceTabPanel {...{ onSourceUpdate }} />
         </SourceTabPanelStyled>
       </Tabs>
-    </MathViewContainerStyled>
+    </MathNodeContainerStyled>
   );
 };
 
@@ -53,6 +53,6 @@ const SourceTabPanelStyled = styled(TabPanel)`
   padding-right: 0;
 `;
 
-const MathViewContainerStyled = styled.div`
+const MathNodeContainerStyled = styled.div`
   margin: ${pxToRem(16)} 0;
 `;
