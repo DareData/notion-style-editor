@@ -1,13 +1,13 @@
 import styled, { useTheme } from 'styled-components';
 
-import { Actions } from './components/Actions';
-import { EmbedObjects } from './components/EmbedObjects';
-import { ParagraphFormat } from './components/ParagraphFormat';
-import { ScriptActions } from './components/ScriptActions';
-import { TextCreation } from './components/TextCreation';
-import { TextFormats } from './components/TextFormats';
-import { EmbedDropdown } from './EmbedDropdown/EmbedDropdown';
-import { FormatDropdown } from './FormatDropdown/FormatDropdown';
+import { BlocksActionsDropdown } from './BlocksActionsDropdown/BlocksActionsDropdown';
+import { BlocksActions } from './components/BlocksActions';
+import { FormatActions } from './components/FormatActions';
+import { ListsActions } from './components/ListsActions';
+import { SubSuperScriptActions } from './components/SubSuperScriptActions';
+import { TurnTextsActions } from './components/TurnTextsActions';
+import { UndoRedoActions } from './components/UndoRedoActions';
+import { TextsFormatActionsDropdown } from './TextsFormatActionsDropdown/TextsFormatActionsDropdown';
 import { useMatchMedia } from '../../hooks/useMatchMedia';
 import { pxToRem } from '../../styles/utils';
 import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
@@ -29,18 +29,18 @@ export const MenuBar = () => {
 
   return (
     <MenuBarListStyled>
-      <Actions />
-      <TextCreation />
+      <UndoRedoActions />
+      <TurnTextsActions />
       {isTablet ? (
         <>
-          <TextFormats />
-          <ScriptActions />
-          <ParagraphFormat />
+          <FormatActions />
+          <SubSuperScriptActions />
+          <ListsActions />
         </>
       ) : (
-        <FormatDropdown />
+        <TextsFormatActionsDropdown />
       )}
-      {isLaptop ? <EmbedObjects /> : <EmbedDropdown />}
+      {isLaptop ? <BlocksActions /> : <BlocksActionsDropdown />}
     </MenuBarListStyled>
   );
 };

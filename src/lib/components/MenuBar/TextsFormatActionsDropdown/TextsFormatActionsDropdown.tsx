@@ -1,25 +1,22 @@
 import styled from 'styled-components';
 
-import { EmbedDropdownList } from './EmbedDropdownList';
+import { TextsFormatActionsDropdownList } from './TextsFormatActionsDropdownList';
 import { Button } from '../../../common/Button';
 import { Dropdown } from '../../../common/Dropdown/Dropdown';
 import { Icon } from '../../../common/Icon/Icon';
-import { theme } from '../../../styles/theme';
 
-export const EmbedDropdown = () => (
+export const TextsFormatActionsDropdown = () => (
   <DropdownStyled
     handler={({ onToggle }) => (
       <Button onClick={onToggle} oval space="small" color="secondary">
-        <Icon icon="settings" />
+        <Icon icon="format_dropdown" />
       </Button>
     )}
   >
-    <EmbedDropdownList />
+    <TextsFormatActionsDropdownList />
   </DropdownStyled>
 );
 
 const DropdownStyled = styled(Dropdown)`
-  @media (min-width: ${theme.queries.tablet}) {
-    margin-left: auto;
-  }
+  margin-left: auto;
 `;

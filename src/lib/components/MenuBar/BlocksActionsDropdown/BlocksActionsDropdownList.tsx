@@ -18,7 +18,7 @@ import { insertMathCommand } from '../../../packages/EditorContext/hooks/useMath
 import { HyperlinkModal } from '../../HyperlinkModal/HyperlinkModal';
 import { InsertImageModal } from '../../InsertImageModal/InsertImageModal';
 
-export const EmbedDropdownList = () => {
+export const BlocksActionsDropdownList = () => {
   const { onClose } = useDropdownContext();
   const { onCallCommand } = useCallEditorCommand();
 

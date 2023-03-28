@@ -4,7 +4,7 @@ import { Button } from '../../../common/Button';
 import { Icon } from '../../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 
-export const Actions: React.FC = () => {
+export const UndoRedoActions: React.FC = () => {
   const { onCallCommand } = useCallEditorCommand();
 
   return (

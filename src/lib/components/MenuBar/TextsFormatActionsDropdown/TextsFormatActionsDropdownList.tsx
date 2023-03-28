@@ -16,7 +16,7 @@ import {
 import { Icon } from '../../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 
-export const FormatDropdownList = () => {
+export const TextsFormatActionsDropdownList = () => {
   const { onClose } = useDropdownContext();
   const { onCallCommand } = useCallEditorCommand();
 
@@ -46,7 +46,7 @@ export const FormatDropdownList = () => {
       <DropdownItemStyled>
         <DropdownButtonActionStyled>
           <Icon icon="underline" />
-          ~Underline
+          Underline
         </DropdownButtonActionStyled>
       </DropdownItemStyled>
       <DropdownItemStyled>
@@ -60,13 +60,13 @@ export const FormatDropdownList = () => {
       <DropdownItemStyled>
         <DropdownButtonActionStyled>
           <Icon icon="superscript" />
-          ~Superscript
+          Superscript
         </DropdownButtonActionStyled>
       </DropdownItemStyled>
       <DropdownItemStyled>
         <DropdownButtonActionStyled>
           <Icon icon="subscript" />
-          ~Subscript
+          Subscript
         </DropdownButtonActionStyled>
       </DropdownItemStyled>
       <DropdownItemStyled

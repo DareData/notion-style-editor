@@ -9,12 +9,12 @@ import { Icon } from '../../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 import { pxToRem } from '../../../styles/utils';
 
-export const ParagraphFormat: React.FC = () => {
+export const ListsActions: React.FC = () => {
   const { onCallCommand } = useCallEditorCommand();
 
   return (
     <>
-      <ParagraphFormatItemStyled>
+      <BulletListItemStyled>
         <Button
           onClick={() => onCallCommand(wrapInBulletListCommand.key)}
           oval
@@ -23,7 +23,7 @@ export const ParagraphFormat: React.FC = () => {
         >
           <Icon icon="bulleted_list" />
         </Button>
-      </ParagraphFormatItemStyled>
+      </BulletListItemStyled>
       <li>
         <Button
           onClick={() => onCallCommand(wrapInOrderedListCommand.key)}
@@ -38,6 +38,6 @@ export const ParagraphFormat: React.FC = () => {
   );
 };
 
-const ParagraphFormatItemStyled = styled.li`
+const BulletListItemStyled = styled.li`
   margin-left: ${pxToRem(12)};
 `;
