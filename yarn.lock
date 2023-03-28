@@ -545,6 +545,13 @@
   dependencies:
     tslib "^2.4.0"
 
+"@milkdown/exception@7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@milkdown/exception/-/exception-7.1.1.tgz#101260da28caef6b0bd9ab060b07b829136dffd5"
+  integrity sha512-8oxWE4VbVuc+/D9zQlJUV2Yq7bwgClIHY22CQDHxl5Ck8UbKx2Oy+2XGacSiU2lXFQBmlh7/1wf3QyelCy7iUw==
+  dependencies:
+    tslib "^2.5.0"
+
 "@milkdown/plugin-diagram@^7.1.0":
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/@milkdown/plugin-diagram/-/plugin-diagram-7.1.0.tgz#6b506523b7f94b21e2be5beaa21f4a54ac3f5cc9"
@@ -619,6 +626,14 @@
     lodash.debounce "^4.0.8"
     tippy.js "^6.3.7"
     tslib "^2.4.0"
+
+"@milkdown/plugin-trailing@^7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@milkdown/plugin-trailing/-/plugin-trailing-7.1.1.tgz#ad2b8124deda99460537b07a6168e329d12d61da"
+  integrity sha512-OhNu4EaaUysyhW/IfhOlZ24xnSUyZDbj1Yw+nZIeMBqvKM+/XxHpJ6JcsaLNAWdo8goMofmgXirgA63Z5K+5BQ==
+  dependencies:
+    "@milkdown/utils" "7.1.1"
+    tslib "^2.5.0"
 
 "@milkdown/plugin-upload@^7.1.0":
   version "7.1.0"
@@ -710,6 +725,15 @@
     "@milkdown/exception" "7.1.0"
     nanoid "^4.0.0"
     tslib "^2.4.0"
+
+"@milkdown/utils@7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@milkdown/utils/-/utils-7.1.1.tgz#2dc407f64a8d3b2e5eed965c9e7d079f5bf7fb8a"
+  integrity sha512-JtHlPGcTRUHLNyvqMI2H20LnXSFkXWSXFNum1n4U2aL3XC5q+K3WH1CUEKyH7mL35DF8QHRz+zQpk9sNCQdkvQ==
+  dependencies:
+    "@milkdown/exception" "7.1.1"
+    nanoid "^4.0.0"
+    tslib "^2.5.0"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
