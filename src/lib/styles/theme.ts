@@ -23,6 +23,7 @@ export const theme = {
   fonts: {
     primary: 'OpenSans',
     secondary: 'SourceCodePro',
+    figree: 'Figtree',
   },
   sizes: {
     baseSize: 16,

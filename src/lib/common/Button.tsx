@@ -132,6 +132,7 @@ const ButtonStyled = styled.button<{
       ? buttonColorsMap.idle.bg[props.$color]
       : 'transparent'};
   font-size: ${pxToRem(16)};
+  font-family: ${props => props.theme.fonts.figree};
   color: ${props =>
     props.$loading ? 'transparent' : buttonColorsMap.idle.color[props.$color]};
   user-select: ${props => (props.$loading ? 'none' : 'auto')};
