@@ -12,6 +12,7 @@ export const EditorContainer = styled.div`
 
   * {
     &::selection {
+      background-color: ${props => props.theme.components.selection};
     }
   }
 
