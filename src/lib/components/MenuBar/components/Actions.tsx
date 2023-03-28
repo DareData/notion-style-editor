@@ -1,34 +1,34 @@
-import { CmdKey } from '@milkdown/core';
 import { redoCommand, undoCommand } from '@milkdown/plugin-history';
 
 import { Button } from '../../../common/Button';
 import { Icon } from '../../../common/Icon/Icon';
+import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 
-type ActionsProps = {
-  onActionClick: <T>(action: CmdKey<T>) => void;
+export const Actions: React.FC = () => {
+  const { onCallCommand } = useCallEditorCommand();
+
+  return (
+    <>
+      <li>
+        <Button
+          onClick={() => onCallCommand(undoCommand.key)}
+          oval
+          space="small"
+          color="secondary"
+        >
+          <Icon icon="undo" />
+        </Button>
+      </li>
+      <li>
+        <Button
+          onClick={() => onCallCommand(redoCommand.key)}
+          oval
+          space="small"
+          color="secondary"
+        >
+          <Icon icon="redo" />
+        </Button>
+      </li>
+    </>
+  );
 };
-
-export const Actions: React.FC<ActionsProps> = ({ onActionClick }) => (
-  <>
-    <li>
-      <Button
-        onClick={() => onActionClick(undoCommand.key)}
-        oval
-        space="small"
-        color="secondary"
-      >
-        <Icon icon="undo" />
-      </Button>
-    </li>
-    <li>
-      <Button
-        onClick={() => onActionClick(redoCommand.key)}
-        oval
-        space="small"
-        color="secondary"
-      >
-        <Icon icon="redo" />
-      </Button>
-    </li>
-  </>
-);
