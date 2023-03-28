@@ -4,7 +4,7 @@ import { Button } from '../../../common/Button';
 import { Icon } from '../../../common/Icon/Icon';
 import { pxToRem } from '../../../styles/utils';
 
-export const ScriptActions: React.FC = () => (
+export const SubSuperScriptActions: React.FC = () => (
   <>
     <SuperscriptItemStyled>
       {/* add missing superscript command */}

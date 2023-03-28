@@ -13,7 +13,7 @@ import { insertMathCommand } from '../../../packages/EditorContext/hooks/useMath
 import { HyperlinkModal } from '../../HyperlinkModal/HyperlinkModal';
 import { InsertImageModal } from '../../InsertImageModal/InsertImageModal';
 
-export const EmbedObjects: React.FC = () => {
+export const BlocksActions: React.FC = () => {
   const { onCallCommand } = useCallEditorCommand();
 
   return (

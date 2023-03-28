@@ -10,13 +10,13 @@ import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 import { pxToRem } from '../../../styles/utils';
 import { Matcher } from '../../../utils/Matcher';
 
-const textCreationOptions: Option[] = [
+const options: Option[] = [
   { value: 'title', label: 'Title' },
   { value: 'subtitle', label: 'Subtitle' },
   { value: 'normal', label: 'Normal Text' },
 ];
 
-export const TextCreation: React.FC = () => {
+export const TurnTextsActions: React.FC = () => {
   const { onCallCommand } = useCallEditorCommand();
 
   const onSelectChange = ({ value }: Option) => {
@@ -28,7 +28,7 @@ export const TextCreation: React.FC = () => {
 
   return (
     <SelectStyled
-      options={textCreationOptions}
+      {...{ options }}
       placeholder="Select text.."
       onChange={onSelectChange}
     />

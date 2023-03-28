@@ -10,7 +10,7 @@ import { Icon } from '../../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 import { pxToRem } from '../../../styles/utils';
 
-export const TextFormats: React.FC = () => {
+export const FormatActions: React.FC = () => {
   const { onCallCommand } = useCallEditorCommand();
 
   return (
