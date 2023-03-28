@@ -15,8 +15,8 @@ import {
 import { Icon } from '../../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 import { insertMathCommand } from '../../../packages/EditorContext/hooks/useMathPlugin';
-import { InsertImageModal } from '../../AddImageModal/AddImageModal';
-import { HyperlinkModal } from '../../LinkModal/LinkModal';
+import { AddImageModal } from '../../AddImageModal/AddImageModal';
+import { LinkModal } from '../../LinkModal/LinkModal';
 
 export const BlocksActionsDropdownList = () => {
   const { onClose } = useDropdownContext();
@@ -30,7 +30,7 @@ export const BlocksActionsDropdownList = () => {
   return (
     <DropdownListStyled>
       <DropdownItemStyled>
-        <HyperlinkModal
+        <LinkModal
           editable={false}
           onModalOpen={onClose}
           handler={({ onOpen }) => (
@@ -43,7 +43,7 @@ export const BlocksActionsDropdownList = () => {
         />
       </DropdownItemStyled>
       <DropdownItemStyled>
-        <InsertImageModal
+        <AddImageModal
           handler={({ onOpen }) => (
             <DropdownButtonActionStyled onClick={onOpen}>
               <Icon icon="embed_image" />

@@ -4,7 +4,7 @@ import { commonmark } from '@milkdown/preset-commonmark';
 import { usePluginViewFactory } from '@prosemirror-adapter/react';
 import { useMemo } from 'react';
 
-import { HyperlinkTooltip } from '../../../components/HyperlinkTooltip/HyperlinkTooltip';
+import { HyperlinkTooltip } from '../../../components/LinkTooltip/LinkTooltip';
 
 const hyperlinktooltip = tooltipFactory('HYPERLINK');
 

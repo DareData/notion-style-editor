@@ -10,8 +10,8 @@ import { Button } from '../../../common/Button';
 import { Icon } from '../../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 import { insertMathCommand } from '../../../packages/EditorContext/hooks/useMathPlugin';
-import { InsertImageModal } from '../../AddImageModal/AddImageModal';
-import { HyperlinkModal } from '../../LinkModal/LinkModal';
+import { AddImageModal } from '../../AddImageModal/AddImageModal';
+import { LinkModal } from '../../LinkModal/LinkModal';
 
 export const BlocksActions: React.FC = () => {
   const { onCallCommand } = useCallEditorCommand();
@@ -19,7 +19,7 @@ export const BlocksActions: React.FC = () => {
   return (
     <>
       <HyperlinkModalItemStyled>
-        <HyperlinkModal
+        <LinkModal
           editable={false}
           handler={({ onOpen }) => (
             <Button oval onClick={onOpen} space="small" color="secondary">
@@ -29,7 +29,7 @@ export const BlocksActions: React.FC = () => {
         />
       </HyperlinkModalItemStyled>
       <li>
-        <InsertImageModal
+        <AddImageModal
           handler={({ onOpen }) => (
             <Button oval onClick={onOpen} space="small" color="secondary">
               <Icon icon="embed_image" />

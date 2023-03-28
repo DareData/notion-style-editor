@@ -20,8 +20,8 @@ import { Hidden } from '../../common/Hidden';
 import { Icon } from '../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../hooks/useCallEditorCommand';
 import { insertMathCommand } from '../../packages/EditorContext/hooks/useMathPlugin';
-import { InsertImageModal } from '../AddImageModal/AddImageModal';
-import { HyperlinkModal } from '../LinkModal/LinkModal';
+import { AddImageModal } from '../AddImageModal/AddImageModal';
+import { LinkModal } from '../LinkModal/LinkModal';
 
 export const SlashNode: React.FC = () => {
   const tooltipRef = useRef<HTMLDivElement>(null);
@@ -79,7 +79,7 @@ export const SlashNode: React.FC = () => {
             </DropdownButtonActionStyled>
           </DropdownItemStyled>
           <DropdownItemStyled>
-            <HyperlinkModal
+            <LinkModal
               editable={false}
               onModalOpen={onRemoveSlash}
               handler={({ onOpen }) => (
@@ -91,7 +91,7 @@ export const SlashNode: React.FC = () => {
             />
           </DropdownItemStyled>
           <DropdownItemStyled>
-            <InsertImageModal
+            <AddImageModal
               onModalOpen={onRemoveSlash}
               handler={({ onOpen }) => (
                 <DropdownButtonActionStyled onClick={onOpen}>
