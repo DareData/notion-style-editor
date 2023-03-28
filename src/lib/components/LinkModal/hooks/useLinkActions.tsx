@@ -13,21 +13,21 @@ export const useLinkActions = () => {
       const { state } = view;
 
       const link = linkSchema.type().create({ href: href });
-      const node = state.schema.text(text).mark([link]);
+      const node = state.schema.text(text || href).mark([link]);
       return state.tr.replaceSelectionWith(node, false);
     },
     []
   );
 
   const getLinkUpdateTransaction = useCallback(
-    (view: EditorView, { href, text, title = '' }: LinkFormValues) => {
+    (view: EditorView, { href, text }: LinkFormValues) => {
       const { state } = view;
 
       const linkPosition = getSelectedMarkPosition(view, linkSchema.type());
 
       if (linkPosition) {
-        const link = linkSchema.type().create({ href: href, title });
-        const node = state.schema.text(text).mark([link]);
+        const link = linkSchema.type().create({ href: href });
+        const node = state.schema.text(text || href).mark([link]);
 
         return state.tr.replaceRangeWith(
           linkPosition.start,

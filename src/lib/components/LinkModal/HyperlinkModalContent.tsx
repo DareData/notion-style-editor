@@ -85,8 +85,7 @@ export const LinkContent: React.FC<LinkContentProps> = ({
           {...register('text')}
           label="Text"
           error={formState.errors.text?.message}
-          required
-          placeholder="Add a text"
+          placeholder="Optional"
         />
         <Input
           label="Link"
