@@ -3,6 +3,7 @@ import {
   rootCtx,
   defaultValueCtx,
 } from '@milkdown/core';
+import { emoji } from '@milkdown/plugin-emoji';
 import { history } from '@milkdown/plugin-history';
 import { trailing } from '@milkdown/plugin-trailing';
 import { useEditor, UseEditorReturn } from '@milkdown/react';
@@ -71,6 +72,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         .use(mathPlugin)
         .use(slashPlugin)
         .use(trailing)
+        .use(emoji)
         .use(gfmPlugin),
     [
       commonmarkPlugin,

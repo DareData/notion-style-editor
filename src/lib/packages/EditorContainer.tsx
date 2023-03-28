@@ -45,6 +45,11 @@ export const EditorContainer = styled.div`
       font-weight: 600;
       color: ${props => props.theme.components.editor.link};
     }
+
+    .emoji {
+      width: ${pxToRem(16)};
+      height: ${pxToRem(16)};
+    }
   }
 
   .tableWrapper {
