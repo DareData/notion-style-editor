@@ -9,12 +9,13 @@ import styled from 'styled-components';
 import { Button } from '../../../common/Button';
 import { Icon } from '../../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
-import { insertMathCommand } from '../../../packages/EditorContext/hooks/useMathPlugin';
+import { useInsertMathBlock } from '../../../hooks/useInsertMathAction';
 import { AddImageModal } from '../../AddImageModal/AddImageModal';
 import { LinkModal } from '../../LinkModal/LinkModal';
 
 export const BlocksActions: React.FC = () => {
   const { onCallCommand } = useCallEditorCommand();
+  const { onInsertMathBlock } = useInsertMathBlock();
 
   return (
     <>
@@ -62,7 +63,7 @@ export const BlocksActions: React.FC = () => {
       </li>
       <li>
         <Button
-          onClick={() => onCallCommand(insertMathCommand.key)}
+          onClick={onInsertMathBlock}
           oval
           space="small"
           color="secondary"
