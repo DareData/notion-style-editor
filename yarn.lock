@@ -552,6 +552,14 @@
   dependencies:
     tslib "^2.5.0"
 
+"@milkdown/plugin-clipboard@^7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@milkdown/plugin-clipboard/-/plugin-clipboard-7.1.1.tgz#e6b72a109efc4e714ca2659bfed77ba7a66c2516"
+  integrity sha512-rkxNsGF3q1SRerzojc7r9w+I0MWZ9oDvzITkCeWdTuBUGCykvi7TusR4uWhf33AY61GfLr27Zschhplpb8trIw==
+  dependencies:
+    "@milkdown/utils" "7.1.1"
+    tslib "^2.5.0"
+
 "@milkdown/plugin-diagram@^7.1.0":
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/@milkdown/plugin-diagram/-/plugin-diagram-7.1.0.tgz#6b506523b7f94b21e2be5beaa21f4a54ac3f5cc9"
