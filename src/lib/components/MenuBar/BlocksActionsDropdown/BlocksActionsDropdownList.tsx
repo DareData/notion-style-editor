@@ -14,13 +14,14 @@ import {
 } from '../../../common/Dropdown/Dropdown';
 import { Icon } from '../../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
-import { insertMathCommand } from '../../../packages/EditorContext/hooks/useMathPlugin';
+import { useInsertMathBlock } from '../../../hooks/useInsertMathAction';
 import { AddImageModal } from '../../AddImageModal/AddImageModal';
 import { LinkModal } from '../../LinkModal/LinkModal';
 
 export const BlocksActionsDropdownList = () => {
   const { onClose } = useDropdownContext();
   const { onCallCommand } = useCallEditorCommand();
+  const { onInsertMathBlock } = useInsertMathBlock();
 
   const onActionClick = <T,>(command: CmdKey<T>, payload?: T) => {
     onClose();
@@ -73,9 +74,7 @@ export const BlocksActionsDropdownList = () => {
         </DropdownButtonActionStyled>
       </DropdownItemStyled>
       <DropdownItemStyled>
-        <DropdownButtonActionStyled
-          onClick={() => onActionClick(insertMathCommand.key)}
-        >
+        <DropdownButtonActionStyled onClick={onInsertMathBlock}>
           <Icon icon="math" />
           Add math
         </DropdownButtonActionStyled>
