@@ -1,6 +1,10 @@
 import { useMemo } from 'react';
 
+import { ReactComponent as AddColumnLeftIcon } from './assets/add_column_left.svg';
+import { ReactComponent as AddColumnRightIcon } from './assets/add_column_right.svg';
 import { ReactComponent as AddLinkIcon } from './assets/add_link.svg';
+import { ReactComponent as AddRowBottomIcon } from './assets/add_row_bottom.svg';
+import { ReactComponent as AddRowTopIcon } from './assets/add_row_top.svg';
 import { ReactComponent as ArrowDownIcon } from './assets/arrow_down.svg';
 import { ReactComponent as ArrowLeftIcon } from './assets/arrow_left.svg';
 import { ReactComponent as ArrowRightIcon } from './assets/arrow_right.svg';
@@ -64,6 +68,10 @@ const icons = {
   paragraph: ParagraphIcon,
   format_dropdown: FormatDropdownIcon,
   settings: SettingsIcon,
+  add_row_top: AddRowTopIcon,
+  add_row_bottom: AddRowBottomIcon,
+  add_column_left: AddColumnLeftIcon,
+  add_column_right: AddColumnRightIcon,
 };
 
 export const IconTypesValues = Object.keys(icons) as IconTypes[];

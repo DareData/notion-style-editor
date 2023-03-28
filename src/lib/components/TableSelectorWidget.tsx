@@ -128,7 +128,7 @@ export const TableSelectorWidget: React.FC = () => {
 const widgetStylesMap = {
   top: {
     row: pxToRem(1),
-    column: pxToRem(-10),
+    column: pxToRem(-12),
     table: pxToRem(-12),
   },
   bottom: {
@@ -137,7 +137,7 @@ const widgetStylesMap = {
     table: '',
   },
   left: {
-    row: pxToRem(-10),
+    row: pxToRem(-12),
     column: pxToRem(1),
     table: pxToRem(-12),
   },
@@ -147,13 +147,13 @@ const widgetStylesMap = {
     table: '',
   },
   width: {
-    row: pxToRem(4),
+    row: pxToRem(8),
     column: '',
     table: pxToRem(8),
   },
   height: {
     row: '',
-    column: pxToRem(4),
+    column: pxToRem(8),
     table: pxToRem(8),
   },
 };
