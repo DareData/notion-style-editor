@@ -2,7 +2,7 @@ import { useNodeViewContext } from '@prosemirror-adapter/react';
 import { useMemo, useRef } from 'react';
 import styled from 'styled-components';
 
-import { MathViewTabs } from './MathView';
+import { MermaidNodeTabs } from './MermaidNode';
 import { Button } from '../../common/Button';
 import { useTabsContext } from '../../common/Tabs/context/useTabsContext';
 import { pxToRem } from '../../styles/utils';
@@ -23,7 +23,7 @@ export const SourceTabPanel: React.FC<SourceTabPanelProps> = ({
     const value = textareaRef.current?.value || '';
 
     onSourceUpdate(value);
-    onTabChange(MathViewTabs.Preview);
+    onTabChange(MermaidNodeTabs.Preview);
   };
 
   const codeValue = useMemo(() => node.attrs.value, [node.attrs.value]);

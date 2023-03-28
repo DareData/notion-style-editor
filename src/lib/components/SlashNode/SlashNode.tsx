@@ -23,7 +23,7 @@ import { insertMathCommand } from '../../packages/EditorContext/hooks/useMathPlu
 import { HyperlinkModal } from '../HyperlinkModal/HyperlinkModal';
 import { InsertImageModal } from '../InsertImageModal/InsertImageModal';
 
-export const Slash: React.FC = () => {
+export const SlashNode: React.FC = () => {
   const tooltipRef = useRef<HTMLDivElement>(null);
 
   useSlashProvider({ tooltipRef });

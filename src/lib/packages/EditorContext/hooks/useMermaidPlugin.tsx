@@ -3,7 +3,7 @@ import { $view } from '@milkdown/utils';
 import { useNodeViewFactory } from '@prosemirror-adapter/react';
 import { useMemo } from 'react';
 
-import { MermaidView } from '../../../components/MermaidView/MermaidView';
+import { MermaidNode } from '../../../components/MermaidNode/MermaidNode';
 import { Plugin } from '../../../types/plugins';
 
 export const useMermaidPlugin = (): Plugin => {
@@ -15,7 +15,7 @@ export const useMermaidPlugin = (): Plugin => {
         diagram,
         $view(diagramSchema.node, () =>
           nodeViewFactory({
-            component: MermaidView,
+            component: MermaidNode,
             stopEvent: () => true,
           })
         ),

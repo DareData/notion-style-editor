@@ -10,12 +10,12 @@ import { Tabs } from '../../common/Tabs/Tabs';
 import { pxToRem } from '../../styles/utils';
 import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
 
-export enum TabsLabels {
+export enum MermaidNodeTabs {
   Preview = 'preview',
   Source = 'soure',
 }
 
-export const MermaidView: React.FC = () => {
+export const MermaidNode: React.FC = () => {
   const { setAttrs } = useNodeViewContext();
   const { mode } = useTextEditorModeContext();
 
@@ -25,27 +25,27 @@ export const MermaidView: React.FC = () => {
 
   if (mode === 'preview') {
     return (
-      <MermaidViewContainerStyled>
+      <MermaidNodeContainerStyled>
         <PreviewTabPanel />
-      </MermaidViewContainerStyled>
+      </MermaidNodeContainerStyled>
     );
   }
 
   return (
-    <MermaidViewContainerStyled contentEditable={false}>
-      <Tabs initialTab={TabsLabels.Preview}>
+    <MermaidNodeContainerStyled contentEditable={false}>
+      <Tabs initialTab={MermaidNodeTabs.Preview}>
         <TabList>
-          <Tab label={TabsLabels.Preview}>Preview</Tab>
-          <Tab label={TabsLabels.Source}>Source</Tab>
+          <Tab label={MermaidNodeTabs.Preview}>Preview</Tab>
+          <Tab label={MermaidNodeTabs.Source}>Source</Tab>
         </TabList>
-        <TabPanel label={TabsLabels.Preview}>
+        <TabPanel label={MermaidNodeTabs.Preview}>
           <PreviewTabPanel />
         </TabPanel>
-        <SourceTabPanelStyled label={TabsLabels.Source}>
+        <SourceTabPanelStyled label={MermaidNodeTabs.Source}>
           <SourceTabPanel {...{ onSourceUpdate }} />
         </SourceTabPanelStyled>
       </Tabs>
-    </MermaidViewContainerStyled>
+    </MermaidNodeContainerStyled>
   );
 };
 
@@ -53,6 +53,6 @@ const SourceTabPanelStyled = styled(TabPanel)`
   padding-right: 0;
 `;
 
-const MermaidViewContainerStyled = styled.div`
+const MermaidNodeContainerStyled = styled.div`
   margin: ${pxToRem(16)} 0;
 `;
