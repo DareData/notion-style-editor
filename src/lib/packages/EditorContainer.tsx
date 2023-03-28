@@ -69,7 +69,7 @@ export const EditorContainer = styled.div`
 
   .tableWrapper {
     table {
-      width: calc(100% - 12px);
+      width: calc(100% - 14px);
       margin-top: ${pxToRem(12)};
       margin-left: ${pxToRem(12)};
       overflow: visible;

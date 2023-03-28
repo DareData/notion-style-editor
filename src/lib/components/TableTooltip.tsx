@@ -91,25 +91,10 @@ export const TableTooltip: React.FC = () => {
               tooltipProvider.current?.hide();
             }}
           >
-            <Icon icon="arrow_top" />
+            <Icon icon="add_row_top" />
           </Button>
         )}
-        {!isWholeTable && isRow && (
-          <Button
-            oval
-            space="small"
-            onClick={() => {
-              if (loading) return;
 
-              getEditor().action(ctx => {
-                ctx.get(commandsCtx).call(addRowAfterCommand.key);
-              });
-              tooltipProvider.current?.hide();
-            }}
-          >
-            <Icon icon="arrow_down" />
-          </Button>
-        )}
         {!isWholeTable && isCol && (
           <Button
             oval
@@ -123,7 +108,7 @@ export const TableTooltip: React.FC = () => {
               tooltipProvider.current?.hide();
             }}
           >
-            <Icon icon="arrow_left" />
+            <Icon icon="add_column_left" />
           </Button>
         )}
         {(isWholeTable || !isHeading) && (
@@ -142,6 +127,22 @@ export const TableTooltip: React.FC = () => {
             <Icon icon="delete" />
           </Button>
         )}
+        {!isWholeTable && isRow && (
+          <Button
+            oval
+            space="small"
+            onClick={() => {
+              if (loading) return;
+
+              getEditor().action(ctx => {
+                ctx.get(commandsCtx).call(addRowAfterCommand.key);
+              });
+              tooltipProvider.current?.hide();
+            }}
+          >
+            <Icon icon="add_row_bottom" />
+          </Button>
+        )}
         {!isWholeTable && isCol && (
           <Button
             oval
@@ -155,7 +156,7 @@ export const TableTooltip: React.FC = () => {
               tooltipProvider.current?.hide();
             }}
           >
-            <Icon icon="arrow_right" />
+            <Icon icon="add_column_right" />
           </Button>
         )}
         {!isWholeTable && isCol && (
