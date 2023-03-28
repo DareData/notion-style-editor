@@ -12,12 +12,12 @@ import { Button } from '../../common/Button';
 import { Icon } from '../../common/Icon/Icon';
 import { useSelectedMarkPosition } from '../../hooks/useSelectedMarkPosition';
 import { pxToRem } from '../../styles/utils';
-import { HyperlinkModal } from '../LinkModal/LinkModal';
+import { LinkModal } from '../LinkModal/LinkModal';
 import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
 
-export const hyperlinktooltip = tooltipFactory('HYPERLINK');
+export const linktooltip = tooltipFactory('HYPERLINK');
 
-export const HyperlinkTooltip: React.FC = () => {
+export const LinkTooltip: React.FC = () => {
   const { colors } = useTheme();
   const ref = useRef<HTMLDivElement>(null);
   const tooltipProvider = useRef<TooltipProvider>();
@@ -71,9 +71,9 @@ export const HyperlinkTooltip: React.FC = () => {
 
   return (
     <div style={{ display: 'none' }}>
-      <HyperlinkTooltipStyled ref={ref}>
-        <HyperlinkTextStyled>{href}</HyperlinkTextStyled>
-        <HyperlinkModal
+      <LinkTooltipStyled ref={ref}>
+        <LinkTextStyled>{href}</LinkTextStyled>
+        <LinkModal
           editable
           {...{ title, text, href }}
           handler={({ onOpen }) => (
@@ -85,12 +85,12 @@ export const HyperlinkTooltip: React.FC = () => {
         <AnchorStyled {...{ href }} target="_blank" type="anchor-button">
           <Icon icon="export" />
         </AnchorStyled>
-      </HyperlinkTooltipStyled>
+      </LinkTooltipStyled>
     </div>
   );
 };
 
-const HyperlinkTooltipStyled = styled.div`
+const LinkTooltipStyled = styled.div`
   display: flex;
   align-items: center;
   padding: ${pxToRem(6)} ${pxToRem(8)} ${pxToRem(6)} ${pxToRem(14)};
@@ -98,7 +98,7 @@ const HyperlinkTooltipStyled = styled.div`
   border-radius: ${pxToRem(8)};
 `;
 
-const HyperlinkTextStyled = styled.span`
+const LinkTextStyled = styled.span`
   overflow: hidden;
   color: ${props => props.theme.colors.white};
   font-size: ${pxToRem(14)};

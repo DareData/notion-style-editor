@@ -27,11 +27,11 @@ import { useMermaidPlugin } from './hooks/useMermaidPlugin';
 import { useSlashPlugin } from './hooks/useSlashPlugin';
 import { useUploadPlugin } from './hooks/useUploadPlugin';
 import { CodeBlockNode } from '../../components/CodeBlockNode';
-import {
-  HyperlinkTooltip,
-  hyperlinktooltip,
-} from '../../components/HyperlinkTooltip/HyperlinkTooltip';
 import { ImageNode } from '../../components/ImageNode/ImageNode';
+import {
+  LinkTooltip,
+  linktooltip,
+} from '../../components/LinkTooltip/LinkTooltip';
 
 type EditorContextData = {
   editor: UseEditorReturn | null;
@@ -75,9 +75,9 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
           ctx.get(listenerCtx).markdownUpdated((_, markdown) => {
             onChange(markdown);
           });
-          ctx.set(hyperlinktooltip.key, {
+          ctx.set(linktooltip.key, {
             view: pluginViewFactory({
-              component: HyperlinkTooltip,
+              component: LinkTooltip,
             }),
           });
         })
@@ -85,7 +85,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         .use(commonmark)
         .use(history)
         .use(prism)
-        .use(hyperlinktooltip)
+        .use(linktooltip)
         .use(uploadPlugin)
         .use(mermaidPlugin)
         .use(mathPlugin)
