@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { ImageEditorFormValues } from './hooks/useImageEditorForm';
 import { ImageEditorModal } from './ImageEditorModal';
 import { Image } from '../../common/Image';
-import { useFindSelectedNode } from '../../hooks/useFindSelectedNode';
+import { useIsNodeSelected } from '../../hooks/useIsNodeSelected';
 import { pxToRem } from '../../styles/utils';
 import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
 
@@ -18,7 +18,7 @@ export const ImageNode: React.FC = () => {
     height: number;
   }>({ width: 0, height: 0 });
   const { mode } = useTextEditorModeContext();
-  const { isSelected } = useFindSelectedNode({ nodeType: imageSchema.type() });
+  const { isSelected } = useIsNodeSelected({ nodeType: imageSchema.type() });
 
   const { node, contentRef, setAttrs } = useNodeViewContext();
   const { attrs } = node;

@@ -11,7 +11,7 @@ const schema = ({
   object()
     .shape({
       url: string()
-        .required()
+        .required('This field is required')
         .test(
           'validateGoogleSlides',
           () => errorMessages.image.google_slides,

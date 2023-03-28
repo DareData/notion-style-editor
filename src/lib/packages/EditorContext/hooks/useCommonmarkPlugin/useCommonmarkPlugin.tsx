@@ -12,14 +12,16 @@ import {
 } from '@prosemirror-adapter/react';
 import { useMemo } from 'react';
 
-import { CodeBlockNode } from '../../../components/CodeBlockNode';
-import { ImageNode } from '../../../components/ImageNode/ImageNode';
-import { LinkTooltip } from '../../../components/LinkTooltip/LinkTooltip';
+import { useGoogleSlidesPlugin } from './useGoogleSlidesPlugin';
+import { CodeBlockNode } from '../../../../components/CodeBlockNode';
+import { ImageNode } from '../../../../components/ImageNode/ImageNode';
+import { LinkTooltip } from '../../../../components/LinkTooltip/LinkTooltip';
 
 const linkTooltip = tooltipFactory('HYPERLINK');
 
 export const useCommonmarkPlugin = () => {
   const nodeViewFactory = useNodeViewFactory();
+  const googleSlidesPlugin = useGoogleSlidesPlugin();
   const pluginViewFactory = usePluginViewFactory();
 
   const commonMarkPlugin = useMemo(
@@ -40,8 +42,9 @@ export const useCommonmarkPlugin = () => {
         $view(imageSchema.node, () =>
           nodeViewFactory({ component: ImageNode, as: 'div' })
         ),
+        googleSlidesPlugin,
       ].flat(),
-    [pluginViewFactory, nodeViewFactory]
+    [pluginViewFactory, nodeViewFactory, googleSlidesPlugin]
   );
 
   return commonMarkPlugin;

@@ -16,8 +16,8 @@ import {
 import { Icon } from '../../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 import { useInsertMathBlock } from '../../../hooks/useInsertMathAction';
+import { AddGoogleSlidesModal } from '../../AddGoogleSlidesModal/AddGoogleSlidesModal';
 import { AddImageModal } from '../../AddImageModal/AddImageModal';
-import { InsertGoogleDocModal } from '../../InsertGoogleDocModal/InsertGoogleDocModal';
 import { LinkModal } from '../../LinkModal/LinkModal';
 
 export const BlocksActionsDropdownList = () => {
@@ -90,7 +90,7 @@ export const BlocksActionsDropdownList = () => {
         </DropdownButtonActionStyled>
       </DropdownItemStyled>
       <DropdownItemStyled>
-        <InsertGoogleDocModal
+        <AddGoogleSlidesModal
           handler={({ onOpen }) => (
             <DropdownButtonActionStyled onClick={onOpen}>
               <Icon icon="google" fill={colors.white} />

@@ -6,7 +6,7 @@ import { useSelectedMarkPosition } from './useSelectedMarkPosition';
 
 type LinkValues = {
   href: string;
-  text: string;
+  text?: string;
 };
 
 export const useEditorLinkActions = () => {

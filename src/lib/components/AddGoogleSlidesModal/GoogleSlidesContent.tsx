@@ -16,7 +16,7 @@ import { ModalHeader } from '../../common/Modal/ModalHeader';
 import { useEditorLinkActions } from '../../hooks/useEditorLinkActions';
 import { pxToRem } from '../../styles/utils';
 
-export const InsertGoogleDocContent: React.FC = () => {
+export const GoogleSlidesContent: React.FC = () => {
   const [loading, getEditor] = useInstance();
   const { onClose } = useModalContext();
   const { handleSubmit, formState, register } = useGoogleDocForm();
@@ -38,23 +38,20 @@ export const InsertGoogleDocContent: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <ModalHeader>Add a Google document</ModalHeader>
-      <ModalBody>
-        <InputStyled
-          {...register('url')}
-          label="Link"
-          error={formState.errors.url?.message}
-          placeholder="Paste the link"
-        />
+      <ModalHeader>Add Google Slides presentation</ModalHeader>
+      <ModalBodyStyled>
         <NoteStyled>
-          Your Google document needs to be published at Altos to generate a
-          preview. You can
+          Learn how to
           <AnchorStyled href="https://support.google.com/docs/answer/183965?hl=en&co=GENIE.Platform%3DDesktop">
-            check this article
+            publish files from Google Drive
           </AnchorStyled>
-          to see how to do it.
         </NoteStyled>
-      </ModalBody>
+        <Input
+          {...register('url')}
+          error={formState.errors.url?.message}
+          placeholder="Paste the “Publish to the web” link"
+        />
+      </ModalBodyStyled>
       <ModalFooter>
         <ModalActions saveButtonType="submit" isDisabled={!formState.isValid} />
       </ModalFooter>
@@ -63,14 +60,15 @@ export const InsertGoogleDocContent: React.FC = () => {
 };
 
 const NoteStyled = styled.p`
-  font-size: ${pxToRem(12)};
+  font-size: ${pxToRem(14)};
   color: ${props => props.theme.colors.grey};
+  margin-bottom: ${pxToRem(16)};
 `;
 
 const AnchorStyled = styled(Anchor)`
   margin: 0 ${pxToRem(2)};
 `;
 
-const InputStyled = styled(Input)`
-  margin-bottom: ${pxToRem(8)};
+const ModalBodyStyled = styled(ModalBody)`
+  padding-top: 0;
 `;

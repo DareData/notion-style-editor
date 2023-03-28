@@ -14,7 +14,7 @@ import {
 } from '@prosemirror-adapter/react';
 import { createContext, useMemo } from 'react';
 
-import { useCommonmarkPlugin } from './hooks/useCommonmarkPlugin';
+import { useCommonmarkPlugin } from './hooks/useCommonmarkPlugin/useCommonmarkPlugin';
 import { useEditorViewPlugin } from './hooks/useEditorViewPlugin';
 import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
 import { useListenerPlugin } from './hooks/useListenerPlugin';

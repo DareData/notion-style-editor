@@ -26,6 +26,7 @@ const getWidgetPosition = (type: string): WidgetPosition =>
     .getOrElse(() => 'table') as WidgetPosition;
 
 export const TableSelectorWidget: React.FC = () => {
+  console.log('table');
   const { spec } = useWidgetViewContext();
   const type = spec?.type;
   const index = spec?.index ?? 0;

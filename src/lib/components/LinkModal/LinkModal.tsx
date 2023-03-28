@@ -1,4 +1,4 @@
-import { LinkContent, LinkContentProps } from './HyperlinkModalContent';
+import { LinkContent, LinkContentProps } from './LinkContent';
 import { Modal, ModalProps } from '../../common/Modal/Modal';
 
 type LinkModalProps = ModalProps & LinkContentProps;

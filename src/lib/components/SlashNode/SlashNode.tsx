@@ -21,8 +21,8 @@ import { Hidden } from '../../common/Hidden';
 import { Icon } from '../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../hooks/useCallEditorCommand';
 import { insertMathCommand } from '../../packages/EditorContext/hooks/useMathPlugin';
+import { AddGoogleSlidesModal } from '../AddGoogleSlidesModal/AddGoogleSlidesModal';
 import { AddImageModal } from '../AddImageModal/AddImageModal';
-import { InsertGoogleDocModal } from '../InsertGoogleDocModal/InsertGoogleDocModal';
 import { LinkModal } from '../LinkModal/LinkModal';
 
 export const SlashNode: React.FC = () => {
@@ -140,7 +140,7 @@ export const SlashNode: React.FC = () => {
             </DropdownButtonActionStyled>
           </DropdownItemStyled>
           <DropdownItemStyled>
-            <InsertGoogleDocModal
+            <AddGoogleSlidesModal
               onModalOpen={onRemoveSlash}
               handler={({ onOpen }) => (
                 <DropdownButtonActionStyled onClick={onOpen}>

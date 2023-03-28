@@ -3,11 +3,11 @@ import { NodeType } from '@milkdown/prose/model';
 import { useNodeViewContext } from '@prosemirror-adapter/react';
 import { useMemo } from 'react';
 
-type UseFindSelectedNodeProps = {
+type UseIsNodeSelected = {
   nodeType: NodeType;
 };
 
-export const useFindSelectedNode = ({ nodeType }: UseFindSelectedNodeProps) => {
+export const useIsNodeSelected = ({ nodeType }: UseIsNodeSelected) => {
   const { view, getPos } = useNodeViewContext();
 
   const {
