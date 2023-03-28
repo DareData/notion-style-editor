@@ -36,11 +36,6 @@ export const FormatActions: React.FC = () => {
         </Button>
       </li>
       <li>
-        <Button oval space="small" color="secondary">
-          <Icon icon="underline" />
-        </Button>
-      </li>
-      <li>
         <Button
           onClick={() => onCallCommand(toggleStrikethroughCommand.key)}
           oval
