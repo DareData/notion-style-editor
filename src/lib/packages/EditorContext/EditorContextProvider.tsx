@@ -4,7 +4,7 @@ import {
   defaultValueCtx,
 } from '@milkdown/core';
 import { history } from '@milkdown/plugin-history';
-import { listener, listenerCtx } from '@milkdown/plugin-listener';
+import { trailing } from '@milkdown/plugin-trailing';
 import { useEditor, UseEditorReturn } from '@milkdown/react';
 import {
   useNodeViewFactory,
@@ -15,6 +15,7 @@ import { createContext, useMemo } from 'react';
 import { useCommonmarkPlugin } from './hooks/useCommonmarkPlugin';
 import { useEditorViewPlugin } from './hooks/useEditorViewPlugin';
 import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
+import { useListenerPlugin } from './hooks/useListenerPlugin';
 import { useMathPlugin } from './hooks/useMathPlugin';
 import { useMermaidPlugin } from './hooks/useMermaidPlugin';
 import { usePrismPlugin } from './hooks/usePrismPlugin';
@@ -50,6 +51,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   const slashPlugin = useSlashPlugin();
   const commonmarkPlugin = useCommonmarkPlugin();
   const prismPlugin = usePrismPlugin();
+  const listenerPlugin = useListenerPlugin({ onChange });
 
   useEditorViewPlugin();
 
@@ -59,22 +61,21 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         .config(ctx => {
           ctx.set(rootCtx, root);
           ctx.set(defaultValueCtx, defaultMarkdownValue);
-          ctx.get(listenerCtx).markdownUpdated((_, markdown) => {
-            onChange(markdown);
-          });
         })
         .use(commonmarkPlugin)
+        .use(listenerPlugin)
         .use(prismPlugin)
-        .use(listener)
         .use(history)
         .use(uploadPlugin)
         .use(mermaidPlugin)
         .use(mathPlugin)
         .use(slashPlugin)
+        .use(trailing)
         .use(gfmPlugin),
     [
       commonmarkPlugin,
       defaultMarkdownValue,
+      listenerPlugin,
       gfmPlugin,
       mathPlugin,
       mermaidPlugin,
