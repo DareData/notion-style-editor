@@ -44,9 +44,10 @@ export const ImageNode: React.FC = () => {
   };
 
   const onImageLoad = ({
-    currentTarget: { width, height },
+    currentTarget,
   }: React.SyntheticEvent<HTMLImageElement>) => {
-    setImageProperties({ width, height });
+    const { naturalHeight, naturalWidth } = currentTarget;
+    setImageProperties({ width: naturalWidth, height: naturalHeight });
   };
 
   const alt = attrs.alt || '';
