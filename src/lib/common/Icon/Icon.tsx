@@ -25,14 +25,11 @@ import { ReactComponent as ParagraphIcon } from './assets/paragraph.svg';
 import { ReactComponent as RedoIcon } from './assets/redo.svg';
 import { ReactComponent as SettingsIcon } from './assets/settings.svg';
 import { ReactComponent as StrikethroughIcon } from './assets/strikethrough.svg';
-import { ReactComponent as SubScriptIcon } from './assets/subscript.svg';
 import { ReactComponent as SubtitleIcon } from './assets/subtitle.svg';
-import { ReactComponent as SuperScriptIcon } from './assets/superscript.svg';
 import { ReactComponent as TextAlignCenterIcon } from './assets/text_align_center.svg';
 import { ReactComponent as TextAlignLeftIcon } from './assets/text_align_left.svg';
 import { ReactComponent as TextAlignRightIcon } from './assets/text_align_right.svg';
 import { ReactComponent as TitleIcon } from './assets/title.svg';
-import { ReactComponent as UnderlineIcon } from './assets/underline.svg';
 import { ReactComponent as UndoIcon } from './assets/undo.svg';
 
 const icons = {
@@ -41,10 +38,7 @@ const icons = {
   bold: BoldIcon,
   italic: ItalicIcon,
   copy: CopyIcon,
-  underline: UnderlineIcon,
   strikethrough: StrikethroughIcon,
-  superscript: SuperScriptIcon,
-  subscript: SubScriptIcon,
   bulleted_list: BulletedList,
   numbered_list: NumberedListIcon,
   add_link: AddLinkIcon,

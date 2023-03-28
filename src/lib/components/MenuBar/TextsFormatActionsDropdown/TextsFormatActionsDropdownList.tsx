@@ -44,29 +44,11 @@ export const TextsFormatActionsDropdownList = () => {
         </DropdownButtonActionStyled>
       </DropdownItemStyled>
       <DropdownItemStyled>
-        <DropdownButtonActionStyled>
-          <Icon icon="underline" />
-          Underline
-        </DropdownButtonActionStyled>
-      </DropdownItemStyled>
-      <DropdownItemStyled>
         <DropdownButtonActionStyled
           onClick={() => onActionClick(toggleStrikethroughCommand.key)}
         >
           <Icon icon="strikethrough" />
           Strikethrough
-        </DropdownButtonActionStyled>
-      </DropdownItemStyled>
-      <DropdownItemStyled>
-        <DropdownButtonActionStyled>
-          <Icon icon="superscript" />
-          Superscript
-        </DropdownButtonActionStyled>
-      </DropdownItemStyled>
-      <DropdownItemStyled>
-        <DropdownButtonActionStyled>
-          <Icon icon="subscript" />
-          Subscript
         </DropdownButtonActionStyled>
       </DropdownItemStyled>
       <DropdownItemStyled

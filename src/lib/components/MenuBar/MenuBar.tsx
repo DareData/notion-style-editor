@@ -4,7 +4,6 @@ import { BlocksActionsDropdown } from './BlocksActionsDropdown/BlocksActionsDrop
 import { BlocksActions } from './components/BlocksActions';
 import { FormatActions } from './components/FormatActions';
 import { ListsActions } from './components/ListsActions';
-import { SubSuperScriptActions } from './components/SubSuperScriptActions';
 import { TurnTextsActions } from './components/TurnTextsActions';
 import { UndoRedoActions } from './components/UndoRedoActions';
 import { TextsFormatActionsDropdown } from './TextsFormatActionsDropdown/TextsFormatActionsDropdown';
@@ -34,7 +33,6 @@ export const MenuBar = () => {
       {isTablet ? (
         <>
           <FormatActions />
-          <SubSuperScriptActions />
           <ListsActions />
         </>
       ) : (
