@@ -1,4 +1,4 @@
-import { tooltipFactory, TooltipProvider } from '@milkdown/plugin-tooltip';
+import { TooltipProvider } from '@milkdown/plugin-tooltip';
 import { linkSchema } from '@milkdown/preset-commonmark';
 import { TextSelection } from '@milkdown/prose/state';
 import { useInstance } from '@milkdown/react';
@@ -14,8 +14,6 @@ import { useSelectedMarkPosition } from '../../hooks/useSelectedMarkPosition';
 import { pxToRem } from '../../styles/utils';
 import { LinkModal } from '../LinkModal/LinkModal';
 import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
-
-export const linktooltip = tooltipFactory('HYPERLINK');
 
 export const LinkTooltip: React.FC = () => {
   const { colors } = useTheme();
