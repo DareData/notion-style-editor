@@ -17,10 +17,12 @@ export const useInsertMathBlock = () => {
     }
 
     editor.action(ctx => {
-      const view = ctx.get(editorViewCtx);
-      const { state } = view;
-      const value = state.doc.content.firstChild?.textContent || '';
-      onCallCommand(insertMathCommand.key, value);
+      // const view = ctx.get(editorViewCtx);
+      // const { state } = view;
+      // const { selection } = state;
+      // const { from, to } = selection;
+      // const value = state.tr.doc.textBetween(from, to) || '';
+      onCallCommand(insertMathCommand.key);
     });
   }, [loading, getEditor, onCallCommand]);
 
