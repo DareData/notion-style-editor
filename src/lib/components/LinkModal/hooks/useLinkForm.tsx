@@ -5,7 +5,7 @@ import { object, string, InferType } from 'yup';
 const schema = object()
   .shape({
     href: string().required('This value is required'),
-    text: string().required('This value is required'),
+    text: string(),
   })
   .required();
 
