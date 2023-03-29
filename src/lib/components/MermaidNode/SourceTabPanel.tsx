@@ -33,8 +33,8 @@ export const SourceTabPanel: React.FC<SourceTabPanelProps> = ({
       <TextareaStyled ref={textareaRef} defaultValue={codeValue} />
       <UpdateButtonStyled
         oval
-        color="success"
         variant="contained"
+        color="primary"
         onClick={onUpdateClick}
       >
         Update
