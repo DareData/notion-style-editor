@@ -37,7 +37,6 @@ export const ImageNode: React.FC = () => {
     editor.action(ctx => {
       const view = ctx.get(editorViewCtx);
       const { state } = view;
-      console.log(state.selection);
 
       view.dispatch(state.tr.deleteSelection());
     });

@@ -36,6 +36,7 @@ export const ModalActions: React.FC<Partial<ModalActionsProps>> = ({
     <ModalActionsStyled {...{ className }}>
       {withCancel && (
         <Button
+          color="secondary"
           variant="outlined"
           type={saveButtonType}
           onClick={onCancelClick || onClose}
@@ -46,7 +47,7 @@ export const ModalActions: React.FC<Partial<ModalActionsProps>> = ({
         </Button>
       )}
       <Button
-        color="success"
+        color="primary"
         variant="contained"
         type={saveButtonType}
         oval

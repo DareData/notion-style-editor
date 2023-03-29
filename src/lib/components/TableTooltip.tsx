@@ -82,6 +82,7 @@ export const TableTooltip: React.FC = () => {
           <Button
             oval
             space="small"
+            color="secondary"
             onClick={() => {
               if (loading) return;
 
@@ -99,6 +100,7 @@ export const TableTooltip: React.FC = () => {
           <Button
             oval
             space="small"
+            color="secondary"
             onClick={() => {
               if (loading) return;
               getEditor().action(ctx => {
@@ -115,6 +117,7 @@ export const TableTooltip: React.FC = () => {
           <Button
             oval
             space="small"
+            color="secondary"
             onClick={() => {
               if (loading) return;
 
@@ -131,6 +134,7 @@ export const TableTooltip: React.FC = () => {
           <Button
             oval
             space="small"
+            color="secondary"
             onClick={() => {
               if (loading) return;
 
@@ -147,6 +151,7 @@ export const TableTooltip: React.FC = () => {
           <Button
             oval
             space="small"
+            color="secondary"
             onClick={() => {
               if (loading) return;
               getEditor().action(ctx => {
@@ -163,6 +168,7 @@ export const TableTooltip: React.FC = () => {
           <Button
             oval
             space="small"
+            color="secondary"
             onClick={() => {
               if (loading) return;
               getEditor().action(ctx => {
@@ -177,6 +183,7 @@ export const TableTooltip: React.FC = () => {
           <Button
             oval
             space="small"
+            color="secondary"
             onClick={() => {
               if (loading) return;
               getEditor().action(ctx => {
@@ -191,6 +198,7 @@ export const TableTooltip: React.FC = () => {
           <Button
             oval
             space="small"
+            color="secondary"
             onClick={() => {
               if (loading) return;
               getEditor().action(ctx => {

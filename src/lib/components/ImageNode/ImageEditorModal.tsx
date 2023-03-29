@@ -34,6 +34,7 @@ export const ImageEditorModal: React.FC<ImageEditorModalProps> = ({
         {...{ $top, $right }}
         oval
         onClick={modal.on}
+        color="secondary"
         variant="contained"
         space="small"
       >
