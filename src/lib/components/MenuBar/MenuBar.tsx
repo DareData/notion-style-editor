@@ -8,6 +8,7 @@ import { TurnTextsActions } from './components/TurnTextsActions';
 import { UndoRedoActions } from './components/UndoRedoActions';
 import { TextsFormatActionsDropdown } from './TextsFormatActionsDropdown/TextsFormatActionsDropdown';
 import { useMatchMedia } from '../../hooks/useMatchMedia';
+import { theme } from '../../styles/theme';
 import { pxToRem } from '../../styles/utils';
 import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
 
@@ -53,5 +54,8 @@ const MenuBarListStyled = styled.ul`
   margin-bottom: ${pxToRem(20)};
   &&& {
     padding: ${pxToRem(8)} ${pxToRem(2)};
+    @media (min-width: ${theme.queries.menuWithSpace}) {
+      padding: ${pxToRem(8)} ${pxToRem(8)};
+    }
   }
 `;

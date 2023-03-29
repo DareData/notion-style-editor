@@ -64,6 +64,7 @@ export const theme = {
   queries: {
     tablet: '452px',
     laptop: '650px',
+    menuWithSpace: '688px',
   },
 };
 

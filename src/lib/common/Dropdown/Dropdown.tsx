@@ -75,6 +75,7 @@ const DropdownListContainerStyled = styled.div<{ $isOpen: boolean }>`
 
 export const DropdownListStyled = styled.ul`
   position: relative;
+  padding-left: 0 !important;
   background-color: ${props => props.theme.colors.white};
   border-radius: ${pxToRem(8)};
   border: 1px solid ${props => props.theme.colors.lightGrey};

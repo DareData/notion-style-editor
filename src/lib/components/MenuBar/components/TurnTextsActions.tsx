@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 import { Select } from '../../../common/Select';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
+import { theme } from '../../../styles/theme';
 import { pxToRem } from '../../../styles/utils';
 import { Matcher } from '../../../utils/Matcher';
 
@@ -37,6 +38,9 @@ export const TurnTextsActions: React.FC = () => {
 
 const SelectStyled = styled(Select)`
   margin-left: ${pxToRem(2)};
+  @media (min-width: ${theme.queries.menuWithSpace}) {
+    margin-left: ${pxToRem(12)};
+  }
   .Dropdown-control {
     background-color: rgba(31, 31, 31, 0.8);
     .Dropdown-placeholder {
