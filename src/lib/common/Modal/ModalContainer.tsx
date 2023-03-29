@@ -50,7 +50,7 @@ export const ModalContainer: React.FC<ModalContainerProps> = ({
       <ModalBoxStyled {...(animation || {})} ref={modalBodyRef}>
         <>
           {withCloseIcon && (
-            <CloseButtonStyled onClick={onClose} oval>
+            <CloseButtonStyled onClick={onClose} oval color="secondary">
               <Icon icon="close" />
             </CloseButtonStyled>
           )}

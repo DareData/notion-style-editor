@@ -5,7 +5,7 @@ import { loadingStyles } from '../styles/common/loader.styles';
 import { theme } from '../styles/theme';
 import { pxToRem } from '../styles/utils';
 
-type ButtonColor = 'success' | 'danger' | 'primary' | 'secondary';
+type ButtonColor = 'danger' | 'primary' | 'secondary';
 type ButtonVariant = 'text' | 'simple_text' | 'contained' | 'outlined';
 type ButtonSpace = 'no' | 'thin' | 'small' | 'normal';
 
@@ -48,56 +48,74 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   )
 );
 
-const buttonEffectColorsMap = {
-  bg: {
-    danger: theme.colors.darkRed,
-    primary: theme.colors.secondaryLightGrey,
-    success: theme.colors.green,
-    secondary: theme.colors.white,
-  },
-  border: {
-    primary: theme.colors.lightGrey,
-    danger: theme.colors.darkRed,
-    success: 'transparent',
-    secondary: 'transparent',
-  },
-  color: {
-    danger: theme.colors.white,
-    primary: theme.colors.lightBlack,
-    success: theme.colors.lightBlack,
-    secondary: theme.colors.lightBlack,
-  },
-};
-
 const buttonColorsMap = {
   idle: {
     bg: {
+      primary: theme.colors.lightGreen,
+      secondary: theme.colors.white,
       danger: theme.colors.white,
-      primary: theme.colors.white,
-      success: theme.colors.lightGreen,
-      secondary: theme.colors.lightGrey,
     },
     border: {
-      danger: theme.colors.darkRed,
-      primary: theme.colors.lightGrey,
-      success: 'transparent',
-      secondary: 'transparent',
+      primary: 'transparent',
+      secondary: theme.colors.lightGrey,
+      danger: theme.colors.lightGrey,
     },
     color: {
-      danger: theme.colors.darkRed,
       primary: theme.colors.lightBlack,
-      success: theme.colors.lightBlack,
       secondary: theme.colors.lightBlack,
+      danger: theme.colors.darkRed,
     },
   },
-  hover: buttonEffectColorsMap,
-  focus: {
-    bg: buttonEffectColorsMap.bg,
-    border: {
-      ...buttonEffectColorsMap.border,
-      secondary: theme.colors.green,
+  hover: {
+    bg: {
+      primary: '#68D391',
+      secondary: '#F9F9F9',
+      danger: '#F9F9F9',
     },
-    color: buttonEffectColorsMap.color,
+    border: {
+      primary: 'transparent',
+      secondary: theme.colors.lightGrey,
+      danger: theme.colors.lightGrey,
+    },
+    color: {
+      primary: theme.colors.lightBlack,
+      secondary: theme.colors.lightBlack,
+      danger: theme.colors.darkRed,
+    },
+  },
+  pressed: {
+    bg: {
+      primary: '#63C88A',
+      secondary: '#F0F2F1',
+      danger: '#F0F2F1',
+    },
+    border: {
+      primary: 'transparent',
+      secondary: theme.colors.lightGrey,
+      danger: theme.colors.lightGrey,
+    },
+    color: {
+      primary: theme.colors.lightBlack,
+      secondary: theme.colors.lightBlack,
+      danger: theme.colors.darkRed,
+    },
+  },
+  disabled: {
+    bg: {
+      primary: '#FaFaFa',
+      secondary: theme.colors.white,
+      danger: theme.colors.white,
+    },
+    border: {
+      primary: 'transparent',
+      secondary: '#EaEaEa',
+      danger: '#EaEaEa',
+    },
+    color: {
+      primary: '#B6B8B7',
+      secondary: '#B6B8B7',
+      danger: '#B6B8B7',
+    },
   },
 };
 
@@ -151,41 +169,58 @@ const ButtonStyled = styled.button<{
 
   ${props => props.$loading && loadingStyles};
 
-  &:hover {
-    background-color: ${props =>
-      props.$variant !== 'simple_text'
-        ? buttonColorsMap.hover.bg[props.$color]
-        : 'transparent'};
-    color: ${props => buttonColorsMap.hover.color[props.$color]};
-    ${props =>
-      (props.$variant === 'contained' || props.$variant === 'outlined') &&
-      css<{ $color: ButtonColor }>`
-        border-color: ${props => buttonColorsMap.hover.border[props.$color]};
-      `}
-  }
-  &:focus {
-    background-color: ${props =>
-      props.$variant !== 'simple_text'
-        ? buttonColorsMap.focus.bg[props.$color]
-        : 'transparent'};
-    color: ${props => buttonColorsMap.focus.color[props.$color]};
-    ${props =>
-      (props.$variant === 'contained' || props.$variant === 'outlined') &&
-      css<{ $color: ButtonColor }>`
-        border-color: ${props => buttonColorsMap.focus.border[props.$color]};
-      `}
-  }
-
-  &:focus-visible {
-    outline: ${pxToRem(1)} solid ${props => props.theme.colors.green};
-    outline-width: ${pxToRem(1)};
-    outline-offset: ${pxToRem(0)};
-  }
-
   ${props =>
-    props.disabled &&
-    css`
-      opacity: 0.8;
-      cursor: not-allowed;
-    `}
+    props.disabled
+      ? css<{ $variant: ButtonVariant; $color: ButtonColor }>`
+          cursor: not-allowed;
+          background-color: ${props =>
+            props.$variant !== 'simple_text'
+              ? buttonColorsMap.disabled.bg[props.$color]
+              : 'transparent'};
+          color: ${props => buttonColorsMap.disabled.color[props.$color]};
+          ${props =>
+            (props.$variant === 'contained' || props.$variant === 'outlined') &&
+            css<{ $color: ButtonColor }>`
+              border-color: ${props =>
+                buttonColorsMap.disabled.border[props.$color]};
+            `}
+        `
+      : css<{ $variant: ButtonVariant; $color: ButtonColor }>`
+          &:hover,
+          &:focus {
+            background-color: ${props =>
+              props.$variant !== 'simple_text'
+                ? buttonColorsMap.hover.bg[props.$color]
+                : 'transparent'};
+            color: ${props => buttonColorsMap.hover.color[props.$color]};
+            ${props =>
+              (props.$variant === 'contained' ||
+                props.$variant === 'outlined') &&
+              css<{ $color: ButtonColor }>`
+                border-color: ${props =>
+                  buttonColorsMap.hover.border[props.$color]};
+              `}
+          }
+
+          &:active {
+            background-color: ${props =>
+              props.$variant !== 'simple_text'
+                ? buttonColorsMap.pressed.bg[props.$color]
+                : 'transparent'};
+            color: ${props => buttonColorsMap.pressed.color[props.$color]};
+            ${props =>
+              (props.$variant === 'contained' ||
+                props.$variant === 'outlined') &&
+              css<{ $color: ButtonColor }>`
+                border-color: ${props =>
+                  buttonColorsMap.pressed.border[props.$color]};
+              `}
+          }
+
+          &:focus-visible {
+            outline: ${pxToRem(1)} solid ${props => props.theme.colors.green};
+            outline-width: ${pxToRem(1)};
+            outline-offset: ${pxToRem(0)};
+          }
+        `}
 `;

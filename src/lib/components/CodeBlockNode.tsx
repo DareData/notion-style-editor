@@ -71,10 +71,10 @@ export const CodeBlockNode: React.FC = () => {
             <LanguageLabelStyled>{label}</LanguageLabelStyled>
           ))
           .get()}
-        <Button oval onClick={onCopyClick} variant="contained">
+        <CopyButtonStyled oval onClick={onCopyClick} color="secondary">
           <Icon icon="copy" />
           <CopyTextStyled>Copy</CopyTextStyled>
-        </Button>
+        </CopyButtonStyled>
       </CodeBlockNodeActionsStyled>
       <pre>
         <code ref={contentRef} />
@@ -111,4 +111,11 @@ const LanguageLabelStyled = styled.span`
   padding: ${pxToRem(7)} ${pxToRem(12)};
   background-color: ${props => props.theme.colors.azure};
   border-radius: ${pxToRem(8)};
+`;
+
+const CopyButtonStyled = styled(Button)`
+  &:hover,
+  &:focus {
+    background-color: ${props => props.theme.colors.secondaryGrey};
+  }
 `;
