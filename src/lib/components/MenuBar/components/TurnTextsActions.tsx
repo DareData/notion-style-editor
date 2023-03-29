@@ -36,7 +36,7 @@ export const TurnTextsActions: React.FC = () => {
 };
 
 const SelectStyled = styled(Select)`
-  margin-left: ${pxToRem(12)};
+  margin-left: ${pxToRem(2)};
   .Dropdown-control {
     background-color: rgba(31, 31, 31, 0.8);
     .Dropdown-placeholder {
