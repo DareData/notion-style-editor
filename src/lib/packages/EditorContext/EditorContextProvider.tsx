@@ -6,7 +6,9 @@ import {
 import { clipboard } from '@milkdown/plugin-clipboard';
 import { emoji } from '@milkdown/plugin-emoji';
 import { history } from '@milkdown/plugin-history';
-import { trailing } from '@milkdown/plugin-trailing';
+import { trailing, trailingConfig } from '@milkdown/plugin-trailing';
+import { Node } from '@milkdown/prose/model';
+import { EditorState } from '@milkdown/prose/state';
 import { useEditor, UseEditorReturn } from '@milkdown/react';
 import {
   useNodeViewFactory,

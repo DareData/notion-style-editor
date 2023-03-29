@@ -5,7 +5,7 @@ import { $prose } from '@milkdown/utils';
 import { useWidgetViewFactory } from '@prosemirror-adapter/react';
 import { useCallback, useMemo } from 'react';
 
-import { GoogleSlidesWidget } from '../../../../components/GoogleSlidesWidget';
+import { GoogleSlidesWidget } from '../../../../components/GoogleSlidesWidget/GoogleSlidesWidget';
 import { useLinkDocAttributes } from '../../../../hooks/useLinkDocAttributes';
 
 export const useGoogleSlidesPlugin = () => {
@@ -29,6 +29,15 @@ export const useGoogleSlidesPlugin = () => {
     [getLinkAttributes]
   );
 
+  const getNewGoogleSlidesLinks = useCallback(
+    (node: Node, decorationSet: DecorationSet) =>
+      getGoogleSlidesLinks(node).filter(
+        ({ start, end, href }) =>
+          !decorationSet.find(start, end, spec => spec.href === href).length
+      ),
+    [getGoogleSlidesLinks]
+  );
+
   const googleSlidesPlugin = useMemo(
     () =>
       $prose(() => {
@@ -39,45 +48,38 @@ export const useGoogleSlidesPlugin = () => {
             init(config, instance) {
               const googleSlidesLinks = getGoogleSlidesLinks(instance.doc);
 
-              const decorations: Decoration[] = googleSlidesLinks.map(link =>
-                createGoogleSlidesWidget(link.end, { href: link.href })
+              const decorations: Decoration[] = googleSlidesLinks.map(
+                ({ href, end }) => createGoogleSlidesWidget(end, { href })
               );
 
-              return {
-                decorations: DecorationSet.create(instance.doc, decorations),
-                pos: 0,
-              };
+              return DecorationSet.create(instance.doc, decorations);
             },
-            apply(
-              tr,
-              value: { decorations: DecorationSet; pos: number },
-              oldState,
-              newState
-            ) {
+            apply(tr, value, oldState, newState) {
               if (oldState.doc.eq(newState.doc)) {
                 return value;
               }
+              const decorationSet = value.map(tr.mapping, tr.doc);
 
-              const googleSlidesLinks = getGoogleSlidesLinks(newState.doc);
-
-              const decorations: Decoration[] = googleSlidesLinks.map(link =>
-                createGoogleSlidesWidget(link.end, { href: link.href })
+              const newGoogleSlidesLinks = getNewGoogleSlidesLinks(
+                newState.doc,
+                decorationSet
               );
 
-              return {
-                decorations: DecorationSet.create(tr.doc, decorations),
-                pos: 0,
-              };
+              const decorations: Decoration[] = newGoogleSlidesLinks.map(
+                ({ href, end }) => createGoogleSlidesWidget(end, { href })
+              );
+
+              return decorationSet.add(tr.doc, decorations);
             },
           },
           props: {
             decorations(state) {
-              return key.getState(state).decorations;
+              return key.getState(state);
             },
           },
         });
       }),
-    [getGoogleSlidesLinks, createGoogleSlidesWidget]
+    [getNewGoogleSlidesLinks, createGoogleSlidesWidget, getGoogleSlidesLinks]
   );
 
   return googleSlidesPlugin;
