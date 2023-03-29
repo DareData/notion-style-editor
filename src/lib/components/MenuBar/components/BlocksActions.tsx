@@ -10,6 +10,8 @@ import { Button } from '../../../common/Button';
 import { Icon } from '../../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 import { useInsertMathBlock } from '../../../hooks/useInsertMathAction';
+import { theme } from '../../../styles/theme';
+import { pxToRem } from '../../../styles/utils';
 import { AddImageModal } from '../../AddImageModal/AddImageModal';
 import { LinkModal } from '../../LinkModal/LinkModal';
 
@@ -19,7 +21,7 @@ export const BlocksActions: React.FC = () => {
 
   return (
     <>
-      <li>
+      <HyperlinkModalItemStyled>
         <LinkModal
           editable={false}
           handler={({ onOpen }) => (
@@ -28,7 +30,7 @@ export const BlocksActions: React.FC = () => {
             </Button>
           )}
         />
-      </li>
+      </HyperlinkModalItemStyled>
       <li>
         <AddImageModal
           handler={({ onOpen }) => (
@@ -84,3 +86,9 @@ export const BlocksActions: React.FC = () => {
     </>
   );
 };
+
+const HyperlinkModalItemStyled = styled.li`
+  @media (min-width: ${theme.queries.menuWithSpace}) {
+    margin-left: ${pxToRem(12)};
+  }
+`;
