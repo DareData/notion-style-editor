@@ -19,6 +19,7 @@ import { useEditorViewPlugin } from './hooks/useEditorViewPlugin';
 import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
 import { useListenerPlugin } from './hooks/useListenerPlugin';
 import { useMathPlugin } from './hooks/useMathPlugin';
+import { useMenuBarPlugin } from './hooks/useMenuBarPlugin';
 import { useMermaidPlugin } from './hooks/useMermaidPlugin';
 import { usePrismPlugin } from './hooks/usePrismPlugin';
 import { useSlashPlugin } from './hooks/useSlashPlugin';
@@ -53,6 +54,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   const slashPlugin = useSlashPlugin();
   const commonmarkPlugin = useCommonmarkPlugin();
   const prismPlugin = usePrismPlugin();
+  const menuBarPlugin = useMenuBarPlugin();
   const listenerPlugin = useListenerPlugin({ onChange });
 
   useEditorViewPlugin();
@@ -75,11 +77,13 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         .use(trailing)
         .use(emoji)
         .use(clipboard)
+        .use(menuBarPlugin)
         .use(gfmPlugin),
     [
       commonmarkPlugin,
       defaultMarkdownValue,
       listenerPlugin,
+      menuBarPlugin,
       gfmPlugin,
       mathPlugin,
       mermaidPlugin,
