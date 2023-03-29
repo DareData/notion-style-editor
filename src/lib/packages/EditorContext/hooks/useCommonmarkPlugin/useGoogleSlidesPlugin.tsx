@@ -1,20 +1,33 @@
-import { linkSchema } from '@milkdown/preset-commonmark';
+import { Node } from '@milkdown/prose/model';
 import { Plugin, PluginKey } from '@milkdown/prose/state';
-import { DecorationSet } from '@milkdown/prose/view';
+import { Decoration, DecorationSet } from '@milkdown/prose/view';
 import { $prose } from '@milkdown/utils';
 import { useWidgetViewFactory } from '@prosemirror-adapter/react';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { GoogleSlidesWidget } from '../../../../components/GoogleSlidesWidget';
-import { useFindNodesByMark } from '../../../../hooks/useFindNodesByMark';
+import { useLinkDocAttributes } from '../../../../hooks/useLinkDocAttributes';
 
 export const useGoogleSlidesPlugin = () => {
   const widgetViewFactory = useWidgetViewFactory();
-  const createWidget = widgetViewFactory({
-    as: 'div',
-    component: GoogleSlidesWidget,
-  });
-  const { getNodesByMark } = useFindNodesByMark();
+  const { getLinkAttributes } = useLinkDocAttributes();
+
+  const createGoogleSlidesWidget = useMemo(
+    () =>
+      widgetViewFactory({
+        as: 'div',
+        component: GoogleSlidesWidget,
+      }),
+    [widgetViewFactory]
+  );
+
+  const getGoogleSlidesLinks = useCallback(
+    (node: Node) =>
+      getLinkAttributes(node).filter(node =>
+        node.href.includes('docs.google.com/presentation')
+      ),
+    [getLinkAttributes]
+  );
 
   const googleSlidesPlugin = useMemo(
     () =>
@@ -23,10 +36,16 @@ export const useGoogleSlidesPlugin = () => {
         return new Plugin({
           key,
           state: {
-            init() {
+            init(config, instance) {
+              const googleSlidesLinks = getGoogleSlidesLinks(instance.doc);
+
+              const decorations: Decoration[] = googleSlidesLinks.map(link =>
+                createGoogleSlidesWidget(link.end, { href: link.href })
+              );
+
               return {
+                decorations: DecorationSet.create(instance.doc, decorations),
                 pos: 0,
-                decorations: DecorationSet.empty,
               };
             },
             apply(
@@ -39,35 +58,15 @@ export const useGoogleSlidesPlugin = () => {
                 return value;
               }
 
-              const links = getNodesByMark(newState.doc, linkSchema.type())
-                .map(({ pos: start, node }) => {
-                  const {
-                    nodeSize,
-                    marks: [link],
-                  } = node;
-                  const end = start + nodeSize;
-                  const href = link.attrs?.href;
-                  return { start, end, href };
-                })
-                .filter(nodeProperties =>
-                  nodeProperties.href.includes('docs.google.com/presentation')
-                );
+              const googleSlidesLinks = getGoogleSlidesLinks(newState.doc);
 
-              if (links.length) {
-                return {
-                  decorations: DecorationSet.create(
-                    tr.doc,
-                    links.map(link =>
-                      createWidget(link.end, { href: link.href })
-                    )
-                  ),
-                  pos: 0,
-                };
-              }
+              const decorations: Decoration[] = googleSlidesLinks.map(link =>
+                createGoogleSlidesWidget(link.end, { href: link.href })
+              );
 
               return {
+                decorations: DecorationSet.create(tr.doc, decorations),
                 pos: 0,
-                decorations: DecorationSet.empty,
               };
             },
           },
@@ -78,7 +77,7 @@ export const useGoogleSlidesPlugin = () => {
           },
         });
       }),
-    [getNodesByMark]
+    [getGoogleSlidesLinks, createGoogleSlidesWidget]
   );
 
   return googleSlidesPlugin;
