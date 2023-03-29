@@ -4,15 +4,12 @@ import { Mark, MarkType, Node } from '@milkdown/prose/model';
 import { useWidgetViewContext } from '@prosemirror-adapter/react';
 import { useMemo } from 'react';
 
-const doesRangeHasMark = (
-  doc: Node,
-  from: number,
-  to: number,
-  markType: MarkType
-) => doc.rangeHasMark(from, to, markType);
+const doesRangeHasMark =
+  (doc: Node, from: number, to: number) => (markType: MarkType) =>
+    doc.rangeHasMark(from, to, markType);
 
-const isMarkInSet = (markType: MarkType, marks: readonly Mark[]) =>
-  markType.isInSet(marks);
+const isMarkInSet = (marks: readonly Mark[]) => (markType: MarkType) =>
+  !!markType.isInSet(marks);
 
 export const useActiveMarks = () => {
   const { view } = useWidgetViewContext();
@@ -22,31 +19,23 @@ export const useActiveMarks = () => {
   const activeMarksMap = useMemo(() => {
     const { doc, storedMarks } = state;
     const { from, to, empty, $from } = selection;
+
     if (empty) {
+      const isSchemaActive = isMarkInSet(storedMarks || $from.marks());
+
       return {
-        isStrongActive: !!isMarkInSet(
-          strongSchema.type(),
-          storedMarks || $from.marks()
-        ),
-        isEmphasisActive: !!isMarkInSet(
-          emphasisSchema.type(),
-          storedMarks || $from.marks()
-        ),
-        isStrikethroughActive: !!isMarkInSet(
-          strikethroughSchema.type(),
-          storedMarks || $from.marks()
-        ),
+        isStrongActive: isSchemaActive(strongSchema.type()),
+        isEmphasisActive: isSchemaActive(emphasisSchema.type()),
+        isStrikethroughActive: isSchemaActive(strikethroughSchema.type()),
       };
     }
+
+    const isSchemaActive = doesRangeHasMark(doc, from, to);
+
     return {
-      isStrongActive: doesRangeHasMark(doc, from, to, strongSchema.type()),
-      isEmphasisActive: doesRangeHasMark(doc, from, to, emphasisSchema.type()),
-      isStrikethroughActive: doesRangeHasMark(
-        doc,
-        from,
-        to,
-        strikethroughSchema.type()
-      ),
+      isStrongActive: isSchemaActive(strongSchema.type()),
+      isEmphasisActive: isSchemaActive(emphasisSchema.type()),
+      isStrikethroughActive: isSchemaActive(strikethroughSchema.type()),
     };
   }, [state, selection]);
 
