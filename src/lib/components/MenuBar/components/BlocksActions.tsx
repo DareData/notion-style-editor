@@ -10,6 +10,8 @@ import { Button } from '../../../common/Button';
 import { Icon } from '../../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 import { useInsertMathBlock } from '../../../hooks/useInsertMathAction';
+import { theme } from '../../../styles/theme';
+import { pxToRem } from '../../../styles/utils';
 import { AddGoogleSlidesModal } from '../../AddGoogleSlidesModal/AddGoogleSlidesModal';
 import { AddImageModal } from '../../AddImageModal/AddImageModal';
 import { LinkModal } from '../../LinkModal/LinkModal';
@@ -97,5 +99,7 @@ export const BlocksActions: React.FC = () => {
 };
 
 const HyperlinkModalItemStyled = styled.li`
-  margin-left: auto;
+  @media (min-width: ${theme.queries.menuWithSpace}) {
+    margin-left: ${pxToRem(12)};
+  }
 `;

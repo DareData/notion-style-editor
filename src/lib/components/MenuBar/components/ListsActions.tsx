@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { Button } from '../../../common/Button';
 import { Icon } from '../../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
+import { theme } from '../../../styles/theme';
 import { pxToRem } from '../../../styles/utils';
 
 export const ListsActions: React.FC = () => {
@@ -39,5 +40,8 @@ export const ListsActions: React.FC = () => {
 };
 
 const BulletListItemStyled = styled.li`
-  margin-left: ${pxToRem(12)};
+  margin-left: ${pxToRem(2)};
+  @media (min-width: ${theme.queries.menuWithSpace}) {
+    margin-left: ${pxToRem(12)};
+  }
 `;

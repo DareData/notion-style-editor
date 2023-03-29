@@ -8,6 +8,7 @@ import styled, { css } from 'styled-components';
 import { Button, ButtonProps } from '../../../common/Button';
 import { Icon } from '../../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
+import { theme } from '../../../styles/theme';
 import { pxToRem } from '../../../styles/utils';
 import { useActiveMarks } from '../hooks/useActiveMarks';
 
@@ -55,7 +56,10 @@ export const FormatActions: React.FC = () => {
 };
 
 const BoldItemStyled = styled.li`
-  margin-left: ${pxToRem(12)};
+  margin-left: ${pxToRem(2)};
+  @media (min-width: ${theme.queries.menuWithSpace}) {
+    margin-left: ${pxToRem(12)};
+  }
 `;
 
 type ButtonStyledProps = ButtonProps & { $isActive: boolean };

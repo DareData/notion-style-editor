@@ -62,8 +62,9 @@ export const theme = {
   },
   colors,
   queries: {
-    tablet: '677px',
-    laptop: '870px',
+    tablet: '452px',
+    laptop: '650px',
+    menuWithSpace: '688px',
   },
 };
 

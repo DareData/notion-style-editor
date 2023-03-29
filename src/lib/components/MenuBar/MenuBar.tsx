@@ -8,6 +8,7 @@ import { TurnTextsActions } from './components/TurnTextsActions';
 import { UndoRedoActions } from './components/UndoRedoActions';
 import { TextsFormatActionsDropdown } from './TextsFormatActionsDropdown/TextsFormatActionsDropdown';
 import { useMatchMedia } from '../../hooks/useMatchMedia';
+import { theme } from '../../styles/theme';
 import { pxToRem } from '../../styles/utils';
 import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
 
@@ -47,10 +48,14 @@ const MenuBarListStyled = styled.ul`
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
-  gap: ${pxToRem(6)};
   align-items: center;
-  padding: ${pxToRem(8)} ${pxToRem(8)};
   background-color: ${props => props.theme.colors.secondaryLightGrey};
   border-radius: ${pxToRem(4)};
   margin-bottom: ${pxToRem(20)};
+  &&& {
+    padding: ${pxToRem(8)} ${pxToRem(2)};
+    @media (min-width: ${theme.queries.menuWithSpace}) {
+      padding: ${pxToRem(8)} ${pxToRem(8)};
+    }
+  }
 `;
