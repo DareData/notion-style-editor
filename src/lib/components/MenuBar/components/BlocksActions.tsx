@@ -19,7 +19,7 @@ export const BlocksActions: React.FC = () => {
 
   return (
     <>
-      <HyperlinkModalItemStyled>
+      <li>
         <LinkModal
           editable={false}
           handler={({ onOpen }) => (
@@ -28,7 +28,7 @@ export const BlocksActions: React.FC = () => {
             </Button>
           )}
         />
-      </HyperlinkModalItemStyled>
+      </li>
       <li>
         <AddImageModal
           handler={({ onOpen }) => (
@@ -84,7 +84,3 @@ export const BlocksActions: React.FC = () => {
     </>
   );
 };
-
-const HyperlinkModalItemStyled = styled.li`
-  margin-left: auto;
-`;

@@ -55,7 +55,7 @@ export const FormatActions: React.FC = () => {
 };
 
 const BoldItemStyled = styled.li`
-  margin-left: ${pxToRem(12)};
+  margin-left: ${pxToRem(2)};
 `;
 
 type ButtonStyledProps = ButtonProps & { $isActive: boolean };
