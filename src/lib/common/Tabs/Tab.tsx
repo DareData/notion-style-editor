@@ -17,7 +17,7 @@ export const Tab: React.FC<TabProps> = ({ label, children }) => {
 
   return (
     <TabStyled $isSelected={isSelected}>
-      <Button oval onClick={onTabClick}>
+      <Button color="secondary" onClick={onTabClick}>
         {children}
       </Button>
     </TabStyled>
