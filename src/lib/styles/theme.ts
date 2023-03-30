@@ -62,9 +62,9 @@ export const theme = {
   },
   colors,
   queries: {
-    tablet: '452px',
-    laptop: '650px',
-    menuWithSpace: '688px',
+    tablet: '426px',
+    laptop: '700px',
+    menuWithSpace: '724px',
   },
 };
 
