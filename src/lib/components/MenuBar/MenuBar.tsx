@@ -52,8 +52,10 @@ const MenuBarListStyled = styled.ul`
   background-color: ${props => props.theme.colors.secondaryLightGrey};
   border-radius: ${pxToRem(4)};
   margin-bottom: ${pxToRem(20)};
+
   &&& {
     padding: ${pxToRem(8)} ${pxToRem(2)};
+
     @media (min-width: ${theme.queries.menuWithSpace}) {
       padding: ${pxToRem(8)} ${pxToRem(8)};
     }

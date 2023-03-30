@@ -80,8 +80,7 @@ export const DropdownListStyled = styled.ul`
   border-radius: ${pxToRem(8)};
   border: 1px solid ${props => props.theme.colors.lightGrey};
   z-index: ${props => props.theme.zIndexes.dropdown.container};
-  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0px 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
 `;
 
 export const DropdownItemStyled = styled.li`

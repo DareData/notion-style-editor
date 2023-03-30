@@ -57,6 +57,7 @@ export const FormatActions: React.FC = () => {
 
 const BoldItemStyled = styled.li`
   margin-left: ${pxToRem(2)};
+
   @media (min-width: ${theme.queries.menuWithSpace}) {
     margin-left: ${pxToRem(12)};
   }

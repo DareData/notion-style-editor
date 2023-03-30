@@ -1,24 +1,10 @@
 {
-  "plugins": [
-    "stylelint-scss"
-  ],
-	"extends": [
-    "stylelint-config-recommended",
-    "stylelint-config-styled-components",
-    "stylelint-order",
+  "customSyntax": "postcss-styled-syntax",
+  "extends": [
+    "stylelint-config-standard",
     "stylelint-config-rational-order"
   ],
-  "rules": {
-    "at-rule-no-unknown": null,
-    "indentation": 2,
-    "function-no-unknown": [
-      true, 
-      {  
-        "ignoreFunctions": ["pxToRem"]
-      }
-    ],
-    "no-eol-whitespace": true,
-    "no-invalid-position-at-import-rule": null,
-    "font-family-no-missing-generic-family-keyword": null
-  } 
-} 
+  "plugins": [
+    "stylelint-order"
+  ]
+}

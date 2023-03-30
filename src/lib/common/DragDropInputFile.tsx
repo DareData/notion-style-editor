@@ -128,6 +128,7 @@ const FileInfoSyled = styled.p`
 const BrowseButtonStyled = styled(Button)`
   font-size: ${pxToRem(21)};
   text-decoration: underline;
+
   &:hover,
   &:focus {
     color: ${props => props.theme.colors.green};
@@ -160,8 +161,5 @@ const DragElementStyled = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
+  inset: 0;
 `;

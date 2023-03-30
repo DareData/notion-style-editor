@@ -20,6 +20,7 @@ export const GoogleSlidesWidget: React.FC = () => {
 const IFrameStyled = styled.iframe`
   width: 100%;
   height: ${pxToRem(200)};
+
   @media (min-width: ${theme.queries.laptop}) {
     height: ${pxToRem(388)};
   }

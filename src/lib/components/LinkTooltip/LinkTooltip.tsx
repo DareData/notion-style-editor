@@ -106,14 +106,15 @@ const LinkTextStyled = styled.span`
   overflow: hidden;
   color: ${props => props.theme.colors.white};
   font-size: ${pxToRem(14)};
+  text-overflow: ellipsis;
   white-space: nowrap;
   text-decoration: underline;
-  text-overflow: ellipsis;
 `;
 
 const ButtonStyled = styled(Button)`
   margin-left: ${pxToRem(6)};
   margin-right: ${pxToRem(2)};
+
   &:hover,
   &:focus {
     background-color: transparent;

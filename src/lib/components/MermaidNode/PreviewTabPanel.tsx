@@ -13,6 +13,8 @@ export const PreviewTabPanel: React.FC = () => {
 
 const MermaidContainerStyled = styled.div`
   text-align: center;
+
+  /* stylelint-disable-next-line selector-class-pattern */
   .edgeLabel {
     display: block !important;
   }

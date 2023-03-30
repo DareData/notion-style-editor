@@ -41,6 +41,7 @@ export const ListsActions: React.FC = () => {
 
 const BulletListItemStyled = styled.li`
   margin-left: ${pxToRem(2)};
+
   @media (min-width: ${theme.queries.menuWithSpace}) {
     margin-left: ${pxToRem(12)};
   }
