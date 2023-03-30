@@ -29,10 +29,8 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/main.tsx'),
-      name: 'MyLib',
-      formats: ['es', 'umd'],
-      fileName: format => `milkdown-datedata.${format}.js`,
+      entry: path.resolve(__dirname, 'src/lib/index.tsx'),
+      name: 'milkdown-datedata',
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
