@@ -22,13 +22,13 @@ export const Modal: React.FC<ModalProps> = ({
   const { state: isOpen, on, off } = useToggler(false);
 
   const onOpen = useCallback(() => {
-    on();
     onModalOpen?.();
+    on();
   }, [onModalOpen, on]);
 
   const onClose = useCallback(() => {
-    off();
     onModalClose?.();
+    off();
   }, [onModalClose, off]);
 
   return (

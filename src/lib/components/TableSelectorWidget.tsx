@@ -166,13 +166,13 @@ type ButtonWidget = React.ForwardRefExoticComponent<
 const ButtonWidgetStyled = styled<ButtonWidget>(Button)`
   position: absolute;
   background-color: ${props => props.theme.colors.secondaryGrey};
-  border-radius: ${pxToRem(1)};
-  inset: ${props => widgetStylesMap.top[props.$position]}
-    ${props => widgetStylesMap.right[props.$position]}
-    ${props => widgetStylesMap.bottom[props.$position]}
-    ${props => widgetStylesMap.left[props.$position]};
   width: ${props => widgetStylesMap.width[props.$position]};
   height: ${props => widgetStylesMap.height[props.$position]};
+  border-radius: ${pxToRem(1)};
+  inset: ${props => widgetStylesMap.top[props.$position]},
+    ${props => widgetStylesMap.right[props.$position]},
+    ${props => widgetStylesMap.bottom[props.$position]},
+    ${props => widgetStylesMap.left[props.$position]};
 
   &:hover,
   &:focus {
