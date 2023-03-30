@@ -1,3 +1,15 @@
+- [Overview](#overview)
+- [Preparation and starting the application](#preparation-and-starting-the-application)
+  * [Installation](#installation)
+- [Note about server side rendering](#note-about-server-side-rendering)
+- [Deploying to Github Pages](#deploying-to-github-pages)
+- [Buling library](#buling-library)
+- [Using library](#using-library)
+- [Troubleshoots](#troubleshoots)
+    + [The editor keeps re-rendering](#the-editor-keeps-re-rendering)
+    + [The bundle size is quite large](#the-bundle-size-is-quite-large)
+
+
 ## Overview
 
 This project is a [Markdown](https://www.markdownguide.org/getting-started/) editor library. **Thanks to it, it is possible to use Markdown in a simple and pleasant way**. It is written using [React](https://react.dev/), [styled-components](https://styled-components.com/). [React-hook-form](https://react-hook-form.com/) was used to render forms alogn with [yup](https://github.com/jquense/yup).
@@ -18,7 +30,7 @@ For consistency and to ensure that each developer uses the same version of [Node
 7. `yarn prepare`
 9. `yarn start`
 
-## Server side rendering
+## Note about server side rendering
 
 **This library cannot be rendered on the server! That's why it's important to render it only on the client side.**
 
