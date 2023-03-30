@@ -121,7 +121,6 @@ const AnchorStyled = styled.a<{
   cursor: pointer;
   transition: background-color 0.2s ease-in, border-color 0.2s ease-in,
     color 0.2s ease-in;
-
   padding: ${props => anchorSpaceMap[props.$space]};
 
   ${props =>
@@ -139,20 +138,20 @@ const AnchorStyled = styled.a<{
     `}
 
   &:hover {
+    color: ${props =>
+      getAnchorColorsMap(props.$variant).hover.color[props.$color]};
     background-color: ${props =>
       getAnchorColorsMap(props.$variant).hover.bg[props.$color]};
     border: 1px solid
       ${props => getAnchorColorsMap(props.$variant).hover.border[props.$color]};
-    color: ${props =>
-      getAnchorColorsMap(props.$variant).hover.color[props.$color]};
   }
 
   &:focus {
+    color: ${props =>
+      getAnchorColorsMap(props.$variant).focus.color[props.$color]};
     background-color: ${props =>
       getAnchorColorsMap(props.$variant).focus.bg[props.$color]};
     border: 1px solid
       ${props => getAnchorColorsMap(props.$variant).focus.border[props.$color]};
-    color: ${props =>
-      getAnchorColorsMap(props.$variant).focus.color[props.$color]};
   }
 `;

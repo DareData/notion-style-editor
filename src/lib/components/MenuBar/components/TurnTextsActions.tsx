@@ -38,14 +38,21 @@ export const TurnTextsActions: React.FC = () => {
 
 const SelectStyled = styled(Select)`
   margin-left: ${pxToRem(2)};
+
   @media (min-width: ${theme.queries.menuWithSpace}) {
     margin-left: ${pxToRem(12)};
   }
+
+  /* stylelint-disable-next-line selector-class-pattern */
   .Dropdown-control {
-    background-color: rgba(31, 31, 31, 0.8);
+    background-color: rgb(31 31 31 / 80%);
+
+    /* stylelint-disable-next-line selector-class-pattern */
     .Dropdown-placeholder {
       color: ${props => props.theme.colors.white};
     }
+
+    /* stylelint-disable-next-line selector-class-pattern */
     .Dropdown-arrow-wrapper svg {
       fill: ${props => props.theme.colors.white};
     }

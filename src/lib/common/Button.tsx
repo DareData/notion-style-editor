@@ -188,11 +188,11 @@ const ButtonStyled = styled.button<{
       : css<{ $variant: ButtonVariant; $color: ButtonColor }>`
           &:hover,
           &:focus {
+            color: ${props => buttonColorsMap.hover.color[props.$color]};
             background-color: ${props =>
               props.$variant !== 'simple_text'
                 ? buttonColorsMap.hover.bg[props.$color]
                 : 'transparent'};
-            color: ${props => buttonColorsMap.hover.color[props.$color]};
             ${props =>
               (props.$variant === 'contained' ||
                 props.$variant === 'outlined') &&
@@ -203,11 +203,11 @@ const ButtonStyled = styled.button<{
           }
 
           &:active {
+            color: ${props => buttonColorsMap.pressed.color[props.$color]};
             background-color: ${props =>
               props.$variant !== 'simple_text'
                 ? buttonColorsMap.pressed.bg[props.$color]
                 : 'transparent'};
-            color: ${props => buttonColorsMap.pressed.color[props.$color]};
             ${props =>
               (props.$variant === 'contained' ||
                 props.$variant === 'outlined') &&

@@ -129,13 +129,14 @@ const GapStyled = styled.div`
   align-items: center;
   padding-top: ${pxToRem(32)};
   padding-bottom: ${pxToRem(24)};
+
   &::before,
-  &:after {
-    content: '';
-    flex: 1;
+  &::after {
     display: block;
+    flex: 1;
     height: ${pxToRem(1)};
     background-color: ${props => props.theme.colors.lightGrey};
+    content: '';
   }
 `;
 

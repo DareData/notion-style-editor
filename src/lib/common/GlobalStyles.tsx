@@ -10,9 +10,11 @@ export const GlobalStyles = createGlobalStyle`
     color: ${props => props.theme.colors.lightBlack};
     font-family: ${props => props.theme.fonts.primary};
   }
+
 	.tippy-box {
     background-color: transparent;
   }
+
   .tippy-content {
     padding: 0;
   }

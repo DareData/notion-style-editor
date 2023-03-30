@@ -21,9 +21,10 @@ export const EditorContainer = styled.div`
     border-color: ${props => props.theme.colors.grey};
   }
 
+  /* stylelint-disable-next-line selector-class-pattern */
   .ProseMirror-focused {
-    outline: 0;
     border-color: ${props => props.theme.colors.lightBlack};
+    outline: 0;
   }
 
   .editor {
@@ -47,9 +48,9 @@ export const EditorContainer = styled.div`
     }
 
     a {
-      text-decoration: none;
-      font-weight: 600;
       color: ${props => props.theme.components.editor.link};
+      font-weight: 600;
+      text-decoration: none;
     }
 
     .emoji {
@@ -67,6 +68,7 @@ export const EditorContainer = styled.div`
     }
   }
 
+  /* stylelint-disable-next-line selector-class-pattern */
   .tableWrapper {
     table {
       width: calc(100% - 14px);
@@ -75,21 +77,27 @@ export const EditorContainer = styled.div`
       overflow: visible;
       font-size: ${pxToRem(14)};
       border-collapse: collapse;
+
       th {
         position: relative;
         background-color: ${props => props.theme.colors.secondaryLightGrey};
         border-color: ${props => props.theme.colors.white};
       }
+
       th,
       td {
         padding: ${pxToRem(16)};
         border-bottom: 1px solid ${props => props.theme.colors.lightGrey};
+
         &:not(:first-of-type) {
           border-left: 1px solid ${props => props.theme.colors.white};
         }
+
         &:not(:last-of-type) {
           border-right: 1px solid ${props => props.theme.colors.white};
         }
+
+        /* stylelint-disable-next-line selector-class-pattern */
         &.selectedCell {
           background-color: ${props => props.theme.colors.azure};
         }

@@ -62,7 +62,7 @@ export const App = () => {
   );
 
   return (
-    <>
+    <ErrorBoundary>
       <AppGlobalStyles />
       <AppContainerStyled>
         <button
@@ -72,7 +72,7 @@ export const App = () => {
         </button>
         <TextEditor data={markdownValue} {...{ mode, onDataChange }} />
       </AppContainerStyled>
-    </>
+    </ErrorBoundary>
   );
 };
 
@@ -89,10 +89,11 @@ const AppGlobalStyles = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+
   html, body {
-    margin: 0;
     max-width: 100vw;
     min-height: 100vh;
-    background-color: #FFFFFF;
+    margin: 0;
+    background-color: #FFF;
   }
 `;

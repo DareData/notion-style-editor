@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 import { TabsContextProvider } from './context/TabsContextProvider';
 
 type TabsProps = {
@@ -15,9 +13,7 @@ export const Tabs: React.FC<TabsProps> = ({
 }) => {
   return (
     <TabsContextProvider {...{ initialTab, onTabChange }}>
-      <TabsContainerStyled>{children}</TabsContainerStyled>
+      <div>{children}</div>
     </TabsContextProvider>
   );
 };
-
-const TabsContainerStyled = styled.div``;

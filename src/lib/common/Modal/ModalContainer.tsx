@@ -73,10 +73,10 @@ const ModalContainerStyled = styled.div`
   width: 100%;
   overflow-y: auto;
 
-  & > div:before {
+  & > div::before {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 0;
+    right: 0;
     z-index: -1;
     display: block;
     width: 100%;
@@ -86,7 +86,7 @@ const ModalContainerStyled = styled.div`
     content: '';
   }
 
-  &:not(:last-of-type) > div:before {
+  &:not(:last-of-type) > div::before {
     z-index: ${props => props.theme.zIndexes.modal.container};
     background-color: ${props =>
       props.theme.components.modal.backdrop.background};
@@ -103,12 +103,13 @@ const ModalBoxStyled = styled(motion.div)`
   flex-direction: column;
   font-size: ${pxToRem(16)};
   background-color: ${props => props.theme.colors.white};
+
   @media (min-width: ${theme.queries.laptop}) {
     width: ${pxToRem(480)};
     height: auto;
     max-height: auto;
-    box-shadow: 0px 25px 50px -12px ${props => props.theme.components.modal.backdrop.background};
     border-radius: ${pxToRem(12)};
+    box-shadow: 0 25px 50px -12px ${props => props.theme.components.modal.backdrop.background};
   }
 `;
 

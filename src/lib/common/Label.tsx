@@ -27,11 +27,11 @@ const LabelStyled = styled.label<{ required: boolean; error?: string }>`
   ${props =>
     props.required &&
     css`
-      &:after {
-        content: '*';
+      &::after {
+        margin-left: ${pxToRem(3)};
         color: ${props => props.theme.colors.darkRed};
         font-size: ${pxToRem(10)};
-        margin-left: ${pxToRem(3)};
+        content: '*';
       }
     `}
 `;

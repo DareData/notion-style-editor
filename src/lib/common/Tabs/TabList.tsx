@@ -14,6 +14,7 @@ const TabListStyled = styled.ul`
   display: flex;
   align-items: center;
   margin-bottom: ${pxToRem(10)};
+
   &&& {
     padding: 0;
   }

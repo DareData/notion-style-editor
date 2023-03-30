@@ -91,6 +91,7 @@ const CodeBlockNodeContainerStyled = styled.div`
   background-color: ${props => props.theme.colors.lightAzure};
   border: 1px solid ${props => props.theme.colors.azure};
   border-radius: ${pxToRem(8)};
+
   * {
     font-family: ${props => props.theme.fonts.secondary};
   }

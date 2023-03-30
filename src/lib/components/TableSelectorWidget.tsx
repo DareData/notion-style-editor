@@ -167,12 +167,13 @@ const ButtonWidgetStyled = styled<ButtonWidget>(Button)`
   position: absolute;
   background-color: ${props => props.theme.colors.secondaryGrey};
   border-radius: ${pxToRem(1)};
-  top: ${props => widgetStylesMap.top[props.$position]};
-  bottom: ${props => widgetStylesMap.bottom[props.$position]};
-  left: ${props => widgetStylesMap.left[props.$position]};
-  right: ${props => widgetStylesMap.right[props.$position]};
+  inset: ${props => widgetStylesMap.top[props.$position]}
+    ${props => widgetStylesMap.right[props.$position]}
+    ${props => widgetStylesMap.bottom[props.$position]}
+    ${props => widgetStylesMap.left[props.$position]};
   width: ${props => widgetStylesMap.width[props.$position]};
   height: ${props => widgetStylesMap.height[props.$position]};
+
   &:hover,
   &:focus {
     background-color: ${props => props.theme.colors.green};
