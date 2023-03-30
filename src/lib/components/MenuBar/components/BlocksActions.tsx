@@ -4,6 +4,8 @@ import {
   insertImageCommand,
 } from '@milkdown/preset-commonmark';
 import { insertTableCommand } from '@milkdown/preset-gfm';
+import { useWidgetViewContext } from '@prosemirror-adapter/react';
+import { useCallback, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 
 import { Button } from '../../../common/Button';
@@ -17,15 +19,33 @@ import { AddImageModal } from '../../AddImageModal/AddImageModal';
 import { LinkModal } from '../../LinkModal/LinkModal';
 
 export const BlocksActions: React.FC = () => {
+  const [selectedText, setSelectedText] = useState('');
+
   const { colors } = useTheme();
   const { onCallCommand } = useCallEditorCommand();
   const { onInsertMathBlock } = useInsertMathBlock();
+  const {
+    view: { state },
+  } = useWidgetViewContext();
+
+  const onModalOpen = useCallback(() => {
+    const { selection, doc } = state;
+
+    const { from, to } = selection;
+    const text = doc.textBetween(from, to) || '';
+
+    setSelectedText(text);
+  }, [state]);
+
+  const onModalClose = useCallback(() => setSelectedText(''), []);
 
   return (
     <>
       <HyperlinkModalItemStyled>
         <LinkModal
           editable={false}
+          text={selectedText}
+          {...{ onModalOpen, onModalClose }}
           handler={({ onOpen }) => (
             <Button oval onClick={onOpen} space="small" color="secondary">
               <Icon icon="add_link" />

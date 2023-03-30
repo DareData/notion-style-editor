@@ -6,5 +6,8 @@
   ],
   "plugins": [
     "stylelint-order"
-  ]
+  ],
+  "rules": {
+    "value-keyword-case": null
+  }
 }

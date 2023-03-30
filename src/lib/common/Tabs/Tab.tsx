@@ -28,6 +28,6 @@ const TabStyled = styled.li<{ $isSelected: boolean }>`
   list-style-type: none;
   border-bottom: 2px solid
     ${props =>
-      props.$isSelected ? props.theme.colors.lightgreen : 'transparent'};
+      props.$isSelected ? props.theme.colors.lightGreen : 'transparent'};
   transition: border-color 0.1s ease-in;
 `;

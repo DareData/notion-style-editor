@@ -44,7 +44,7 @@ export const InputStyled = styled.input<
   outline: 0;
   border: 1px solid
     ${props =>
-      props.error ? props.theme.colors.darkred : props.theme.colors.lightgrey};
+      props.error ? props.theme.colors.darkRed : props.theme.colors.lightGrey};
   border-radius: ${pxToRem(8)};
   transition: border-color 0.2s ease-in;
 
