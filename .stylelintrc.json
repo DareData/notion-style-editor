@@ -1,0 +1,13 @@
+{
+  "customSyntax": "postcss-styled-syntax",
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-rational-order"
+  ],
+  "plugins": [
+    "stylelint-order"
+  ],
+  "rules": {
+    "value-keyword-case": null
+  }
+}
