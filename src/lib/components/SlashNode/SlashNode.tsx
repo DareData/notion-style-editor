@@ -59,6 +59,7 @@ export const SlashNode: React.FC = () => {
         <DropdownListStyled>
           <DropdownItemStyled>
             <DropdownButtonActionStyled
+              color="secondary"
               onClick={() => onCommandClick(wrapInHeadingCommand.key, 1)}
             >
               <Icon icon="title" />
@@ -67,6 +68,7 @@ export const SlashNode: React.FC = () => {
           </DropdownItemStyled>
           <DropdownItemStyled>
             <DropdownButtonActionStyled
+              color="secondary"
               onClick={() => onCommandClick(wrapInHeadingCommand.key, 2)}
             >
               <Icon icon="subtitle" />
@@ -75,6 +77,7 @@ export const SlashNode: React.FC = () => {
           </DropdownItemStyled>
           <DropdownItemStyled>
             <DropdownButtonActionStyled
+              color="secondary"
               onClick={() => onCommandClick(turnIntoTextCommand.key)}
             >
               <Icon icon="paragraph" />
@@ -86,7 +89,7 @@ export const SlashNode: React.FC = () => {
               editable={false}
               onModalOpen={onRemoveSlash}
               handler={({ onOpen }) => (
-                <DropdownButtonActionStyled onClick={onOpen}>
+                <DropdownButtonActionStyled onClick={onOpen} color="secondary">
                   <Icon icon="add_link" />
                   Add link
                 </DropdownButtonActionStyled>
@@ -97,7 +100,7 @@ export const SlashNode: React.FC = () => {
             <AddImageModal
               onModalOpen={onRemoveSlash}
               handler={({ onOpen }) => (
-                <DropdownButtonActionStyled onClick={onOpen}>
+                <DropdownButtonActionStyled onClick={onOpen} color="secondary">
                   <Icon icon="embed_image" />
                   Add image
                 </DropdownButtonActionStyled>
@@ -109,6 +112,7 @@ export const SlashNode: React.FC = () => {
           </DropdownItemStyled>
           <DropdownItemStyled>
             <DropdownButtonActionStyled
+              color="secondary"
               onClick={() => onCommandClick(createCodeBlockCommand.key)}
             >
               <Icon icon="code_block" />
@@ -117,6 +121,7 @@ export const SlashNode: React.FC = () => {
           </DropdownItemStyled>
           <DropdownItemStyled>
             <DropdownButtonActionStyled
+              color="secondary"
               onClick={() => onCommandClick(insertTableCommand.key)}
             >
               <Icon icon="create_table" />
@@ -125,6 +130,7 @@ export const SlashNode: React.FC = () => {
           </DropdownItemStyled>
           <DropdownItemStyled>
             <DropdownButtonActionStyled
+              color="secondary"
               onClick={() => onCommandClick(insertMathCommand.key)}
             >
               <Icon icon="math" />
@@ -133,6 +139,7 @@ export const SlashNode: React.FC = () => {
           </DropdownItemStyled>
           <DropdownItemStyled>
             <DropdownButtonActionStyled
+              color="secondary"
               onClick={() => onCommandClick(insertDiagramCommand.key)}
             >
               <Icon icon="mermaid" />
@@ -143,7 +150,7 @@ export const SlashNode: React.FC = () => {
             <AddGoogleSlidesModal
               onModalOpen={onRemoveSlash}
               handler={({ onOpen }) => (
-                <DropdownButtonActionStyled onClick={onOpen}>
+                <DropdownButtonActionStyled onClick={onOpen} color="secondary">
                   <Icon icon="google" fill={colors.white} />
                   Add Google doc
                 </DropdownButtonActionStyled>

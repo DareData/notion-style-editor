@@ -133,15 +133,18 @@ const YourComponent: React.FC = () => {
 
 ## Troubleshoots
 
-#### The editor keeps re-rendering
+### The editor keeps re-rendering
 
 Check, whether `onDataChange` and `data` do not change their reference. When one of them changes, the old editor is "unmounted" and a new one is "mounted". 
 https://blog.logrocket.com/understanding-react-exhaustive-deps-linting-warning/ 
 
-#### The bundle size is quite large
+### The bundle size is quite large
 
 Unfortunately after using https://github.com/btd/rollup-plugin-visualizer, I noticed that **both of these plugins are around 4MB**
 - https://milkdown.dev/docs/api/plugin-diagram
 - https://milkdown.dev/docs/api/plugin-math
 
-In addition, fonts take up quite a lot of space.
+In addition, fonts take up quite a lot of space. 
+
+
+<ins>Moreover.. the code is not minified yet, so 60% of the size will be reduced. Also remember about compression, which will also reduce the size of the package.</ins>
