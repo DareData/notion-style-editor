@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 
 import { theme } from '../styles/theme';
@@ -15,29 +16,35 @@ type AnchorOptions = {
   variant?: AnchorVariant;
 };
 
-type AnchorProps = AnchorOptions & {
+export type AnchorProps = AnchorOptions & {
   children: React.ReactNode;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-export const Anchor: React.FC<AnchorProps> = ({
-  oval = false,
-  space = 'no',
-  color = 'primary',
-  variant = 'text',
-  children,
-  target = '_blank',
-  ...rest
-}) => (
-  <AnchorStyled
-    {...{ target }}
-    $space={space}
-    $color={color}
-    $variant={variant}
-    $oval={oval}
-    {...rest}
-  >
-    {children}
-  </AnchorStyled>
+export const Anchor = forwardRef<HTMLAnchorElement, AnchorProps>(
+  (
+    {
+      oval = false,
+      space = 'no',
+      color = 'primary',
+      variant = 'text',
+      children,
+      target = '_blank',
+      ...rest
+    },
+    ref
+  ) => (
+    <AnchorStyled
+      ref={ref}
+      {...{ target }}
+      $space={space}
+      $color={color}
+      $variant={variant}
+      $oval={oval}
+      {...rest}
+    >
+      {children}
+    </AnchorStyled>
+  )
 );
 
 const getAnchorEffectColorsMap = (variant: AnchorVariant) =>
