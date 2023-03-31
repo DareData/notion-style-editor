@@ -4,6 +4,7 @@ import {
   codeBlockSchema,
   commonmark,
   imageSchema,
+  linkSchema,
 } from '@milkdown/preset-commonmark';
 import { $view } from '@milkdown/utils';
 import {
@@ -12,17 +13,28 @@ import {
 } from '@prosemirror-adapter/react';
 import { useMemo } from 'react';
 
-import { useGoogleSlidesPlugin } from './useGoogleSlidesPlugin';
-import { CodeBlockNode } from '../../../../components/CodeBlockNode';
-import { ImageNode } from '../../../../components/ImageNode/ImageNode';
-import { LinkTooltip } from '../../../../components/LinkTooltip/LinkTooltip';
+import { CodeBlockNode } from '../../../components/CodeBlockNode';
+import { ImageNode } from '../../../components/ImageNode/ImageNode';
+import { LinkNode } from '../../../components/LinkNode/LinkNode';
+import { LinkTooltip } from '../../../components/LinkTooltip/LinkTooltip';
 
 const linkTooltip = tooltipFactory('HYPERLINK');
 
 export const useCommonmarkPlugin = () => {
   const nodeViewFactory = useNodeViewFactory();
-  const googleSlidesPlugin = useGoogleSlidesPlugin();
   const pluginViewFactory = usePluginViewFactory();
+
+  // as?: NodeViewDOMSpec;
+  // contentAs?: NodeViewDOMSpec;
+  // component: Component;
+  // update?: (node: Node, decorations: readonly Decoration[], innerDecorations: DecorationSource) => boolean | void;
+  // ignoreMutation?: (mutation: MutationRecord) => boolean | void;
+  // selectNode?: () => void;
+  // deselectNode?: () => void;
+  // setSelection?: (anchor: number, head: number, root: Document | ShadowRoot) => void;
+  // stopEvent?: (event: Event) => boolean;
+  // destroy?: () => void;
+  // onUpdate?: () => void;
 
   const commonMarkPlugin = useMemo(
     () =>
@@ -42,9 +54,15 @@ export const useCommonmarkPlugin = () => {
         $view(imageSchema.node, () =>
           nodeViewFactory({ component: ImageNode, as: 'div' })
         ),
-        googleSlidesPlugin,
+        $view(linkSchema.mark, () =>
+          nodeViewFactory({
+            component: LinkNode,
+            as: 'span',
+            contentAs: 'a',
+          })
+        ),
       ].flat(),
-    [pluginViewFactory, nodeViewFactory, googleSlidesPlugin]
+    [pluginViewFactory, nodeViewFactory]
   );
 
   return commonMarkPlugin;

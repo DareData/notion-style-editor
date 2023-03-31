@@ -8,13 +8,9 @@ import { emoji } from '@milkdown/plugin-emoji';
 import { history } from '@milkdown/plugin-history';
 import { trailing } from '@milkdown/plugin-trailing';
 import { useEditor, UseEditorReturn } from '@milkdown/react';
-import {
-  useNodeViewFactory,
-  usePluginViewFactory,
-} from '@prosemirror-adapter/react';
 import { createContext, useMemo } from 'react';
 
-import { useCommonmarkPlugin } from './hooks/useCommonmarkPlugin/useCommonmarkPlugin';
+import { useCommonmarkPlugin } from './hooks/useCommonmarkPlugin';
 import { useEditorViewPlugin } from './hooks/useEditorViewPlugin';
 import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
 import { useListenerPlugin } from './hooks/useListenerPlugin';
@@ -44,9 +40,6 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   onChange,
   defaultMarkdownValue,
 }) => {
-  const nodeViewFactory = useNodeViewFactory();
-  const pluginViewFactory = usePluginViewFactory();
-
   const gfmPlugin = useGfmPlugin();
   const mathPlugin = useMathPlugin();
   const uploadPlugin = useUploadPlugin();
@@ -87,10 +80,8 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
       gfmPlugin,
       mathPlugin,
       mermaidPlugin,
-      nodeViewFactory,
       onChange,
       slashPlugin,
-      pluginViewFactory,
       uploadPlugin,
       prismPlugin,
     ]
