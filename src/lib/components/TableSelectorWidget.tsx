@@ -133,8 +133,8 @@ const widgetStylesMap = {
   },
   bottom: {
     row: pxToRem(1),
-    column: '',
-    table: '',
+    column: 'auto',
+    table: 'auto',
   },
   left: {
     row: pxToRem(-12),
@@ -142,17 +142,17 @@ const widgetStylesMap = {
     table: pxToRem(-12),
   },
   right: {
-    row: '',
+    row: 'auto',
     column: pxToRem(1),
-    table: '',
+    table: 'auto',
   },
   width: {
     row: pxToRem(8),
-    column: '',
+    column: 'auto',
     table: pxToRem(8),
   },
   height: {
-    row: '',
+    row: 'auto',
     column: pxToRem(8),
     table: pxToRem(8),
   },
@@ -169,9 +169,9 @@ const ButtonWidgetStyled = styled<ButtonWidget>(Button)`
   width: ${props => widgetStylesMap.width[props.$position]};
   height: ${props => widgetStylesMap.height[props.$position]};
   border-radius: ${pxToRem(1)};
-  inset: ${props => widgetStylesMap.top[props.$position]},
-    ${props => widgetStylesMap.right[props.$position]},
-    ${props => widgetStylesMap.bottom[props.$position]},
+  inset: ${props => widgetStylesMap.top[props.$position]}
+    ${props => widgetStylesMap.right[props.$position]}
+    ${props => widgetStylesMap.bottom[props.$position]}
     ${props => widgetStylesMap.left[props.$position]};
 
   &:hover,
