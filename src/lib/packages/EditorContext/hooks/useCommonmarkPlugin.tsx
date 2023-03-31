@@ -24,18 +24,6 @@ export const useCommonmarkPlugin = () => {
   const nodeViewFactory = useNodeViewFactory();
   const pluginViewFactory = usePluginViewFactory();
 
-  // as?: NodeViewDOMSpec;
-  // contentAs?: NodeViewDOMSpec;
-  // component: Component;
-  // update?: (node: Node, decorations: readonly Decoration[], innerDecorations: DecorationSource) => boolean | void;
-  // ignoreMutation?: (mutation: MutationRecord) => boolean | void;
-  // selectNode?: () => void;
-  // deselectNode?: () => void;
-  // setSelection?: (anchor: number, head: number, root: Document | ShadowRoot) => void;
-  // stopEvent?: (event: Event) => boolean;
-  // destroy?: () => void;
-  // onUpdate?: () => void;
-
   const commonMarkPlugin = useMemo(
     () =>
       [
