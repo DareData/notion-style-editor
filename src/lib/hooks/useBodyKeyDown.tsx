@@ -7,11 +7,14 @@ export type UseBodyKeyDownOptions = {
   isBodyKeyDownActive?: boolean;
 };
 
-type UseBodyKeyDownProps = Partial<Record<KeyboardCodesTypes, () => void>> & {
+type UseBodyKeyDownProps = Partial<
+  Record<KeyboardCodesTypes, (e: KeyboardEvent) => void>
+> & {
   options?: UseBodyKeyDownOptions;
 };
 
 export const useBodyKeyDown = ({
+  Enter,
   Escape,
   ArrowUp,
   options,
@@ -22,17 +25,12 @@ export const useBodyKeyDown = ({
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
       KeyboardMatcher(e)
-        .ArrowUp(() => {
-          e.preventDefault();
-          ArrowUp?.();
-        })
-        .ArrowDown(() => {
-          e.preventDefault();
-          ArrowDown?.();
-        })
-        .Escape(() => Escape?.());
+        .ArrowUp(() => ArrowUp?.(e))
+        .ArrowDown(() => ArrowDown?.(e))
+        .Escape(() => Escape?.(e))
+        .Enter(() => Enter?.(e));
     },
-    [Escape, ArrowDown, ArrowUp]
+    [Escape, ArrowDown, ArrowUp, Enter]
   );
 
   useEffect(() => {

@@ -4,14 +4,14 @@ import { useBodyKeyDown, UseBodyKeyDownOptions } from './useBodyKeyDown';
 
 type UseKeyboardListProps<T extends Element> = {
   length: number;
-  onEscape?: () => void;
-  onActiveChange: (ref: T) => void;
+  onEnter?: (e: KeyboardEvent, activeRef: React.RefObject<T> | null) => void;
+  onEscape?: (e: KeyboardEvent) => void;
 } & UseBodyKeyDownOptions;
 
 export const useKeyboardList = <T extends Element>({
   length,
+  onEnter,
   onEscape,
-  onActiveChange,
   ...options
 }: UseKeyboardListProps<T>) => {
   const [active, setActive] = useState<number | null>(null);
@@ -23,9 +23,12 @@ export const useKeyboardList = <T extends Element>({
     }
   }, [length]);
 
-  const onArrowDown = useCallback(() => {
+  const onArrowDown = useCallback((e: KeyboardEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     const { length: listLength } = keyboardListRefs.current;
     setActive(prevActive => {
+      console.log('prevACtive: ', prevActive);
       if (typeof prevActive !== 'number') {
         return 0;
       }
@@ -36,7 +39,9 @@ export const useKeyboardList = <T extends Element>({
     });
   }, []);
 
-  const onArrowUp = useCallback(() => {
+  const onArrowUp = useCallback((e: KeyboardEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     const { length: listLength } = keyboardListRefs.current;
     setActive(prevActive => {
       if (typeof prevActive !== 'number') {
@@ -49,21 +54,18 @@ export const useKeyboardList = <T extends Element>({
     });
   }, []);
 
+  const activeRef = active ? keyboardListRefs.current[active] : null;
+
   useBodyKeyDown({
+    Enter: useCallback(
+      (e: KeyboardEvent) => onEnter?.(e, activeRef),
+      [activeRef, onEnter]
+    ),
     Escape: onEscape,
     options,
     ArrowUp: onArrowUp,
     ArrowDown: onArrowDown,
   });
 
-  useEffect(() => {
-    if (typeof active === 'number') {
-      const activeRef = keyboardListRefs.current[active];
-      if (activeRef && activeRef.current) {
-        onActiveChange(activeRef.current);
-      }
-    }
-  }, [active, keyboardListRefs, onActiveChange]);
-
-  return { keyboardListRefs, setActive };
+  return { keyboardListRefs, setActive, active };
 };
