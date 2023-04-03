@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import styled from 'styled-components';
 
 import { useModalContext } from './context/useModalContext';
+import { useBodyKeyDown } from '../../hooks/useBodyKeyDown';
 import { theme } from '../../styles/theme';
 import { pxToRem } from '../../styles/utils';
 import { Button } from '../Button';
@@ -25,6 +26,7 @@ export const ModalContainer: React.FC<ModalContainerProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { onClose } = useModalContext();
+  useBodyKeyDown({ Escape: onClose });
 
   const onContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const { current: body } = modalBodyRef;
