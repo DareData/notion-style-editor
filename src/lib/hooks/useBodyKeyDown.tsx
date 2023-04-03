@@ -1,24 +1,54 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { KeyboardCodesTypes, KeyboardMatcher } from '../utils/Keyboard';
 
-type UseBodyKeyDownProps = Partial<Record<KeyboardCodesTypes, () => void>>;
+export type UseBodyKeyDownOptions = {
+  onMount?: boolean;
+  isBodyKeyDownActive?: boolean;
+};
+
+type UseBodyKeyDownProps = Partial<Record<KeyboardCodesTypes, () => void>> & {
+  options?: UseBodyKeyDownOptions;
+};
 
 export const useBodyKeyDown = ({
-  ArrowDown,
-  ArrowUp,
   Escape,
+  ArrowUp,
+  options,
+  ArrowDown,
 }: UseBodyKeyDownProps) => {
-  useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
+  const { onMount = true, isBodyKeyDownActive } = options || {};
+
+  const onKeyDown = useCallback(
+    (e: KeyboardEvent) => {
       KeyboardMatcher(e)
-        .ArrowUp(() => ArrowUp?.())
-        .ArrowDown(() => ArrowDown?.())
+        .ArrowUp(() => {
+          e.preventDefault();
+          ArrowUp?.();
+        })
+        .ArrowDown(() => {
+          e.preventDefault();
+          ArrowDown?.();
+        })
         .Escape(() => Escape?.());
-    };
+    },
+    [Escape, ArrowDown, ArrowUp]
+  );
 
-    document.body.addEventListener('keydown', onKeyDown);
+  useEffect(() => {
+    if (onMount) {
+      document.body.addEventListener('keydown', onKeyDown);
 
-    return () => document.body.removeEventListener('keydown', onKeyDown);
-  }, [Escape, ArrowDown, ArrowUp]);
+      return () => document.body.removeEventListener('keydown', onKeyDown);
+    }
+  }, [onMount, onKeyDown]);
+
+  useEffect(() => {
+    if (isBodyKeyDownActive) {
+      document.body.addEventListener('keydown', onKeyDown, false);
+
+      return () =>
+        document.body.removeEventListener('keydown', onKeyDown, false);
+    }
+  }, [isBodyKeyDownActive, onKeyDown]);
 };

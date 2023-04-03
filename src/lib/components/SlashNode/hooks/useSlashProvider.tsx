@@ -1,27 +1,31 @@
-import { editorViewCtx } from '@milkdown/core';
 import { SlashProvider } from '@milkdown/plugin-slash';
 import { useInstance } from '@milkdown/react';
 import { usePluginViewContext } from '@prosemirror-adapter/react';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+import { useKeyboardList } from '../../../hooks/useKeyboardList';
 
 type UseSlashProviderProps = {
   tooltipRef: React.RefObject<HTMLDivElement>;
 };
 
 export const useSlashProvider = ({ tooltipRef }: UseSlashProviderProps) => {
+  const [isBodyKeyDownActive, setBodyKeyDownActive] = useState(false);
+
   const slashProviderRef = useRef<SlashProvider>();
 
   const [loading, getEditor] = useInstance();
   const { view, prevState } = usePluginViewContext();
 
-  const onKeydown = useCallback((e: KeyboardEvent, show: boolean) => {
-    const key = e.key;
-    if (show && (key === 'ArrowDown' || key === 'ArrowUp' || key === 'Enter')) {
-      e.stopPropagation();
-      e.preventDefault();
-      // TODO: handle keyboard event here
-    }
-  }, []);
+  const { keyboardListRefs, setActive } = useKeyboardList<HTMLButtonElement>({
+    length: 10,
+    onMount: false,
+    onEscape: useCallback(() => {
+      slashProviderRef.current?.hide();
+    }, []),
+    isBodyKeyDownActive: isBodyKeyDownActive,
+    onActiveChange: useCallback(buttonRef => buttonRef.focus(), []),
+  });
 
   useEffect(() => {
     const editor = getEditor();
@@ -30,36 +34,32 @@ export const useSlashProvider = ({ tooltipRef }: UseSlashProviderProps) => {
       return;
     }
 
-    let show = false;
     slashProviderRef.current ??= new SlashProvider({
       content: tooltipRef.current,
       tippyOptions: {
         arrow: false,
-        onShow: () => {
-          show = true;
+        onMount: () => {
+          const [firstElementRef] = keyboardListRefs.current;
+          if (firstElementRef) {
+            setActive(0);
+            setBodyKeyDownActive(true);
+          }
         },
         onHide: () => {
-          show = false;
+          setActive(null);
+          setBodyKeyDownActive(false);
         },
       },
     });
 
-    const root =
-      editor.ctx.isInjected(editorViewCtx) && editor.ctx.get(editorViewCtx).dom;
-
-    if (!root) {
-      return;
-    }
-
-    root.addEventListener('keydown', e => onKeydown(e, show));
-
     return () => {
-      root.removeEventListener('keydown', e => onKeydown(e, show));
       slashProviderRef.current?.destroy();
     };
-  }, [loading, getEditor, tooltipRef, onKeydown]);
+  }, [loading, getEditor, tooltipRef, keyboardListRefs, setActive]);
 
   useEffect(() => {
     slashProviderRef.current?.update(view, prevState);
   });
+
+  return { keyboardListRefs };
 };
