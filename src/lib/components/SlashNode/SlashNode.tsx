@@ -9,9 +9,10 @@ import {
 import { insertTableCommand } from '@milkdown/preset-gfm';
 import { useInstance } from '@milkdown/react';
 import { useRef } from 'react';
-import { useTheme } from 'styled-components';
+import styled, { css, useTheme } from 'styled-components';
 
 import { useSlashProvider } from './hooks/useSlashProvider';
+import { ButtonProps } from '../../common/Button';
 import {
   DropdownButtonActionStyled,
   DropdownItemStyled,
@@ -32,7 +33,9 @@ export const SlashNode: React.FC = () => {
   const [loading, getEditor] = useInstance();
   const { onCallCommand } = useCallEditorCommand();
 
-  const { keyboardListRefs } = useSlashProvider({ tooltipRef });
+  const { keyboardListRefs, activeItemIndex } = useSlashProvider({
+    tooltipRef,
+  });
 
   const onRemoveSlash = () => {
     const editor = getEditor();
@@ -59,48 +62,52 @@ export const SlashNode: React.FC = () => {
       <div ref={tooltipRef}>
         <DropdownListStyled>
           <DropdownItemStyled>
-            <DropdownButtonActionStyled
+            <FocusableDropdownButtonActionStyled
               ref={keyboardListRefs.current[0]}
               color="secondary"
               onClick={() => onCommandClick(wrapInHeadingCommand.key, 1)}
+              $isFocused={activeItemIndex === 0}
             >
               <Icon icon="title" />
               Title
-            </DropdownButtonActionStyled>
+            </FocusableDropdownButtonActionStyled>
           </DropdownItemStyled>
           <DropdownItemStyled>
-            <DropdownButtonActionStyled
+            <FocusableDropdownButtonActionStyled
               color="secondary"
               ref={keyboardListRefs.current[1]}
               onClick={() => onCommandClick(wrapInHeadingCommand.key, 2)}
+              $isFocused={activeItemIndex === 1}
             >
               <Icon icon="subtitle" />
               Subtitle
-            </DropdownButtonActionStyled>
+            </FocusableDropdownButtonActionStyled>
           </DropdownItemStyled>
           <DropdownItemStyled>
-            <DropdownButtonActionStyled
+            <FocusableDropdownButtonActionStyled
               color="secondary"
               ref={keyboardListRefs.current[2]}
               onClick={() => onCommandClick(turnIntoTextCommand.key)}
+              $isFocused={activeItemIndex === 2}
             >
               <Icon icon="paragraph" />
               Normal text
-            </DropdownButtonActionStyled>
+            </FocusableDropdownButtonActionStyled>
           </DropdownItemStyled>
           <DropdownItemStyled>
             <LinkModal
               editable={false}
               onModalOpen={onRemoveSlash}
               handler={({ onOpen }) => (
-                <DropdownButtonActionStyled
+                <FocusableDropdownButtonActionStyled
                   onClick={onOpen}
                   color="secondary"
                   ref={keyboardListRefs.current[3]}
+                  $isFocused={activeItemIndex === 3}
                 >
                   <Icon icon="add_link" />
                   Add link
-                </DropdownButtonActionStyled>
+                </FocusableDropdownButtonActionStyled>
               )}
             />
           </DropdownItemStyled>
@@ -108,14 +115,15 @@ export const SlashNode: React.FC = () => {
             <AddImageModal
               onModalOpen={onRemoveSlash}
               handler={({ onOpen }) => (
-                <DropdownButtonActionStyled
+                <FocusableDropdownButtonActionStyled
                   onClick={onOpen}
                   color="secondary"
                   ref={keyboardListRefs.current[4]}
+                  $isFocused={activeItemIndex === 4}
                 >
                   <Icon icon="embed_image" />
                   Add image
-                </DropdownButtonActionStyled>
+                </FocusableDropdownButtonActionStyled>
               )}
               onInsert={source =>
                 onCallCommand(insertImageCommand.key, { src: source })
@@ -123,57 +131,62 @@ export const SlashNode: React.FC = () => {
             />
           </DropdownItemStyled>
           <DropdownItemStyled>
-            <DropdownButtonActionStyled
+            <FocusableDropdownButtonActionStyled
               color="secondary"
               onClick={() => onCommandClick(createCodeBlockCommand.key)}
               ref={keyboardListRefs.current[5]}
+              $isFocused={activeItemIndex === 5}
             >
               <Icon icon="code_block" />
               Add code
-            </DropdownButtonActionStyled>
+            </FocusableDropdownButtonActionStyled>
           </DropdownItemStyled>
           <DropdownItemStyled>
-            <DropdownButtonActionStyled
+            <FocusableDropdownButtonActionStyled
               color="secondary"
               onClick={() => onCommandClick(insertTableCommand.key)}
               ref={keyboardListRefs.current[6]}
+              $isFocused={activeItemIndex === 6}
             >
               <Icon icon="create_table" />
               Add table
-            </DropdownButtonActionStyled>
+            </FocusableDropdownButtonActionStyled>
           </DropdownItemStyled>
           <DropdownItemStyled>
-            <DropdownButtonActionStyled
+            <FocusableDropdownButtonActionStyled
               color="secondary"
               ref={keyboardListRefs.current[7]}
               onClick={() => onCommandClick(insertMathCommand.key)}
+              $isFocused={activeItemIndex === 7}
             >
               <Icon icon="math" />
               Add math
-            </DropdownButtonActionStyled>
+            </FocusableDropdownButtonActionStyled>
           </DropdownItemStyled>
           <DropdownItemStyled>
-            <DropdownButtonActionStyled
+            <FocusableDropdownButtonActionStyled
               color="secondary"
               onClick={() => onCommandClick(insertDiagramCommand.key)}
               ref={keyboardListRefs.current[8]}
+              $isFocused={activeItemIndex === 8}
             >
               <Icon icon="mermaid" />
               Add diagram
-            </DropdownButtonActionStyled>
+            </FocusableDropdownButtonActionStyled>
           </DropdownItemStyled>
           <DropdownItemStyled>
             <AddGoogleSlidesModal
               onModalOpen={onRemoveSlash}
               handler={({ onOpen }) => (
-                <DropdownButtonActionStyled
+                <FocusableDropdownButtonActionStyled
                   onClick={onOpen}
                   color="secondary"
                   ref={keyboardListRefs.current[9]}
+                  $isFocused={activeItemIndex === 9}
                 >
                   <Icon icon="google" fill={colors.white} />
                   Add Google doc
-                </DropdownButtonActionStyled>
+                </FocusableDropdownButtonActionStyled>
               )}
             />
           </DropdownItemStyled>
@@ -182,3 +195,17 @@ export const SlashNode: React.FC = () => {
     </Hidden>
   );
 };
+
+type FocusableDropdownButtonActionStyledProps = ButtonProps & {
+  $isFocused: boolean;
+  ref: React.Ref<HTMLButtonElement>;
+};
+const FocusableDropdownButtonActionStyled = styled<
+  React.FC<FocusableDropdownButtonActionStyledProps>
+>(DropdownButtonActionStyled)`
+  ${props =>
+    props.$isFocused &&
+    css`
+      background-color: ${props => props.theme.colors.secondaryLightGrey};
+    `}
+`;

@@ -17,7 +17,7 @@ export enum MathNodeTabs {
 
 export const MathNode: React.FC = () => {
   const { mode } = useTextEditorModeContext();
-  const { setAttrs } = useNodeViewContext();
+  const { setAttrs, contentRef } = useNodeViewContext();
 
   const onSourceUpdate = (value: string) => {
     setAttrs({ value });
@@ -32,7 +32,7 @@ export const MathNode: React.FC = () => {
   }
 
   return (
-    <MathNodeContainerStyled contentEditable={false}>
+    <MathNodeContainerStyled ref={contentRef} contentEditable={false}>
       <Tabs initialTab={MathNodeTabs.Preview}>
         <TabList>
           <Tab label={MathNodeTabs.Preview}>Preview</Tab>
