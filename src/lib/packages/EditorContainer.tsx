@@ -47,7 +47,8 @@ export const EditorContainer = styled.div`
       margin: ${pxToRem(16)} 0;
     }
 
-    a {
+    a,
+    a span {
       color: ${props => props.theme.components.editor.link};
       font-weight: 600;
       text-decoration: none;

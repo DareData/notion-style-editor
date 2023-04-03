@@ -16,7 +16,7 @@ export const LinkNode: React.FC = () => {
 
   return (
     <>
-      <span ref={contentRef} />
+      <a ref={contentRef} {...{ href }} target="_blank" />
       {isGoogleSlidesLink && <GoogleSlidesLink {...{ href }} />}
     </>
   );
