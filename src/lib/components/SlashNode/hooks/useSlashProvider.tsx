@@ -84,7 +84,6 @@ export const useSlashProvider = ({ tooltipRef }: UseSlashProviderProps) => {
       tippyOptions: {
         arrow: false,
         onMount: () => {
-          console.log('mount');
           const [firstElementRef] = keyboardListRefs.current;
           if (firstElementRef) {
             setActive(0);
@@ -92,7 +91,6 @@ export const useSlashProvider = ({ tooltipRef }: UseSlashProviderProps) => {
           }
         },
         onHide: () => {
-          console.log('hide');
           setActive(null);
           setBodyKeyDownActive(false);
         },

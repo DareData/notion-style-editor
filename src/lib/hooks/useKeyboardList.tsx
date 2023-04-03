@@ -28,7 +28,6 @@ export const useKeyboardList = <T extends Element>({
     e.stopPropagation();
     const { length: listLength } = keyboardListRefs.current;
     setActive(prevActive => {
-      console.log('prevACtive: ', prevActive);
       if (typeof prevActive !== 'number') {
         return 0;
       }
