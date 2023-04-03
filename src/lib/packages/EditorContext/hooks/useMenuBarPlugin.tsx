@@ -35,24 +35,6 @@ export const useMenuBarPlugin = () => {
               };
             },
             apply(tr) {
-              // const { selection } = newState;
-              // const { from, $from, to, empty } = selection;
-              // if (empty) {
-              //   const is = strongSchema
-              //     .type()
-              //     .isInSet(newState.storedMarks || $from.marks());
-              //   console.log('is: ', is);
-              // } else {
-              //   const a = newState.doc.rangeHasMark(
-              //     from,
-              //     to,
-              //     strongSchema.type()
-              //   );
-              //   console.log('a: ', a);
-              // }
-              //             let {from, $from, to, empty} = state.selection
-              // if (empty) return !!type.isInSet(state.storedMarks || $from.marks())
-              // else return state.doc.rangeHasMark(from, to, type)
               const decorations: Decoration[] = [createMenuBarWidget(0)];
               return {
                 decorations: DecorationSet.create(tr.doc, decorations),
