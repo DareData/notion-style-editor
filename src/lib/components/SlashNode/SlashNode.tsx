@@ -29,9 +29,10 @@ export const SlashNode: React.FC = () => {
   const { colors } = useTheme();
   const tooltipRef = useRef<HTMLDivElement>(null);
 
-  useSlashProvider({ tooltipRef });
   const [loading, getEditor] = useInstance();
   const { onCallCommand } = useCallEditorCommand();
+
+  const { keyboardListRefs } = useSlashProvider({ tooltipRef });
 
   const onRemoveSlash = () => {
     const editor = getEditor();
@@ -59,6 +60,7 @@ export const SlashNode: React.FC = () => {
         <DropdownListStyled>
           <DropdownItemStyled>
             <DropdownButtonActionStyled
+              ref={keyboardListRefs.current[0]}
               color="secondary"
               onClick={() => onCommandClick(wrapInHeadingCommand.key, 1)}
             >
@@ -69,6 +71,7 @@ export const SlashNode: React.FC = () => {
           <DropdownItemStyled>
             <DropdownButtonActionStyled
               color="secondary"
+              ref={keyboardListRefs.current[1]}
               onClick={() => onCommandClick(wrapInHeadingCommand.key, 2)}
             >
               <Icon icon="subtitle" />
@@ -78,6 +81,7 @@ export const SlashNode: React.FC = () => {
           <DropdownItemStyled>
             <DropdownButtonActionStyled
               color="secondary"
+              ref={keyboardListRefs.current[2]}
               onClick={() => onCommandClick(turnIntoTextCommand.key)}
             >
               <Icon icon="paragraph" />
@@ -89,7 +93,11 @@ export const SlashNode: React.FC = () => {
               editable={false}
               onModalOpen={onRemoveSlash}
               handler={({ onOpen }) => (
-                <DropdownButtonActionStyled onClick={onOpen} color="secondary">
+                <DropdownButtonActionStyled
+                  onClick={onOpen}
+                  color="secondary"
+                  ref={keyboardListRefs.current[3]}
+                >
                   <Icon icon="add_link" />
                   Add link
                 </DropdownButtonActionStyled>
@@ -100,7 +108,11 @@ export const SlashNode: React.FC = () => {
             <AddImageModal
               onModalOpen={onRemoveSlash}
               handler={({ onOpen }) => (
-                <DropdownButtonActionStyled onClick={onOpen} color="secondary">
+                <DropdownButtonActionStyled
+                  onClick={onOpen}
+                  color="secondary"
+                  ref={keyboardListRefs.current[4]}
+                >
                   <Icon icon="embed_image" />
                   Add image
                 </DropdownButtonActionStyled>
@@ -114,6 +126,7 @@ export const SlashNode: React.FC = () => {
             <DropdownButtonActionStyled
               color="secondary"
               onClick={() => onCommandClick(createCodeBlockCommand.key)}
+              ref={keyboardListRefs.current[5]}
             >
               <Icon icon="code_block" />
               Add code
@@ -123,6 +136,7 @@ export const SlashNode: React.FC = () => {
             <DropdownButtonActionStyled
               color="secondary"
               onClick={() => onCommandClick(insertTableCommand.key)}
+              ref={keyboardListRefs.current[6]}
             >
               <Icon icon="create_table" />
               Add table
@@ -131,6 +145,7 @@ export const SlashNode: React.FC = () => {
           <DropdownItemStyled>
             <DropdownButtonActionStyled
               color="secondary"
+              ref={keyboardListRefs.current[7]}
               onClick={() => onCommandClick(insertMathCommand.key)}
             >
               <Icon icon="math" />
@@ -141,6 +156,7 @@ export const SlashNode: React.FC = () => {
             <DropdownButtonActionStyled
               color="secondary"
               onClick={() => onCommandClick(insertDiagramCommand.key)}
+              ref={keyboardListRefs.current[8]}
             >
               <Icon icon="mermaid" />
               Add diagram
@@ -150,7 +166,11 @@ export const SlashNode: React.FC = () => {
             <AddGoogleSlidesModal
               onModalOpen={onRemoveSlash}
               handler={({ onOpen }) => (
-                <DropdownButtonActionStyled onClick={onOpen} color="secondary">
+                <DropdownButtonActionStyled
+                  onClick={onOpen}
+                  color="secondary"
+                  ref={keyboardListRefs.current[9]}
+                >
                   <Icon icon="google" fill={colors.white} />
                   Add Google doc
                 </DropdownButtonActionStyled>
