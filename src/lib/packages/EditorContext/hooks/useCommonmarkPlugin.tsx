@@ -46,7 +46,7 @@ export const useCommonmarkPlugin = () => {
           nodeViewFactory({
             component: LinkNode,
             as: 'span',
-            contentAs: 'a',
+            contentAs: 'span',
           })
         ),
       ].flat(),
