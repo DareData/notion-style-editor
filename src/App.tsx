@@ -1,9 +1,9 @@
 /* eslint-disable no-useless-escape */
+import { TextEditor } from 'altos-react-text-editor';
 import { useCallback, useMemo, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import { ErrorBoundary } from './ErrorBoundary';
-import { TextEditor } from './lib';
 import { TextEditorMode } from './lib/packages/TextEditor';
 import { pxToRem } from './lib/styles/utils';
 
@@ -70,7 +70,7 @@ export const App = () => {
         >
           Toggle Mdode ( current: {mode} )
         </button>
-        <TextEditor data={markdownValue} {...{ mode, onDataChange }} />
+        <TextEditor {...{ mode, onDataChange }} data={markdownValue} />
       </AppContainerStyled>
     </ErrorBoundary>
   );
