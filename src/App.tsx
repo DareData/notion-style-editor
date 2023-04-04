@@ -3,8 +3,7 @@ import { useCallback, useMemo, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import { ErrorBoundary } from './ErrorBoundary';
-import { TextEditor } from './lib';
-import { TextEditorMode } from './lib/packages/TextEditor';
+import { TextEditor, TextEditorMode } from './lib/packages/TextEditor';
 import { pxToRem } from './lib/styles/utils';
 
 const data = `
