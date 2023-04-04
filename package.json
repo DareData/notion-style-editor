@@ -1,17 +1,17 @@
 {
-  "name": "altos-react-text-editor",
-  "private": true,
+  "name": "altos-text-editor",
+  "private": false,
   "version": "0.0.1",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/altos-react-text-editor.umd.cjs",
-  "module": "./dist/altos-react-text-editor.js",
+  "main": "./dist/altos-text-editor.umd.cjs",
+  "module": "./dist/altos-text-editor.js",
   "exports": {
     ".": {
-      "import": "./dist/altos-react-text-editor.js",
-      "require": "./dist/altos-react-text-editor.umd.cjs"
+      "import": "./dist/altos-text-editor.js",
+      "require": "./dist/altos-text-editor.umd.cjs"
     }
   },
   "types": "./dist/index.d.ts",
@@ -50,6 +50,7 @@
     "@milkdown/react": "^7.0.1",
     "@milkdown/transformer": "^7.0.1",
     "@prosemirror-adapter/react": "^0.2.2",
+    "altos-text-editor": "^0.0.1",
     "framer-motion": "^10.2.5",
     "prosemirror-view": "^1.30.1",
     "react": "^18.2.0",
