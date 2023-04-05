@@ -1,17 +1,15 @@
 {
   "name": "altos-text-editor",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/altos-text-editor.umd.cjs",
-  "module": "./dist/altos-text-editor.js",
+  "main": "./dist/altos-text-editor.js",
   "exports": {
     ".": {
-      "import": "./dist/altos-text-editor.js",
-      "require": "./dist/altos-text-editor.umd.cjs"
+      "import": "./dist/altos-text-editor.js"
     },
     "./dist/style.css": "./dist/style.css"
   },
@@ -90,6 +88,10 @@
     "vite": "^4.1.0",
     "vite-plugin-dts": "^2.0.2",
     "vite-plugin-svgr": "^2.4.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "lint-staged": {
     "*.ts?(x)": [

@@ -32,6 +32,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/lib/index.tsx'),
       name: 'altos-text-editor',
+      formats: ['es'],
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
