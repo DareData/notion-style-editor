@@ -85,6 +85,8 @@ export default function MyComponent() {
 }
 ```
 
+https://github.com/Milkdown/milkdown/issues/389#issuecomment-1050468759
+
 ## Preparation and starting the application
 
 For consistency and to ensure that each developer uses the same version of [Node.js](https://nodejs.org/en), we used [nvm](https://github.com/nvm-sh/nvm) ([How to install nvm on macos](https://tecadmin.net/install-nvm-macos-with-homebrew/)).
@@ -135,3 +137,4 @@ In addition, fonts take up quite a lot of space.
 
 
 <ins>Moreover.. the code is not minified yet, so 60% of the size will be reduced. Also remember about compression, which will also reduce the size of the package.</ins>
+https://github.com/Milkdown/milkdown/issues/389#issuecomment-1050468759
