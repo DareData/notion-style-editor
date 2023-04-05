@@ -12,7 +12,8 @@
     ".": {
       "import": "./dist/altos-text-editor.js",
       "require": "./dist/altos-text-editor.umd.cjs"
-    }
+    },
+    "./dist/style.css": "./dist/style.css"
   },
   "types": "./dist/index.d.ts",
   "scripts": {
