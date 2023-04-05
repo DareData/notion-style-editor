@@ -1,13 +1,13 @@
 - [Overview](#overview)
+- [Using library](#using-library)
+  * [Server Side Rendering](#server-side-rendering)
 - [Preparation and starting the application](#preparation-and-starting-the-application)
   * [Installation](#installation)
-- [Note about server side rendering](#note-about-server-side-rendering)
 - [Deploying to Github Pages](#deploying-to-github-pages)
 - [Buling library](#buling-library)
-- [Using library](#using-library)
 - [Troubleshoots](#troubleshoots)
-    + [The editor keeps re-rendering](#the-editor-keeps-re-rendering)
-    + [The bundle size is quite large](#the-bundle-size-is-quite-large)
+  * [The editor keeps re-rendering](#the-editor-keeps-re-rendering)
+  * [The bundle size is quite large](#the-bundle-size-is-quite-large)
 
 
 ## Overview
@@ -16,7 +16,7 @@ This project is a [Markdown](https://www.markdownguide.org/getting-started/) edi
 
 **The newest test version should be released there -> [example page](https://daredata.github.io/notion-style-editor/)**
 
-## Instalation
+## Using library
 
 Simply run:
 ```bash
@@ -25,6 +25,8 @@ yarn add altos-text-editor
 
 and then import `TextEditor`
 ```typescript
+import 'altos-text-editor/dist/style.css';
+
 import { TextEditor } from 'altos-text-editor';
 
 const AltosTextEditor: React.FC = () => {
@@ -36,21 +38,7 @@ const AltosTextEditor: React.FC = () => {
 }
 ```
 
-## Preparation and starting the application
-
-For consistency and to ensure that each developer uses the same version of [Node.js](https://nodejs.org/en), we used [nvm](https://github.com/nvm-sh/nvm) ([How to install nvm on macos](https://tecadmin.net/install-nvm-macos-with-homebrew/)).
-
-### Installation
-
-1. `cd /your_path`
-2. `git clone git@github.com:DareData/notion-style-editor.git`
-3. `cd notion-style-editor`
-5. `nvm use`
-6. `yarn`
-7. `yarn prepare`
-9. `yarn start`
-
-## Note about server side rendering
+### Server Side Rendering
 
 **This library cannot be rendered on the server! That's why it's important to render it only on the client side.**
 
@@ -61,6 +49,8 @@ How to use it with Next.js?
 - `yarn add altos-text-editor`
 - Create a new component
 ```typescript
+import 'altos-text-editor/dist/style.css';
+
 import { TextEditor } from 'altos-text-editor';
 
 const AltosTextEditor: React.FC = () => {
@@ -95,6 +85,20 @@ export default function MyComponent() {
 }
 ```
 
+## Preparation and starting the application
+
+For consistency and to ensure that each developer uses the same version of [Node.js](https://nodejs.org/en), we used [nvm](https://github.com/nvm-sh/nvm) ([How to install nvm on macos](https://tecadmin.net/install-nvm-macos-with-homebrew/)).
+
+### Installation
+
+1. `cd /your_path`
+2. `git clone git@github.com:DareData/notion-style-editor.git`
+3. `cd notion-style-editor`
+5. `nvm use`
+6. `yarn`
+7. `yarn prepare`
+9. `yarn start`
+
 ## Deploying to Github Pages
 
 If you want to share the current state of the library with external people, you can use Github Pages where a test version is placed for testing by testers.
@@ -113,53 +117,6 @@ If you want to build a library to be used by external applications, you need to 
 - `yarn build`
 
 Your library has been created in the `dist` folder.
-
-## Using library
-
-Once the library has been created and added, for example, to the [npm](https://www.npmjs.com/), then to use it, you just need to import the editor as well as the styles that are extracted, because [ProseMirror](https://prosemirror.net/) uses its own styles.
-
-**Adding styles ( index.tsx )**
-```typescript
-import 'milkdown-datedata/style.css'; 
-
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <YourComponent />
-  </React.StrictMode>
-);
-
-```
-
-**Using editor**
-```typescript
-
-const myMarkdownData: string = `
-  **This is milkdown editor**
-`
-
-const YourComponent: React.FC = () => {
-  const data: string = myMarkdownData;
-
-  const mode: 'active' | 'preview' = 'active'
-
-  const onDataChange = useCallback((data: string) => {
-    console.log('data, when markdown has changed: ', data);
-  }, [])
-
-  return (
-    <div>
-      <h2>This is our editor</h2>
-       <TextEditor 
-        {...{ mode, onDataChange, data }} 
-      />
-    </div>
-  )
-}
-
-```
 
 ## Troubleshoots
 
