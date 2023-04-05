@@ -28,6 +28,7 @@ export default defineConfig({
     svgr(),
   ],
   build: {
+    minify: true,
     lib: {
       entry: path.resolve(__dirname, 'src/lib/index.tsx'),
       name: 'altos-text-editor',
