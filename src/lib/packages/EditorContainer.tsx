@@ -64,7 +64,17 @@ export const EditorContainer = styled.div`
     h4,
     h5,
     h6 {
+      margin: ${pxToRem(16)} 0;
+      font-weight: bold;
       font-family: ${props => props.theme.fonts.figree};
+    }
+
+    h1 {
+      font-size: ${pxToRem(32)};
+    }
+
+    h2 {
+      font-size: ${pxToRem(24)};
     }
   }
 
