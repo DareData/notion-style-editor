@@ -12,6 +12,7 @@ export const useCallEditorCommand = () => {
       if (loading || !editor) {
         return;
       }
+
       editor.action(callCommand(command, payload));
     },
     [loading, getEditor]
