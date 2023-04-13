@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { Fonts } from '../styles/fonts/Fonts';
 import { pxToRem } from '../styles/utils';
 
 export const EditorContainer = styled.div`
@@ -11,10 +12,36 @@ export const EditorContainer = styled.div`
   transition: border-color 0.2s ease-in;
 
   * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: ${props => props.theme.colors.lightBlack};
+    font-family: ${props => props.theme.fonts.primary};
+
     &::selection {
       background-color: ${props => props.theme.components.selection};
     }
   }
+
+  &&& {
+    .success-toaster div {
+      color: ${props => props.theme.colors.white};
+    }
+
+    .error-toaster div {
+      color: ${props => props.theme.colors.lightBlack};
+    }
+
+    .tippy-box {
+      background-color: transparent;
+    }
+
+    .tippy-content {
+      padding: 0;
+    }
+  }
+
+  ${Fonts};
 
   &:hover,
   &:focus {

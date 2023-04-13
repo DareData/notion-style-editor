@@ -10,7 +10,6 @@ import { ThemeProvider } from 'styled-components';
 
 import { EditorContainer } from './EditorContainer';
 import { EditorContextProvider } from './EditorContext/EditorContextProvider';
-import { GlobalStyles } from '../common/GlobalStyles';
 import { TextEditorModeContextProvider } from '../components/TextEditorModeContext/TextEditorModeContextProvider';
 import { toasterStyles } from '../styles/common/toaster.styles';
 import { theme } from '../styles/theme';
@@ -34,8 +33,6 @@ export const TextEditor: React.FC<TextEditorProps> = ({
     <TextEditorModeContextProvider {...{ mode }}>
       <MilkdownProvider>
         <ProsemirrorAdapterProvider>
-          <Toaster toastOptions={toasterStyles} />
-          <GlobalStyles />
           <EditorContextProvider
             onChange={onDataChange}
             defaultMarkdownValue={data}
@@ -44,6 +41,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
               className={['date-data_text-editor', className].join(' ')}
               tabIndex={-1}
             >
+              <Toaster toastOptions={toasterStyles} />
               <MilkdownEditor />
             </EditorContainer>
           </EditorContextProvider>

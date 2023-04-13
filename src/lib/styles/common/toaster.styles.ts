@@ -5,6 +5,7 @@ import { pxToRem } from '../utils';
 
 export const toasterStyles: DefaultToastOptions = {
   error: {
+    className: 'error-toaster',
     icon: '🫠',
     style: {
       padding: `${pxToRem(13)} ${pxToRem(16)}`,
@@ -15,6 +16,7 @@ export const toasterStyles: DefaultToastOptions = {
     },
   },
   success: {
+    className: 'success-toaster',
     icon: '🙌',
     style: {
       padding: `${pxToRem(13)} ${pxToRem(16)}`,
