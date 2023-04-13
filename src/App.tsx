@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { ErrorBoundary } from './ErrorBoundary';
 import { TextEditor, TextEditorMode } from './lib/packages/TextEditor';
 import { pxToRem } from './lib/styles/utils';
-import 'altos-text-editor/dist/style.css';
 
 const data = `
 # Milkdown React Commonmark

@@ -1,5 +1,6 @@
 import { useNodeViewContext } from '@prosemirror-adapter/react';
 import { useMemo, useRef } from 'react';
+import TextareaAutosize from 'react-textarea-autosize';
 import styled from 'styled-components';
 
 import { MathNodeTabs } from './MathNode';
@@ -43,12 +44,11 @@ export const SourceTabPanel: React.FC<SourceTabPanelProps> = ({
   );
 };
 
-const TextareaStyled = styled.textarea`
+const TextareaStyled = styled(TextareaAutosize)`
   outline: 0;
   background-color: transparent;
   border: 0;
-  min-height: 100%;
-  min-height: ${pxToRem(200)};
+  min-height: ${pxToRem(60)};
   font-family: ${props => props.theme.fonts.secondary};
   font-size: ${pxToRem(16)};
   line-height: ${pxToRem(22)};

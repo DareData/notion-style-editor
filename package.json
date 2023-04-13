@@ -1,7 +1,7 @@
 {
   "name": "altos-text-editor",
   "private": false,
-  "version": "0.0.7",
+  "version": "0.0.8",
   "type": "module",
   "files": [
     "dist"
@@ -57,6 +57,7 @@
     "react-dropdown": "^1.11.0",
     "react-hook-form": "^7.43.5",
     "react-hot-toast": "^2.4.0",
+    "react-textarea-autosize": "^8.4.1",
     "styled-components": "^5.3.9",
     "yup": "^1.0.2"
   },
