@@ -1,6 +1,6 @@
 /* eslint-disable no-useless-escape */
 import { useCallback, useMemo, useState } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
 import { ErrorBoundary } from './ErrorBoundary';
 import { TextEditor, TextEditorMode } from './lib/packages/TextEditor';
@@ -63,7 +63,6 @@ export const App = () => {
 
   return (
     <ErrorBoundary>
-      <AppGlobalStyles />
       <AppContainerStyled>
         <button
           onClick={() => setMode(mode === 'active' ? 'preview' : 'active')}
@@ -77,23 +76,17 @@ export const App = () => {
 };
 
 const AppContainerStyled = styled.div`
-  margin: ${pxToRem(100)} 0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: ${pxToRem(100)};
-`;
+  max-width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff;
 
-const AppGlobalStyles = createGlobalStyle`
   * {
     box-sizing: border-box;
-  }
-
-  html, body {
-    max-width: 100vw;
-    min-height: 100vh;
-    margin: 0;
-    background-color: #FFF;
   }
 `;
