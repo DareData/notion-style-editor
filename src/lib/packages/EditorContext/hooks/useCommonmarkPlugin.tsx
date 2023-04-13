@@ -13,7 +13,7 @@ import {
 } from '@prosemirror-adapter/react';
 import { useMemo } from 'react';
 
-import { CodeBlockNode } from '../../../components/CodeBlockNode';
+import { CodeBlockNode } from '../../../components/CodeBlockNode/CodeBlockNode';
 import { ImageNode } from '../../../components/ImageNode/ImageNode';
 import { LinkNode } from '../../../components/LinkNode/LinkNode';
 import { LinkTooltip } from '../../../components/LinkTooltip/LinkTooltip';

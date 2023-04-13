@@ -3,13 +3,14 @@ import { useMemo } from 'react';
 import { Option } from 'react-dropdown';
 import styled from 'styled-components';
 
-import { useTextEditorModeContext } from './TextEditorModeContext/useTextEditorModeContext';
-import { Button } from '../common/Button';
-import { Icon } from '../common/Icon/Icon';
-import { Select } from '../common/Select';
-import { useNotification } from '../hooks/useNotification';
-import { pxToRem } from '../styles/utils';
-import { Matcher } from '../utils/Matcher';
+import { CodeStyled } from './CodeStyled';
+import { Button } from '../../common/Button';
+import { Icon } from '../../common/Icon/Icon';
+import { Select } from '../../common/Select';
+import { useNotification } from '../../hooks/useNotification';
+import { pxToRem } from '../../styles/utils';
+import { Matcher } from '../../utils/Matcher';
+import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
 
 const options: Option[] = [
   {
@@ -77,7 +78,7 @@ export const CodeBlockNode: React.FC = () => {
         </CopyButtonStyled>
       </CodeBlockNodeActionsStyled>
       <pre>
-        <code ref={contentRef} />
+        <CodeStyled ref={contentRef} />
       </pre>
     </CodeBlockNodeContainerStyled>
   );
