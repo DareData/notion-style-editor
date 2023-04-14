@@ -15,16 +15,22 @@ export const useMath = ({ codePanelRef }: UseMathProps) => {
   const codeValue = useMemo(() => node.attrs.value, [node.attrs.value]);
 
   useEffect(() => {
-    const editor = getEditor();
-    if (editor) {
-      if (!codePanelRef.current || loading) {
-        return;
+    requestAnimationFrame(() => {
+      const editor = getEditor();
+      if (editor) {
+        if (!codePanelRef.current || loading) {
+          return;
+        }
+        try {
+          katex.render(
+            codeValue,
+            codePanelRef.current,
+            editor.ctx.get(katexOptionsCtx.key)
+          );
+        } catch {
+          /* empty */
+        }
       }
-      katex.render(
-        codeValue,
-        codePanelRef.current,
-        editor.ctx.get(katexOptionsCtx.key)
-      );
-    }
+    });
   }, [codeValue, getEditor, loading, codePanelRef]);
 };
