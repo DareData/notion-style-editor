@@ -68,7 +68,11 @@ export const App = () => {
         >
           Toggle Mdode ( current: {mode} )
         </button>
-        <TextEditor data={markdownValue} {...{ mode, onDataChange }} />
+        <TextEditor
+          data={markdownValue}
+          {...{ mode, onDataChange }}
+          debounceChange={1000}
+        />
       </AppContainerStyled>
     </ErrorBoundary>
   );

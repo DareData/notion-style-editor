@@ -32,12 +32,14 @@ export const EditorContext = createContext<EditorContextData>({
 type EditorContextProviderProps = {
   children: React.ReactNode;
   onChange: (markdown: string) => void;
+  debounceChange?: number;
   defaultMarkdownValue: string;
 };
 
 export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   children,
   onChange,
+  debounceChange,
   defaultMarkdownValue,
 }) => {
   const gfmPlugin = useGfmPlugin();
@@ -48,7 +50,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   const commonmarkPlugin = useCommonmarkPlugin();
   const prismPlugin = usePrismPlugin();
   const menuBarPlugin = useMenuBarPlugin();
-  const listenerPlugin = useListenerPlugin({ onChange });
+  const listenerPlugin = useListenerPlugin({ onChange, debounceChange });
 
   useEditorViewPlugin();
 

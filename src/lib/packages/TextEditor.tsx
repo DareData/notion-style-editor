@@ -21,6 +21,7 @@ export type TextEditorProps = {
   mode: TextEditorMode;
   className?: string;
   onDataChange: (data: string) => void;
+  debounceChange?: number;
 };
 
 export const TextEditor: React.FC<TextEditorProps> = ({
@@ -28,6 +29,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
   mode,
   className = '',
   onDataChange,
+  debounceChange = 0,
 }) => (
   <ThemeProvider {...{ theme }}>
     <TextEditorModeContextProvider {...{ mode }}>
@@ -36,6 +38,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
           <EditorContextProvider
             onChange={onDataChange}
             defaultMarkdownValue={data}
+            {...{ debounceChange }}
           >
             <EditorContainer
               className={['date-data_text-editor', className].join(' ')}

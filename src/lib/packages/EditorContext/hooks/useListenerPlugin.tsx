@@ -1,18 +1,22 @@
 import { Ctx } from '@milkdown/ctx';
 import { listener, listenerCtx } from '@milkdown/plugin-listener';
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
+
+import { useDebounce } from '../../../hooks/useDebounce';
 
 type UseListenerPluginProps = {
   onChange: (markdown: string) => void;
+  debounceChange?: number;
 };
 
-export const useListenerPlugin = ({ onChange }: UseListenerPluginProps) => {
-  const onMarkdownUpdated = useCallback(
-    (markdown: string) => {
-      onChange(markdown);
-    },
-    [onChange]
-  );
+export const useListenerPlugin = ({
+  onChange,
+  debounceChange,
+}: UseListenerPluginProps) => {
+  const { debounce: onChangeDebounced } = useDebounce({
+    callback: onChange,
+    wait: debounceChange,
+  });
 
   const listenerPlugin = useMemo(
     () =>
@@ -20,11 +24,11 @@ export const useListenerPlugin = ({ onChange }: UseListenerPluginProps) => {
         listener,
         (ctx: Ctx) => () => {
           ctx.get(listenerCtx).markdownUpdated((_, markdown) => {
-            onMarkdownUpdated(markdown);
+            onChangeDebounced(markdown);
           });
         },
       ].flat(),
-    [onMarkdownUpdated]
+    [onChangeDebounced]
   );
 
   return listenerPlugin;
