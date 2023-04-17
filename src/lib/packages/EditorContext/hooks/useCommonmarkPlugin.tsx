@@ -42,13 +42,13 @@ export const useCommonmarkPlugin = () => {
         $view(imageSchema.node, () =>
           nodeViewFactory({ component: ImageNode, as: 'div' })
         ),
-        $view(linkSchema.mark, () =>
-          nodeViewFactory({
-            component: LinkNode,
-            as: 'span',
-            contentAs: 'a',
-          })
-        ),
+        // $view(linkSchema.mark, () =>
+        //   nodeViewFactory({
+        //     component: LinkNode,
+        //     as: 'span',
+        //     contentAs: 'a',
+        //   })
+        // ),
       ].flat(),
     [pluginViewFactory, nodeViewFactory]
   );
