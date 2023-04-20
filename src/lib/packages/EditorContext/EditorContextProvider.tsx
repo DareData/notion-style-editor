@@ -10,7 +10,7 @@ import { trailing } from '@milkdown/plugin-trailing';
 import { useEditor, UseEditorReturn } from '@milkdown/react';
 import { createContext, useMemo } from 'react';
 
-import { useCommonmarkPlugin } from './hooks/useCommonmarkPlugin';
+import { useCommonmarkPlugin } from './hooks/useCommonmarkPlugin/useCommonmarkPlugin';
 import { useEditorViewPlugin } from './hooks/useEditorViewPlugin';
 import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
 import { useListenerPlugin } from './hooks/useListenerPlugin';

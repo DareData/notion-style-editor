@@ -1,14 +1,15 @@
+import { useWidgetViewContext } from '@prosemirror-adapter/react';
 import styled from 'styled-components';
 
 import { useGoogleSlidesHref } from './hooks/useGoogleSlidesHref';
 import { theme } from '../../styles/theme';
 import { pxToRem } from '../../styles/utils';
 
-type GoogleSlidesLinkProps = {
-  href: string;
-};
+export const GoogleSlidesWidget: React.FC = () => {
+  const { spec } = useWidgetViewContext();
 
-export const GoogleSlidesLink: React.FC<GoogleSlidesLinkProps> = ({ href }) => {
+  const { href } = spec as { href: string };
+
   const iframeUrl = useGoogleSlidesHref({ href });
 
   if (!iframeUrl) {
