@@ -5,12 +5,12 @@ import { useMemo } from 'react';
 import { useDebounce } from '../../../hooks/useDebounce';
 
 type UseListenerPluginProps = {
-  onChange?: (markdown: string) => void;
+  onChange: (markdown: string) => void;
   debounceChange?: number;
 };
 
 export const useListenerPlugin = ({
-  onChange = () => {},
+  onChange,
   debounceChange = 0,
 }: UseListenerPluginProps) => {
   const { debounce: onChangeDebounced } = useDebounce({

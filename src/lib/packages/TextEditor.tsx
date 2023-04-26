@@ -16,31 +16,30 @@ import { theme } from '../styles/theme';
 
 export type TextEditorMode = 'preview' | 'active';
 
-export type TextEditorProps =
-  | {
-      mode: 'preview';
-      data: string;
-      className?: string;
-    }
-  | {
-      data: string;
-      mode: 'active';
-      className?: string;
-      onDataChange: (data: string) => void;
-      debounceChange?: number;
-    };
+export type TextEditorProps = {
+  data: string;
+  mode: TextEditorMode;
+  className?: string;
+  onDataChange?: (data: string) => void;
+  debounceChange?: number;
+};
 
 export const TextEditor: React.FC<TextEditorProps> = ({
   data,
   mode,
   className = '',
+  onDataChange = () => {},
   ...rest
 }) => (
   <ThemeProvider {...{ theme }}>
     <TextEditorModeContextProvider {...{ mode }}>
       <MilkdownProvider>
         <ProsemirrorAdapterProvider>
-          <EditorContextProvider defaultMarkdownValue={data} {...rest}>
+          <EditorContextProvider
+            defaultMarkdownValue={data}
+            onChange={onDataChange}
+            {...rest}
+          >
             <EditorContainer
               className={['date-data_text-editor', className].join(' ')}
               tabIndex={-1}
