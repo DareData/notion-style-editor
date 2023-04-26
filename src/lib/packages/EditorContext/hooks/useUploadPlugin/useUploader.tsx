@@ -9,7 +9,7 @@ export const useUploader = () => {
   const { onFileUpload } = useTextEditorContext();
 
   const uploader = useCallback(
-    async (files: FileList, schema: Schema): Promise<Node[] | undefined> => {
+    async (files: FileList, schema: Schema): Promise<Node[]> => {
       try {
         const images: File[] = [];
 
@@ -38,6 +38,7 @@ export const useUploader = () => {
         );
       } catch (e) {
         onErrorNotification('Something bad happened');
+        return [];
       }
     },
     [onFileUpload, onErrorNotification]
