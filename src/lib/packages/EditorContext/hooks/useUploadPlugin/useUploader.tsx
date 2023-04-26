@@ -2,40 +2,45 @@ import { Schema, Node } from '@milkdown/prose/model';
 import { useCallback } from 'react';
 
 import { useTextEditorContext } from '../../../../components/TextEditorContext/useTextEditoContext';
+import { useNotification } from '../../../../hooks/useNotification';
 
 export const useUploader = () => {
+  const { onErrorNotification } = useNotification();
   const { onFileUpload } = useTextEditorContext();
 
   const uploader = useCallback(
-    async (files: FileList, schema: Schema): Promise<Node[]> => {
-      const images: File[] = [];
+    async (files: FileList, schema: Schema): Promise<Node[] | undefined> => {
+      try {
+        const images: File[] = [];
 
-      for (let i = 0; i < files.length; i++) {
-        const file = files.item(i);
-        if (!file) {
-          continue;
+        for (let i = 0; i < files.length; i++) {
+          const file = files.item(i);
+          if (!file) {
+            continue;
+          }
+
+          if (!file.type.includes('image')) {
+            continue;
+          }
+
+          images.push(file);
         }
 
-        if (!file.type.includes('image')) {
-          continue;
-        }
-
-        images.push(file);
+        return await Promise.all(
+          images.map(async image => {
+            const src = await onFileUpload(image);
+            const alt = image.name;
+            return schema.nodes.image.createAndFill({
+              src,
+              alt,
+            }) as Node;
+          })
+        );
+      } catch (e) {
+        onErrorNotification('Something bad happened');
       }
-
-      return await Promise.all(
-        images.map(async image => {
-          console.log('images: ', images);
-          const src = await onFileUpload(image);
-          const alt = image.name;
-          return schema.nodes.image.createAndFill({
-            src,
-            alt,
-          }) as Node;
-        })
-      );
     },
-    [onFileUpload]
+    [onFileUpload, onErrorNotification]
   );
 
   return uploader;
