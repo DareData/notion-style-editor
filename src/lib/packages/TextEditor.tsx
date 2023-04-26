@@ -10,7 +10,10 @@ import { ThemeProvider } from 'styled-components';
 
 import { EditorContainer } from './EditorContainer';
 import { EditorContextProvider } from './EditorContext/EditorContextProvider';
-import { TextEditorModeContextProvider } from '../components/TextEditorModeContext/TextEditorModeContextProvider';
+import {
+  TextEditorContextProvider,
+  TextEditorContextProviderProps,
+} from '../components/TextEditorContext/TextEditorContextProvider';
 import { toasterStyles } from '../styles/common/toaster.styles';
 import { theme } from '../styles/theme';
 
@@ -18,21 +21,21 @@ export type TextEditorMode = 'preview' | 'active';
 
 export type TextEditorProps = {
   data: string;
-  mode: TextEditorMode;
   className?: string;
   onDataChange?: (data: string) => void;
   debounceChange?: number;
-};
+} & Omit<TextEditorContextProviderProps, 'children'>;
 
 export const TextEditor: React.FC<TextEditorProps> = ({
   data,
   mode,
   className = '',
   onDataChange = () => {},
+  onFileUpload,
   ...rest
 }) => (
   <ThemeProvider {...{ theme }}>
-    <TextEditorModeContextProvider {...{ mode }}>
+    <TextEditorContextProvider {...{ mode, onFileUpload }}>
       <MilkdownProvider>
         <ProsemirrorAdapterProvider>
           <EditorContextProvider
@@ -50,6 +53,6 @@ export const TextEditor: React.FC<TextEditorProps> = ({
           </EditorContextProvider>
         </ProsemirrorAdapterProvider>
       </MilkdownProvider>
-    </TextEditorModeContextProvider>
+    </TextEditorContextProvider>
   </ThemeProvider>
 );

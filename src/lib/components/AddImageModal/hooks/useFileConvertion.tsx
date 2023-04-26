@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
 import { useFileValidation } from './useFileValidation';
-import { useBase64File } from '../../../hooks/useBase64File';
 import { useNotification } from '../../../hooks/useNotification';
+import { useTextEditorContext } from '../../TextEditorContext/useTextEditoContext';
 
 export const useFileConvertion = () => {
+  const { onFileUpload } = useTextEditorContext();
   const [loading, setLoading] = useState(false);
 
-  const { getBase64 } = useBase64File();
   const { isFileValid } = useFileValidation();
   const { onErrorNotification } = useNotification();
 
@@ -20,7 +20,7 @@ export const useFileConvertion = () => {
 
     try {
       setLoading(true);
-      return await getBase64(file);
+      return await onFileUpload(file);
     } catch (e) {
       onErrorNotification('Something bad happened');
     } finally {

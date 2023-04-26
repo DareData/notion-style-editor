@@ -8,7 +8,7 @@ import { TabList } from '../../common/Tabs/TabList';
 import { TabPanel } from '../../common/Tabs/TabPanel';
 import { Tabs } from '../../common/Tabs/Tabs';
 import { pxToRem } from '../../styles/utils';
-import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
+import { useTextEditorContext } from '../TextEditorContext/useTextEditoContext';
 
 export enum MathNodeTabs {
   Preview = 'preview',
@@ -16,7 +16,7 @@ export enum MathNodeTabs {
 }
 
 export const MathNode: React.FC = () => {
-  const { mode } = useTextEditorModeContext();
+  const { mode } = useTextEditorContext();
   const { setAttrs } = useNodeViewContext();
 
   const onSourceUpdate = (value: string) => {

@@ -6,11 +6,11 @@ import { useWidgetViewFactory } from '@prosemirror-adapter/react';
 import { useCallback, useMemo } from 'react';
 
 import { GoogleSlidesWidget } from '../../../../components/GoogleSlidesWidget/GoogleSlidesWidget';
-import { useTextEditorModeContext } from '../../../../components/TextEditorModeContext/useTextEditorModeContext';
+import { useTextEditorContext } from '../../../../components/TextEditorContext/useTextEditoContext';
 import { useLinkDocAttributes } from '../../../../hooks/useLinkDocAttributes';
 
 export const useGoogleSlidesPlugin = () => {
-  const { mode } = useTextEditorModeContext();
+  const { mode } = useTextEditorContext();
 
   const widgetViewFactory = useWidgetViewFactory();
   const { getLinkAttributes } = useLinkDocAttributes();

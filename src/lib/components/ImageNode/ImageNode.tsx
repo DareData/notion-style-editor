@@ -10,14 +10,14 @@ import { ImageEditorModal } from './ImageEditorModal';
 import { Image } from '../../common/Image';
 import { useIsNodeSelected } from '../../hooks/useIsNodeSelected';
 import { pxToRem } from '../../styles/utils';
-import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
+import { useTextEditorContext } from '../TextEditorContext/useTextEditoContext';
 
 export const ImageNode: React.FC = () => {
   const [imageProperties, setImageProperties] = useState<{
     width: number;
     height: number;
   }>({ width: 0, height: 0 });
-  const { mode } = useTextEditorModeContext();
+  const { mode } = useTextEditorContext();
   const { isSelected } = useIsNodeSelected({ nodeType: imageSchema.type() });
 
   const { node, contentRef, setAttrs } = useNodeViewContext();
