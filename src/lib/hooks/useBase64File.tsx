@@ -1,7 +1,9 @@
+import { useCallback } from 'react';
+
 import { isString } from '../utils/Strings';
 
 export const useBase64File = () => {
-  const getBase64 = async (file: Blob): Promise<string> => {
+  const getBase64 = useCallback(async (file: Blob): Promise<string> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -18,7 +20,7 @@ export const useBase64File = () => {
         reject(error);
       };
     });
-  };
+  }, []);
 
   return { getBase64 };
 };

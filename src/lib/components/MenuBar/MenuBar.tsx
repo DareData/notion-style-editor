@@ -10,11 +10,11 @@ import { TextsFormatActionsDropdown } from './TextsFormatActionsDropdown/TextsFo
 import { useMatchMedia } from '../../hooks/useMatchMedia';
 import { theme } from '../../styles/theme';
 import { pxToRem } from '../../styles/utils';
-import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
+import { useTextEditorContext } from '../TextEditorContext/useTextEditoContext';
 
 export const MenuBar = () => {
   const { queries } = useTheme();
-  const { mode } = useTextEditorModeContext();
+  const { mode } = useTextEditorContext();
 
   const isTablet = useMatchMedia({
     query: `(min-width: ${queries.tablet})`,

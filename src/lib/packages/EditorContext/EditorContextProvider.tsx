@@ -12,7 +12,6 @@ import { useEditor, UseEditorReturn } from '@milkdown/react';
 import { createContext, useMemo } from 'react';
 
 import { useCommonmarkPlugin } from './hooks/useCommonmarkPlugin/useCommonmarkPlugin';
-import { useEditorViewPlugin } from './hooks/useEditorViewPlugin';
 import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
 import { useListenerPlugin } from './hooks/useListenerPlugin';
 import { useMathPlugin } from './hooks/useMathPlugin';
@@ -20,8 +19,8 @@ import { useMenuBarPlugin } from './hooks/useMenuBarPlugin';
 import { useMermaidPlugin } from './hooks/useMermaidPlugin';
 import { usePrismPlugin } from './hooks/usePrismPlugin';
 import { useSlashPlugin } from './hooks/useSlashPlugin';
-import { useUploadPlugin } from './hooks/useUploadPlugin';
-import { useTextEditorModeContext } from '../../components/TextEditorModeContext/useTextEditorModeContext';
+import { useUploadPlugin } from './hooks/useUploadPlugin/useUploadPlugin';
+import { useTextEditorContext } from '../../components/TextEditorContext/useTextEditoContext';
 
 type EditorContextData = {
   editor: UseEditorReturn | null;
@@ -44,7 +43,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   debounceChange,
   defaultMarkdownValue,
 }) => {
-  const { mode } = useTextEditorModeContext();
+  const { mode } = useTextEditorContext();
 
   const gfmPlugin = useGfmPlugin();
   const mathPlugin = useMathPlugin();
@@ -55,8 +54,6 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   const prismPlugin = usePrismPlugin();
   const menuBarPlugin = useMenuBarPlugin();
   const listenerPlugin = useListenerPlugin({ onChange, debounceChange });
-
-  // useEditorViewPlugin();
 
   const editor = useEditor(
     root =>

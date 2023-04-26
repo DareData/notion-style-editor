@@ -8,7 +8,7 @@ import { TabList } from '../../common/Tabs/TabList';
 import { TabPanel } from '../../common/Tabs/TabPanel';
 import { Tabs } from '../../common/Tabs/Tabs';
 import { pxToRem } from '../../styles/utils';
-import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
+import { useTextEditorContext } from '../TextEditorContext/useTextEditoContext';
 
 export enum MermaidNodeTabs {
   Preview = 'preview',
@@ -17,7 +17,7 @@ export enum MermaidNodeTabs {
 
 export const MermaidNode: React.FC = () => {
   const { setAttrs } = useNodeViewContext();
-  const { mode } = useTextEditorModeContext();
+  const { mode } = useTextEditorContext();
 
   const onSourceUpdate = (value: string) => {
     setAttrs({ value });

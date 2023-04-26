@@ -13,7 +13,7 @@ import { Icon } from '../../common/Icon/Icon';
 import { useSelectedMarkPosition } from '../../hooks/useSelectedMarkPosition';
 import { pxToRem } from '../../styles/utils';
 import { LinkModal } from '../LinkModal/LinkModal';
-import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
+import { useTextEditorContext } from '../TextEditorContext/useTextEditoContext';
 
 export const LinkTooltip: React.FC = () => {
   const { colors } = useTheme();
@@ -23,7 +23,7 @@ export const LinkTooltip: React.FC = () => {
 
   const [loading] = useInstance();
   const { view, prevState } = usePluginViewContext();
-  const { mode } = useTextEditorModeContext();
+  const { mode } = useTextEditorContext();
   const { getSelectedMarkPosition } = useSelectedMarkPosition();
 
   const { href } = useHyperlinkAttrs();

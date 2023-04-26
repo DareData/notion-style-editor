@@ -11,7 +11,7 @@ import { useWidgetViewContext } from '@prosemirror-adapter/react';
 import { useMemo, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 
-import { useTextEditorModeContext } from './TextEditorModeContext/useTextEditorModeContext';
+import { useTextEditorContext } from './TextEditorContext/useTextEditoContext';
 import { Button, ButtonProps } from '../common/Button';
 import { tableTooltipCtx } from '../packages/EditorContext/hooks/useGfmPlugin/useGfmPlugin';
 import { pxToRem } from '../styles/utils';
@@ -31,7 +31,7 @@ export const TableSelectorWidget: React.FC = () => {
   const index = spec?.index ?? 0;
   const [loading, getEditor] = useInstance();
   const ref = useRef<HTMLButtonElement>(null);
-  const { mode } = useTextEditorModeContext();
+  const { mode } = useTextEditorContext();
 
   const [dragOver, setDragOver] = useState(false);
 

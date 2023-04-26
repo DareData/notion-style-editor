@@ -10,7 +10,7 @@ import { Select } from '../../common/Select';
 import { useNotification } from '../../hooks/useNotification';
 import { pxToRem } from '../../styles/utils';
 import { Matcher } from '../../utils/Matcher';
-import { useTextEditorModeContext } from '../TextEditorModeContext/useTextEditorModeContext';
+import { useTextEditorContext } from '../TextEditorContext/useTextEditoContext';
 
 const options: Option[] = [
   {
@@ -36,7 +36,7 @@ const options: Option[] = [
 ];
 
 export const CodeBlockNode: React.FC = () => {
-  const { mode } = useTextEditorModeContext();
+  const { mode } = useTextEditorContext();
   const { onSuccessNotification } = useNotification();
   const { contentRef, node, setAttrs } = useNodeViewContext();
 
