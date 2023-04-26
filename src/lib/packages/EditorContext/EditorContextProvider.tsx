@@ -2,6 +2,7 @@ import {
   Editor as MilkdownEditor,
   rootCtx,
   defaultValueCtx,
+  editorViewOptionsCtx,
 } from '@milkdown/core';
 import { clipboard } from '@milkdown/plugin-clipboard';
 import { emoji } from '@milkdown/plugin-emoji';
@@ -20,6 +21,7 @@ import { useMermaidPlugin } from './hooks/useMermaidPlugin';
 import { usePrismPlugin } from './hooks/usePrismPlugin';
 import { useSlashPlugin } from './hooks/useSlashPlugin';
 import { useUploadPlugin } from './hooks/useUploadPlugin';
+import { useTextEditorModeContext } from '../../components/TextEditorModeContext/useTextEditorModeContext';
 
 type EditorContextData = {
   editor: UseEditorReturn | null;
@@ -42,6 +44,8 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   debounceChange,
   defaultMarkdownValue,
 }) => {
+  const { mode } = useTextEditorModeContext();
+
   const gfmPlugin = useGfmPlugin();
   const mathPlugin = useMathPlugin();
   const uploadPlugin = useUploadPlugin();
@@ -52,7 +56,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   const menuBarPlugin = useMenuBarPlugin();
   const listenerPlugin = useListenerPlugin({ onChange, debounceChange });
 
-  useEditorViewPlugin();
+  // useEditorViewPlugin();
 
   const editor = useEditor(
     root =>
@@ -60,6 +64,10 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         .config(ctx => {
           ctx.set(rootCtx, root);
           ctx.set(defaultValueCtx, defaultMarkdownValue);
+          ctx.update(editorViewOptionsCtx, prev => ({
+            ...prev,
+            editable: () => mode === 'active',
+          }));
         })
         .use(commonmarkPlugin)
         .use(listenerPlugin)
@@ -75,6 +83,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         .use(menuBarPlugin)
         .use(gfmPlugin),
     [
+      mode,
       commonmarkPlugin,
       defaultMarkdownValue,
       listenerPlugin,
