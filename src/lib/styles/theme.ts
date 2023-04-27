@@ -52,6 +52,7 @@ export const theme = {
     selection: '#e9f7f5',
   },
   zIndexes: {
+    menu: 99,
     modal: {
       backdrop: 100,
       container: 101,
