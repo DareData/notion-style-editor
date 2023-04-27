@@ -45,6 +45,8 @@ export const MenuBar = () => {
 };
 
 const MenuBarListStyled = styled.ul`
+  position: sticky;
+  top: ${pxToRem(10)};
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
@@ -52,6 +54,7 @@ const MenuBarListStyled = styled.ul`
   background-color: ${props => props.theme.colors.secondaryLightGrey};
   border-radius: ${pxToRem(4)};
   margin-bottom: ${pxToRem(20)};
+  z-index: ${props => props.theme.zIndexes.menu};
 
   &&& {
     padding: ${pxToRem(8)} ${pxToRem(2)};

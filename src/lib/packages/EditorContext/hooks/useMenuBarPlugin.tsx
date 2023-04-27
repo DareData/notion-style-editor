@@ -13,7 +13,7 @@ export const useMenuBarPlugin = () => {
   const createMenuBarWidget = useMemo(
     () =>
       widgetViewFactory({
-        as: 'div',
+        as: 'span',
         component: MenuBar,
       }),
     [widgetViewFactory]
