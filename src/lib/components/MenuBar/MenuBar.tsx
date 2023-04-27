@@ -14,7 +14,7 @@ import { useTextEditorContext } from '../TextEditorContext/useTextEditoContext';
 
 export const MenuBar = () => {
   const { queries } = useTheme();
-  const { mode } = useTextEditorContext();
+  const { mode, stickyOnMenu } = useTextEditorContext();
 
   const isTablet = useMatchMedia({
     query: `(min-width: ${queries.tablet})`,
@@ -28,7 +28,7 @@ export const MenuBar = () => {
   }
 
   return (
-    <MenuBarListStyled>
+    <MenuBarListStyled $stickyOnMenu={stickyOnMenu}>
       <UndoRedoActions />
       <TurnTextsActions />
       {isTablet ? (
@@ -44,9 +44,9 @@ export const MenuBar = () => {
   );
 };
 
-const MenuBarListStyled = styled.ul`
+const MenuBarListStyled = styled.ul<{ $stickyOnMenu: number }>`
   position: sticky;
-  top: ${pxToRem(10)};
+  top: ${props => `${props.$stickyOnMenu}px`};
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;

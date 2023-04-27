@@ -32,10 +32,11 @@ export const TextEditor: React.FC<TextEditorProps> = ({
   className = '',
   onDataChange = () => {},
   onFileUpload,
+  stickyOnMenu,
   ...rest
 }) => (
   <ThemeProvider {...{ theme }}>
-    <TextEditorContextProvider {...{ mode, onFileUpload }}>
+    <TextEditorContextProvider {...{ mode, onFileUpload, stickyOnMenu }}>
       <MilkdownProvider>
         <ProsemirrorAdapterProvider>
           <EditorContextProvider
