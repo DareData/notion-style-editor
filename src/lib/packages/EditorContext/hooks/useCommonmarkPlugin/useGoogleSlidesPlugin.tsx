@@ -53,7 +53,7 @@ export const useGoogleSlidesPlugin = () => {
             },
             apply(tr, value, oldState, newState) {
               if (mode === 'active') {
-                return DecorationSet.empty;
+                return DecorationSet.create(newState.doc, []);
               }
 
               if (oldState.doc.eq(newState.doc)) {
