@@ -1,23 +1,19 @@
-import {
-  wrapInBulletListCommand,
-  wrapInOrderedListCommand,
-} from '@milkdown/preset-commonmark';
 import styled from 'styled-components';
 
 import { Button } from '../../../common/Button';
 import { Icon } from '../../../common/Icon/Icon';
-import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 import { theme } from '../../../styles/theme';
 import { pxToRem } from '../../../styles/utils';
+import { useListWrap } from '../hooks/useListWrap';
 
 export const ListsActions: React.FC = () => {
-  const { onCallCommand } = useCallEditorCommand();
+  const { onBulletListToggle, onOrderedListToggle } = useListWrap();
 
   return (
     <>
       <BulletListItemStyled>
         <Button
-          onClick={() => onCallCommand(wrapInBulletListCommand.key)}
+          onClick={onBulletListToggle}
           oval
           space="small"
           color="secondary"
@@ -27,7 +23,7 @@ export const ListsActions: React.FC = () => {
       </BulletListItemStyled>
       <li>
         <Button
-          onClick={() => onCallCommand(wrapInOrderedListCommand.key)}
+          onClick={onOrderedListToggle}
           oval
           space="small"
           color="secondary"
