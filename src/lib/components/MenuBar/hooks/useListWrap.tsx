@@ -1,12 +1,12 @@
-import {
-  liftListItemCommand,
-  wrapInBulletListCommand,
-  wrapInOrderedListCommand,
-} from '@milkdown/preset-commonmark';
+import { liftListItemCommand } from '@milkdown/preset-commonmark';
 import { useWidgetViewContext } from '@prosemirror-adapter/react';
 import { Selection } from 'prosemirror-state';
 
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
+import {
+  wrapEntireInBulletListCommand,
+  wrapEntireInOrderedListCommand,
+} from '../../../packages/EditorContext/hooks/useCommonmarkPlugin/useCommonmarkPlugin';
 
 const isListActive = (selection: Selection, listType: string) => {
   const { $from, $to } = selection;
@@ -28,7 +28,7 @@ export const useListWrap = () => {
     if (isListActive(selection, 'bullet_list')) {
       onCallCommand(liftListItemCommand.key);
     } else {
-      onCallCommand(wrapInBulletListCommand.key);
+      onCallCommand(wrapEntireInBulletListCommand.key);
     }
   };
 
@@ -36,7 +36,7 @@ export const useListWrap = () => {
     if (isListActive(selection, 'ordered_list')) {
       onCallCommand(liftListItemCommand.key);
     } else {
-      onCallCommand(wrapInOrderedListCommand.key);
+      onCallCommand(wrapEntireInOrderedListCommand.key);
     }
   };
 
