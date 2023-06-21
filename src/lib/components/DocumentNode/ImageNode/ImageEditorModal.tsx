@@ -4,11 +4,11 @@ import {
   ImageEditorModalContent,
   ImageEditorModalContentProps,
 } from './ImageEditorModalContent';
-import { Button, ButtonProps } from '../../common/Button';
-import { Icon } from '../../common/Icon/Icon';
-import { ControlledModal } from '../../common/Modal/ControlledModal';
-import { useToggler } from '../../hooks/useToggler';
-import { pxToRem } from '../../styles/utils';
+import { Button, ButtonProps } from '../../../common/Button';
+import { Icon } from '../../../common/Icon/Icon';
+import { ControlledModal } from '../../../common/Modal/ControlledModal';
+import { useToggler } from '../../../hooks/useToggler';
+import { pxToRem } from '../../../styles/utils';
 
 type ImageEditorModalProps = {
   imageWidth: number;
