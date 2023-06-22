@@ -84,7 +84,9 @@ const containerStyles = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: ${pxToRem(16)};
   padding: ${pxToRem(12)} ${pxToRem(16)};
+  gap: ${pxToRem(16)};
   border: 1px solid ${props => props.theme.colors.lightGrey};
   border-radius: ${pxToRem(6)};
   transition: 0.1s ease-in;

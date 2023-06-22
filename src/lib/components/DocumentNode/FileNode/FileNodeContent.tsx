@@ -19,7 +19,7 @@ export const FileNodeContent: React.FC<FileNodeContentProps> = ({
         <IconContainerStyled>
           <Icon icon="document" />
         </IconContainerStyled>
-        {name}
+        <NameStyled>{name}</NameStyled>
       </WrapperStyled>
       {children}
     </>
@@ -40,6 +40,7 @@ const WrapperStyled = styled.div`
   display: flex;
   align-items: center;
   gap: ${pxToRem(8)};
+  overflow: hidden;
 `;
 
 const IconContainerStyled = styled.div`
@@ -48,4 +49,11 @@ const IconContainerStyled = styled.div`
   border-radius: ${pxToRem(4)};
   background-color: ${props => props.theme.colors.secondaryLightGrey};
   border: 1px solid ${props => props.theme.colors.lightGrey};
+`;
+
+const NameStyled = styled.div`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
 `;

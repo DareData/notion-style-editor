@@ -49,7 +49,7 @@ Lorem ipsum dolor re arcu. Praesent lacus diam, laoreet et nisi sit amet, interd
 `;
 
 export const App = () => {
-  const [mode, setMode] = useState<TextEditorMode>('preview');
+  const [mode, setMode] = useState<TextEditorMode>('active');
 
   const onDataChange = useCallback((data: string) => {
     localStorage.setItem('milkdown/value', data);

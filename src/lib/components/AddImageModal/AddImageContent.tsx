@@ -49,7 +49,7 @@ export const AddImageContent: React.FC<AddImageContentProps> = ({
     return (
       <LoaderContainerStyled>
         <LoaderStyled {...{ loading }} size="large" />
-        <span>Uploading image...</span>
+        <span>Uploading...</span>
       </LoaderContainerStyled>
     );
   }
@@ -78,7 +78,7 @@ export const AddImageContent: React.FC<AddImageContentProps> = ({
             label="Import from URL"
             error={formState.errors.url?.message}
             accept="*"
-            placeholder="Paste a URL of image..."
+            placeholder="Paste a URL..."
           />
           <AnimatePresence>
             {url && (
@@ -86,7 +86,7 @@ export const AddImageContent: React.FC<AddImageContentProps> = ({
                 <ModalActionsStyled
                   loading={formState.isValidating}
                   isDisabled={formState.isValidating || !formState.isValid}
-                  saveText="Insert image"
+                  saveText="Upload"
                   withCancel={false}
                   saveButtonType="submit"
                 />

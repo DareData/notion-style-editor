@@ -18,11 +18,6 @@ export const useUploader = () => {
           if (!file) {
             continue;
           }
-
-          if (!file.type.includes('image')) {
-            continue;
-          }
-
           images.push(file);
         }
 

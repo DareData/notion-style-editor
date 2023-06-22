@@ -9,7 +9,8 @@ export const DocumentNode: React.FC = () => {
   const { node } = useNodeViewContext();
   const { attrs } = node;
 
-  const isImage = attrs.src.match(formatRegex) !== null;
+  const isImage =
+    attrs.src.match(formatRegex) !== null || attrs.src.includes('data:image/');
 
   if (isImage) {
     return <ImageNode />;

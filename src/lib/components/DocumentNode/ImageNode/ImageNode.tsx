@@ -78,6 +78,7 @@ export const ImageNode: React.FC = () => {
 const ImageNodeContainerStyled = styled.div<{ $isSelected: boolean }>`
   position: relative;
   display: inline-flex;
+  margin-bottom: ${pxToRem(16)};
   outline-offset: ${pxToRem(2)};
   outline: ${pxToRem(2)} solid
     ${props =>
