@@ -18,13 +18,13 @@ import {
 import { pxToRem } from '../../styles/utils';
 import { useTextEditorContext } from '../TextEditorContext/useTextEditoContext';
 
-export type AddImageContentProps = {
+export type AddDocumentModalContentProps = {
   onInsert: (source: string) => void;
 };
 
-export const AddImageContent: React.FC<AddImageContentProps> = ({
-  onInsert,
-}) => {
+export const AddDocumentModalContent: React.FC<
+  AddDocumentModalContentProps
+> = ({ onInsert }) => {
   const { onClose } = useModalContext();
   const { acceptedFormats } = useTextEditorContext();
   const { onFileConvert, loading } = useFileConvertion();
@@ -68,7 +68,7 @@ export const AddImageContent: React.FC<AddImageContentProps> = ({
 
   return (
     <ModalBody>
-      <ImageContentContainerStyled>
+      <DocumentContentContainerStyled>
         <motion.div
           animate={url ? 'hidden' : 'show'}
           variants={toggleOutInVariant}
@@ -107,7 +107,7 @@ export const AddImageContent: React.FC<AddImageContentProps> = ({
             )}
           </AnimatePresence>
         </form>
-      </ImageContentContainerStyled>
+      </DocumentContentContainerStyled>
     </ModalBody>
   );
 };
@@ -127,7 +127,7 @@ const LoaderStyled = styled(Loader)`
   flex: 1;
 `;
 
-const ImageContentContainerStyled = styled.div`
+const DocumentContentContainerStyled = styled.div`
   overflow: hidden;
   padding-top: ${pxToRem(40)};
   padding-bottom: ${pxToRem(24)};

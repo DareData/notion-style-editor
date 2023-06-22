@@ -14,8 +14,8 @@ import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 import { useInsertMathBlock } from '../../../hooks/useInsertMathAction';
 import { theme } from '../../../styles/theme';
 import { pxToRem } from '../../../styles/utils';
+import { AddDocumentModal } from '../../AddDocumentModal/AddDocumentModal';
 import { AddGoogleSlidesModal } from '../../AddGoogleSlidesModal/AddGoogleSlidesModal';
-import { AddImageModal } from '../../AddImageModal/AddImageModal';
 import { LinkModal } from '../../LinkModal/LinkModal';
 
 export const BlocksActions: React.FC = () => {
@@ -54,7 +54,7 @@ export const BlocksActions: React.FC = () => {
         />
       </HyperlinkModalItemStyled>
       <li>
-        <AddImageModal
+        <AddDocumentModal
           handler={({ onOpen }) => (
             <Button oval onClick={onOpen} space="small" color="secondary">
               <Icon icon="embed_image" />
