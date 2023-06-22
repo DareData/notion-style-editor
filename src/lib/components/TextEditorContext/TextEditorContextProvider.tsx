@@ -6,6 +6,7 @@ import { TextEditorMode } from '../../packages/TextEditor';
 type TextEditorContextData = {
   mode: TextEditorMode;
   showMenu: boolean;
+  placeholder: string;
   stickyOnMenu: number;
   onFileUpload: (file: File) => Promise<string>;
 };
@@ -13,6 +14,7 @@ type TextEditorContextData = {
 export const TextEditorContext = createContext<TextEditorContextData>({
   mode: 'preview',
   showMenu: true,
+  placeholder: '',
   stickyOnMenu: 10,
   onFileUpload: () => Promise.resolve(''),
 });
@@ -21,6 +23,7 @@ export type TextEditorContextProviderProps = {
   mode: TextEditorMode;
   children: React.ReactNode;
   showMenu?: boolean;
+  placeholder?: string;
   stickyOnMenu?: number;
   onFileUpload?: (file: File) => Promise<string>;
 };
@@ -29,6 +32,7 @@ export const TextEditorContextProvider = ({
   mode,
   showMenu = true,
   children,
+  placeholder = 'Post an update..',
   stickyOnMenu = 10,
   onFileUpload,
 }: TextEditorContextProviderProps) => {
@@ -40,8 +44,9 @@ export const TextEditorContextProvider = ({
       stickyOnMenu,
       onFileUpload: onFileUpload || getBase64,
       showMenu,
+      placeholder,
     }),
-    [mode, onFileUpload, getBase64, stickyOnMenu, showMenu]
+    [mode, onFileUpload, getBase64, stickyOnMenu, showMenu, placeholder]
   );
 
   return (

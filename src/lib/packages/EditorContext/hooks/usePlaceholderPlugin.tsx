@@ -4,21 +4,21 @@ import { Plugin, PluginKey } from '@milkdown/prose/state';
 import { EditorView } from '@milkdown/prose/view';
 import { useMemo } from 'react';
 
-const placeholderCtx = createSlice('Post an update..', 'placeholder');
+import { useTextEditorContext } from '../../../components/TextEditorContext/useTextEditoContext';
+
 const placeholderTimerCtx = createSlice([] as TimerType[], 'editorStateTimer');
 const PlaceholderReady = createTimer('PlaceholderReady');
 
 const key = new PluginKey('MILKDOWN_PLACEHOLDER');
 
 export const usePlaceholderPlugin = () => {
+  const { placeholder } = useTextEditorContext();
+
   const placeholderPlugin = useMemo(
     () =>
       [
         (ctx: Ctx) => {
-          ctx
-            .inject(placeholderCtx)
-            .inject(placeholderTimerCtx, [InitReady])
-            .record(PlaceholderReady);
+          ctx.inject(placeholderTimerCtx, [InitReady]).record(PlaceholderReady);
 
           return async () => {
             await ctx.waitTimers(placeholderTimerCtx);
@@ -26,7 +26,6 @@ export const usePlaceholderPlugin = () => {
             const prosePlugins = ctx.get(prosePluginsCtx);
 
             const update = (view: EditorView) => {
-              const placeholder = ctx.get(placeholderCtx);
               const doc = view.state.doc;
               if (
                 view.editable &&
@@ -59,7 +58,7 @@ export const usePlaceholderPlugin = () => {
           };
         },
       ].flat(),
-    []
+    [placeholder]
   );
 
   return placeholderPlugin;
