@@ -17,6 +17,7 @@ import { useListenerPlugin } from './hooks/useListenerPlugin';
 import { useMathPlugin } from './hooks/useMathPlugin';
 import { useMenuBarPlugin } from './hooks/useMenuBarPlugin';
 import { useMermaidPlugin } from './hooks/useMermaidPlugin';
+import { usePlaceholderPlugin } from './hooks/usePlaceholderPlugin';
 import { usePrismPlugin } from './hooks/usePrismPlugin';
 import { useSlashPlugin } from './hooks/useSlashPlugin';
 import { useUploadPlugin } from './hooks/useUploadPlugin/useUploadPlugin';
@@ -52,6 +53,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   const slashPlugin = useSlashPlugin();
   const commonmarkPlugin = useCommonmarkPlugin();
   const prismPlugin = usePrismPlugin();
+  const placeholderPlugin = usePlaceholderPlugin();
   const menuBarPlugin = useMenuBarPlugin();
   const listenerPlugin = useListenerPlugin({ onChange, debounceChange });
 
@@ -67,6 +69,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
           }));
         })
         .use(commonmarkPlugin)
+        .use(placeholderPlugin)
         .use(listenerPlugin)
         .use(prismPlugin)
         .use(history)

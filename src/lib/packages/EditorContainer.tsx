@@ -55,6 +55,16 @@ export const EditorContainer = styled.div`
   }
 
   .editor {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: ${pxToRem(70)};
+      color: ${props => props.theme.colors.grey};
+      cursor: text;
+      content: attr(data-placeholder);
+    }
+
     blockquote {
       margin: ${pxToRem(16)} 0;
       padding-left: ${pxToRem(20)};
