@@ -17,6 +17,8 @@ import { ReactComponent as CopyIcon } from './assets/copy.svg';
 import { ReactComponent as CreateTableIcon } from './assets/create_table.svg';
 import { ReactComponent as DragAndDropFileIcon } from './assets/d_and_d_file.svg';
 import { ReactComponent as DeleteIcon } from './assets/delete.svg';
+import { ReactComponent as DocumentIcon } from './assets/document.svg';
+import { ReactComponent as DownloadIcon } from './assets/download.svg';
 import { ReactComponent as EditIcon } from './assets/edit.svg';
 import { ReactComponent as EmbedImageIcon } from './assets/embed_image.svg';
 import { ReactComponent as ExportIcon } from './assets/export.svg';
@@ -74,6 +76,8 @@ const icons = {
   add_row_bottom: AddRowBottomIcon,
   add_column_left: AddColumnLeftIcon,
   add_column_right: AddColumnRightIcon,
+  document: DocumentIcon,
+  download: DownloadIcon,
 };
 
 export const IconTypesValues = Object.keys(icons) as IconTypes[];

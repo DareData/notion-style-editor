@@ -16,8 +16,8 @@ import {
 import { Icon } from '../../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../../hooks/useCallEditorCommand';
 import { useInsertMathBlock } from '../../../hooks/useInsertMathAction';
+import { AddDocumentModal } from '../../AddDocumentModal/AddDocumentModal';
 import { AddGoogleSlidesModal } from '../../AddGoogleSlidesModal/AddGoogleSlidesModal';
-import { AddImageModal } from '../../AddImageModal/AddImageModal';
 import { LinkModal } from '../../LinkModal/LinkModal';
 
 export const BlocksActionsDropdownList = () => {
@@ -46,7 +46,7 @@ export const BlocksActionsDropdownList = () => {
         />
       </DropdownItemStyled>
       <DropdownItemStyled>
-        <AddImageModal
+        <AddDocumentModal
           handler={({ onOpen }) => (
             <DropdownButtonActionStyled onClick={onOpen}>
               <Icon icon="embed_image" />

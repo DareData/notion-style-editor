@@ -22,8 +22,8 @@ import { Hidden } from '../../common/Hidden';
 import { Icon } from '../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../hooks/useCallEditorCommand';
 import { insertMathCommand } from '../../packages/EditorContext/hooks/useMathPlugin';
+import { AddDocumentModal } from '../AddDocumentModal/AddDocumentModal';
 import { AddGoogleSlidesModal } from '../AddGoogleSlidesModal/AddGoogleSlidesModal';
-import { AddImageModal } from '../AddImageModal/AddImageModal';
 import { LinkModal } from '../LinkModal/LinkModal';
 
 export const SlashNode: React.FC = () => {
@@ -112,7 +112,7 @@ export const SlashNode: React.FC = () => {
             />
           </DropdownItemStyled>
           <DropdownItemStyled>
-            <AddImageModal
+            <AddDocumentModal
               onModalOpen={onRemoveSlash}
               handler={({ onOpen }) => (
                 <FocusableDropdownButtonActionStyled
@@ -122,7 +122,7 @@ export const SlashNode: React.FC = () => {
                   $isFocused={activeItemIndex === 4}
                 >
                   <Icon icon="embed_image" />
-                  Add image
+                  Add document
                 </FocusableDropdownButtonActionStyled>
               )}
               onInsert={source =>

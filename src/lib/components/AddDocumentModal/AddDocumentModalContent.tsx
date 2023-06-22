@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
+import { useMemo } from 'react';
 import { useWatch } from 'react-hook-form';
 import styled from 'styled-components';
 
@@ -15,15 +16,17 @@ import {
   toggleOutInVariant,
 } from '../../styles/common/animations';
 import { pxToRem } from '../../styles/utils';
+import { useTextEditorContext } from '../TextEditorContext/useTextEditoContext';
 
-export type AddImageContentProps = {
+export type AddDocumentModalContentProps = {
   onInsert: (source: string) => void;
 };
 
-export const AddImageContent: React.FC<AddImageContentProps> = ({
-  onInsert,
-}) => {
+export const AddDocumentModalContent: React.FC<
+  AddDocumentModalContentProps
+> = ({ onInsert }) => {
   const { onClose } = useModalContext();
+  const { acceptedFormats } = useTextEditorContext();
   const { onFileConvert, loading } = useFileConvertion();
 
   const { formState, register, handleSubmit, control } = useImageForm();
@@ -35,9 +38,13 @@ export const AddImageContent: React.FC<AddImageContentProps> = ({
   };
 
   const onFileUpload = async (files: FileList) => {
-    const file = await onFileConvert(files);
-    if (file) {
-      onFileInsert(file);
+    try {
+      const file = await onFileConvert(files);
+      if (file) {
+        onFileInsert(file);
+      }
+    } catch (e) {
+      /* empty */
     }
   };
 
@@ -45,18 +52,23 @@ export const AddImageContent: React.FC<AddImageContentProps> = ({
     onFileInsert(data.url as string);
   };
 
+  const inputFileAccept = useMemo(
+    () => (acceptedFormats.includes('*') ? '*' : acceptedFormats.join(',')),
+    [acceptedFormats]
+  );
+
   if (loading) {
     return (
       <LoaderContainerStyled>
         <LoaderStyled {...{ loading }} size="large" />
-        <span>Uploading image...</span>
+        <span>Uploading...</span>
       </LoaderContainerStyled>
     );
   }
 
   return (
     <ModalBody>
-      <ImageContentContainerStyled>
+      <DocumentContentContainerStyled>
         <motion.div
           animate={url ? 'hidden' : 'show'}
           variants={toggleOutInVariant}
@@ -65,6 +77,7 @@ export const AddImageContent: React.FC<AddImageContentProps> = ({
             <DragDropInputFile
               name="insert_image"
               multiple={false}
+              accept={inputFileAccept}
               {...{ onFileUpload }}
             />
             <GapStyled>
@@ -77,8 +90,8 @@ export const AddImageContent: React.FC<AddImageContentProps> = ({
             {...register('url')}
             label="Import from URL"
             error={formState.errors.url?.message}
-            accept="image/*"
-            placeholder="Paste a URL of image..."
+            accept="*"
+            placeholder="Paste a URL..."
           />
           <AnimatePresence>
             {url && (
@@ -86,7 +99,7 @@ export const AddImageContent: React.FC<AddImageContentProps> = ({
                 <ModalActionsStyled
                   loading={formState.isValidating}
                   isDisabled={formState.isValidating || !formState.isValid}
-                  saveText="Insert image"
+                  saveText="Upload"
                   withCancel={false}
                   saveButtonType="submit"
                 />
@@ -94,7 +107,7 @@ export const AddImageContent: React.FC<AddImageContentProps> = ({
             )}
           </AnimatePresence>
         </form>
-      </ImageContentContainerStyled>
+      </DocumentContentContainerStyled>
     </ModalBody>
   );
 };
@@ -114,7 +127,7 @@ const LoaderStyled = styled(Loader)`
   flex: 1;
 `;
 
-const ImageContentContainerStyled = styled.div`
+const DocumentContentContainerStyled = styled.div`
   overflow: hidden;
   padding-top: ${pxToRem(40)};
   padding-bottom: ${pxToRem(24)};
