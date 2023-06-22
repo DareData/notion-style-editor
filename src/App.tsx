@@ -71,6 +71,7 @@ export const App = () => {
         <TextEditor
           data={markdownValue}
           {...{ mode, onDataChange }}
+          mode="active"
           debounceChange={1000}
         />
       </AppContainerStyled>
