@@ -1,7 +1,7 @@
 {
   "name": "altos-text-editor",
   "private": false,
-  "version": "0.0.24",
+  "version": "0.0.24-beta-0.0.1",
   "type": "module",
   "files": [
     "dist"
