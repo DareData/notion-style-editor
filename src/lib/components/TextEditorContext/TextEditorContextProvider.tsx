@@ -7,12 +7,14 @@ type TextEditorContextData = {
   mode: TextEditorMode;
   stickyOnMenu: number;
   onFileUpload: (file: File) => Promise<string>;
+  acceptedFormats: string[];
 };
 
 export const TextEditorContext = createContext<TextEditorContextData>({
   mode: 'preview',
   stickyOnMenu: 10,
   onFileUpload: () => Promise.resolve(''),
+  acceptedFormats: [],
 });
 
 export type TextEditorContextProviderProps = {
@@ -20,6 +22,7 @@ export type TextEditorContextProviderProps = {
   children: React.ReactNode;
   stickyOnMenu?: number;
   onFileUpload?: (file: File) => Promise<string>;
+  acceptedFormats?: string[];
 };
 
 export const TextEditorContextProvider = ({
@@ -27,12 +30,18 @@ export const TextEditorContextProvider = ({
   children,
   stickyOnMenu = 10,
   onFileUpload,
+  acceptedFormats = ['*'],
 }: TextEditorContextProviderProps) => {
   const { getBase64 } = useBase64File();
 
   const context = useMemo(
-    () => ({ mode, stickyOnMenu, onFileUpload: onFileUpload || getBase64 }),
-    [mode, onFileUpload, getBase64, stickyOnMenu]
+    () => ({
+      mode,
+      stickyOnMenu,
+      onFileUpload: onFileUpload || getBase64,
+      acceptedFormats,
+    }),
+    [mode, onFileUpload, getBase64, stickyOnMenu, acceptedFormats]
   );
 
   return (
