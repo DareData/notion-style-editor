@@ -9,6 +9,7 @@ type TextEditorContextData = {
   placeholder: string;
   stickyOnMenu: number;
   onFileUpload: (file: File) => Promise<string>;
+  acceptedFormats: string[];
 };
 
 export const TextEditorContext = createContext<TextEditorContextData>({
@@ -17,6 +18,7 @@ export const TextEditorContext = createContext<TextEditorContextData>({
   placeholder: '',
   stickyOnMenu: 10,
   onFileUpload: () => Promise.resolve(''),
+  acceptedFormats: [],
 });
 
 export type TextEditorContextProviderProps = {
@@ -26,6 +28,7 @@ export type TextEditorContextProviderProps = {
   placeholder?: string;
   stickyOnMenu?: number;
   onFileUpload?: (file: File) => Promise<string>;
+  acceptedFormats?: string[];
 };
 
 export const TextEditorContextProvider = ({
@@ -35,6 +38,7 @@ export const TextEditorContextProvider = ({
   placeholder = 'Post an update..',
   stickyOnMenu = 10,
   onFileUpload,
+  acceptedFormats = ['*'],
 }: TextEditorContextProviderProps) => {
   const { getBase64 } = useBase64File();
 
@@ -45,8 +49,17 @@ export const TextEditorContextProvider = ({
       onFileUpload: onFileUpload || getBase64,
       showMenu,
       placeholder,
+      acceptedFormats,
     }),
-    [mode, onFileUpload, getBase64, stickyOnMenu, showMenu, placeholder]
+    [
+      mode,
+      onFileUpload,
+      getBase64,
+      placeholder,
+      showMenu,
+      stickyOnMenu,
+      acceptedFormats,
+    ]
   );
 
   return (

@@ -7,10 +7,10 @@ import styled from 'styled-components';
 
 import { ImageEditorFormValues } from './hooks/useImageEditorForm';
 import { ImageEditorModal } from './ImageEditorModal';
-import { Image } from '../../common/Image';
-import { useIsNodeSelected } from '../../hooks/useIsNodeSelected';
-import { pxToRem } from '../../styles/utils';
-import { useTextEditorContext } from '../TextEditorContext/useTextEditoContext';
+import { Image } from '../../../common/Image';
+import { useIsNodeSelected } from '../../../hooks/useIsNodeSelected';
+import { pxToRem } from '../../../styles/utils';
+import { useTextEditorContext } from '../../TextEditorContext/useTextEditoContext';
 
 export const ImageNode: React.FC = () => {
   const [imageProperties, setImageProperties] = useState<{
@@ -78,6 +78,7 @@ export const ImageNode: React.FC = () => {
 const ImageNodeContainerStyled = styled.div<{ $isSelected: boolean }>`
   position: relative;
   display: inline-flex;
+  margin-bottom: ${pxToRem(16)};
   outline-offset: ${pxToRem(2)};
   outline: ${pxToRem(2)} solid
     ${props =>

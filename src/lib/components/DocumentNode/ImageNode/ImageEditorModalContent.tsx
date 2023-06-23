@@ -4,13 +4,13 @@ import {
   ImageEditorFormValues,
   useImageEditorForm,
 } from './hooks/useImageEditorForm';
-import { Button } from '../../common/Button';
-import { Input } from '../../common/Input';
-import { useModalContext } from '../../common/Modal/context/useModalContext';
-import { ModalActions } from '../../common/Modal/ModalActions';
-import { ModalBody } from '../../common/Modal/ModalBody';
-import { ModalFooter } from '../../common/Modal/ModalFooter';
-import { pxToRem } from '../../styles/utils';
+import { Button } from '../../../common/Button';
+import { Input } from '../../../common/Input';
+import { useModalContext } from '../../../common/Modal/context/useModalContext';
+import { ModalActions } from '../../../common/Modal/ModalActions';
+import { ModalBody } from '../../../common/Modal/ModalBody';
+import { ModalFooter } from '../../../common/Modal/ModalFooter';
+import { pxToRem } from '../../../styles/utils';
 
 export type ImageEditorModalContentProps = {
   alt: string;

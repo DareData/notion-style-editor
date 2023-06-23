@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { Button } from './Button';
 import { Icon, IconProps } from './Icon/Icon';
@@ -65,6 +65,7 @@ export const DragDropInputFile: React.FC<DragDropInputFileProps> = ({
           width={230}
           height={230}
           $dragOver={dragActive.state}
+          fill="#BABABA"
         />
         <DragAndDropStyled>
           Drag and drop or
@@ -75,7 +76,7 @@ export const DragDropInputFile: React.FC<DragDropInputFileProps> = ({
             browse
           </BrowseButtonStyled>
         </DragAndDropStyled>
-        <FileInfoSyled>Image files, maximum file size 20 MB</FileInfoSyled>
+        <FileInfoSyled>maximum file size 20 MB</FileInfoSyled>
       </LabelStyled>
       {dragActive.state && (
         <DragElementStyled
@@ -144,17 +145,19 @@ const IconStyled = styled<React.FC<IconStyledProps>>(Icon)`
   }
   ${props =>
     props.$dragOver &&
-    `
-    .light-green {
-      fill: #c1f8d5;
-    }
-    .green {
-      fill: #68d391;
-    }
-    .dark-green {
-      fill: #4b8260;
-    }
-  `}
+    css`
+      .secondary-light-green {
+        fill: ${props => props.theme.colors.azure};
+      }
+
+      .light-green {
+        fill: #8dd4cb;
+      }
+
+      .green {
+        fill: ${props => props.theme.colors.green};
+      }
+    `}
 `;
 
 const DragElementStyled = styled.div`

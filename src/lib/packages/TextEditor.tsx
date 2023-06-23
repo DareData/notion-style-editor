@@ -31,14 +31,23 @@ export const TextEditor: React.FC<TextEditorProps> = ({
   mode,
   showMenu,
   className = '',
+  placeholder,
   onDataChange = () => {},
   onFileUpload,
   stickyOnMenu,
+  acceptedFormats,
   ...rest
 }) => (
   <ThemeProvider {...{ theme }}>
     <TextEditorContextProvider
-      {...{ mode, onFileUpload, stickyOnMenu, showMenu }}
+      {...{
+        mode,
+        onFileUpload,
+        stickyOnMenu,
+        showMenu,
+        acceptedFormats,
+        placeholder,
+      }}
     >
       <MilkdownProvider>
         <ProsemirrorAdapterProvider>

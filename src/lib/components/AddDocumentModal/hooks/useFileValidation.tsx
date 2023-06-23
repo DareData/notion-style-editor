@@ -1,24 +1,23 @@
 import { errorMessages } from '../../../config/errorMessages';
 import { useNotification } from '../../../hooks/useNotification';
 import { bytesToMegaBytes } from '../../../utils/utils';
-
-const formats = [
-  'image/jpeg',
-  'image/jpg',
-  'image/gif',
-  'image/png',
-  'image/tiff',
-  'image/bmp',
-  'image/eps',
-  'image/svg',
-];
+import { useTextEditorContext } from '../../TextEditorContext/useTextEditoContext';
 
 export const useFileValidation = () => {
   const { onErrorNotification } = useNotification();
+  const { acceptedFormats } = useTextEditorContext();
 
   const isFileValid = (file: File) => {
     if (!file) {
       onErrorNotification(errorMessages.image.not_image);
+      return false;
+    }
+
+    if (
+      !acceptedFormats.includes('*') &&
+      !acceptedFormats.includes(file.type)
+    ) {
+      onErrorNotification(errorMessages.image.format);
       return false;
     }
 
@@ -27,10 +26,6 @@ export const useFileValidation = () => {
       return false;
     }
 
-    if (!formats.includes(file.type)) {
-      onErrorNotification(errorMessages.image.format);
-      return false;
-    }
     return true;
   };
 
