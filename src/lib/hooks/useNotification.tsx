@@ -3,7 +3,9 @@ import { toast } from 'react-hot-toast';
 
 export const useNotification = () => {
   const onErrorNotification = useCallback((message: string) => {
-    toast.error(message, { position: 'bottom-center' });
+    toast.error(message, {
+      position: 'bottom-center',
+    });
   }, []);
 
   const onSuccessNotification = useCallback((message: string) => {
