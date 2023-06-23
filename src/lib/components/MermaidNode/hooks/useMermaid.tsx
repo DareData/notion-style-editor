@@ -1,6 +1,6 @@
 import { useNodeViewContext } from '@prosemirror-adapter/react';
 import mermaid from 'mermaid';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useTheme } from 'styled-components';
 
 type UseMermaidProps = {
@@ -12,22 +12,25 @@ export const useMermaid = ({ codePanelRef }: UseMermaidProps) => {
     components: { editor },
   } = useTheme();
   const { node } = useNodeViewContext();
+  const rendering = useRef(false);
 
   const id = node.attrs.identity;
   const codeValue = useMemo(() => node.attrs.value, [node.attrs.value]);
 
   const renderMermaid = useCallback(
-    (canRetry = 3) => {
+    async (canRetry = 3) => {
       const container = codePanelRef.current;
       if (!container) {
         return;
       }
+      if (codeValue.length === 0) {
+        return;
+      }
+      if (rendering.current) {
+        return;
+      }
 
       try {
-        if (codeValue.length === 0) {
-          return;
-        }
-
         mermaid.initialize({
           startOnLoad: false,
           theme: 'base',
@@ -40,10 +43,11 @@ export const useMermaid = ({ codePanelRef }: UseMermaidProps) => {
             tertiaryColor: editor.mermaid.tertiaryColor,
           },
         });
-        mermaid.mermaidAPI.render(id, codeValue, (svg, bind) => {
-          container.innerHTML = svg;
-          bind?.(container);
-        });
+        rendering.current = true;
+        const { svg, bindFunctions } = await mermaid.render(id, codeValue);
+        rendering.current = false;
+        container.innerHTML = svg;
+        bindFunctions?.(container);
       } catch (e) {
         console.error(e);
         if (canRetry === 0) {
