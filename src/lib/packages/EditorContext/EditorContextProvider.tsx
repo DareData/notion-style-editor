@@ -32,6 +32,7 @@ export const EditorContext = createContext<EditorContextData>({
 });
 
 type EditorContextProviderProps = {
+  onFocus?: () => void;
   children: React.ReactNode;
   onChange: (markdown: string) => void;
   debounceChange?: number;
@@ -39,6 +40,7 @@ type EditorContextProviderProps = {
 };
 
 export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
+  onFocus,
   children,
   onChange,
   debounceChange,
@@ -55,7 +57,11 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   const prismPlugin = usePrismPlugin();
   const placeholderPlugin = usePlaceholderPlugin();
   const menuBarPlugin = useMenuBarPlugin();
-  const listenerPlugin = useListenerPlugin({ onChange, debounceChange });
+  const listenerPlugin = useListenerPlugin({
+    onChange,
+    onFocus,
+    debounceChange,
+  });
 
   const editor = useEditor(
     root =>

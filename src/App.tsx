@@ -1,9 +1,10 @@
 /* eslint-disable no-useless-escape */
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 
 import { ErrorBoundary } from './ErrorBoundary';
-import { TextEditor, TextEditorMode } from './lib/packages/TextEditor';
+import { EditorRef } from './lib/packages/Editor';
+import { TextEditor } from './lib/packages/TextEditor';
 import { pxToRem } from './lib/styles/utils';
 
 const data = `
@@ -63,7 +64,7 @@ const acceptedFormats = [
 ];
 
 export const App = () => {
-  const [mode, setMode] = useState<TextEditorMode>('active');
+  const ref = useRef<EditorRef>(null);
 
   const onDataChange = useCallback((data: string) => {
     localStorage.setItem('milkdown/value', data);
@@ -77,15 +78,12 @@ export const App = () => {
   return (
     <ErrorBoundary>
       <AppContainerStyled>
-        <button
-          onClick={() => setMode(mode === 'active' ? 'preview' : 'active')}
-        >
-          Toggle Mdode ( current: {mode} )
-        </button>
+        <button onClick={() => ref.current?.reset()}>Reset state</button>
         <TextEditor
           data={markdownValue}
-          {...{ mode, onDataChange }}
+          {...{ onDataChange }}
           mode="active"
+          editorRef={ref}
           debounceChange={1000}
           acceptedFormats={acceptedFormats}
         />

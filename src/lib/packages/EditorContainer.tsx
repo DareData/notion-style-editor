@@ -59,8 +59,10 @@ export const EditorContainer = styled.div`
 
     &::before {
       position: absolute;
-      top: ${pxToRem(70)};
+      bottom: 0;
+      left: 0;
       color: ${props => props.theme.colors.grey};
+      font-family: ${props => props.theme.fonts.primary};
       cursor: text;
       content: attr(data-placeholder);
     }
