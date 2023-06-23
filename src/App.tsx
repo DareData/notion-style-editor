@@ -48,6 +48,20 @@ Lorem ipsum dolor re arcu. Praesent lacus diam, laoreet et nisi sit amet, interd
 
 `;
 
+const acceptedFormats = [
+  'image/*',
+  'video/mp4',
+  'audio/*',
+  '.pdf',
+  '.doc',
+  '.docx',
+  '.ppt',
+  '.txt',
+  '.html',
+  '.xls',
+  '.xlsx',
+];
+
 export const App = () => {
   const [mode, setMode] = useState<TextEditorMode>('active');
 
@@ -73,6 +87,7 @@ export const App = () => {
           {...{ mode, onDataChange }}
           mode="active"
           debounceChange={1000}
+          acceptedFormats={acceptedFormats}
         />
       </AppContainerStyled>
     </ErrorBoundary>
