@@ -4,6 +4,7 @@ import {
   defaultValueCtx,
   editorViewOptionsCtx,
 } from '@milkdown/core';
+import { Ctx } from '@milkdown/ctx';
 import { clipboard } from '@milkdown/plugin-clipboard';
 import { emoji } from '@milkdown/plugin-emoji';
 import { history } from '@milkdown/plugin-history';

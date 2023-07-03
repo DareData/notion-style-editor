@@ -24,12 +24,12 @@ const linkTooltip = tooltipFactory('HYPERLINK');
 
 export const wrapEntireInBulletListCommand = $command(
   'WrapEntireInBulletListCommand',
-  () => () => wrapInList(bulletListSchema.type())
+  ctx => () => wrapInList(bulletListSchema.type(ctx))
 );
 
 export const wrapEntireInOrderedListCommand = $command(
   'WrapEntireInOrderedListCommand',
-  () => () => wrapInList(orderedListSchema.type())
+  ctx => () => wrapInList(orderedListSchema.type(ctx))
 );
 
 export const useCommonmarkPlugin = () => {

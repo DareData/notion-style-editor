@@ -1,4 +1,5 @@
 import { linkSchema } from '@milkdown/preset-commonmark';
+import { useInstance } from '@milkdown/react';
 import { EditorView } from 'prosemirror-view';
 import { useCallback } from 'react';
 
@@ -11,26 +12,33 @@ type LinkValues = {
 
 export const useEditorLinkActions = () => {
   const { getSelectedMarkPosition } = useSelectedMarkPosition();
+  const [, getEditor] = useInstance();
+  const ctx = getEditor()?.ctx;
 
   const getLinkCreationTransaction = useCallback(
     (view: EditorView, { href, text }: LinkValues) => {
       const { state } = view;
 
-      const link = linkSchema.type().create({ href: href });
+      if (!ctx) {
+        return;
+      }
+
+      const link = linkSchema.type(ctx).create({ href: href });
       const node = state.schema.text(text || href).mark([link]);
       return state.tr.replaceSelectionWith(node, false);
     },
-    []
+    [ctx]
   );
 
   const getLinkUpdateTransaction = useCallback(
     (view: EditorView, { href, text }: LinkValues) => {
       const { state } = view;
 
-      const linkPosition = getSelectedMarkPosition(view, linkSchema.type());
+      const linkPosition =
+        ctx && getSelectedMarkPosition(view, linkSchema.type(ctx));
 
       if (linkPosition) {
-        const link = linkSchema.type().create({ href: href });
+        const link = linkSchema.type(ctx).create({ href: href });
         const node = state.schema.text(text || href).mark([link]);
 
         return state.tr.replaceRangeWith(
@@ -40,7 +48,7 @@ export const useEditorLinkActions = () => {
         );
       }
     },
-    [getSelectedMarkPosition]
+    [getSelectedMarkPosition, ctx]
   );
 
   return { getLinkCreationTransaction, getLinkUpdateTransaction };

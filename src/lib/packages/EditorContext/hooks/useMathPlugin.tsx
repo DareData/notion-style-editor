@@ -9,7 +9,7 @@ import { Plugin } from '../../../types/plugins';
 
 export const insertMathCommand = $command(
   'InsertMathCommand',
-  () => (value?: string) => setBlockType(mathBlockSchema.type(), { value })
+  ctx => (value?: string) => setBlockType(mathBlockSchema.type(ctx), { value })
 );
 
 export const useMathPlugin = (): Plugin => {
