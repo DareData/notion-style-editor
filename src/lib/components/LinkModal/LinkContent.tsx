@@ -50,7 +50,10 @@ export const LinkContent: React.FC<LinkContentProps> = ({
             view.dispatch(updateTransaction);
           }
         } else {
-          view.dispatch(getLinkCreationTransaction(view, data));
+          const transaction = getLinkCreationTransaction(view, data);
+          if (transaction) {
+            view.dispatch(transaction);
+          }
         }
         onClose();
       });
@@ -62,7 +65,10 @@ export const LinkContent: React.FC<LinkContentProps> = ({
     if (editor) {
       editor.action(ctx => {
         const view = ctx.get(editorViewCtx);
-        const linkPosition = getSelectedMarkPosition(view, linkSchema.type());
+        const linkPosition = getSelectedMarkPosition(
+          view,
+          linkSchema.type(ctx)
+        );
 
         if (linkPosition) {
           view.dispatch(

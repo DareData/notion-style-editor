@@ -21,12 +21,14 @@ export const LinkTooltip: React.FC = () => {
   const tooltipProvider = useRef<TooltipProvider>();
   const [text, setText] = useState('');
 
-  const [loading] = useInstance();
+  const [loading, getEditor] = useInstance();
   const { view, prevState } = usePluginViewContext();
   const { mode } = useTextEditorContext();
   const { getSelectedMarkPosition } = useSelectedMarkPosition();
 
   const { href } = useHyperlinkAttrs();
+
+  const ctx = getEditor()?.ctx;
 
   useEffect(() => {
     if (ref.current && !tooltipProvider.current && !loading) {
@@ -40,7 +42,8 @@ export const LinkTooltip: React.FC = () => {
         shouldShow: view => {
           const { selection } = view.state;
 
-          const linkPosition = getSelectedMarkPosition(view, linkSchema.type());
+          const linkPosition =
+            ctx && getSelectedMarkPosition(view, linkSchema.type(ctx));
 
           if (selection instanceof TextSelection && linkPosition) {
             setText(linkPosition.text);
@@ -57,7 +60,7 @@ export const LinkTooltip: React.FC = () => {
     return () => {
       tooltipProvider.current?.destroy();
     };
-  }, [loading, getSelectedMarkPosition, mode]);
+  }, [loading, getSelectedMarkPosition, mode, ctx]);
 
   useEffect(() => {
     tooltipProvider.current?.update(view, prevState);

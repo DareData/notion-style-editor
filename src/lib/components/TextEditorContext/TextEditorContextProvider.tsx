@@ -5,6 +5,8 @@ import { TextEditorMode } from '../../packages/TextEditor';
 
 type TextEditorContextData = {
   mode: TextEditorMode;
+  showMenu: boolean;
+  placeholder: string;
   stickyOnMenu: number;
   onFileUpload: (file: File) => Promise<string>;
   acceptedFormats: string[];
@@ -12,6 +14,8 @@ type TextEditorContextData = {
 
 export const TextEditorContext = createContext<TextEditorContextData>({
   mode: 'preview',
+  showMenu: true,
+  placeholder: '',
   stickyOnMenu: 10,
   onFileUpload: () => Promise.resolve(''),
   acceptedFormats: [],
@@ -20,6 +24,8 @@ export const TextEditorContext = createContext<TextEditorContextData>({
 export type TextEditorContextProviderProps = {
   mode: TextEditorMode;
   children: React.ReactNode;
+  showMenu?: boolean;
+  placeholder?: string;
   stickyOnMenu?: number;
   onFileUpload?: (file: File) => Promise<string>;
   acceptedFormats?: string[];
@@ -27,7 +33,9 @@ export type TextEditorContextProviderProps = {
 
 export const TextEditorContextProvider = ({
   mode,
+  showMenu = true,
   children,
+  placeholder = 'Post an update..',
   stickyOnMenu = 10,
   onFileUpload,
   acceptedFormats = ['*'],
@@ -39,9 +47,19 @@ export const TextEditorContextProvider = ({
       mode,
       stickyOnMenu,
       onFileUpload: onFileUpload || getBase64,
+      showMenu,
+      placeholder,
       acceptedFormats,
     }),
-    [mode, onFileUpload, getBase64, stickyOnMenu, acceptedFormats]
+    [
+      mode,
+      onFileUpload,
+      getBase64,
+      placeholder,
+      showMenu,
+      stickyOnMenu,
+      acceptedFormats,
+    ]
   );
 
   return (

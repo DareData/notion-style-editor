@@ -4,6 +4,7 @@ import {
   defaultValueCtx,
   editorViewOptionsCtx,
 } from '@milkdown/core';
+import { Ctx } from '@milkdown/ctx';
 import { clipboard } from '@milkdown/plugin-clipboard';
 import { emoji } from '@milkdown/plugin-emoji';
 import { history } from '@milkdown/plugin-history';
@@ -17,6 +18,7 @@ import { useListenerPlugin } from './hooks/useListenerPlugin';
 import { useMathPlugin } from './hooks/useMathPlugin';
 import { useMenuBarPlugin } from './hooks/useMenuBarPlugin';
 import { useMermaidPlugin } from './hooks/useMermaidPlugin';
+import { usePlaceholderPlugin } from './hooks/usePlaceholderPlugin';
 import { usePrismPlugin } from './hooks/usePrismPlugin';
 import { useSlashPlugin } from './hooks/useSlashPlugin';
 import { useUploadPlugin } from './hooks/useUploadPlugin/useUploadPlugin';
@@ -31,6 +33,7 @@ export const EditorContext = createContext<EditorContextData>({
 });
 
 type EditorContextProviderProps = {
+  onFocus?: () => void;
   children: React.ReactNode;
   onChange: (markdown: string) => void;
   debounceChange?: number;
@@ -38,6 +41,7 @@ type EditorContextProviderProps = {
 };
 
 export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
+  onFocus,
   children,
   onChange,
   debounceChange,
@@ -52,8 +56,13 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   const slashPlugin = useSlashPlugin();
   const commonmarkPlugin = useCommonmarkPlugin();
   const prismPlugin = usePrismPlugin();
+  const placeholderPlugin = usePlaceholderPlugin();
   const menuBarPlugin = useMenuBarPlugin();
-  const listenerPlugin = useListenerPlugin({ onChange, debounceChange });
+  const listenerPlugin = useListenerPlugin({
+    onChange,
+    onFocus,
+    debounceChange,
+  });
 
   const editor = useEditor(
     root =>
@@ -67,6 +76,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
           }));
         })
         .use(commonmarkPlugin)
+        .use(placeholderPlugin)
         .use(listenerPlugin)
         .use(prismPlugin)
         .use(history)

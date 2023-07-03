@@ -18,7 +18,7 @@ export const ImageNode: React.FC = () => {
     height: number;
   }>({ width: 0, height: 0 });
   const { mode } = useTextEditorContext();
-  const { isSelected } = useIsNodeSelected({ nodeType: imageSchema.type() });
+  const { isSelected } = useIsNodeSelected({ nodeType: imageSchema.type });
 
   const { node, contentRef, setAttrs } = useNodeViewContext();
   const { attrs } = node;

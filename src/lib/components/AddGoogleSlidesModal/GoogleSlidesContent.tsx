@@ -31,7 +31,13 @@ export const GoogleSlidesContent: React.FC = () => {
 
     editor.action(ctx => {
       const view = ctx.get(editorViewCtx);
-      view.dispatch(getLinkCreationTransaction(view, { text: url, href: url }));
+      const transaction = getLinkCreationTransaction(view, {
+        text: url,
+        href: url,
+      });
+      if (transaction) {
+        view.dispatch(transaction);
+      }
       onClose();
     });
   };

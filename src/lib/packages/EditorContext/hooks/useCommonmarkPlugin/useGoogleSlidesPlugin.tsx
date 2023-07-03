@@ -1,3 +1,4 @@
+import { Ctx } from '@milkdown/ctx';
 import { Node } from '@milkdown/prose/model';
 import { Plugin, PluginKey } from '@milkdown/prose/state';
 import { Decoration, DecorationSet } from '@milkdown/prose/view';
@@ -25,8 +26,8 @@ export const useGoogleSlidesPlugin = () => {
   );
 
   const getGoogleSlidesLinks = useCallback(
-    (node: Node) =>
-      getLinkAttributes(node).filter(node =>
+    (ctx: Ctx, node: Node) =>
+      getLinkAttributes(ctx, node).filter(node =>
         node.href.includes('docs.google.com/presentation')
       ),
     [getLinkAttributes]
@@ -34,7 +35,7 @@ export const useGoogleSlidesPlugin = () => {
 
   const googleSlidesPlugin = useMemo(
     () =>
-      $prose(() => {
+      $prose((ctx: Ctx) => {
         const key = new PluginKey('MILKDOWN_GOOGLE_SLIDES_PLUGIN');
         return new Plugin({
           key,
@@ -43,7 +44,7 @@ export const useGoogleSlidesPlugin = () => {
               if (mode === 'active') {
                 return DecorationSet.empty;
               }
-              const googleSlidesLinks = getGoogleSlidesLinks(instance.doc);
+              const googleSlidesLinks = getGoogleSlidesLinks(ctx, instance.doc);
 
               const decorations: Decoration[] = googleSlidesLinks.map(
                 ({ href, end }) => createGoogleSlidesWidget(end, { href })
@@ -60,7 +61,7 @@ export const useGoogleSlidesPlugin = () => {
                 return value;
               }
 
-              const googleSlidesLinks = getGoogleSlidesLinks(newState.doc);
+              const googleSlidesLinks = getGoogleSlidesLinks(ctx, newState.doc);
 
               const decorations: Decoration[] = googleSlidesLinks.map(
                 ({ href, end }) => createGoogleSlidesWidget(end, { href })

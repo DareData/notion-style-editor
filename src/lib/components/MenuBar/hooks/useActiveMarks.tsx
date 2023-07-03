@@ -1,6 +1,7 @@
 import { emphasisSchema, strongSchema } from '@milkdown/preset-commonmark';
 import { strikethroughSchema } from '@milkdown/preset-gfm';
 import { Mark, MarkType, Node } from '@milkdown/prose/model';
+import { useInstance } from '@milkdown/react';
 import { useWidgetViewContext } from '@prosemirror-adapter/react';
 import { useMemo } from 'react';
 
@@ -16,6 +17,9 @@ export const useActiveMarks = () => {
   const { state } = view;
   const { selection } = state;
 
+  const [, getEditor] = useInstance();
+  const ctx = getEditor()?.ctx;
+
   const activeMarksMap = useMemo(() => {
     const { doc, storedMarks } = state;
     const { from, to, empty, $from } = selection;
@@ -24,20 +28,24 @@ export const useActiveMarks = () => {
       const isSchemaActive = isMarkInSet(storedMarks || $from.marks());
 
       return {
-        isStrongActive: isSchemaActive(strongSchema.type()),
-        isEmphasisActive: isSchemaActive(emphasisSchema.type()),
-        isStrikethroughActive: isSchemaActive(strikethroughSchema.type()),
+        isStrongActive: !!(ctx && isSchemaActive(strongSchema.type(ctx))),
+        isEmphasisActive: !!(ctx && isSchemaActive(emphasisSchema.type(ctx))),
+        isStrikethroughActive: !!(
+          ctx && isSchemaActive(strikethroughSchema.type(ctx))
+        ),
       };
     }
 
     const isSchemaActive = doesRangeHasMark(doc, from, to);
 
     return {
-      isStrongActive: isSchemaActive(strongSchema.type()),
-      isEmphasisActive: isSchemaActive(emphasisSchema.type()),
-      isStrikethroughActive: isSchemaActive(strikethroughSchema.type()),
+      isStrongActive: !!(ctx && isSchemaActive(strongSchema.type(ctx))),
+      isEmphasisActive: !!(ctx && isSchemaActive(emphasisSchema.type(ctx))),
+      isStrikethroughActive: !!(
+        ctx && isSchemaActive(strikethroughSchema.type(ctx))
+      ),
     };
-  }, [state, selection]);
+  }, [state, selection, ctx]);
 
   return activeMarksMap;
 };

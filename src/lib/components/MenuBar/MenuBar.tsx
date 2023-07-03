@@ -14,7 +14,7 @@ import { useTextEditorContext } from '../TextEditorContext/useTextEditoContext';
 
 export const MenuBar = () => {
   const { queries } = useTheme();
-  const { mode, stickyOnMenu } = useTextEditorContext();
+  const { mode, stickyOnMenu, showMenu } = useTextEditorContext();
 
   const isTablet = useMatchMedia({
     query: `(min-width: ${queries.tablet})`,
@@ -23,7 +23,7 @@ export const MenuBar = () => {
     query: `(min-width: ${queries.laptop})`,
   });
 
-  if (mode === 'preview') {
+  if (mode === 'preview' || !showMenu) {
     return null;
   }
 

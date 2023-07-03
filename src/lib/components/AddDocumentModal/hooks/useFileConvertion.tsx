@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useFileValidation } from './useFileValidation';
+import { useFileValidation } from '../../../hooks/useFileValidation';
 import { useNotification } from '../../../hooks/useNotification';
 import { useTextEditorContext } from '../../TextEditorContext/useTextEditoContext';
 
