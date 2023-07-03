@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.0]
+
+### Added
+- New props - `onFileUpload` and `showMenu`.
+- Added `placeholderPlugin` along with `placeholder` prop
+
+## Changed
+- Updated `@milkdown/**` libraries.
+
+### Fixed
+- Fixed bug, when drag and drop always returns error with wrong document extension.
+
 ## [v0.0.26]
 
 ### Added
