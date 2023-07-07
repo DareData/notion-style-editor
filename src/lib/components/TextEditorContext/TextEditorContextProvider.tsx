@@ -9,7 +9,7 @@ type TextEditorContextData = {
   placeholder: string;
   stickyOnMenu: number;
   onFileUpload: (file: File) => Promise<string>;
-  onFileValidation: (file: File | null) => boolean;
+  onFileValidation?: (file: File | null) => boolean;
   inputAcceptedFormats: string;
 };
 
