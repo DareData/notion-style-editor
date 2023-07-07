@@ -12,7 +12,7 @@ export const useFileConvertion = () => {
   const onFileConvert = async (files: FileList) => {
     const [file] = files;
 
-    if (!onFileValidation(file)) {
+    if (onFileValidation && !onFileValidation(file)) {
       return;
     }
 
