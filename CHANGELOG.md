@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.1]
+
+### Fixed
+- Issue, when `getNodesByMark` returns links, that does not have `href` attribute
+
 ## [v0.1.0]
 
 ### Added
