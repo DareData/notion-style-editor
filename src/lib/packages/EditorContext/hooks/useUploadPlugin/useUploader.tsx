@@ -2,13 +2,11 @@ import { Schema, Node } from '@milkdown/prose/model';
 import { useCallback } from 'react';
 
 import { useTextEditorContext } from '../../../../components/TextEditorContext/useTextEditoContext';
-import { useFileValidation } from '../../../../hooks/useFileValidation';
 import { useNotification } from '../../../../hooks/useNotification';
 
 export const useUploader = () => {
   const { onErrorNotification } = useNotification();
-  const { onFileUpload } = useTextEditorContext();
-  const { isFileValid } = useFileValidation();
+  const { onFileUpload, onFileValidation } = useTextEditorContext();
 
   const uploader = useCallback(
     async (files: FileList, schema: Schema): Promise<Node[]> => {
@@ -17,7 +15,7 @@ export const useUploader = () => {
 
         for (let i = 0; i < files.length; i++) {
           const file = files.item(i);
-          if (!isFileValid(file)) {
+          if (onFileValidation && !onFileValidation(file)) {
             continue;
           }
           images.push(file as File);
@@ -38,7 +36,7 @@ export const useUploader = () => {
         return [];
       }
     },
-    [onFileUpload, onErrorNotification, isFileValid]
+    [onFileUpload, onErrorNotification, onFileValidation]
   );
 
   return uploader;

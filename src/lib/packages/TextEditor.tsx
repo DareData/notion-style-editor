@@ -40,18 +40,20 @@ export const TextEditor: React.FC<TextEditorProps> = ({
   onFileUpload,
   stickyOnMenu,
   onEditorFocus,
-  acceptedFormats,
+  onFileValidation,
+  inputAcceptedFormats,
   ...rest
 }) => (
   <ThemeProvider {...{ theme }}>
     <TextEditorContextProvider
       {...{
         mode,
+        showMenu,
+        placeholder,
         onFileUpload,
         stickyOnMenu,
-        showMenu,
-        acceptedFormats,
-        placeholder,
+        onFileValidation,
+        inputAcceptedFormats,
       }}
     >
       <MilkdownProvider>
