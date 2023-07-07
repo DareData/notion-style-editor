@@ -6,6 +6,11 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DareData/notion-style-editor"
+  },
+  "homepage": "https://daredata.github.io/notion-style-editor/",
   "main": "./dist/altos-text-editor.js",
   "exports": {
     ".": {
