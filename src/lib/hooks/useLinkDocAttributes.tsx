@@ -17,7 +17,7 @@ export const useLinkDocAttributes = () => {
             marks: [link],
           } = node;
           const end = start + nodeSize;
-          const href = link.attrs?.href;
+          const href: string = link.attrs?.href || '';
           return { start, end, href };
         }
       );
