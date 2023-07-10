@@ -6,7 +6,7 @@ import { useDebounce } from '../../../hooks/useDebounce';
 
 type UseListenerPluginProps = {
   onFocus?: () => void;
-  onChange: (markdown: string) => void;
+  onChange?: (markdown: string) => void;
   debounceChange?: number;
 };
 
@@ -26,7 +26,7 @@ export const useListenerPlugin = ({
         listener,
         (ctx: Ctx) => () => {
           ctx.get(listenerCtx).markdownUpdated((_, markdown) => {
-            onChangeDebounced(markdown);
+            onChangeDebounced?.(markdown);
           });
           ctx.get(listenerCtx).focus(() => {
             onFocus?.();

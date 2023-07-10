@@ -2,7 +2,7 @@ import { debounce } from 'lodash';
 import { useEffect, useMemo } from 'react';
 
 type UseDebounceProps<T> = {
-  callback: T;
+  callback?: T;
   wait?: number;
 };
 
@@ -14,11 +14,13 @@ export const useDebounce = <T extends AnyFunction>({
   wait = 300,
 }: UseDebounceProps<T>) => {
   const handler = useMemo(() => {
-    return debounce(callback, wait);
+    if (callback) {
+      return debounce(callback, wait);
+    }
   }, [callback, wait]);
 
   useEffect(() => {
-    return () => handler.cancel();
+    return () => handler && handler.cancel();
   }, [handler]);
 
   return {
