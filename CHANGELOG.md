@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.3]
+
+### Fixed
+- When `onDataChange` was not provided, the editor keeps re-rendering
+
 ## [v0.1.2]
 
 ### Added
