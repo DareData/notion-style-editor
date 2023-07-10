@@ -35,7 +35,7 @@ export const EditorContext = createContext<EditorContextData>({
 type EditorContextProviderProps = {
   onFocus?: () => void;
   children: React.ReactNode;
-  onChange: (markdown: string) => void;
+  onChange?: (markdown: string) => void;
   debounceChange?: number;
   defaultMarkdownValue: string;
 };

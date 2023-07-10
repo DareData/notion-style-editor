@@ -36,7 +36,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
   className = '',
   editorRef,
   placeholder,
-  onDataChange = () => {},
+  onDataChange,
   onFileUpload,
   stickyOnMenu,
   onEditorFocus,
