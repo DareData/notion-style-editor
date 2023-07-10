@@ -26,7 +26,7 @@ export const AddDocumentModalContent: React.FC<
   AddDocumentModalContentProps
 > = ({ onInsert }) => {
   const { onClose } = useModalContext();
-  const { acceptedFormats } = useTextEditorContext();
+  const { inputAcceptedFormats } = useTextEditorContext();
   const { onFileConvert, loading } = useFileConvertion();
 
   const { formState, register, handleSubmit, control } = useImageForm();
@@ -52,11 +52,6 @@ export const AddDocumentModalContent: React.FC<
     onFileInsert(data.url as string);
   };
 
-  const inputFileAccept = useMemo(
-    () => (acceptedFormats.includes('*') ? '*' : acceptedFormats.join(',')),
-    [acceptedFormats]
-  );
-
   if (loading) {
     return (
       <LoaderContainerStyled>
@@ -77,7 +72,7 @@ export const AddDocumentModalContent: React.FC<
             <DragDropInputFile
               name="insert_image"
               multiple={false}
-              accept={inputFileAccept}
+              accept={inputAcceptedFormats}
               {...{ onFileUpload }}
             />
             <GapStyled>

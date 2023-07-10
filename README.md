@@ -8,11 +8,12 @@
 - [Troubleshoots](#troubleshoots)
   * [The editor keeps re-rendering](#the-editor-keeps-re-rendering)
   * [The bundle size is quite large](#the-bundle-size-is-quite-large)
+  * [There is no documentation! How may I know, which props should I use?](#there-is-no-documentation--how-may-i-know--which-props-should-i-use-)
 
 
 ## Overview
 
-This project is a [Markdown](https://www.markdownguide.org/getting-started/) editor library. **Thanks to it, it is possible to use Markdown in a simple and pleasant way**. It is written using [React](https://react.dev/), [styled-components](https://styled-components.com/). [React-hook-form](https://react-hook-form.com/) was used to render forms alogn with [yup](https://github.com/jquense/yup).
+This project is a [Markdown](https://www.markdownguide.org/getting-started/) editor library. **Thanks to it, it is possible to use Markdown in a simple and pleasant way**. It is written using [React](https://react.dev/), [styled-components](https://styled-components.com/). [React-hook-form](https://react-hook-form.com/) was used to render forms alogn with [yup](https://github.com/jquense/yup). **It's basically a [Milkdown](https://milkdown.dev/) wrapper**, but by using it you don't have to configure and install all the plugins you need because **this library does everything for you, no configuration required.**
 
 **The newest test version should be released there -> [example page](https://daredata.github.io/notion-style-editor/)**
 
@@ -23,17 +24,37 @@ Simply run:
 yarn add altos-text-editor
 ```
 
+
 and then import `TextEditor`
-```typescript
+
+**Note that this library has its own state and cannot be overwritten!** 
+<ins>If you don't want to create another state, you may always use `useRef` and pass `ref` to the `TextEditor`. There is `getValue` function that will return actual text of the text editor.</ins>
+```jsx
 import 'altos-text-editor/dist/style.css';
 
 import { TextEditor } from 'altos-text-editor';
 
-const AltosTextEditor: React.FC = () => {
-  const onDataChange = useCallback(() => {}, [])
+type AltosTextEditorProps = {
+    text: string
+    onSave: (text: string) => void
+}
 
+const AltosTextEditor: React.FC<AltosTextEditorProps> = ({ text, onSave }) => {
+  const [editorText, setEditorText] = useState(text);
+
+  const onDataChange = useCallback((value: string) => {
+      setEditorText(value);
+  }, [])
+  
+  const onSaveButtonClick = () => {
+    onSave(editorText)
+  }  
+  
   return (
-    <TextEditor data="" mode="active" onDataChange={onDataChange} />
+    <div>
+        <TextEditor data={text} mode="active" onDataChange={onDataChange} />
+        <button onClick={onSaveButtonClick}>Save</button>
+    </div>
   )
 }
 ```
@@ -48,7 +69,8 @@ How to use it with Next.js?
 <ins>It's not the best solution. We shouldn't use lazy loading components in this case, but it's a "now" solution. In the future, this must be changed and a better solution must be found</ins>
 - `yarn add altos-text-editor`
 - Create a new component
-```typescript
+
+```jsx
 import 'altos-text-editor/dist/style.css';
 
 import { TextEditor } from 'altos-text-editor';
@@ -65,7 +87,8 @@ export default AltosTextEditor;
 ```
 
 - Import `AltosTextEditor` via [dynamic](https://nextjs.org/docs/advanced-features/dynamic-import) 
-```typescript
+
+```jsx
 import dynamic from 'next/dynamic'
 
 const AltosTextEditorDynamic = dynamic(() => 
@@ -138,3 +161,7 @@ In addition, fonts take up quite a lot of space.
 
 <ins>Moreover.. the code is not minified yet, so 60% of the size will be reduced. Also remember about compression, which will also reduce the size of the package.</ins>
 https://github.com/Milkdown/milkdown/issues/389#issuecomment-1050468759
+
+### There is no documentation! How may I know, which props should I use?
+
+Documentation is missing, however feel free to contribute and create that one :)

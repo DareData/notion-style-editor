@@ -49,20 +49,6 @@ Lorem ipsum dolor re arcu. Praesent lacus diam, laoreet et nisi sit amet, interd
 
 `;
 
-const acceptedFormats = [
-  'image/*',
-  'video/mp4',
-  'audio/*',
-  '.pdf',
-  '.doc',
-  '.docx',
-  '.ppt',
-  '.txt',
-  '.html',
-  '.xls',
-  '.xlsx',
-];
-
 export const App = () => {
   const ref = useRef<EditorRef>(null);
 
@@ -85,7 +71,6 @@ export const App = () => {
           mode="active"
           editorRef={ref}
           debounceChange={1000}
-          acceptedFormats={acceptedFormats}
         />
       </AppContainerStyled>
     </ErrorBoundary>

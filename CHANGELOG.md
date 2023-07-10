@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.2]
+
+### Added
+
+- Removed file validation and move entire logic to `onFileValidation` prop.
+- Added `inputAcceptedFormats`, which is used for input that browsing files on users machine.
+- Added `getValue` function to the `EditorRef` ref.
+
 ## [v0.1.1]
 
 ### Fixed
