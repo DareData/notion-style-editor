@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-escape */
-import { useCallback, useMemo, useRef } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { ErrorBoundary } from './ErrorBoundary';
@@ -50,6 +50,7 @@ Lorem ipsum dolor re arcu. Praesent lacus diam, laoreet et nisi sit amet, interd
 `;
 
 export const App = () => {
+  const [text, setText] = useState('');
   const ref = useRef<EditorRef>(null);
 
   const onDataChange = useCallback((data: string) => {
@@ -63,13 +64,22 @@ export const App = () => {
 
   return (
     <ErrorBoundary>
+      <section>
+        <h2>Text will be there:</h2>
+        <div>{text}</div>
+      </section>
       <AppContainerStyled>
-        <button onClick={() => ref.current?.reset()}>Reset state</button>
+        <div>
+          <button onClick={() => ref.current?.reset()}>Reset state</button>
+          <button onClick={() => setText(ref.current?.getValue() || '')}>
+            Retrieve Editor's text
+          </button>
+        </div>
         <TextEditor
           data={markdownValue}
           {...{ onDataChange }}
           mode="active"
-          editorRef={ref}
+          ref={ref}
           debounceChange={1000}
         />
       </AppContainerStyled>
