@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.4]
+
+### Added
+- Open the image when you click on it full screen. Lightbox-like behavior.
+
 ## [v0.1.3]
 
 ### Fixed
