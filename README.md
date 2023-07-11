@@ -1,3 +1,5 @@
+[![npm](https://img.shields.io/npm/v/altos-text-editor)](https://www.npmjs.com/package/altos-text-editor)
+
 - [Overview](#overview)
 - [Using library](#using-library)
   * [Server Side Rendering](#server-side-rendering)
