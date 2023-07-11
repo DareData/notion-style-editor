@@ -79,7 +79,7 @@ export const App = () => {
           data={markdownValue}
           {...{ onDataChange }}
           mode="active"
-          ref={ref}
+          editorRef={ref}
           debounceChange={1000}
         />
       </AppContainerStyled>

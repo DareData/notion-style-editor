@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.6]
+
+### Fixed
+- Couldn't access text editor's ref
+
 ## [v0.1.5]
 
 ### Fixed
