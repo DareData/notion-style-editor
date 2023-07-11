@@ -95,7 +95,7 @@ const ModalContainerStyled = styled.div`
   }
 `;
 
-const ModalBoxStyled = styled(motion.div)`
+export const ModalBoxStyled = styled(motion.div)`
   width: 100vw;
   height: 100vh;
   max-height: 100vh;
@@ -115,7 +115,7 @@ const ModalBoxStyled = styled(motion.div)`
   }
 `;
 
-const CloseButtonStyled = styled(Button)`
+export const CloseButtonStyled = styled(Button)`
   position: absolute;
   top: ${pxToRem(16)};
   right: ${pxToRem(16)};

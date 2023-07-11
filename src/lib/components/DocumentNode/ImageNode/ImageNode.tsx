@@ -8,7 +8,9 @@ import styled from 'styled-components';
 import { ImageEditorFormValues } from './hooks/useImageEditorForm';
 import { ImageEditorModal } from './ImageEditorModal';
 import { Image } from '../../../common/Image';
+import { Lightbox } from '../../../common/Lightbox';
 import { useIsNodeSelected } from '../../../hooks/useIsNodeSelected';
+import { useToggler } from '../../../hooks/useToggler';
 import { pxToRem } from '../../../styles/utils';
 import { useTextEditorContext } from '../../TextEditorContext/useTextEditoContext';
 
@@ -23,6 +25,7 @@ export const ImageNode: React.FC = () => {
   const { node, contentRef, setAttrs } = useNodeViewContext();
   const { attrs } = node;
   const [loading, getEditor] = useInstance();
+  const lightboxState = useToggler();
 
   const onImageEdit = ({ alt, title }: ImageEditorFormValues) => {
     setAttrs({ alt, title });
@@ -56,7 +59,12 @@ export const ImageNode: React.FC = () => {
     <ImageNodeContainerStyled ref={contentRef} $isSelected={isSelected}>
       {attrs.src && (
         <>
-          <Image src={attrs.src} onLoad={onImageLoad} {...{ alt, title }}>
+          <ImageStyled
+            src={attrs.src}
+            onClick={lightboxState.on}
+            onLoad={onImageLoad}
+            {...{ alt, title }}
+          >
             {isLoading => (
               <>
                 {mode === 'active' && !isLoading && (
@@ -68,7 +76,13 @@ export const ImageNode: React.FC = () => {
                 )}
               </>
             )}
-          </Image>
+          </ImageStyled>
+          <Lightbox
+            src={attrs.src}
+            onOpen={lightboxState.on}
+            isOpen={lightboxState.state}
+            onClose={lightboxState.off}
+          />
         </>
       )}
     </ImageNodeContainerStyled>
@@ -84,4 +98,13 @@ const ImageNodeContainerStyled = styled.div<{ $isSelected: boolean }>`
     ${props =>
       props.$isSelected ? props.theme.colors.lightBlack : 'transparent'};
   transition: outline-color 0.2s ease-in;
+`;
+
+const ImageStyled = styled(Image)`
+  cursor: pointer;
+  transition: opacity 0.1s ease-in;
+
+  &:hover {
+    opacity: 0.9;
+  }
 `;

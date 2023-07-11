@@ -28,12 +28,18 @@ export const ImageEditorModal: React.FC<ImageEditorModalProps> = ({
   const $top = isImageSmall ? pxToRem(0) : pxToRem(8);
   const $right = isImageSmall ? pxToRem(-38) : pxToRem(8);
 
+  const onEditButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    modal.on();
+  };
+
   return (
     <>
       <ButtonStyled
         {...{ $top, $right }}
         oval
-        onClick={modal.on}
+        onClick={onEditButtonClick}
         color="secondary"
         variant="contained"
         space="small"
