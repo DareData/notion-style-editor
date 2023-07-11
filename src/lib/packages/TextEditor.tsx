@@ -5,6 +5,7 @@ import 'katex/dist/katex.min.css';
 
 import { MilkdownProvider } from '@milkdown/react';
 import { ProsemirrorAdapterProvider } from '@prosemirror-adapter/react';
+import { forwardRef } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from 'styled-components';
 
@@ -22,58 +23,61 @@ export type TextEditorMode = 'preview' | 'active';
 
 export type TextEditorProps = {
   data: string;
-  editorRef?: React.Ref<EditorRef>;
   className?: string;
   onDataChange?: (data: string) => void;
   onEditorFocus?: () => void;
   debounceChange?: number;
 } & Omit<TextEditorContextProviderProps, 'children'>;
 
-export const TextEditor: React.FC<TextEditorProps> = ({
-  data,
-  mode,
-  showMenu,
-  className = '',
-  editorRef,
-  placeholder,
-  onDataChange,
-  onFileUpload,
-  stickyOnMenu,
-  onEditorFocus,
-  onFileValidation,
-  inputAcceptedFormats,
-  ...rest
-}) => (
-  <ThemeProvider {...{ theme }}>
-    <TextEditorContextProvider
-      {...{
-        mode,
-        showMenu,
-        placeholder,
-        onFileUpload,
-        stickyOnMenu,
-        onFileValidation,
-        inputAcceptedFormats,
-      }}
-    >
-      <MilkdownProvider>
-        <ProsemirrorAdapterProvider>
-          <EditorContextProvider
-            onFocus={onEditorFocus}
-            onChange={onDataChange}
-            defaultMarkdownValue={data}
-            {...rest}
-          >
-            <EditorContainer
-              className={['date-data_text-editor', className].join(' ')}
-              tabIndex={-1}
+export const TextEditor = forwardRef<EditorRef, TextEditorProps>(
+  (
+    {
+      data,
+      mode,
+      showMenu,
+      className = '',
+      placeholder,
+      onDataChange,
+      onFileUpload,
+      stickyOnMenu,
+      onEditorFocus,
+      onFileValidation,
+      inputAcceptedFormats,
+      ...rest
+    },
+    ref
+  ) => (
+    <ThemeProvider {...{ theme }}>
+      <TextEditorContextProvider
+        {...{
+          mode,
+          showMenu,
+          placeholder,
+          onFileUpload,
+          stickyOnMenu,
+          onFileValidation,
+          inputAcceptedFormats,
+        }}
+      >
+        <MilkdownProvider>
+          <ProsemirrorAdapterProvider>
+            <EditorContextProvider
+              onFocus={onEditorFocus}
+              onChange={onDataChange}
+              defaultMarkdownValue={data}
+              {...rest}
             >
-              <Toaster toastOptions={toasterStyles} />
-              <Editor ref={editorRef} />
-            </EditorContainer>
-          </EditorContextProvider>
-        </ProsemirrorAdapterProvider>
-      </MilkdownProvider>
-    </TextEditorContextProvider>
-  </ThemeProvider>
+              <EditorContainer
+                className={['date-data_text-editor', className].join(' ')}
+                tabIndex={-1}
+              >
+                <Toaster toastOptions={toasterStyles} />
+                <Editor {...{ ref }} />
+              </EditorContainer>
+            </EditorContextProvider>
+          </ProsemirrorAdapterProvider>
+        </MilkdownProvider>
+      </TextEditorContextProvider>
+    </ThemeProvider>
+  )
 );

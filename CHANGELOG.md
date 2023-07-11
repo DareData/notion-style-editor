@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.5]
+
+### Fixed
+- Retrieving actual value of the text editor.
+
 ## [v0.1.4]
 
 ### Added

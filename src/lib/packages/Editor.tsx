@@ -1,4 +1,4 @@
-import { editorViewCtx } from '@milkdown/core';
+import { editorViewCtx, serializerCtx } from '@milkdown/core';
 import { Milkdown as MilkdownEditor, useInstance } from '@milkdown/react';
 import { forwardRef, useImperativeHandle } from 'react';
 
@@ -29,11 +29,12 @@ export const Editor = forwardRef<EditorRef, EditorProps>((props, ref) => {
       if (loading || !editor) {
         return undefined;
       }
-      editor.action(ctx => {
+      return editor.action(ctx => {
         const view = ctx.get(editorViewCtx);
+        const serializer = ctx.get(serializerCtx);
         const { state } = view;
 
-        return state.doc.text;
+        return serializer(state.tr.doc);
       });
     },
   }));
