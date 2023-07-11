@@ -25,6 +25,8 @@ const ControlledModalStyled = styled(ControlledModal)`
   ${ModalBoxStyled} {
     @media (min-width: ${theme.queries.laptop}) {
       width: auto;
+      border: ${pxToRem(4)} solid ${props => props.theme.colors.white};
+      border-radius: 0;
     }
   }
 
