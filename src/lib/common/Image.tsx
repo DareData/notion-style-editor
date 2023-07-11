@@ -62,12 +62,12 @@ export const Image: React.FC<ImageProps> = ({
   );
 };
 
-const ImageStyled = styled.img`
+export const ImageStyled = styled.img`
   aspect-ratio: auto;
   max-width: ${pxToRem(500)};
   max-height: ${pxToRem(500)};
 `;
 
-const ImageLoaderStyled = styled(ImageLoader)`
+export const ImageLoaderStyled = styled(ImageLoader)`
   display: flex;
 `;
