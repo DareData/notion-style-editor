@@ -1,4 +1,4 @@
-import { commandsCtx } from '@milkdown/core';
+import { EditorStatus, commandsCtx } from '@milkdown/core';
 import {
   moveColCommand,
   moveRowCommand,
@@ -6,13 +6,13 @@ import {
   selectRowCommand,
   selectTableCommand,
 } from '@milkdown/preset-gfm';
-import { useInstance } from '@milkdown/react';
 import { useWidgetViewContext } from '@prosemirror-adapter/react';
 import { useMemo, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 import { useTextEditorContext } from './TextEditorContext/useTextEditoContext';
 import { Button, ButtonProps } from '../common/Button';
+import { useMilkdownInstance } from '../hooks/useMilkdownInstance';
 import { tableTooltipCtx } from '../packages/EditorContext/hooks/useGfmPlugin/useGfmPlugin';
 import { pxToRem } from '../styles/utils';
 import { Matcher } from '../utils/Matcher';
@@ -29,7 +29,7 @@ export const TableSelectorWidget: React.FC = () => {
   const { spec } = useWidgetViewContext();
   const type = spec?.type;
   const index = spec?.index ?? 0;
-  const [loading, getEditor] = useInstance();
+  const { editor, loading } = useMilkdownInstance();
   const ref = useRef<HTMLButtonElement>(null);
   const { mode } = useTextEditorContext();
 
@@ -51,11 +51,16 @@ export const TableSelectorWidget: React.FC = () => {
       onClick={e => {
         e.stopPropagation();
         const div = ref.current;
-        if (loading || !div) {
+        if (
+          loading ||
+          !div ||
+          !editor ||
+          editor.status !== EditorStatus.Created
+        ) {
           return;
         }
 
-        getEditor().action(ctx => {
+        editor.action(ctx => {
           const tooltip = ctx.get(tableTooltipCtx.key);
           tooltip?.getInstance()?.setProps({
             getReferenceClientRect: () => div.getBoundingClientRect(),
@@ -98,14 +103,19 @@ export const TableSelectorWidget: React.FC = () => {
           return;
         }
         const i = spec?.index;
-        if (loading || i == null) {
+        if (
+          loading ||
+          i == null ||
+          !editor ||
+          editor.status !== EditorStatus.Created
+        ) {
           return;
         }
         const data = e.dataTransfer.getData('application/milkdown-table-sort');
         try {
           const { index, type } = JSON.parse(data);
 
-          getEditor().action(ctx => {
+          editor.action(ctx => {
             const commands = ctx.get(commandsCtx);
             const options = {
               from: Number(index),

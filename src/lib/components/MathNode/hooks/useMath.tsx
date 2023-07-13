@@ -1,8 +1,10 @@
+import { EditorStatus } from '@milkdown/core';
 import { katexOptionsCtx } from '@milkdown/plugin-math';
-import { useInstance } from '@milkdown/react';
 import { useNodeViewContext } from '@prosemirror-adapter/react';
 import katex from 'katex';
 import { useEffect, useMemo } from 'react';
+
+import { useMilkdownInstance } from '../../../hooks/useMilkdownInstance';
 
 type UseMathProps = {
   codePanelRef: React.RefObject<HTMLDivElement>;
@@ -10,15 +12,14 @@ type UseMathProps = {
 
 export const useMath = ({ codePanelRef }: UseMathProps) => {
   const { node } = useNodeViewContext();
-  const [loading, getEditor] = useInstance();
+  const { editor, loading } = useMilkdownInstance();
 
   const codeValue = useMemo(() => node.attrs.value, [node.attrs.value]);
 
   useEffect(() => {
     requestAnimationFrame(() => {
-      const editor = getEditor();
-      if (editor) {
-        if (!codePanelRef.current || loading) {
+      if (editor && !loading && editor.status === EditorStatus.Created) {
+        if (!codePanelRef.current) {
           return;
         }
         try {
@@ -32,5 +33,5 @@ export const useMath = ({ codePanelRef }: UseMathProps) => {
         }
       }
     });
-  }, [codeValue, getEditor, loading, codePanelRef]);
+  }, [codeValue, loading, editor, codePanelRef]);
 };

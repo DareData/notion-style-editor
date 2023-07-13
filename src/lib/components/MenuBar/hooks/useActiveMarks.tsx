@@ -1,9 +1,11 @@
+import { EditorStatus } from '@milkdown/core';
 import { emphasisSchema, strongSchema } from '@milkdown/preset-commonmark';
 import { strikethroughSchema } from '@milkdown/preset-gfm';
 import { Mark, MarkType, Node } from '@milkdown/prose/model';
-import { useInstance } from '@milkdown/react';
 import { useWidgetViewContext } from '@prosemirror-adapter/react';
 import { useMemo } from 'react';
+
+import { useMilkdownInstance } from '../../../hooks/useMilkdownInstance';
 
 const doesRangeHasMark =
   (doc: Node, from: number, to: number) => (markType: MarkType) =>
@@ -17,10 +19,18 @@ export const useActiveMarks = () => {
   const { state } = view;
   const { selection } = state;
 
-  const [, getEditor] = useInstance();
-  const ctx = getEditor()?.ctx;
+  const { editor, loading } = useMilkdownInstance();
 
   const activeMarksMap = useMemo(() => {
+    if (!editor || loading || editor.status !== EditorStatus.Created) {
+      return {
+        isStrongActive: false,
+        isEmphasisActive: false,
+        isStrikethroughActive: false,
+      };
+    }
+
+    const { ctx } = editor;
     const { doc, storedMarks } = state;
     const { from, to, empty, $from } = selection;
 
@@ -45,7 +55,7 @@ export const useActiveMarks = () => {
         ctx && isSchemaActive(strikethroughSchema.type(ctx))
       ),
     };
-  }, [state, selection, ctx]);
+  }, [state, selection, editor, loading]);
 
   return activeMarksMap;
 };

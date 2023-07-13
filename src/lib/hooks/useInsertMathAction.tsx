@@ -1,18 +1,16 @@
-import { editorViewCtx } from '@milkdown/core';
-import { useInstance } from '@milkdown/react';
+import { EditorStatus, editorViewCtx } from '@milkdown/core';
 import { useCallback } from 'react';
 
 import { useCallEditorCommand } from './useCallEditorCommand';
+import { useMilkdownInstance } from './useMilkdownInstance';
 import { insertMathCommand } from '../packages/EditorContext/hooks/useMathPlugin';
 
 export const useInsertMathBlock = () => {
   const { onCallCommand } = useCallEditorCommand();
-  const [loading, getEditor] = useInstance();
+  const { editor, loading } = useMilkdownInstance();
 
   const onInsertMathBlock = useCallback(() => {
-    const editor = getEditor();
-
-    if (loading || !editor) {
+    if (!loading || !editor || editor.status !== EditorStatus.Created) {
       return;
     }
 
@@ -24,7 +22,7 @@ export const useInsertMathBlock = () => {
       const value = state.tr.doc.textBetween(from, to) || '';
       onCallCommand(insertMathCommand.key, value);
     });
-  }, [loading, getEditor, onCallCommand]);
+  }, [loading, editor, onCallCommand]);
 
   return { onInsertMathBlock };
 };

@@ -1,6 +1,5 @@
-import { editorViewCtx } from '@milkdown/core';
+import { EditorStatus, editorViewCtx } from '@milkdown/core';
 import { linkSchema } from '@milkdown/preset-commonmark';
-import { useInstance } from '@milkdown/react';
 import styled from 'styled-components';
 
 import { LinkFormValues, useLinkForm } from './hooks/useLinkForm';
@@ -12,6 +11,7 @@ import { ModalBody } from '../../common/Modal/ModalBody';
 import { ModalFooter } from '../../common/Modal/ModalFooter';
 import { ModalHeader } from '../../common/Modal/ModalHeader';
 import { useEditorLinkActions } from '../../hooks/useEditorLinkActions';
+import { useMilkdownInstance } from '../../hooks/useMilkdownInstance';
 import { useSelectedMarkPosition } from '../../hooks/useSelectedMarkPosition';
 
 export type LinkContentProps = {
@@ -28,7 +28,7 @@ export const LinkContent: React.FC<LinkContentProps> = ({
   onSubmit,
 }) => {
   const { onClose } = useModalContext();
-  const [, getEditor] = useInstance();
+  const { editor, loading } = useMilkdownInstance();
 
   const { formState, register, handleSubmit } = useLinkForm({
     text,
@@ -40,8 +40,7 @@ export const LinkContent: React.FC<LinkContentProps> = ({
 
   const onHandleSubmit = (data: LinkFormValues) => {
     onSubmit?.();
-    const editor = getEditor();
-    if (editor) {
+    if (editor && !loading && editor.status === EditorStatus.Created) {
       editor.action(ctx => {
         const view = ctx.get(editorViewCtx);
         if (editable) {
@@ -61,8 +60,7 @@ export const LinkContent: React.FC<LinkContentProps> = ({
   };
 
   const onLinkRemove = () => {
-    const editor = getEditor();
-    if (editor) {
+    if (editor && !loading && editor.status === EditorStatus.Created) {
       editor.action(ctx => {
         const view = ctx.get(editorViewCtx);
         const linkPosition = getSelectedMarkPosition(

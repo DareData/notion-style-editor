@@ -1,5 +1,4 @@
-import { editorViewCtx } from '@milkdown/core';
-import { useInstance } from '@milkdown/react';
+import { EditorStatus, editorViewCtx } from '@milkdown/core';
 import styled from 'styled-components';
 
 import {
@@ -14,18 +13,18 @@ import { ModalBody } from '../../common/Modal/ModalBody';
 import { ModalFooter } from '../../common/Modal/ModalFooter';
 import { ModalHeader } from '../../common/Modal/ModalHeader';
 import { useEditorLinkActions } from '../../hooks/useEditorLinkActions';
+import { useMilkdownInstance } from '../../hooks/useMilkdownInstance';
 import { pxToRem } from '../../styles/utils';
 
 export const GoogleSlidesContent: React.FC = () => {
-  const [loading, getEditor] = useInstance();
+  const { editor, loading } = useMilkdownInstance();
   const { onClose } = useModalContext();
   const { handleSubmit, formState, register } = useGoogleDocForm();
 
   const { getLinkCreationTransaction } = useEditorLinkActions();
 
   const onSubmit = ({ url }: GoogleDocFormValues) => {
-    const editor = getEditor();
-    if (loading || !editor) {
+    if (loading || !editor || editor.status !== EditorStatus.Created) {
       return;
     }
 

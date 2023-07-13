@@ -1,5 +1,4 @@
-import { editorViewCtx } from '@milkdown/core';
-import { useInstance } from '@milkdown/react';
+import { EditorStatus, editorViewCtx } from '@milkdown/core';
 import { useNodeViewContext } from '@prosemirror-adapter/react';
 import styled, { css, useTheme } from 'styled-components';
 
@@ -7,6 +6,7 @@ import { FileNodeContent } from './FileNodeContent';
 import { useFileName } from './hooks/useFileName';
 import { Button } from '../../../common/Button';
 import { Icon } from '../../../common/Icon/Icon';
+import { useMilkdownInstance } from '../../../hooks/useMilkdownInstance';
 import { pxToRem } from '../../../styles/utils';
 import { Matcher } from '../../../utils/Matcher';
 import { useTextEditorContext } from '../../TextEditorContext/useTextEditoContext';
@@ -14,7 +14,7 @@ import { useTextEditorContext } from '../../TextEditorContext/useTextEditoContex
 export const FileNode: React.FC = () => {
   const { colors } = useTheme();
   const { node } = useNodeViewContext();
-  const [loading, getEditor] = useInstance();
+  const { editor, loading } = useMilkdownInstance();
 
   const { mode } = useTextEditorContext();
 
@@ -25,8 +25,7 @@ export const FileNode: React.FC = () => {
   const { name } = useFileName({ src: src });
 
   const onFileRemove = () => {
-    const editor = getEditor();
-    if (loading || !editor) {
+    if (loading || !editor || editor.status !== EditorStatus.Created) {
       return;
     }
 

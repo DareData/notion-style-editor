@@ -1,4 +1,4 @@
-import { CmdKey, editorViewCtx } from '@milkdown/core';
+import { CmdKey, EditorStatus, editorViewCtx } from '@milkdown/core';
 import { insertDiagramCommand } from '@milkdown/plugin-diagram';
 import {
   createCodeBlockCommand,
@@ -7,7 +7,6 @@ import {
   wrapInHeadingCommand,
 } from '@milkdown/preset-commonmark';
 import { insertTableCommand } from '@milkdown/preset-gfm';
-import { useInstance } from '@milkdown/react';
 import { useRef } from 'react';
 import styled, { css, useTheme } from 'styled-components';
 
@@ -21,6 +20,7 @@ import {
 import { Hidden } from '../../common/Hidden';
 import { Icon } from '../../common/Icon/Icon';
 import { useCallEditorCommand } from '../../hooks/useCallEditorCommand';
+import { useMilkdownInstance } from '../../hooks/useMilkdownInstance';
 import { insertMathCommand } from '../../packages/EditorContext/hooks/useMathPlugin';
 import { AddDocumentModal } from '../AddDocumentModal/AddDocumentModal';
 import { AddGoogleSlidesModal } from '../AddGoogleSlidesModal/AddGoogleSlidesModal';
@@ -30,7 +30,7 @@ export const SlashNode: React.FC = () => {
   const { colors } = useTheme();
   const tooltipRef = useRef<HTMLDivElement>(null);
 
-  const [loading, getEditor] = useInstance();
+  const { editor, loading } = useMilkdownInstance();
   const { onCallCommand } = useCallEditorCommand();
 
   const { keyboardListRefs, activeItemIndex } = useSlashProvider({
@@ -38,8 +38,7 @@ export const SlashNode: React.FC = () => {
   });
 
   const onRemoveSlash = () => {
-    const editor = getEditor();
-    if (loading || !editor) {
+    if (loading || !editor || editor.status !== EditorStatus.Created) {
       return;
     }
 
