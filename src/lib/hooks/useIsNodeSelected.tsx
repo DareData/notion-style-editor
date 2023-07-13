@@ -19,7 +19,7 @@ export const useIsNodeSelected = ({ nodeType }: UseIsNodeSelected) => {
   } = view;
 
   const selected = useMemo(() => {
-    if (!loading || !editor || editor.status !== EditorStatus.Created) {
+    if (loading || !editor || editor.status !== EditorStatus.Created) {
       return undefined;
     }
     const { ctx } = editor;

@@ -17,7 +17,7 @@ export const useEditorLinkActions = () => {
 
   const getLinkCreationTransaction = useCallback(
     (view: EditorView, { href, text }: LinkValues) => {
-      if (!loading || !editor || editor.status !== EditorStatus.Created) {
+      if (loading || !editor || editor.status !== EditorStatus.Created) {
         return;
       }
       const { ctx } = editor;
@@ -32,7 +32,7 @@ export const useEditorLinkActions = () => {
 
   const getLinkUpdateTransaction = useCallback(
     (view: EditorView, { href, text }: LinkValues) => {
-      if (!loading || !editor || editor.status !== EditorStatus.Created) {
+      if (loading || !editor || editor.status !== EditorStatus.Created) {
         return;
       }
       const { ctx } = editor;
