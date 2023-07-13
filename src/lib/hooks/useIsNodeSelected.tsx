@@ -1,9 +1,11 @@
+import { EditorStatus } from '@milkdown/core';
 import { Ctx } from '@milkdown/ctx';
 import { findSelectedNodeOfType } from '@milkdown/prose';
 import { NodeType } from '@milkdown/prose/model';
-import { useInstance } from '@milkdown/react';
 import { useNodeViewContext } from '@prosemirror-adapter/react';
 import { useMemo } from 'react';
+
+import { useMilkdownInstance } from './useMilkdownInstance';
 
 type UseIsNodeSelected = {
   nodeType: (ctx: Ctx) => NodeType;
@@ -11,17 +13,18 @@ type UseIsNodeSelected = {
 
 export const useIsNodeSelected = ({ nodeType }: UseIsNodeSelected) => {
   const { view, getPos } = useNodeViewContext();
-  const [, getEditor] = useInstance();
-  const ctx = getEditor()?.ctx;
-
+  const { editor, loading } = useMilkdownInstance();
   const {
     state: { selection },
   } = view;
 
-  const selected = useMemo(
-    () => ctx && findSelectedNodeOfType(selection, nodeType(ctx)),
-    [selection, nodeType, ctx]
-  );
+  const selected = useMemo(() => {
+    if (!loading || !editor || editor.status !== EditorStatus.Created) {
+      return undefined;
+    }
+    const { ctx } = editor;
+    return findSelectedNodeOfType(selection, nodeType(ctx));
+  }, [selection, nodeType, editor, loading]);
 
   const nodePos = useMemo(() => getPos(), [getPos]);
 

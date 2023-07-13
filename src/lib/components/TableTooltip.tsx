@@ -1,4 +1,4 @@
-import { commandsCtx } from '@milkdown/core';
+import { EditorStatus, commandsCtx } from '@milkdown/core';
 import { TooltipProvider } from '@milkdown/plugin-tooltip';
 import {
   addColAfterCommand,
@@ -9,13 +9,13 @@ import {
   setAlignCommand,
 } from '@milkdown/preset-gfm';
 import { CellSelection } from '@milkdown/prose/tables';
-import { useInstance } from '@milkdown/react';
 import { usePluginViewContext } from '@prosemirror-adapter/react';
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 import { Button } from '../common/Button';
 import { Icon } from '../common/Icon/Icon';
+import { useMilkdownInstance } from '../hooks/useMilkdownInstance';
 import { tableTooltipCtx } from '../packages/EditorContext/hooks/useGfmPlugin/useGfmPlugin';
 import { pxToRem } from '../styles/utils';
 
@@ -23,7 +23,7 @@ export const TableTooltip: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { view } = usePluginViewContext();
   const tooltipProvider = useRef<TooltipProvider>();
-  const [loading, getEditor] = useInstance();
+  const { loading, editor } = useMilkdownInstance();
 
   const isRow =
     view.state.selection instanceof CellSelection &&
@@ -43,7 +43,9 @@ export const TableTooltip: React.FC = () => {
       !loading &&
       !tooltipProvider.current &&
       view &&
-      view.state
+      view.state &&
+      editor &&
+      editor.status === EditorStatus.Created
     ) {
       const provider = new TooltipProvider({
         content: ref.current,
@@ -58,7 +60,7 @@ export const TableTooltip: React.FC = () => {
 
       provider.update(view);
 
-      const editorRef = getEditor();
+      const editorRef = editor;
 
       if (
         editorRef &&
@@ -73,7 +75,7 @@ export const TableTooltip: React.FC = () => {
     return () => {
       tooltipProvider.current?.destroy();
     };
-  }, [getEditor, loading, view, ref, tooltipProvider]);
+  }, [editor, loading, view, ref, tooltipProvider]);
 
   return (
     <div style={{ display: 'none' }}>
@@ -84,9 +86,10 @@ export const TableTooltip: React.FC = () => {
             space="small"
             color="secondary"
             onClick={() => {
-              if (loading) return;
+              if (loading || !editor || editor.status !== EditorStatus.Created)
+                return;
 
-              getEditor().action(ctx => {
+              editor.action(ctx => {
                 ctx.get(commandsCtx).call(addRowBeforeCommand.key);
               });
               tooltipProvider.current?.hide();
@@ -102,8 +105,10 @@ export const TableTooltip: React.FC = () => {
             space="small"
             color="secondary"
             onClick={() => {
-              if (loading) return;
-              getEditor().action(ctx => {
+              if (loading || !editor || editor.status !== EditorStatus.Created)
+                return;
+
+              editor.action(ctx => {
                 ctx.get(commandsCtx).call(addColBeforeCommand.key);
               });
 
@@ -119,9 +124,10 @@ export const TableTooltip: React.FC = () => {
             space="small"
             color="secondary"
             onClick={() => {
-              if (loading) return;
+              if (loading || !editor || editor.status !== EditorStatus.Created)
+                return;
 
-              getEditor().action(ctx => {
+              editor.action(ctx => {
                 ctx.get(commandsCtx).call(deleteSelectedCellsCommand.key);
               });
               tooltipProvider.current?.hide();
@@ -136,9 +142,10 @@ export const TableTooltip: React.FC = () => {
             space="small"
             color="secondary"
             onClick={() => {
-              if (loading) return;
+              if (loading || !editor || editor.status !== EditorStatus.Created)
+                return;
 
-              getEditor().action(ctx => {
+              editor.action(ctx => {
                 ctx.get(commandsCtx).call(addRowAfterCommand.key);
               });
               tooltipProvider.current?.hide();
@@ -153,8 +160,10 @@ export const TableTooltip: React.FC = () => {
             space="small"
             color="secondary"
             onClick={() => {
-              if (loading) return;
-              getEditor().action(ctx => {
+              if (loading || !editor || editor.status !== EditorStatus.Created)
+                return;
+
+              editor.action(ctx => {
                 ctx.get(commandsCtx).call(addColAfterCommand.key);
               });
 
@@ -170,8 +179,10 @@ export const TableTooltip: React.FC = () => {
             space="small"
             color="secondary"
             onClick={() => {
-              if (loading) return;
-              getEditor().action(ctx => {
+              if (loading || !editor || editor.status !== EditorStatus.Created)
+                return;
+
+              editor.action(ctx => {
                 ctx.get(commandsCtx).call(setAlignCommand.key, 'left');
               });
             }}
@@ -185,8 +196,10 @@ export const TableTooltip: React.FC = () => {
             space="small"
             color="secondary"
             onClick={() => {
-              if (loading) return;
-              getEditor().action(ctx => {
+              if (loading || !editor || editor.status !== EditorStatus.Created)
+                return;
+
+              editor.action(ctx => {
                 ctx.get(commandsCtx).call(setAlignCommand.key, 'right');
               });
             }}
@@ -200,8 +213,10 @@ export const TableTooltip: React.FC = () => {
             space="small"
             color="secondary"
             onClick={() => {
-              if (loading) return;
-              getEditor().action(ctx => {
+              if (loading || !editor || editor.status !== EditorStatus.Created)
+                return;
+
+              editor.action(ctx => {
                 ctx.get(commandsCtx).call(setAlignCommand.key, 'center');
               });
             }}

@@ -1,14 +1,11 @@
+import { EditorStatus } from '@milkdown/core';
 import { SlashProvider } from '@milkdown/plugin-slash';
-import { linkSchema } from '@milkdown/preset-commonmark';
-import { findSelectedNodeOfType } from '@milkdown/prose';
 import { TextSelection } from '@milkdown/prose/state';
-import { useInstance } from '@milkdown/react';
 import { usePluginViewContext } from '@prosemirror-adapter/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { useFindNodesByMark } from '../../../hooks/useFindNodesByMark';
 import { useKeyboardList } from '../../../hooks/useKeyboardList';
-import { useSelectedMarkPosition } from '../../../hooks/useSelectedMarkPosition';
+import { useMilkdownInstance } from '../../../hooks/useMilkdownInstance';
 
 type UseSlashProviderProps = {
   tooltipRef: React.RefObject<HTMLDivElement>;
@@ -19,9 +16,8 @@ export const useSlashProvider = ({ tooltipRef }: UseSlashProviderProps) => {
 
   const slashProviderRef = useRef<SlashProvider>();
 
-  const [loading, getEditor] = useInstance();
+  const { editor, loading } = useMilkdownInstance();
   const { view, prevState } = usePluginViewContext();
-  const { getNodesPositions } = useSelectedMarkPosition();
 
   const { keyboardListRefs, setActive, active } =
     useKeyboardList<HTMLButtonElement>({
@@ -47,9 +43,12 @@ export const useSlashProvider = ({ tooltipRef }: UseSlashProviderProps) => {
     });
 
   useEffect(() => {
-    const editor = getEditor();
-
-    if (loading || !tooltipRef?.current || !editor) {
+    if (
+      loading ||
+      !tooltipRef?.current ||
+      !editor ||
+      editor.status !== EditorStatus.Created
+    ) {
       return;
     }
 
@@ -100,7 +99,7 @@ export const useSlashProvider = ({ tooltipRef }: UseSlashProviderProps) => {
     return () => {
       slashProviderRef.current?.destroy();
     };
-  }, [loading, getEditor, tooltipRef, keyboardListRefs, setActive]);
+  }, [loading, editor, tooltipRef, keyboardListRefs, setActive]);
 
   useEffect(() => {
     slashProviderRef.current?.update(view, prevState);

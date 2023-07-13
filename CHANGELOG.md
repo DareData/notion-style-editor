@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.7]
+
+### Fixed
+- Context `schema` not found - while using multiple editors.
+
 ## [v0.1.6]
 
 ### Fixed

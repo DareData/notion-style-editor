@@ -1,6 +1,5 @@
-import { editorViewCtx } from '@milkdown/core';
+import { EditorStatus, editorViewCtx } from '@milkdown/core';
 import { imageSchema } from '@milkdown/preset-commonmark';
-import { useInstance } from '@milkdown/react';
 import { useNodeViewContext } from '@prosemirror-adapter/react';
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -10,6 +9,7 @@ import { ImageEditorModal } from './ImageEditorModal';
 import { Image } from '../../../common/Image';
 import { Lightbox } from '../../../common/Lightbox';
 import { useIsNodeSelected } from '../../../hooks/useIsNodeSelected';
+import { useMilkdownInstance } from '../../../hooks/useMilkdownInstance';
 import { useToggler } from '../../../hooks/useToggler';
 import { pxToRem } from '../../../styles/utils';
 import { useTextEditorContext } from '../../TextEditorContext/useTextEditoContext';
@@ -24,7 +24,7 @@ export const ImageNode: React.FC = () => {
 
   const { node, contentRef, setAttrs } = useNodeViewContext();
   const { attrs } = node;
-  const [loading, getEditor] = useInstance();
+  const { editor, loading } = useMilkdownInstance();
   const lightboxState = useToggler();
 
   const onImageEdit = ({ alt, title }: ImageEditorFormValues) => {
@@ -32,8 +32,7 @@ export const ImageNode: React.FC = () => {
   };
 
   const onImageRemove = () => {
-    const editor = getEditor();
-    if (loading || !editor) {
+    if (loading || !editor || editor.status !== EditorStatus.Created) {
       return;
     }
 
