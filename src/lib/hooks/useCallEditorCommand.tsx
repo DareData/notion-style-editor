@@ -9,7 +9,7 @@ export const useCallEditorCommand = () => {
 
   const onCallCommand = useCallback(
     <T,>(command: CmdKey<T>, payload?: T | undefined) => {
-      if (!loading || !editor || editor.status !== EditorStatus.Created) {
+      if (loading || !editor || editor.status !== EditorStatus.Created) {
         return;
       }
 

@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.8]
+
+### Fixed
+- Fixed problem, when some actions didn't work, because editor was still in loading state
+
 ## [v0.1.7]
 
 ### Fixed

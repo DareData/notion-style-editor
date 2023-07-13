@@ -10,7 +10,7 @@ export const useInsertMathBlock = () => {
   const { editor, loading } = useMilkdownInstance();
 
   const onInsertMathBlock = useCallback(() => {
-    if (!loading || !editor || editor.status !== EditorStatus.Created) {
+    if (loading || !editor || editor.status !== EditorStatus.Created) {
       return;
     }
 
