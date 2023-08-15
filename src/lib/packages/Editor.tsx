@@ -1,8 +1,6 @@
 import { EditorStatus, editorViewCtx, serializerCtx } from '@milkdown/core';
-import { Milkdown as MilkdownEditor } from '@milkdown/react';
+import { Milkdown as MilkdownEditor, useInstance } from '@milkdown/react';
 import { forwardRef, useImperativeHandle } from 'react';
-
-import { useMilkdownInstance } from '../hooks/useMilkdownInstance';
 
 export type EditorRef = {
   reset: () => void;
@@ -12,10 +10,11 @@ export type EditorRef = {
 type EditorProps = {};
 
 export const Editor = forwardRef<EditorRef, EditorProps>((props, ref) => {
-  const { editor, loading } = useMilkdownInstance();
+  const [loading, getEditor] = useInstance();
 
   useImperativeHandle(ref, () => ({
     reset: () => {
+      const editor = getEditor();
       if (loading || !editor || editor.status !== EditorStatus.Created) {
         return;
       }
@@ -27,6 +26,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>((props, ref) => {
       });
     },
     getValue: () => {
+      const editor = getEditor();
       if (loading || !editor || editor.status !== EditorStatus.Created) {
         return undefined;
       }
