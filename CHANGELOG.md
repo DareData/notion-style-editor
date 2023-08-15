@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.2.0]
+
+### Added
+- Possibility to change `mode` dynamically.
+
 ## [v0.1.8]
 
 ### Fixed
