@@ -93,6 +93,7 @@ export const EditorContainer = styled.div`
     }
 
     .emoji {
+      display: inline-block;
       width: ${pxToRem(16)};
       height: ${pxToRem(16)};
     }
