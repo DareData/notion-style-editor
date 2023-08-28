@@ -56,7 +56,13 @@ export const BlocksActions: React.FC = () => {
       <li>
         <AddDocumentModal
           handler={({ onOpen }) => (
-            <Button oval onClick={onOpen} space="small" color="secondary">
+            <Button
+              oval
+              space="small"
+              color="secondary"
+              onClick={onOpen}
+              data-testid={'add-document-button'}
+            >
               <Icon icon="embed_image" />
             </Button>
           )}

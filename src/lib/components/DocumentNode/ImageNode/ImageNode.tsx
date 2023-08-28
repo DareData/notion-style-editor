@@ -60,8 +60,9 @@ export const ImageNode: React.FC = () => {
         <>
           <ImageStyled
             src={attrs.src}
-            onClick={lightboxState.on}
             onLoad={onImageLoad}
+            onClick={lightboxState.on}
+            data-testid={'image-node'}
             {...{ alt, title }}
           >
             {isLoading => (

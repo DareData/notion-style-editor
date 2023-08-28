@@ -87,6 +87,7 @@ export const AddDocumentModalContent: React.FC<
             error={formState.errors.url?.message}
             accept="*"
             placeholder="Paste a URL..."
+            data-testid={'add-document-url-input'}
           />
           <AnimatePresence>
             {url && (

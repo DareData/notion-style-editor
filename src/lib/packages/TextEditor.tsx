@@ -67,6 +67,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
             <EditorContainer
               className={['date-data_text-editor', className].join(' ')}
               tabIndex={-1}
+              data-testid={'text-editor-wrapper'}
             >
               <Toaster toastOptions={toasterStyles} />
               <Editor ref={editorRef} />

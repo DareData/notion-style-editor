@@ -1,7 +1,13 @@
 import { defineConfig } from '@playwright/test';
+import { defineBddConfig } from 'playwright-bdd';
+
+const testDir = defineBddConfig({
+  paths: ['src/features/**/*.feature'],
+  require: ['src/definitions/**/*.ts'],
+});
 
 export default defineConfig({
-  testDir: '.features-gen',
+  testDir,
   projects: [{ name: 'e2e' }],
   use: {
     baseURL: process.env.TEST_URL,
