@@ -1,0 +1,23 @@
+{
+  "name": "altos-text-editor-e2e",
+  "version": "0.0.1",
+  "description": "E2E tests for altos-text-editor",
+  "main": "index.js",
+  "repository": "https://github.com/DareData/notion-style-editor",
+  "author": "Krzysztof Nofz",
+  "private": false,
+  "scripts": {
+    "generate": "npx bddgen",
+    "test": "npx bddgen && npx playwright test",
+    "open": "npx bddgen && npx playwright test --ui"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^9.4.0",
+    "@playwright/test": "^1.37.1",
+    "playwright-bdd": "^5.2.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
