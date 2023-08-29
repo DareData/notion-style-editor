@@ -29,7 +29,7 @@
     "test": "vitest",
     "lint": "yarn run lint:js",
     "lint:fix": "yarn run lint:js:fix && yarn run lint:style:fix",
-    "lint:js": "eslint --ext .ts,.tsx ./src",
+    "lint:js": "eslint --ext .ts,.tsx ./src ./e2e",
     "lint:js:fix": "npm run lint -- --fix",
     "lint:style": "stylelint './src/**/*.tsx'",
     "lint:style:fix": "stylelint './src/**/*.tsx' --fix",
