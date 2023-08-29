@@ -33,7 +33,7 @@
   dependencies:
     regexp-match-indices "1.0.2"
 
-"@cucumber/cucumber@^9.4.0", "@cucumber/cucumber@>=9":
+"@cucumber/cucumber@^9.4.0":
   version "9.4.0"
   resolved "https://registry.npmjs.org/@cucumber/cucumber/-/cucumber-9.4.0.tgz"
   integrity sha512-NYui5lwyGJatlrC3xiE861yQwICGIHVZvqLCv+IwG+wfqDpTW4WPrzX9qdgXTqoOfuhmY79MbkgnRPYs2Z1nkw==
@@ -98,6 +98,13 @@
     commander "9.4.1"
     source-map-support "^0.5.21"
 
+"@cucumber/gherkin@26.2.0":
+  version "26.2.0"
+  resolved "https://registry.npmjs.org/@cucumber/gherkin/-/gherkin-26.2.0.tgz"
+  integrity sha512-iRSiK8YAIHAmLrn/mUfpAx7OXZ7LyNlh1zT89RoziSVCbqSVDxJS6ckEzW8loxs+EEXl0dKPQOXiDmbHV+C/fA==
+  dependencies:
+    "@cucumber/messages" ">=19.1.4 <=22"
+
 "@cucumber/gherkin@^25.0.0":
   version "25.0.2"
   resolved "https://registry.npmjs.org/@cucumber/gherkin/-/gherkin-25.0.2.tgz"
@@ -105,22 +112,25 @@
   dependencies:
     "@cucumber/messages" "^19.1.4"
 
-"@cucumber/gherkin@>=22.0.0", "@cucumber/gherkin@26.2.0":
-  version "26.2.0"
-  resolved "https://registry.npmjs.org/@cucumber/gherkin/-/gherkin-26.2.0.tgz"
-  integrity sha512-iRSiK8YAIHAmLrn/mUfpAx7OXZ7LyNlh1zT89RoziSVCbqSVDxJS6ckEzW8loxs+EEXl0dKPQOXiDmbHV+C/fA==
-  dependencies:
-    "@cucumber/messages" ">=19.1.4 <=22"
-
 "@cucumber/html-formatter@20.4.0":
   version "20.4.0"
   resolved "https://registry.npmjs.org/@cucumber/html-formatter/-/html-formatter-20.4.0.tgz"
   integrity sha512-TnLSXC5eJd8AXHENo69f5z+SixEVtQIf7Q2dZuTpT/Y8AOkilGpGl1MQR1Vp59JIw+fF3EQSUKdf+DAThCxUNg==
 
-"@cucumber/message-streams@>=4.0.0", "@cucumber/message-streams@4.0.1":
+"@cucumber/message-streams@4.0.1":
   version "4.0.1"
   resolved "https://registry.npmjs.org/@cucumber/message-streams/-/message-streams-4.0.1.tgz"
   integrity sha512-Kxap9uP5jD8tHUZVjTWgzxemi/0uOsbGjd4LBOSxcJoOCRbESFwemUzilJuzNTB8pcTQUh8D5oudUyxfkJOKmA==
+
+"@cucumber/messages@22.0.0", "@cucumber/messages@>=19.1.4 <=22":
+  version "22.0.0"
+  resolved "https://registry.npmjs.org/@cucumber/messages/-/messages-22.0.0.tgz"
+  integrity sha512-EuaUtYte9ilkxcKmfqGF9pJsHRUU0jwie5ukuZ/1NPTuHS1LxHPsGEODK17RPRbZHOFhqybNzG2rHAwThxEymg==
+  dependencies:
+    "@types/uuid" "9.0.1"
+    class-transformer "0.5.1"
+    reflect-metadata "0.1.13"
+    uuid "9.0.0"
 
 "@cucumber/messages@^19.1.4":
   version "19.1.4"
@@ -128,16 +138,6 @@
   integrity sha512-Pksl0pnDz2l1+L5Ug85NlG6LWrrklN9qkMxN5Mv+1XZ3T6u580dnE6mVaxjJRdcOq4tR17Pc0RqIDZMyVY1FlA==
   dependencies:
     "@types/uuid" "8.3.4"
-    class-transformer "0.5.1"
-    reflect-metadata "0.1.13"
-    uuid "9.0.0"
-
-"@cucumber/messages@>=17.1.1", "@cucumber/messages@>=18", "@cucumber/messages@>=19.1.4 <=22", "@cucumber/messages@22.0.0":
-  version "22.0.0"
-  resolved "https://registry.npmjs.org/@cucumber/messages/-/messages-22.0.0.tgz"
-  integrity sha512-EuaUtYte9ilkxcKmfqGF9pJsHRUU0jwie5ukuZ/1NPTuHS1LxHPsGEODK17RPRbZHOFhqybNzG2rHAwThxEymg==
-  dependencies:
-    "@types/uuid" "9.0.1"
     class-transformer "0.5.1"
     reflect-metadata "0.1.13"
     uuid "9.0.0"
@@ -173,7 +173,7 @@
     "@nodelib/fs.stat" "2.0.5"
     run-parallel "^1.1.9"
 
-"@nodelib/fs.stat@^2.0.2", "@nodelib/fs.stat@2.0.5":
+"@nodelib/fs.stat@2.0.5", "@nodelib/fs.stat@^2.0.2":
   version "2.0.5"
   resolved "https://registry.npmjs.org/@nodelib/fs.stat/-/fs.stat-2.0.5.tgz"
   integrity sha512-RkhPPp2zrqDAQA/2jNhnztcPAlv64XdhIp7a7454A5ovI7Bukxgt7MX7udwAu3zg1DcpPU0rz3VV1SeaqvY4+A==
@@ -186,7 +186,7 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@playwright/test@^1.37.1", "@playwright/test@>=1.33":
+"@playwright/test@^1.37.1":
   version "1.37.1"
   resolved "https://registry.npmjs.org/@playwright/test/-/test-1.37.1.tgz"
   integrity sha512-bq9zTli3vWJo8S3LwB91U0qDNQDpEXnw7knhxLM0nwDvexQAwx9tO8iKDZSqqneVq+URd/WIoz+BALMqUTgdSg==
@@ -360,16 +360,6 @@ color-name@~1.1.4:
   resolved "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
-commander@^10.0.0:
-  version "10.0.1"
-  resolved "https://registry.npmjs.org/commander/-/commander-10.0.1.tgz"
-  integrity sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==
-
-commander@^11.0.0:
-  version "11.0.0"
-  resolved "https://registry.npmjs.org/commander/-/commander-11.0.0.tgz"
-  integrity sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==
-
 commander@9.1.0:
   version "9.1.0"
   resolved "https://registry.npmjs.org/commander/-/commander-9.1.0.tgz"
@@ -379,6 +369,16 @@ commander@9.4.1:
   version "9.4.1"
   resolved "https://registry.npmjs.org/commander/-/commander-9.4.1.tgz"
   integrity sha512-5EEkTNyHNGFPD2H+c/dXXfQZYa/scCKasxWcXJaWnNJ99pnQN9Vnmqow+p+PlFPE63Q6mThaZws1T+HxfpgtPw==
+
+commander@^10.0.0:
+  version "10.0.1"
+  resolved "https://registry.npmjs.org/commander/-/commander-10.0.1.tgz"
+  integrity sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==
+
+commander@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.npmjs.org/commander/-/commander-11.0.0.tgz"
+  integrity sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==
 
 concat-map@0.0.1:
   version "0.0.1"
@@ -802,7 +802,7 @@ semver@7.5.3:
   dependencies:
     lru-cache "^6.0.0"
 
-source-map-support@^0.5.21, source-map-support@0.5.21:
+source-map-support@0.5.21, source-map-support@^0.5.21:
   version "0.5.21"
   resolved "https://registry.npmjs.org/source-map-support/-/source-map-support-0.5.21.tgz"
   integrity sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==
@@ -834,7 +834,7 @@ string-width@^4.2.0:
     is-fullwidth-code-point "^3.0.0"
     strip-ansi "^6.0.1"
 
-strip-ansi@^6.0.1, strip-ansi@6.0.1:
+strip-ansi@6.0.1, strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
@@ -912,7 +912,7 @@ tslib@^2.0.3:
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.6.2.tgz"
   integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==
 
-typescript@^5.2.2, typescript@>=2.7:
+typescript@^5.2.2:
   version "5.2.2"
   resolved "https://registry.npmjs.org/typescript/-/typescript-5.2.2.tgz"
   integrity sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==
