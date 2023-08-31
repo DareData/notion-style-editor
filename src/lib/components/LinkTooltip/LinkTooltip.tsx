@@ -35,7 +35,8 @@ export const LinkTooltip: React.FC = () => {
       !tooltipProvider.current &&
       !loading &&
       editor &&
-      editor.status === EditorStatus.Created
+      editor.status !== EditorStatus.Destroyed &&
+      editor.status !== EditorStatus.OnDestroy
     ) {
       const provider = new TooltipProvider({
         content: ref.current,
@@ -81,13 +82,18 @@ export const LinkTooltip: React.FC = () => {
 
   return (
     <div style={{ display: 'none' }}>
-      <LinkTooltipStyled ref={ref}>
+      <LinkTooltipStyled ref={ref} data-testid="link-tooltip-container">
         <LinkTextStyled>{href}</LinkTextStyled>
         <LinkModal
           editable
           {...{ text, href }}
           handler={({ onOpen }) => (
-            <ButtonStyled oval onClick={onOpen} space="small">
+            <ButtonStyled
+              oval
+              onClick={onOpen}
+              space="small"
+              data-testid="link-tooltip-edit-button"
+            >
               <Icon icon="edit" fill={colors.white} />
             </ButtonStyled>
           )}

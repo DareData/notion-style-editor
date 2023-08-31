@@ -32,7 +32,7 @@ export const MathNode: React.FC = () => {
   }
 
   return (
-    <MathNodeContainerStyled contentEditable={false}>
+    <MathNodeContainerStyled contentEditable={false} data-testid="math-node">
       <Tabs initialTab={MathNodeTabs.Preview}>
         <TabList>
           <Tab label={MathNodeTabs.Preview}>Preview</Tab>

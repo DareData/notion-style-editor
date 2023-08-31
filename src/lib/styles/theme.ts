@@ -53,6 +53,7 @@ export const theme = {
   },
   zIndexes: {
     menu: 99,
+    aboveMenu: 100,
     modal: {
       backdrop: 100,
       container: 101,

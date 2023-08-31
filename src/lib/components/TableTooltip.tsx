@@ -11,7 +11,7 @@ import {
 import { CellSelection } from '@milkdown/prose/tables';
 import { usePluginViewContext } from '@prosemirror-adapter/react';
 import { useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 
 import { Button } from '../common/Button';
 import { Icon } from '../common/Icon/Icon';
@@ -21,6 +21,7 @@ import { pxToRem } from '../styles/utils';
 
 export const TableTooltip: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
+  const theme = useTheme();
   const { view } = usePluginViewContext();
   const tooltipProvider = useRef<TooltipProvider>();
   const { loading, editor } = useMilkdownInstance();
@@ -45,12 +46,13 @@ export const TableTooltip: React.FC = () => {
       view &&
       view.state &&
       editor &&
-      editor.status === EditorStatus.Created
+      editor.status !== EditorStatus.Destroyed &&
+      editor.status !== EditorStatus.OnDestroy
     ) {
       const provider = new TooltipProvider({
         content: ref.current,
         tippyOptions: {
-          zIndex: 30,
+          zIndex: theme.zIndexes.aboveMenu,
           arrow: false,
         },
         shouldShow: () => {
@@ -75,11 +77,14 @@ export const TableTooltip: React.FC = () => {
     return () => {
       tooltipProvider.current?.destroy();
     };
-  }, [editor, loading, view, ref, tooltipProvider]);
+  }, [editor, loading, view, ref, tooltipProvider, theme]);
 
   return (
     <div style={{ display: 'none' }}>
-      <TableTooltipContainerStyled ref={ref}>
+      <TableTooltipContainerStyled
+        ref={ref}
+        data-testid="table-tooltip-container"
+      >
         {!isWholeTable && !isHeading && isRow && (
           <Button
             oval
@@ -132,6 +137,7 @@ export const TableTooltip: React.FC = () => {
               });
               tooltipProvider.current?.hide();
             }}
+            data-testid="remove-table-button"
           >
             <Icon icon="delete" />
           </Button>

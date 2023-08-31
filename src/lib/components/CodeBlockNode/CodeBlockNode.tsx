@@ -78,7 +78,7 @@ export const CodeBlockNode: React.FC = () => {
         </CopyButtonStyled>
       </CodeBlockNodeActionsStyled>
       <pre>
-        <CodeStyled ref={contentRef} />
+        <CodeStyled ref={contentRef} data-testid="code-block-node" />
       </pre>
     </CodeBlockNodeContainerStyled>
   );

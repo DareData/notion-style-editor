@@ -15,7 +15,7 @@ export const FileNodeContent: React.FC<FileNodeContentProps> = ({
 }) => {
   return (
     <>
-      <WrapperStyled>
+      <WrapperStyled data-testid="file-node">
         <IconContainerStyled>
           <Icon icon="document" />
         </IconContainerStyled>

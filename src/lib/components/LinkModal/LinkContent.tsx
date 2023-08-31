@@ -90,6 +90,7 @@ export const LinkContent: React.FC<LinkContentProps> = ({
           label="Text"
           error={formState.errors.text?.message}
           placeholder="Optional"
+          data-testid="link-text-input"
         />
         <Input
           label="Link"
@@ -97,6 +98,7 @@ export const LinkContent: React.FC<LinkContentProps> = ({
           required
           {...register('href')}
           error={formState.errors.href?.message}
+          data-testid="link-href-input"
         />
       </ModalBody>
       <ModalFooterStyled>
