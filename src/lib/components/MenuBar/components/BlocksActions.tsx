@@ -47,7 +47,13 @@ export const BlocksActions: React.FC = () => {
           text={selectedText}
           {...{ onModalOpen, onModalClose }}
           handler={({ onOpen }) => (
-            <Button oval onClick={onOpen} space="small" color="secondary">
+            <Button
+              oval
+              onClick={onOpen}
+              space="small"
+              color="secondary"
+              data-testid="add-link-button"
+            >
               <Icon icon="add_link" />
             </Button>
           )}
@@ -61,7 +67,7 @@ export const BlocksActions: React.FC = () => {
               space="small"
               color="secondary"
               onClick={onOpen}
-              data-testid={'add-document-button'}
+              data-testid="add-document-button"
             >
               <Icon icon="embed_image" />
             </Button>
@@ -87,6 +93,7 @@ export const BlocksActions: React.FC = () => {
           oval
           space="small"
           color="secondary"
+          data-testid="add-table-button"
         >
           <Icon icon="create_table" />
         </Button>
@@ -114,7 +121,13 @@ export const BlocksActions: React.FC = () => {
       <li>
         <AddGoogleSlidesModal
           handler={({ onOpen }) => (
-            <Button onClick={onOpen} oval space="small" color="secondary">
+            <Button
+              onClick={onOpen}
+              oval
+              space="small"
+              color="secondary"
+              data-testid="add-slide-show-button"
+            >
               <Icon icon="google" fill={colors.white} />
             </Button>
           )}

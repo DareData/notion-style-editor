@@ -1,11 +1,13 @@
 /* eslint-disable no-useless-escape */
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { ErrorBoundary } from './ErrorBoundary';
 import { EditorRef } from './lib/packages/Editor';
 import { TextEditor } from './lib/packages/TextEditor';
 import { pxToRem } from './lib/styles/utils';
+
+const data = localStorage.getItem('editor_state') || '';
 
 export const App = () => {
   const [text, setText] = useState('');
@@ -26,7 +28,7 @@ export const App = () => {
         </div>
         <TextEditor
           mode="active"
-          data=""
+          data={data}
           editorRef={ref}
           placeholder="Type here"
           debounceChange={1000}

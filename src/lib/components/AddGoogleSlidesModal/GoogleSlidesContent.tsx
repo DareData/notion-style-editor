@@ -55,6 +55,7 @@ export const GoogleSlidesContent: React.FC = () => {
           {...register('url')}
           error={formState.errors.url?.message}
           placeholder="Paste the “Publish to the web” link"
+          data-testid="add-slide-show-url-input"
         />
       </ModalBodyStyled>
       <ModalFooter>

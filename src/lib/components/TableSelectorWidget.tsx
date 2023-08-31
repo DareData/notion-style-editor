@@ -48,6 +48,7 @@ export const TableSelectorWidget: React.FC = () => {
       draggable={type !== 'top-left'}
       $dragOver={dragOver}
       $position={position}
+      data-testid={`table-${position}-tooltip-button`}
       onClick={e => {
         e.stopPropagation();
         const div = ref.current;
