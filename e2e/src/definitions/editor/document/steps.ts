@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { createBdd } from 'playwright-bdd';
 
-import { EditorDocumentElements } from './elements.ts';
+import { EditorDocumentElements } from './elements';
 
 const { Then } = createBdd();
 

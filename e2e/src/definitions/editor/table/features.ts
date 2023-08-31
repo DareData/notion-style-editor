@@ -1,7 +1,7 @@
 import { createBdd } from 'playwright-bdd';
 
-import { EditorTableElements } from './elements.ts';
-import { getEditor } from '../../common/utils.ts';
+import { EditorTableElements } from './elements';
+import { getEditor } from '../../common/utils';
 
 const { When } = createBdd();
 

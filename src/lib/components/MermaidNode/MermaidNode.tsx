@@ -32,7 +32,10 @@ export const MermaidNode: React.FC = () => {
   }
 
   return (
-    <MermaidNodeContainerStyled contentEditable={false}>
+    <MermaidNodeContainerStyled
+      contentEditable={false}
+      data-testid="mermaid-node"
+    >
       <Tabs initialTab={MermaidNodeTabs.Preview}>
         <TabList>
           <Tab label={MermaidNodeTabs.Preview}>Preview</Tab>

@@ -17,5 +17,5 @@ export default defineConfig({
   },
   timeout: 60000,
   globalTimeout: 1200000,
-  workers: 4,
+  workers: 7,
 });

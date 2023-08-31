@@ -11,9 +11,9 @@ Feature: Table
 		And I click on remove table button
 		Then I check that editor does not contain table
 
-	Scenario: adds a new table and remove row and column
-		Given I open the editor page
-		When I click on "table" icon in menu bar
+	Scenario: removes row and column
+		Given I set initial editor value to "|    |    |    |\n| :- | :- | :- |\n|    |    |    |\n|    |    |    |"
+		When I open the editor page
 		Then I check that editor contains table
 		And I check that table contains "3" rows
 		And I check that table contains "3" columns

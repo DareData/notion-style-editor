@@ -1,6 +1,6 @@
 import { createBdd } from 'playwright-bdd';
 
-import { MenuBarElements } from './elements.ts';
+import { MenuBarElements } from './elements';
 
 const { When } = createBdd();
 

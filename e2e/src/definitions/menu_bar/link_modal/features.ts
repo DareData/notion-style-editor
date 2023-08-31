@@ -1,6 +1,6 @@
 import { createBdd } from 'playwright-bdd';
 
-import { LinkModalElements } from './elements.ts';
+import { LinkModalElements } from './elements';
 
 const { When } = createBdd();
 

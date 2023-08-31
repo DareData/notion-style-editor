@@ -1,6 +1,6 @@
 import { createBdd } from 'playwright-bdd';
 
-import { AddDocumentModalElements } from './elements.ts';
+import { AddDocumentModalElements } from './elements';
 
 const { When } = createBdd();
 

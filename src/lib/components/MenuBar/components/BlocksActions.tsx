@@ -83,6 +83,7 @@ export const BlocksActions: React.FC = () => {
           oval
           space="small"
           color="secondary"
+          data-testid="add-code-block-button"
         >
           <Icon icon="code_block" />
         </Button>
@@ -104,6 +105,7 @@ export const BlocksActions: React.FC = () => {
           oval
           space="small"
           color="secondary"
+          data-testid="add-math-button"
         >
           <Icon icon="math" />
         </Button>
@@ -114,6 +116,7 @@ export const BlocksActions: React.FC = () => {
           oval
           space="small"
           color="secondary"
+          data-testid="add-mermaid-button"
         >
           <Icon icon="mermaid" />
         </Button>
