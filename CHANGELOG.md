@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v.2.2]
+
+## Added
+- Tests for editor
+
+## Fixed
+- Tooltip of the table was invisible because the menu was overlapping it.
+- Tooltip of the Table wasn't displayed, when we clicked on button that opens it.
+- Tooltip of the Link wasn't displayed, when we clicked on button that opens it.
+
 ## [v0.2.1]
 
 ### Fixed
