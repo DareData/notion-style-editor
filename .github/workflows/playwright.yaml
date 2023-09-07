@@ -24,11 +24,6 @@ jobs:
       - name: Install dependencies of the frontend
         run: yarn
 
-      - name: Build & Run frontend
-        run: |
-          yarn build
-          yarn dev
-
       - name: Install dependencies of the e2e tests
         run: |
           cd ./e2e

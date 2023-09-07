@@ -9,8 +9,14 @@ const testDir = defineBddConfig({
 export default defineConfig({
   testDir,
   use: {
+    baseURL: 'http://localhost:5173/',
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
+  },
+  webServer: {
+    command: 'cd ../ && yarn dev',
+    url: 'http://localhost:5173/',
+    timeout: 1200000,
   },
   expect: {
     timeout: 20000,
