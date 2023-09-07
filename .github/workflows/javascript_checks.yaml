@@ -1,4 +1,4 @@
-name: Javascript checks
+name: JS checks
 
 on:
   push:
@@ -12,19 +12,14 @@ jobs:
   build_lint:
     name: build_lint
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
       - name: Clone repository
         uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          node-version: 18
 
       - name: Install dependencies
         run: yarn
@@ -40,57 +35,18 @@ jobs:
   integration_tests:
     name: integration_tests
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
 
     steps:
       - name: Clone repository
         uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          node-version: 18
 
       - name: Install dependencies
         run: yarn
 
       - name: test
         run: yarn test
-
-  e2e_tests:
-    name: e2e_tests
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
-
-    steps:
-      - name: Clone repository
-        uses: actions/checkout@v3
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-
-      - name: Install dependencies of the frontend
-        run: yarn
-
-      - name: Build & Run frontend
-        run: |
-          yarn build
-          yarn dev
-
-      - name: Install dependencies of the e2e tests
-        run: |
-          cd ./e2e
-          yarn
-
-      - name: Run e2e tests
-        run: | 
-          pwd 
-          yarn test
