@@ -30,9 +30,8 @@ jobs:
         run: yarn
 
       - name: Lint
-        run:
-          - yarn lint:js
-          - yarn lint:style
+        run: yarn lint:js
+        run: yarn lint:style
 
       - name: Build
         run: yarn build
@@ -81,16 +80,13 @@ jobs:
         run: yarn
 
       - name: Build & Run frontend
-        run: 
-          - yarn build
-          - yarn dev
+        run: yarn build
+        run: yarn dev
 
       - name: Install dependencies of the e2e tests
-        run: 
-          - cd ./e2e
-          - yarn
+        run: cd ./e2e
+        run: yarn
 
       - name: Run e2e tests
-        run:
-          - pwd 
-          - yarn test
+        run: pwd 
+        run: yarn test
