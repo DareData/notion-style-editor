@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v.2.3]
+
+## Changed
+- `z-index` of the Modals
+
 ## [v.2.2]
 
 ## Added

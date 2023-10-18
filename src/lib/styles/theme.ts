@@ -55,8 +55,8 @@ export const theme = {
     menu: 99,
     aboveMenu: 100,
     modal: {
-      backdrop: 100,
-      container: 101,
+      backdrop: 2000,
+      container: 2001,
     },
     dropdown: {
       container: 99999,
