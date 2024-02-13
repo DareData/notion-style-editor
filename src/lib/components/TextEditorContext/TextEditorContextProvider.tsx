@@ -2,7 +2,7 @@ import { createContext, useMemo } from 'react';
 
 import { useBase64File } from '../../hooks/useBase64File';
 import { TextEditorMode } from '../../packages/TextEditor';
-import { AddGoogleSlidesModalContentProps } from '../AddGoogleSlidesModal/AddGoogleSlidesModalContent';
+import { AddGoogleSlidesModalProps } from '../AddGoogleSlidesModal/DefaultAddGoogleSlidesModal';
 
 type TextEditorContextData = {
   mode: TextEditorMode;
@@ -13,7 +13,7 @@ type TextEditorContextData = {
   onFileValidation?: (file: File | null) => boolean;
   inputAcceptedFormats: string;
   components?: {
-    AddGoogleSlidesModalContent?: React.FC<AddGoogleSlidesModalContentProps>;
+    AddGoogleSlidesModal?: React.FC<AddGoogleSlidesModalProps>;
   };
 };
 
@@ -37,7 +37,7 @@ export type TextEditorContextProviderProps = {
   onFileValidation?: (file: File | null) => boolean;
   inputAcceptedFormats?: string;
   components?: {
-    AddGoogleSlidesModalContent?: React.FC<AddGoogleSlidesModalContentProps>;
+    AddGoogleSlidesModal?: React.FC<AddGoogleSlidesModalProps>;
   };
 };
 
