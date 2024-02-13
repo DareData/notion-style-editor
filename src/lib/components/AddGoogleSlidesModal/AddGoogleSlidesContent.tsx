@@ -1,48 +1,29 @@
-import { EditorStatus, editorViewCtx } from '@milkdown/core';
+import { FormState, UseFormRegister } from 'react-hook-form';
 import styled from 'styled-components';
 
-import {
-  GoogleDocFormValues,
-  useGoogleDocForm,
-} from './hooks/useGoogleDocForm';
 import { Anchor } from '../../common/Anchor';
 import { Input } from '../../common/Input';
-import { useModalContext } from '../../common/Modal/context/useModalContext';
 import { ModalActions } from '../../common/Modal/ModalActions';
 import { ModalBody } from '../../common/Modal/ModalBody';
 import { ModalFooter } from '../../common/Modal/ModalFooter';
 import { ModalHeader } from '../../common/Modal/ModalHeader';
-import { useEditorLinkActions } from '../../hooks/useEditorLinkActions';
-import { useMilkdownInstance } from '../../hooks/useMilkdownInstance';
 import { pxToRem } from '../../styles/utils';
 
-export const GoogleSlidesContent: React.FC = () => {
-  const { editor, loading } = useMilkdownInstance();
-  const { onClose } = useModalContext();
-  const { handleSubmit, formState, register } = useGoogleDocForm();
+export type AddGoogleSlidesContent = {
+  formState: FormState<{
+    url: string;
+  }>;
+  register: UseFormRegister<{
+    url: string;
+  }>;
+};
 
-  const { getLinkCreationTransaction } = useEditorLinkActions();
-
-  const onSubmit = ({ url }: GoogleDocFormValues) => {
-    if (loading || !editor || editor.status !== EditorStatus.Created) {
-      return;
-    }
-
-    editor.action(ctx => {
-      const view = ctx.get(editorViewCtx);
-      const transaction = getLinkCreationTransaction(view, {
-        text: url,
-        href: url,
-      });
-      if (transaction) {
-        view.dispatch(transaction);
-      }
-      onClose();
-    });
-  };
-
+export const AddGoogleSlidesContent: React.FC<AddGoogleSlidesContent> = ({
+  formState,
+  register,
+}) => {
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <>
       <ModalHeader>Add Google Slides presentation</ModalHeader>
       <ModalBodyStyled>
         <NoteStyled>
@@ -61,7 +42,7 @@ export const GoogleSlidesContent: React.FC = () => {
       <ModalFooter>
         <ModalActions saveButtonType="submit" isDisabled={!formState.isValid} />
       </ModalFooter>
-    </form>
+    </>
   );
 };
 

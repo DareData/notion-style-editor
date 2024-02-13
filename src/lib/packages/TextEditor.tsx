@@ -27,9 +27,6 @@ export type TextEditorProps = {
   onDataChange?: (data: string) => void;
   onEditorFocus?: () => void;
   debounceChange?: number;
-  components?: {
-    AddGoogleSlideModal?: any;
-  };
 } & Omit<TextEditorContextProviderProps, 'children'>;
 
 export const TextEditor: React.FC<TextEditorProps> = ({

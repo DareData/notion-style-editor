@@ -1,4 +1,4 @@
-import { GoogleSlidesContent } from './GoogleSlidesContent';
+import { AddGoogleSlidesForm } from './AddGoogleSlidesForm';
 import { Modal, ModalProps } from '../../common/Modal/Modal';
 
 type AddGoogleSlidesModalProps = ModalProps;
@@ -9,6 +9,6 @@ export const AddGoogleSlidesModal: React.FC<AddGoogleSlidesModalProps> = ({
   onModalClose,
 }) => (
   <Modal {...{ handler, onModalOpen, onModalClose }}>
-    <GoogleSlidesContent />
+    <AddGoogleSlidesForm />
   </Modal>
 );
