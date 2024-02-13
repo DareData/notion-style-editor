@@ -27,6 +27,9 @@ export type TextEditorProps = {
   onDataChange?: (data: string) => void;
   onEditorFocus?: () => void;
   debounceChange?: number;
+  components?: {
+    AddGoogleSlideModal?: any;
+  };
 } & Omit<TextEditorContextProviderProps, 'children'>;
 
 export const TextEditor: React.FC<TextEditorProps> = ({
@@ -42,6 +45,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
   onEditorFocus,
   onFileValidation,
   inputAcceptedFormats,
+  components,
   ...rest
 }) => (
   <ThemeProvider {...{ theme }}>
@@ -54,6 +58,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
         stickyOnMenu,
         onFileValidation,
         inputAcceptedFormats,
+        components,
       }}
     >
       <MilkdownProvider>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useNotification } from '../../../hooks/useNotification';
-import { useTextEditorContext } from '../../TextEditorContext/useTextEditoContext';
+import { useTextEditorContext } from '../../TextEditorContext/useTextEditorContext';
 
 export const useFileConvertion = () => {
   const { onFileUpload, onFileValidation } = useTextEditorContext();

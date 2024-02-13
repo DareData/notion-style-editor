@@ -16,7 +16,7 @@ import {
   toggleOutInVariant,
 } from '../../styles/common/animations';
 import { pxToRem } from '../../styles/utils';
-import { useTextEditorContext } from '../TextEditorContext/useTextEditoContext';
+import { useTextEditorContext } from '../TextEditorContext/useTextEditorContext';
 
 export type AddDocumentModalContentProps = {
   onInsert: (source: string) => void;

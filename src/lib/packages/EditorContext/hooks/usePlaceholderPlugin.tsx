@@ -3,7 +3,7 @@ import type { EditorView } from '@milkdown/prose/view';
 import { $prose } from '@milkdown/utils';
 import { useMemo } from 'react';
 
-import { useTextEditorContext } from '../../../components/TextEditorContext/useTextEditoContext';
+import { useTextEditorContext } from '../../../components/TextEditorContext/useTextEditorContext';
 
 const shouldRenderPlaceholder = (view: EditorView) => {
   const {

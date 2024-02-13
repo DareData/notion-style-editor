@@ -32,6 +32,9 @@ export type TextEditorContextProviderProps = {
   onFileUpload?: (file: File) => Promise<string>;
   onFileValidation?: (file: File | null) => boolean;
   inputAcceptedFormats?: string;
+  components?: {
+    AddGoogleSlideModal?: any;
+  };
 };
 
 export const TextEditorContextProvider = ({
@@ -43,6 +46,7 @@ export const TextEditorContextProvider = ({
   onFileUpload,
   onFileValidation,
   inputAcceptedFormats = '*',
+  components,
 }: TextEditorContextProviderProps) => {
   const { getBase64 } = useBase64File();
 
@@ -55,6 +59,7 @@ export const TextEditorContextProvider = ({
       placeholder,
       onFileValidation,
       inputAcceptedFormats,
+      components,
     }),
     [
       mode,
@@ -65,6 +70,7 @@ export const TextEditorContextProvider = ({
       stickyOnMenu,
       onFileValidation,
       inputAcceptedFormats,
+      components,
     ]
   );
 

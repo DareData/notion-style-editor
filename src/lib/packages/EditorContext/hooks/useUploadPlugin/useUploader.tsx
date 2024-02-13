@@ -1,7 +1,7 @@
 import { Schema, Node } from '@milkdown/prose/model';
 import { useCallback } from 'react';
 
-import { useTextEditorContext } from '../../../../components/TextEditorContext/useTextEditoContext';
+import { useTextEditorContext } from '../../../../components/TextEditorContext/useTextEditorContext';
 import { useNotification } from '../../../../hooks/useNotification';
 
 export const useUploader = () => {
