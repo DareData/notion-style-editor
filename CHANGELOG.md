@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v.2.4]
+
+## Changed
+- added `components` prop, which enables modifying Google Slides modal content
+
 ## [v.2.3]
 
 ## Changed
