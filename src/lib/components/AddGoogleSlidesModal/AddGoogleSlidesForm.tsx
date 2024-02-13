@@ -1,6 +1,6 @@
 import { EditorStatus, editorViewCtx } from '@milkdown/core';
 
-import { AddGoogleSlidesContent as DefaultAddGoogleSlidesContent } from './AddGoogleSlidesContent';
+import { AddGoogleSlidesModalContent as DefaultAddGoogleSlidesContent } from './AddGoogleSlidesModalContent';
 import {
   GoogleDocFormValues,
   useGoogleDocForm,
@@ -16,8 +16,8 @@ export const AddGoogleSlidesForm: React.FC = () => {
   const { handleSubmit, formState, register } = useGoogleDocForm();
 
   const { components } = useTextEditorContext();
-  const AddGoogleSlidesContent =
-    components?.AddGoogleSlideModal || DefaultAddGoogleSlidesContent;
+  const AddGoogleSlidesModalContent =
+    components?.AddGoogleSlidesModalContent || DefaultAddGoogleSlidesContent;
 
   const { getLinkCreationTransaction } = useEditorLinkActions();
 
@@ -41,7 +41,7 @@ export const AddGoogleSlidesForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <AddGoogleSlidesContent formState={formState} register={register} />
+      <AddGoogleSlidesModalContent formState={formState} register={register} />
     </form>
   );
 };

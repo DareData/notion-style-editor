@@ -9,7 +9,7 @@ import { ModalFooter } from '../../common/Modal/ModalFooter';
 import { ModalHeader } from '../../common/Modal/ModalHeader';
 import { pxToRem } from '../../styles/utils';
 
-export type AddGoogleSlidesContent = {
+export type AddGoogleSlidesModalContentProps = {
   formState: FormState<{
     url: string;
   }>;
@@ -18,10 +18,9 @@ export type AddGoogleSlidesContent = {
   }>;
 };
 
-export const AddGoogleSlidesContent: React.FC<AddGoogleSlidesContent> = ({
-  formState,
-  register,
-}) => {
+export const AddGoogleSlidesModalContent: React.FC<
+  AddGoogleSlidesModalContentProps
+> = ({ formState, register }) => {
   return (
     <>
       <ModalHeader>Add Google Slides presentation</ModalHeader>
