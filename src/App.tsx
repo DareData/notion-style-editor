@@ -7,7 +7,7 @@ import { EditorRef } from './lib/packages/Editor';
 import { TextEditor } from './lib/packages/TextEditor';
 import { pxToRem } from './lib/styles/utils';
 
-const data = localStorage.getItem('editor_state') || '';
+const data = localStorage.getItem('editor_state') || '@KrzysztofNofz';
 
 export const App = () => {
   const [text, setText] = useState('');
