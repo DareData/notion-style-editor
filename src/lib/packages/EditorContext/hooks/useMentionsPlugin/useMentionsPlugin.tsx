@@ -1,111 +1,85 @@
-import { Meta, MilkdownPlugin } from '@milkdown/ctx';
 import { expectDomTypeError } from '@milkdown/exception';
-import { wrappingInputRule } from '@milkdown/prose/inputrules';
-import { $nodeAttr, $nodeSchema, $inputRule } from '@milkdown/utils';
+import { $remark, $markSchema, $markAttr } from '@milkdown/utils';
+import { PhrasingContent, Nodes } from 'mdast';
+import { findAndReplace, ReplaceFunction } from 'mdast-util-find-and-replace';
 import { useMemo } from 'react';
 
-const withMeta = <T extends MilkdownPlugin>(
-  plugin: T,
-  meta: Partial<Meta> & Pick<Meta, 'displayName'>
-): T => {
-  Object.assign(plugin, {
-    meta: {
-      package: '@milkdown/plugin-mentions',
-      ...meta,
-    },
-  });
+export const mentionsAttr = $markAttr('mentions');
 
-  return plugin;
-};
-
-export const mentionsAttr = $nodeAttr('mentions');
-
-withMeta(mentionsAttr, {
-  displayName: 'Attr<mentions>',
-  group: 'Mentions',
-});
-
-export const mentionsSchema = $nodeSchema('mentions', ctx => ({
-  content: 'block+',
-  group: 'block',
+export const mentionsSchema = $markSchema('mentions', ctx => ({
   attrs: {
-    value: {},
-    label: {},
+    'data-mentions-username': {},
   },
   parseDOM: [
     {
-      tag: 'span[value][label]',
+      tag: 'span[data-mentions-username]',
       getAttrs: dom => {
         if (!(dom instanceof HTMLElement)) {
           throw expectDomTypeError(dom);
         }
 
         return {
-          label: dom.getAttribute('label'),
-          value: dom.getAttribute('value'),
+          username: dom.getAttribute('data-mentions-username'),
         };
       },
     },
   ],
-  toDOM: node => [
+  toDOM: mark => [
     'span',
-    {
-      ...ctx.get(mentionsAttr.key)(node),
-      class: 'mention',
-      value: node.attrs.value,
-      label: node.attrs.label,
-    },
-    `@${node.attrs.label}`,
+    { ...ctx.get(mentionsAttr.key)(mark), ...mark.attrs },
   ],
   parseMarkdown: {
-    match: ({ type }) => type === 'mentions',
-    runner: (state, node, type) => {
-      const value = node.value as string;
-      const label = node.label as string;
-      state.openNode(type, { value, label });
-      if (node.children) {
-        state.next(node.children);
-      } else {
-        state.addText(label || 'Mentions!!');
-      }
-      state.closeNode();
+    match: node => node.type === 'mentions',
+    runner: (state, node, markType) => {
+      const username = node.username as string;
+      state.openMark(markType, { 'data-mentions-username': username });
+      state.next(node.children);
+      state.closeMark(markType);
     },
   },
   toMarkdown: {
-    match: node => node.type.name === 'mentions',
-    runner: (state, node) => {
-      state.openNode('mentions', undefined, {
-        value: node.attrs.value,
-        label: node.attrs.label,
+    match: mark => mark.type.name === 'mentions',
+    runner: (state, mark) => {
+      state.withMark(mark, 'mentions', undefined, {
+        'data-mentions-username': mark.attrs.username,
       });
-      state.next(node.content);
-      state.closeNode();
     },
   },
 }));
 
-withMeta(mentionsSchema.node, {
-  displayName: 'NodeSchema<mentions>',
-  group: 'Blockquote',
-});
+const userGroup = '[\\da-z][-\\da-z_]{0,38}';
+const mentionRegex = new RegExp('(?:^|\\s)@(' + userGroup + ')', 'gi');
+const remarkMentions = () => {
+  const replaceMention: ReplaceFunction = (value: string, username: string) => {
+    const whitespace: PhrasingContent[] = [];
 
-withMeta(mentionsSchema.ctx, {
-  displayName: 'NodeSchemaCtx<mentions>',
-  group: 'Mentions',
-});
+    if (value.indexOf('@') > 0) {
+      whitespace.push({
+        type: 'text',
+        value: value.substring(0, value.indexOf('@')),
+      });
+    }
 
-export const wrapInMentionsInputRule = $inputRule(ctx =>
-  wrappingInputRule(/@.*?(?=\s@|$)/g, mentionsSchema.type(ctx))
-);
+    return [
+      ...whitespace,
+      {
+        type: 'mentions',
+        username,
+        children: [{ type: 'text', value: value.trim() }],
+      },
+    ] as any[];
+  };
 
-withMeta(wrapInMentionsInputRule, {
-  displayName: 'InputRule<wrapInMentionsInputRule>',
-  group: 'Mentions',
-});
+  return (tree: Nodes) => {
+    findAndReplace(tree, [[mentionRegex, replaceMention]]);
+  };
+};
+
+const remarkMentionsPlugin = $remark('mentions', () => remarkMentions);
 
 export const useMentionsPlugin = () => {
   const mentionsPlugin = useMemo(
-    () => [mentionsAttr, mentionsSchema, wrapInMentionsInputRule].flat(),
+    () => [mentionsAttr, mentionsSchema, remarkMentionsPlugin].flat(),
     []
   );
 
