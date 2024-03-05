@@ -10,7 +10,7 @@ import { useWidgetViewContext } from '@prosemirror-adapter/react';
 import { useMemo, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 
-import { useTextEditorContext } from './TextEditorContext/useTextEditoContext';
+import { useTextEditorContext } from './TextEditorContext/useTextEditorContext';
 import { Button, ButtonProps } from '../common/Button';
 import { useMilkdownInstance } from '../hooks/useMilkdownInstance';
 import { tableTooltipCtx } from '../packages/EditorContext/hooks/useGfmPlugin/useGfmPlugin';

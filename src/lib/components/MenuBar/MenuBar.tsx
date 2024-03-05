@@ -10,7 +10,7 @@ import { TextsFormatActionsDropdown } from './TextsFormatActionsDropdown/TextsFo
 import { useMatchMedia } from '../../hooks/useMatchMedia';
 import { theme } from '../../styles/theme';
 import { pxToRem } from '../../styles/utils';
-import { useTextEditorContext } from '../TextEditorContext/useTextEditoContext';
+import { useTextEditorContext } from '../TextEditorContext/useTextEditorContext';
 
 export const MenuBar = () => {
   const { queries } = useTheme();

@@ -8,7 +8,7 @@ import { TabList } from '../../common/Tabs/TabList';
 import { TabPanel } from '../../common/Tabs/TabPanel';
 import { Tabs } from '../../common/Tabs/Tabs';
 import { pxToRem } from '../../styles/utils';
-import { useTextEditorContext } from '../TextEditorContext/useTextEditoContext';
+import { useTextEditorContext } from '../TextEditorContext/useTextEditorContext';
 
 export enum MathNodeTabs {
   Preview = 'preview',

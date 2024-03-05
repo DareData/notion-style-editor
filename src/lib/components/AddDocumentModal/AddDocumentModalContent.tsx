@@ -1,5 +1,4 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useMemo } from 'react';
 import { useWatch } from 'react-hook-form';
 import styled from 'styled-components';
 
@@ -16,7 +15,7 @@ import {
   toggleOutInVariant,
 } from '../../styles/common/animations';
 import { pxToRem } from '../../styles/utils';
-import { useTextEditorContext } from '../TextEditorContext/useTextEditoContext';
+import { useTextEditorContext } from '../TextEditorContext/useTextEditorContext';
 
 export type AddDocumentModalContentProps = {
   onInsert: (source: string) => void;

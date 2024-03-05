@@ -14,7 +14,7 @@ import { useMilkdownInstance } from '../../hooks/useMilkdownInstance';
 import { useSelectedMarkPosition } from '../../hooks/useSelectedMarkPosition';
 import { pxToRem } from '../../styles/utils';
 import { LinkModal } from '../LinkModal/LinkModal';
-import { useTextEditorContext } from '../TextEditorContext/useTextEditoContext';
+import { useTextEditorContext } from '../TextEditorContext/useTextEditorContext';
 
 export const LinkTooltip: React.FC = () => {
   const { colors } = useTheme();
