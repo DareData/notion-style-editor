@@ -12,7 +12,7 @@ import { useIsNodeSelected } from '../../../hooks/useIsNodeSelected';
 import { useMilkdownInstance } from '../../../hooks/useMilkdownInstance';
 import { useToggler } from '../../../hooks/useToggler';
 import { pxToRem } from '../../../styles/utils';
-import { useTextEditorContext } from '../../TextEditorContext/useTextEditoContext';
+import { useTextEditorContext } from '../../TextEditorContext/useTextEditorContext';
 
 export const ImageNode: React.FC = () => {
   const [imageProperties, setImageProperties] = useState<{

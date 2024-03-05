@@ -9,7 +9,7 @@ import { Icon } from '../../../common/Icon/Icon';
 import { useMilkdownInstance } from '../../../hooks/useMilkdownInstance';
 import { pxToRem } from '../../../styles/utils';
 import { Matcher } from '../../../utils/Matcher';
-import { useTextEditorContext } from '../../TextEditorContext/useTextEditoContext';
+import { useTextEditorContext } from '../../TextEditorContext/useTextEditorContext';
 
 export const FileNode: React.FC = () => {
   const { colors } = useTheme();

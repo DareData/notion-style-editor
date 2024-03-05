@@ -42,6 +42,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
   onEditorFocus,
   onFileValidation,
   inputAcceptedFormats,
+  components,
   ...rest
 }) => (
   <ThemeProvider {...{ theme }}>
@@ -54,6 +55,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
         stickyOnMenu,
         onFileValidation,
         inputAcceptedFormats,
+        components,
       }}
     >
       <MilkdownProvider>

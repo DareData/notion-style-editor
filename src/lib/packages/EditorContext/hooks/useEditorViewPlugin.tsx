@@ -2,7 +2,7 @@ import { EditorStatus, editorViewOptionsCtx } from '@milkdown/core';
 import { Ctx } from '@milkdown/ctx';
 import { useEffect } from 'react';
 
-import { useTextEditorContext } from '../../../components/TextEditorContext/useTextEditoContext';
+import { useTextEditorContext } from '../../../components/TextEditorContext/useTextEditorContext';
 import { useMilkdownInstance } from '../../../hooks/useMilkdownInstance';
 
 export const useEditorViewPlugin = () => {

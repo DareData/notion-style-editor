@@ -2,6 +2,7 @@ import { createContext, useMemo } from 'react';
 
 import { useBase64File } from '../../hooks/useBase64File';
 import { TextEditorMode } from '../../packages/TextEditor';
+import { AddGoogleSlidesModalProps } from '../AddGoogleSlidesModal/DefaultAddGoogleSlidesModal';
 
 type TextEditorContextData = {
   mode: TextEditorMode;
@@ -11,6 +12,9 @@ type TextEditorContextData = {
   onFileUpload: (file: File) => Promise<string>;
   onFileValidation?: (file: File | null) => boolean;
   inputAcceptedFormats: string;
+  components?: {
+    AddGoogleSlidesModal?: React.FC<AddGoogleSlidesModalProps>;
+  };
 };
 
 export const TextEditorContext = createContext<TextEditorContextData>({
@@ -32,6 +36,9 @@ export type TextEditorContextProviderProps = {
   onFileUpload?: (file: File) => Promise<string>;
   onFileValidation?: (file: File | null) => boolean;
   inputAcceptedFormats?: string;
+  components?: {
+    AddGoogleSlidesModal?: React.FC<AddGoogleSlidesModalProps>;
+  };
 };
 
 export const TextEditorContextProvider = ({
@@ -43,6 +50,7 @@ export const TextEditorContextProvider = ({
   onFileUpload,
   onFileValidation,
   inputAcceptedFormats = '*',
+  components,
 }: TextEditorContextProviderProps) => {
   const { getBase64 } = useBase64File();
 
@@ -55,6 +63,7 @@ export const TextEditorContextProvider = ({
       placeholder,
       onFileValidation,
       inputAcceptedFormats,
+      components,
     }),
     [
       mode,
@@ -65,6 +74,7 @@ export const TextEditorContextProvider = ({
       stickyOnMenu,
       onFileValidation,
       inputAcceptedFormats,
+      components,
     ]
   );
 

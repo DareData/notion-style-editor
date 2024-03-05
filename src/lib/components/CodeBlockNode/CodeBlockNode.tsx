@@ -10,7 +10,7 @@ import { Select } from '../../common/Select';
 import { useNotification } from '../../hooks/useNotification';
 import { pxToRem } from '../../styles/utils';
 import { Matcher } from '../../utils/Matcher';
-import { useTextEditorContext } from '../TextEditorContext/useTextEditoContext';
+import { useTextEditorContext } from '../TextEditorContext/useTextEditorContext';
 
 const options: Option[] = [
   {
