@@ -1,12 +1,17 @@
 import { expectDomTypeError } from '@milkdown/exception';
-import { $remark, $markSchema, $markAttr } from '@milkdown/utils';
-import { PhrasingContent, Nodes } from 'mdast';
-import { findAndReplace, ReplaceFunction } from 'mdast-util-find-and-replace';
+import { paragraphSchema } from '@milkdown/preset-commonmark';
+import { InputRule } from '@milkdown/prose/inputrules';
+import { $nodeSchema, $nodeAttr, $inputRule, $remark } from '@milkdown/utils';
 import { useMemo } from 'react';
+import directive from 'remark-directive';
 
-export const mentionsAttr = $markAttr('mentions');
+const remarkDirective = $remark('mentions', () => directive);
 
-export const mentionsSchema = $markSchema('mentions', ctx => ({
+export const mentionsAttr = $nodeAttr('mentions');
+
+export const mentionsSchema = $nodeSchema('mentions', ctx => ({
+  content: 'inline*',
+  group: 'block',
   attrs: {
     'data-mentions-username': {},
   },
@@ -24,62 +29,64 @@ export const mentionsSchema = $markSchema('mentions', ctx => ({
       },
     },
   ],
-  toDOM: mark => [
+  toDOM: node => [
     'span',
-    { ...ctx.get(mentionsAttr.key)(mark), ...mark.attrs },
+    { ...ctx.get(mentionsAttr.key)(node), ...node.attrs },
+    0,
   ],
   parseMarkdown: {
-    match: node => node.type === 'mentions',
-    runner: (state, node, markType) => {
+    match: node => node.type === 'leafDirective' && node.name === 'mentions',
+    runner: (state, node, type) => {
       const username = node.username as string;
-      state.openMark(markType, { 'data-mentions-username': username });
+      state.openNode(type, { 'data-mentions-username': username });
       state.next(node.children);
-      state.closeMark(markType);
+      state.closeNode();
     },
   },
   toMarkdown: {
-    match: mark => mark.type.name === 'mentions',
-    runner: (state, mark) => {
-      state.withMark(mark, 'mentions', undefined, {
-        'data-mentions-username': mark.attrs.username,
+    match: node => node.type.name === 'mentions',
+    runner: (state, node) => {
+      state.openNode('leafDirective', undefined, {
+        name: 'mentions',
+        'data-mentions-username': node.attrs['data-mentions-username'],
       });
+      state.next(node.content);
+      state.closeNode();
     },
   },
 }));
 
 const userGroup = '[\\da-z][-\\da-z_]{0,38}';
 const mentionRegex = new RegExp('(?:^|\\s)@(' + userGroup + ')', 'gi');
-const remarkMentions = () => {
-  const replaceMention: ReplaceFunction = (value: string, username: string) => {
-    const whitespace: PhrasingContent[] = [];
 
-    if (value.indexOf('@') > 0) {
-      whitespace.push({
-        type: 'text',
-        value: value.substring(0, value.indexOf('@')),
-      });
-    }
+const wrapInMentionsInputRule = $inputRule(
+  ctx =>
+    new InputRule(mentionRegex, (state, match, start, end) => {
+      const [value, username = ''] = match;
+      const { tr } = state;
+      if (value) {
+        tr.replaceWith(
+          start,
+          end,
+          mentionsSchema
+            .type(ctx)
+            .create({ 'data-mentions-username': username })
+        );
+      }
 
-    return [
-      ...whitespace,
-      {
-        type: 'mentions',
-        username,
-        children: [{ type: 'text', value: value.trim() }],
-      },
-    ] as any[];
-  };
-
-  return (tree: Nodes) => {
-    findAndReplace(tree, [[mentionRegex, replaceMention]]);
-  };
-};
-
-const remarkMentionsPlugin = $remark('mentions', () => remarkMentions);
+      return tr;
+    })
+);
 
 export const useMentionsPlugin = () => {
   const mentionsPlugin = useMemo(
-    () => [mentionsAttr, mentionsSchema, remarkMentionsPlugin].flat(),
+    () =>
+      [
+        mentionsAttr,
+        mentionsSchema,
+        wrapInMentionsInputRule,
+        remarkDirective,
+      ].flat(),
     []
   );
 
