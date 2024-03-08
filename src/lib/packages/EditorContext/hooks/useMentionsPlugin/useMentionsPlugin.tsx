@@ -11,7 +11,6 @@ import { useMemo } from 'react';
 import { MentionsWidget } from '../../../../components/MentionsWidget/MentionsWidget';
 
 export type MentionsPluginAttrs = {
-  active: boolean;
   range: {
     to: number;
     from: number;
@@ -47,7 +46,6 @@ const computeStateFromSelection = (
     }
 
     return {
-      active: true,
       range: { from: from, to: to },
       queryText: queryText,
     };
@@ -57,12 +55,11 @@ const computeStateFromSelection = (
 };
 
 const getInitState = (): MentionsPluginAttrs => ({
-  active: false,
   range: {
     to: 0,
     from: 0,
   },
-  queryText: 'krzys',
+  queryText: '',
 });
 
 export const useMentionsPlugin = () => {
@@ -102,7 +99,7 @@ export const useMentionsPlugin = () => {
             decorations(state) {
               const newState = key.getState(state);
 
-              if (newState?.active) {
+              if (newState?.queryText) {
                 const { range } = newState;
                 const editorView = ctx.get(editorViewCtx);
 
