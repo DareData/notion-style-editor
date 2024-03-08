@@ -65,14 +65,12 @@ export const MentionsWidget: React.FC = () => {
     <div style={{ backgroundColor: 'red' }}>
       {results.map(name => (
         <button
+          key={name}
           style={{ display: 'block' }}
-          onClick={() => {
-            console.log('focus');
-          }}
-          onFocus={() => {
+          onClick={e => {
+            e.stopPropagation();
             onPersonClick(name);
           }}
-          key={name}
         >
           {name}
         </button>
