@@ -1,74 +1,145 @@
-import { RemarkPluginRaw } from '@milkdown/transformer';
-import { $remark } from '@milkdown/utils';
+import { editorViewCtx } from '@milkdown/core';
+import { Ctx } from '@milkdown/ctx';
+import { linkSchema } from '@milkdown/preset-commonmark';
+import { posToDOMRect } from '@milkdown/prose';
+import { Plugin, PluginKey, Selection } from '@milkdown/prose/state';
+import { DecorationSet } from '@milkdown/prose/view';
+import { $prose } from '@milkdown/utils';
+import { useWidgetViewFactory } from '@prosemirror-adapter/react';
 import { useMemo } from 'react';
-import { visit, SKIP } from 'unist-util-visit';
 
-type MentionPluginOptions = {
-  getMentionUrl: (username: string) => string;
-};
+import { MentionsWidget } from '../../../../components/MentionsWidget/MentionsWidget';
 
-const regex = /(?:^|\s)@([\da-z][-\da-z_]{0,38})/gi;
-
-const mentionPlugin: RemarkPluginRaw<MentionPluginOptions> = ({
-  getMentionUrl,
-}) => {
-  return tree => {
-    visit(tree, 'text', (node, _index, parent) => {
-      if (!parent) {
-        return [SKIP, _index];
-      }
-      if (_index === null || _index === undefined) {
-        return [SKIP, _index];
-      }
-
-      let match;
-
-      let textIndex = 0;
-      const childrenToAdd = [];
-
-      while ((match = regex.exec(node.value)) !== null) {
-        const username = match[1];
-        const mentionStartIndex = match.index;
-        const mentionEndIndex = mentionStartIndex + match[0].length;
-
-        console.log('node: ', node.value);
-
-        // Add text before the mention
-        if (mentionStartIndex > textIndex) {
-          childrenToAdd.push({
-            type: 'text',
-            value: node.value.slice(textIndex, mentionStartIndex),
-          });
-        }
-
-        // Add mention link
-        childrenToAdd.push({
-          type: 'link',
-          url: `/${username}`,
-          children: [{ type: 'text', value: `@${username}` }],
-        });
-
-        textIndex = mentionEndIndex;
-      }
-
-      // Add remaining text after the last mention
-      if (textIndex < node.value.length) {
-        childrenToAdd.push({
-          type: 'text',
-          value: node.value.slice(textIndex),
-        });
-      }
-
-      // Replace the text node with the new children
-      parent.children.splice(_index, 1, ...childrenToAdd);
-    });
+export type MentionsPluginAttrs = {
+  active: boolean;
+  range: {
+    to: number;
+    from: number;
   };
+  queryText: string | undefined;
 };
 
-const mentionRemarkPlugin = $remark('mentionsRemark', () => mentionPlugin);
+const mentionsRegex = new RegExp('(^|\\s)@([\\w-\\+]+)$');
+const computeStateFromSelection = (
+  ctx: Ctx,
+  selection: Selection
+): MentionsPluginAttrs | undefined => {
+  const { $from } = selection;
+
+  const parastart = $from.before();
+  const text = $from.doc.textBetween(parastart, $from.pos, '\n', '\0');
+  const match = text.match(mentionsRegex);
+
+  if (match) {
+    const { index = 0 } = match;
+    const [value, , queryText] = match;
+
+    match.index = value.startsWith(' ') ? index + 1 : match.index;
+    match[0] = value.trim();
+
+    const from = $from.start() + (match.index as number);
+    const to = from + match[0].length;
+
+    const isLink = $from.doc.rangeHasMark(from, to, linkSchema.type(ctx));
+
+    if (isLink) {
+      return undefined;
+    }
+
+    return {
+      active: true,
+      range: { from: from, to: to },
+      queryText: queryText,
+    };
+  }
+
+  return undefined;
+};
+
+const getInitState = (): MentionsPluginAttrs => ({
+  active: false,
+  range: {
+    to: 0,
+    from: 0,
+  },
+  queryText: 'krzys',
+});
 
 export const useMentionsPlugin = () => {
-  const mentionsPlugin = useMemo(() => [mentionRemarkPlugin].flat(), []);
+  const widgetViewFactory = useWidgetViewFactory();
+
+  const proseMentionsPlugin = useMemo(
+    () =>
+      $prose(ctx => {
+        const key = new PluginKey<MentionsPluginAttrs>('MENTIONS_PLUGIN');
+        return new Plugin({
+          key,
+          state: {
+            init() {
+              return getInitState();
+            },
+            apply(tr) {
+              const newState = getInitState();
+              const { selection } = tr;
+
+              if (selection.from !== selection.to) {
+                return newState;
+              }
+
+              const stateFromSelection = computeStateFromSelection(
+                ctx,
+                selection
+              );
+
+              if (stateFromSelection) {
+                return stateFromSelection;
+              }
+
+              return newState;
+            },
+          },
+          props: {
+            decorations(state) {
+              const newState = key.getState(state);
+
+              if (newState?.active) {
+                const { range } = newState;
+                const editorView = ctx.get(editorViewCtx);
+
+                const { top, left } = posToDOMRect(
+                  editorView,
+                  range.from,
+                  range.to
+                );
+
+                const div = document.createElement('div');
+                div.style.position = 'fixed';
+                div.style.top = `${top + 24}px`;
+                div.style.left = `${left}px`;
+                div.style.zIndex = '100000';
+
+                const createWidget = widgetViewFactory({
+                  as: div,
+                  component: MentionsWidget,
+                });
+
+                return DecorationSet.create(state.tr.doc, [
+                  createWidget(newState.range.from, newState),
+                ]);
+              }
+
+              return DecorationSet.empty;
+            },
+          },
+        });
+      }),
+    [widgetViewFactory]
+  );
+
+  const mentionsPlugin = useMemo(
+    () => [proseMentionsPlugin].flat(),
+    [proseMentionsPlugin]
+  );
 
   return mentionsPlugin;
 };
