@@ -3,6 +3,7 @@ import { createContext, useMemo } from 'react';
 import { useBase64File } from '../../hooks/useBase64File';
 import { TextEditorMode } from '../../packages/TextEditor';
 import { AddGoogleSlidesModalProps } from '../AddGoogleSlidesModal/DefaultAddGoogleSlidesModal';
+import { MentionsListDropdownProps } from '../MentionsWidget/MentionsWidget';
 
 type TextEditorContextData = {
   mode: TextEditorMode;
@@ -14,6 +15,7 @@ type TextEditorContextData = {
   inputAcceptedFormats: string;
   components?: {
     AddGoogleSlidesModal?: React.FC<AddGoogleSlidesModalProps>;
+    MentionsListDropdown?: React.FC<MentionsListDropdownProps>;
   };
 };
 
@@ -38,6 +40,7 @@ export type TextEditorContextProviderProps = {
   inputAcceptedFormats?: string;
   components?: {
     AddGoogleSlidesModal?: React.FC<AddGoogleSlidesModalProps>;
+    MentionsListDropdown?: React.FC<MentionsListDropdownProps>;
   };
 };
 

@@ -13,9 +13,6 @@ export const EditorContainer = styled.div`
 
   * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    color: ${props => props.theme.colors.lightBlack};
     font-family: ${props => props.theme.fonts.primary};
 
     &::selection {
@@ -76,13 +73,13 @@ export const EditorContainer = styled.div`
     ul,
     ol {
       padding-left: ${pxToRem(20)};
+
+      li {
+        padding-left: ${pxToRem(2)};
+      }
     }
 
-    li {
-      padding-left: ${pxToRem(2)};
-    }
-
-    p {
+    > p {
       margin: ${pxToRem(16)} 0;
     }
 
