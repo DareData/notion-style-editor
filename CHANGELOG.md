@@ -2,17 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v.2.4]
+## [v0.2.5]
+
+## Added
+- Added `mentions` plugin that provides functionality for transforming @Abc to [Abc](href)
+- Stop rendering link, when we use space while typing
+
+## [v0.2.4]
 
 ## Changed
 - added `components` prop, which enables modifying Google Slides modal content
 
-## [v.2.3]
+## [v0.2.3]
 
 ## Changed
 - `z-index` of the Modals
 
-## [v.2.2]
+## [v0.2.2]
 
 ## Added
 - Tests for editor

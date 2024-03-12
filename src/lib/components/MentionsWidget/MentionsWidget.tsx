@@ -34,7 +34,7 @@ export const MentionsWidget: React.FC = () => {
   };
 
   if (!components?.MentionsListDropdown) {
-    return <div style={{ background: 'red' }}>kwa</div>;
+    return null;
   }
 
   return (
