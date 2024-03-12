@@ -1,13 +1,4 @@
-/* eslint-disable no-useless-escape */
-import { useRef, useState } from 'react';
-import styled from 'styled-components';
-
-import { ErrorBoundary } from '../ErrorBoundary';
-import { EditorRef } from '../lib/packages/Editor';
-import { TextEditor, TextEditorProps } from '../lib/packages/TextEditor';
-import { pxToRem } from '../lib/styles/utils';
-
-const data = localStorage.getItem('editor_state') || '';
+import { TextEditorProps } from '../lib';
 
 const names = [
   'John',
@@ -41,6 +32,7 @@ export const MentionsListDropdown: MentionsListDropdownProps = ({
   onMentionItemClick,
 }) => {
   const options = names.filter(name => name.includes(queryText));
+
   if (!options.length) {
     return (
       <div
@@ -55,6 +47,7 @@ export const MentionsListDropdown: MentionsListDropdownProps = ({
   }
   return (
     <ul
+      data-testid="mentioning-dropdown-list"
       style={{
         minWidth: '100px',
         padding: '5px',
@@ -66,11 +59,12 @@ export const MentionsListDropdown: MentionsListDropdownProps = ({
       {options.map(option => (
         <li key={option}>
           <button
+            data-testid="mentioning-dropdown-list-item"
             style={{ padding: '4px' }}
             onClick={e => {
               e.preventDefault();
               e.stopPropagation();
-              onMentionItemClick(option, 'https://facebook/user/' + option);
+              onMentionItemClick(option, 'https://test/user/' + option);
             }}
           >
             {option}
