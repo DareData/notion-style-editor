@@ -103,16 +103,21 @@ export const useMentionsPlugin = () => {
                 const { range } = newState;
                 const editorView = ctx.get(editorViewCtx);
 
-                const { top, left } = posToDOMRect(
-                  editorView,
-                  range.from,
-                  range.to
-                );
+                const start = editorView.coordsAtPos(range.from);
+                const end = editorView.coordsAtPos(range.to);
+                const box = editorView.dom.getBoundingClientRect();
+
+                const width =
+                  end.left > start.left ? (end.left - start.left) / 2 : 0;
+                const height = start.bottom - start.top;
+
+                const left = start.left - box.left + width;
+                const top = start.top - box.top + height;
 
                 const div = document.createElement('div');
-                div.style.position = 'fixed';
-                div.style.top = `${top + 24}px`;
-                div.style.left = `${left}px`;
+                div.style.position = 'absolute';
+                div.style.inset = '0 auto auto 0';
+                div.style.transform = `translate(${left}px, ${top}px)`;
                 div.style.zIndex = '100000';
 
                 const createWidget = widgetViewFactory({
@@ -121,7 +126,7 @@ export const useMentionsPlugin = () => {
                 });
 
                 return DecorationSet.create(state.tr.doc, [
-                  createWidget(newState.range.from, newState),
+                  createWidget(newState.range.from - 1, newState),
                 ]);
               }
 
