@@ -1,7 +1,6 @@
 import { editorViewCtx } from '@milkdown/core';
 import { Ctx } from '@milkdown/ctx';
 import { linkSchema } from '@milkdown/preset-commonmark';
-import { posToDOMRect } from '@milkdown/prose';
 import { Plugin, PluginKey, Selection } from '@milkdown/prose/state';
 import { DecorationSet } from '@milkdown/prose/view';
 import { $prose } from '@milkdown/utils';
@@ -46,7 +45,7 @@ const computeStateFromSelection = (
     }
 
     return {
-      range: { from: from, to: to },
+      range: { from, to },
       queryText: queryText,
     };
   }
@@ -104,14 +103,11 @@ export const useMentionsPlugin = () => {
                 const editorView = ctx.get(editorViewCtx);
 
                 const start = editorView.coordsAtPos(range.from);
-                const end = editorView.coordsAtPos(range.to);
                 const box = editorView.dom.getBoundingClientRect();
 
-                const width =
-                  end.left > start.left ? (end.left - start.left) / 2 : 0;
                 const height = start.bottom - start.top;
 
-                const left = start.left - box.left + width;
+                const left = start.left - box.left;
                 const top = start.top - box.top + height;
 
                 const div = document.createElement('div');
