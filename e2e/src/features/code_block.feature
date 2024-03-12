@@ -13,4 +13,4 @@ Feature: Code block
 		Then I check that editor contains code block
 		And I check that code block contains "function main() { console.log('Hello milkdown!'); }" value
 		When I click "Retrieve Editor's text" button
-		Then I check that editor retrieved text contains "function main() { console.log('Hello milkdown!'); }" value
+		Then I check that editor retrieved text contains "```\ function main() { console.log('Hello milkdown!'); } ```" value
