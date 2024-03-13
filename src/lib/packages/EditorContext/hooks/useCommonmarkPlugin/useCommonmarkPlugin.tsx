@@ -16,6 +16,7 @@ import { wrapInList } from 'prosemirror-schema-list';
 import { useMemo } from 'react';
 
 import { useGoogleSlidesPlugin } from './useGoogleSlidesPlugin';
+import { useStopLinkPlugin } from './useStopLinkPlugin';
 import { CodeBlockNode } from '../../../../components/CodeBlockNode/CodeBlockNode';
 import { DocumentNode } from '../../../../components/DocumentNode/DocumentNode';
 import { LinkTooltip } from '../../../../components/LinkTooltip/LinkTooltip';
@@ -34,8 +35,10 @@ export const wrapEntireInOrderedListCommand = $command(
 
 export const useCommonmarkPlugin = () => {
   const nodeViewFactory = useNodeViewFactory();
-  const googleSlidesPlugin = useGoogleSlidesPlugin();
   const pluginViewFactory = usePluginViewFactory();
+
+  const stopLinkPlugin = useStopLinkPlugin();
+  const googleSlidesPlugin = useGoogleSlidesPlugin();
 
   const commonMarkPlugin = useMemo(
     () =>
@@ -58,8 +61,9 @@ export const useCommonmarkPlugin = () => {
         googleSlidesPlugin,
         wrapEntireInBulletListCommand,
         wrapEntireInOrderedListCommand,
+        stopLinkPlugin,
       ].flat(),
-    [pluginViewFactory, nodeViewFactory, googleSlidesPlugin]
+    [pluginViewFactory, nodeViewFactory, googleSlidesPlugin, stopLinkPlugin]
   );
 
   return commonMarkPlugin;

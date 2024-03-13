@@ -2,10 +2,11 @@
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import { ErrorBoundary } from './ErrorBoundary';
-import { EditorRef } from './lib/packages/Editor';
-import { TextEditor } from './lib/packages/TextEditor';
-import { pxToRem } from './lib/styles/utils';
+import { MentionsListDropdown } from './MentionsListDropdown';
+import { ErrorBoundary } from '../ErrorBoundary';
+import { EditorRef } from '../lib/packages/Editor';
+import { TextEditor } from '../lib/packages/TextEditor';
+import { pxToRem } from '../lib/styles/utils';
 
 const data = localStorage.getItem('editor_state') || '';
 
@@ -17,7 +18,7 @@ export const App = () => {
     <ErrorBoundary>
       <section>
         <h2>Text will be there:</h2>
-        <div>{text}</div>
+        <div data-testid="editor-retrieved-value">{text}</div>
       </section>
       <AppContainerStyled>
         <div>
@@ -31,7 +32,10 @@ export const App = () => {
           data={data}
           editorRef={ref}
           placeholder="Type here"
-          debounceChange={1000}
+          debounceChange={0}
+          components={{
+            MentionsListDropdown,
+          }}
         />
       </AppContainerStyled>
     </ErrorBoundary>
