@@ -17,6 +17,7 @@ import { useEditorViewPlugin } from './hooks/useEditorViewPlugin';
 import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
 import { useListenerPlugin } from './hooks/useListenerPlugin';
 import { useMathPlugin } from './hooks/useMathPlugin';
+import { useMentionsPlugin } from './hooks/useMentionsPlugin/useMentionsPlugin';
 import { useMenuBarPlugin } from './hooks/useMenuBarPlugin';
 import { useMermaidPlugin } from './hooks/useMermaidPlugin';
 import { usePlaceholderPlugin } from './hooks/usePlaceholderPlugin';
@@ -56,6 +57,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   const prismPlugin = usePrismPlugin();
   const placeholderPlugin = usePlaceholderPlugin();
   const menuBarPlugin = useMenuBarPlugin();
+  const mentionsPlugin = useMentionsPlugin();
   const listenerPlugin = useListenerPlugin({
     onChange,
     onFocus,
@@ -84,6 +86,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
         .use(emoji)
         .use(clipboard)
         .use(menuBarPlugin)
+        .use(mentionsPlugin)
         .use(gfmPlugin),
     [
       commonmarkPlugin,
@@ -97,6 +100,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
       slashPlugin,
       uploadPlugin,
       prismPlugin,
+      mentionsPlugin,
     ]
   );
 

@@ -2,17 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v.2.4]
+## [v0.3.0]
+
+## Added
+- Enabled mentioning users via `@`.
+
+## Changed
+- Modified E2E tests, so it tests text editor result as well.
+
+## Fixed
+- Stop continue using link, when we use `Space` ( abc x - x is no longer link )
+
+
+## Added
+- Added `mentions` plugin that provides functionality for transforming @Abc to [Abc](href)
+- Stop rendering link, when we use space while typing
+
+## [v0.2.4]
 
 ## Changed
 - added `components` prop, which enables modifying Google Slides modal content
 
-## [v.2.3]
+## [v0.2.3]
 
 ## Changed
 - `z-index` of the Modals
 
-## [v.2.2]
+## [v0.2.2]
 
 ## Added
 - Tests for editor
