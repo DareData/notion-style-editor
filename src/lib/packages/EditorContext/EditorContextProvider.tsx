@@ -48,7 +48,7 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   defaultMarkdownValue,
 }) => {
   const { mode } = useTextEditorContext();
-  const isEditable = useRef<boolean>(mode === 'active');
+  const isEditable = useRef(mode === 'active');
 
   const gfmPlugin = useGfmPlugin();
   const mathPlugin = useMathPlugin();
