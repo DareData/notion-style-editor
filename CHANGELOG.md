@@ -2,7 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v0.2.5]
+## [v0.3.0]
+
+## Added
+- Enabled mentioning users via `@`.
+
+## Changed
+- Modified E2E tests, so it tests text editor result as well.
+
+## Fixed
+- Stop continue using link, when we use `Space` ( abc x - x is no longer link )
+
 
 ## Added
 - Added `mentions` plugin that provides functionality for transforming @Abc to [Abc](href)
