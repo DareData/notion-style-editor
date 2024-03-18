@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.3.1]
+
+## Fixed
+- After changing prop mode, it was still possible to write in the editor even though it was disabled.
+
 ## [v0.3.0]
 
 ## Added

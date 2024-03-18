@@ -4,16 +4,14 @@ import {
   defaultValueCtx,
   editorViewOptionsCtx,
 } from '@milkdown/core';
-import { Ctx } from '@milkdown/ctx';
 import { clipboard } from '@milkdown/plugin-clipboard';
 import { emoji } from '@milkdown/plugin-emoji';
 import { history } from '@milkdown/plugin-history';
 import { trailing } from '@milkdown/plugin-trailing';
 import { useEditor, UseEditorReturn } from '@milkdown/react';
-import { createContext, useMemo } from 'react';
+import { createContext, useEffect, useMemo, useRef } from 'react';
 
 import { useCommonmarkPlugin } from './hooks/useCommonmarkPlugin/useCommonmarkPlugin';
-import { useEditorViewPlugin } from './hooks/useEditorViewPlugin';
 import { useGfmPlugin } from './hooks/useGfmPlugin/useGfmPlugin';
 import { useListenerPlugin } from './hooks/useListenerPlugin';
 import { useMathPlugin } from './hooks/useMathPlugin';
@@ -24,6 +22,7 @@ import { usePlaceholderPlugin } from './hooks/usePlaceholderPlugin';
 import { usePrismPlugin } from './hooks/usePrismPlugin';
 import { useSlashPlugin } from './hooks/useSlashPlugin';
 import { useUploadPlugin } from './hooks/useUploadPlugin/useUploadPlugin';
+import { useTextEditorContext } from '../../components/TextEditorContext/useTextEditorContext';
 
 type EditorContextData = {
   editor: UseEditorReturn | null;
@@ -48,6 +47,9 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
   debounceChange,
   defaultMarkdownValue,
 }) => {
+  const { mode } = useTextEditorContext();
+  const isEditable = useRef(mode === 'active');
+
   const gfmPlugin = useGfmPlugin();
   const mathPlugin = useMathPlugin();
   const uploadPlugin = useUploadPlugin();
@@ -64,14 +66,16 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
     debounceChange,
   });
 
-  useEditorViewPlugin();
-
   const editor = useEditor(
     root =>
       MilkdownEditor.make()
         .config(ctx => {
           ctx.set(rootCtx, root);
           ctx.set(defaultValueCtx, defaultMarkdownValue);
+          ctx.update(editorViewOptionsCtx, prev => ({
+            ...prev,
+            editable: () => isEditable.current,
+          }));
         })
         .use(commonmarkPlugin)
         .use(placeholderPlugin)
@@ -103,6 +107,10 @@ export const EditorContextProvider: React.FC<EditorContextProviderProps> = ({
       mentionsPlugin,
     ]
   );
+
+  useEffect(() => {
+    isEditable.current = mode === 'active';
+  }, [isEditable, mode]);
 
   const context = useMemo(() => ({ editor }), [editor]);
 
