@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.3.2]
+
+## Added
+- Added `isEditorDirty` prop
+
 ## [v0.3.1]
 
 ## Fixed
