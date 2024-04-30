@@ -72,7 +72,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({
               data-testid={'text-editor-wrapper'}
             >
               <Toaster toastOptions={toasterStyles} />
-              <Editor ref={editorRef} />
+              <Editor ref={editorRef} defaultValue={data} />
             </EditorContainer>
           </EditorContextProvider>
         </ProsemirrorAdapterProvider>
